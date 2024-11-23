@@ -1,0 +1,23 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{xcolor}
+
+
+\usepackage[bold-style=ISO]{unicode-math}
+\usepackage{bm}
+
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at (2.0, 0.5);
+        \coordinate (B) at (1.0, 1.5);
+        \node [below left] at (O) {$O$};
+        \draw [purple, -Stealth, very thick] (O) -- node [below] {$\symbf{x}$} (A);
+        \draw [cyan,   -Stealth, very thick] (A) -- node [above right, xshift=-0.5mm] {$\symbf{y}$} (B);
+        \draw [orange, -Stealth, very thick] (B) -- node [above left] {$\symbf{z}$} (O);
+    \end{tikzpicture}
+\end{document}

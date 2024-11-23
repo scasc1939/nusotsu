@@ -1,0 +1,11 @@
+% ヘディング（あ、い、…）の出力
+%  0: 出力しない
+%  1: ラテン・ギリシャ文字は大文字
+% -1: ラテン・ギリシャ文字は小文字
+%  2: タイトルケース
+heading_flag   1
+% 頭文字（e.g. あ）の前につけるコマンド
+% 最後に半角スペースをお忘れなく
+heading_prefix "\n\n\\null\\hfill\\rule[0.8ex]{0.3\\linewidth}{1.0pt}{\\bfseries\\gtfamily "
+% 頭文字の後につけるコマンド
+heading_suffix "行}\\rule[0.8ex]{0.3\\linewidth}{1.0pt}\\hfill\\null\n\n"

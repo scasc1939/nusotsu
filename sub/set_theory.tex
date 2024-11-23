@@ -1,0 +1,527 @@
+\documentclass[../sotsu.tex]{subfiles}
+
+\begin{document}
+
+
+\section{集合論・代数学の基礎}
+
+\subsection{集合}
+
+「集合」をきちんと定義するのは難しいが，ここでは以下のように考える．
+
+ある特定の性質をもつモノの集まりを\word{集合}(set)という．
+集合とは単なるモノの集まりではなく，何が集まっているかを定められる集まりである\cite{uchida-set-2020}．
+
+\begin{example}
+    「\textgt{正の実数の全体}」「\textgt{ひらがなの全体}」「\textgt{名大付属図書館の蔵書全体}」には，それぞれ何が入っていて，何が入っていないのかを定められるので集合である%
+    \footnote{
+        もちろん「ひらがなの全体」に変体仮名を含むのか，「名大付属図書館の蔵書全体」はいつの時点の蔵書を指すのかは決めておく必要がある．
+    }．
+    一方で，「\textgt{絶対値の小さな複素数の全体}」「\textgt{難しい漢字の全体}」「\textgt{偉大な物理学者の全体}」には，何が入っていて何が入らないのかを客観的に定められないので，集合とは言わない%
+    \footnote{
+        ``偉大な物理学者''を「ノーベル物理学賞の受賞者」と定義すれば，「\textgt{偉大な物理学者の全体}」は集合になる．
+        しかし，そうであればはじめから「\textgt{ノーベル物理学賞の受賞者の全体}」といえばよいし，
+        そもそも偉大な物理学者≠ノーベル物理学賞受賞者であるのは物理学を学んだ人ならよく理解していることだろう．
+    }．
+\end{example}
+
+$X$をある集合とする．$X$を構成するモノのことを，$X$の\word{元}[げん](element)あるいは\word{要素}[よう|そ]という．
+$a$が$X$の元であるとき，「$a$は$X$に属する」あるいは「$a$は$X$に含まれる」といい，$a \in X$とかく．
+$a$が$X$の元でなければ，$a \notin X$とかく．
+$X$と$a$の位置を入れ替えて$X \ni a$あるいは$a \nni X$とかいてもよい\cite{uchida-set-2020}．
+
+\begin{example}
+    $X$を「\textgt{愛知県にある市の全体}」とすると，$X$は集合である．
+    このとき，\textgt{名古屋市}は$X$に属する（含まれる）ので，$\text{\textgt{名古屋市}} \in X$とかく．
+    一方，\textgt{\ruby{四日市}{よっ|か|いち}市}は$X$に属さない（含まれない）ので，$\text{\textgt{四日市市}} \notin X$とかく．
+    ほかにも
+    \begin{equation*}
+        \textgt{豊田市} \in X,
+        \qquad
+        \textgt{浜松市} \notin X,
+        \qquad
+        \textgt{\ruby{飛島}{とび|しま}村} \notin X
+    \end{equation*}
+    といったふうに，それぞれ$X$に含まれるか含まれないかを決定できる．
+\end{example}
+
+任意の集合$A$と任意の$x$に対して，$x \in A$と$x \notin A$のいずれか一方が必ず成り立つ．
+
+集合を表すのには，いくつかの方法がある．
+まずは$\{ 1, 2, 4 \}$のように\ruby{波括弧}{なみ|かっ|こ}(brace)の中に元を書き並べる方法である．
+しかし，この書き方だと無限個の元を含む集合，たとえば「\textgt{自然数全体の集合}$\symbb{N}$」を表すことができない．
+そこで，
+\begin{equation*}
+    \symbb{N} = \Set{  x  \given  \text{$x$は自然数}  }
+\end{equation*}
+のように縦棒$|$を書き，その前に含むべき元，うしろに元が含まれる条件をかく．
+たとえば$\Set{  x \in \symbb{N}  \given  x > 2^{10}  }$とかけば，これは$2^{10}$より大きい自然数の集合を表す．
+
+集合の表記になれるため，また今後のための準備もかねて，数の集合をいくつか挙げておこう．
+\begin{subequations}
+    \label{eq:number-sets}
+    \begin{align}
+        \text{自然数全体の集合} \, \symbb{N} &= \Set{  1, 2, 3, \dotsc  }
+        \\
+        \text{整数全体の集合}  \, \symbb{Z} &= \Set{  \dots, -2, -1, 0, 1, 2, 3, \dotsc  }
+        \\
+        \text{有理数全体の集合} \, \symbb{Q} &= \Set*{  \frac{p}{q}  \given  p \in \symbb{Z}, \  q \in \symbb{N}  }
+        \\
+        \text{実数全体の集合}  \, \symbb{R} &\phantom{=}
+        \\
+        \text{複素数全体の集合} \, \symbb{C} &= \Set{  a + b \iu  \given  a, b \in \symbb{R}  }
+    \end{align}
+\end{subequations}
+
+\begin{example}
+    \textgt{正の実数全体の集合}は，$\Set{  x \in \symbb{R}  \given  x > 0  }$とかける．
+\end{example}
+
+
+\begin{definition}[集合の一致]
+    集合$X$と集合$Y$について，$X$のすべての元と$Y$のすべての元が一致するとき，$X$と$Y$は一致するといい，$X = Y$とかく．
+\end{definition}
+
+\begin{definition}[集合の包含]
+    集合$X$と集合$Y$について，$X$のすべての元が$Y$の元であるとき，$X$は$Y$に含まれる（あるいは$Y$は$X$を含む）といい，$X \subset Y$とかく．
+
+    $X = Y$のときも$X \subset Y$が成り立つことに注意．
+\end{definition}
+
+集合$X$と$Y$が一致することを直接示すのは難しいことが多い．
+$X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
+
+
+
+\subsection{集合の演算}
+
+\begin{definition}[和集合]
+    \label{dfn:union-of-set}
+    $X, Y$を集合とする。
+    2つの集合の\word{和集合}[わ|しゅう|ごう][わしゆうこう](union)を、
+    \begin{equation}
+        X \cup Y  \coloneq  \Set{  x  \given  x \in X \, \text{または} \, x \in Y  }
+    \end{equation}
+    で定義する。
+\end{definition}
+
+\begin{definition}[共通部分]
+    \label{dfn:intersection-of-set}
+    $X, Y$を集合とする。
+    2つの集合の\word{共通部分}[きょう|つう|ぶ|ぶん][きようつうふふん](intersection)を
+    \begin{equation}
+        X \cap Y  \coloneq  \Set{  x  \given  x \in X \, \text{かつ} \, x \in Y  }
+    \end{equation}
+    で定義する。
+\end{definition}
+
+\begin{definition}[非交和]
+    \label{dfn:disjoint-union}
+    $X \cap Y = \emptyset$であるとき、
+    和集合$X \cup Y$を特に\word{非交和}[ひ|こう|わ][ひこうわ](disjoint union)
+    あるいは\word{直和}[ちょく|わ][ちよくわ](direct sum)といい、
+    $X \sqcup Y$とかく。
+\end{definition}
+
+
+
+
+
+\subsection{写像}
+
+\begin{definition}[写像]
+    \label{dfn:map}
+    $X, Y$を集合とする．
+    $x \in X$に対して，ある$y \in Y$を対応付ける規則のことを，$X$から$Y$への\word{写像}[しゃ|ぞう](map)という．
+    
+    $f$が$X$から$Y$への写像であることを，$f \colon X \to Y$とあらわす．
+
+    $X$を$f$の\word{定義域}[てい|ぎ|いき](domain)，$Y$を$f$の\word{終域}[しゅう|いき](codomain)という．
+\end{definition}
+
+\begin{example}
+    $X = \{ 1, 2, 3 \}$，$Y = \{ a, b, c \}$とする．
+    次のように定義された$f$は$X$から$Y$への写像である．
+    \begin{align*}
+          f(1) &= a, 
+        & f(2) &= b, 
+        & f(3) &= c.
+    \end{align*}
+    また，次のような$g$および$h$も$X$から$Y$への写像である．
+    \begin{align*}
+          g(1) &= c,
+        & g(2) &= c,
+        & g(3) &= a.
+        \\
+          h(1) &= a,
+        & h(2) &= a,
+        & h(3) &= a.
+    \end{align*}
+\end{example}
+
+\begin{example}
+    $X = \symbb{N}$，$Y = \symbb{N}$とする．
+    $x \in X$に対して，$y \in Y$を
+    \[ y = f(x) = 3x \]
+    で定めたとき，$f$は$\symbb{N}$から$\symbb{N}$への写像である．
+    簡単のために
+    \[ X \ni x \mapsto 3x \in Y \]
+    とかくこともある．
+\end{example}
+
+\begin{example}
+    $X = \symbb{R}$，$Y = \symbb{R}$とする．
+    $x \in X$に対して，$y \in Y$を
+    \[ y = f(x) = x^2 \]
+    で定めたとき，$f$は$\symbb{R}$から$\symbb{R}$への写像である．
+
+    $\symbb{R}$から$\symbb{R}$への写像や$\symbb{C}$から$\symbb{C}$への写像を，特に\word{関数}[かん|すう](function)という．
+\end{example}
+
+\begin{definition}[像]
+    \label{dfn:image}
+    $f \colon X \to Y$を写像とする．
+    集合
+    \begin{equation}
+        \image f  \coloneq  \Set{ f(x) \in Y  \given  x \in X }
+    \end{equation}
+    を$f$の\word{像}[ぞう](image)という．
+\end{definition}
+
+$f$の像を\word{値域}[ち|いき](range)ということもある．
+$f$の値域といった場合，$f$の終域を指すことも像を指すこともあり，注意が必要である．
+
+\begin{definition}[部分集合の像]
+    $f \colon X \to Y$を写像とする．
+    部分集合$A \subset X$に対し，
+    \begin{equation}
+        f[A] \colon \Set{  f(x) \in Y  \given  x \in A  }
+    \end{equation}
+    を，$A$の$f$による像という．
+\end{definition}
+
+\begin{definition}[逆像]
+    $f \colon X \to Y$を写像とする．
+    部分集合$A \subset Y$に対して，
+    \begin{equation}
+        f^{-1}[B] \coloneq \Set{  x \in X  \given  f(x) \in A  }
+    \end{equation}
+    で定められる集合を\word{逆像}[ぎゃく|ぞう][きやくそう](inverse image)という．
+\end{definition}
+同じ記号$f^{-1}$を使う逆写像\refdfn{dfn:inverse-map}と逆像を取り違えないこと%
+\footnote{
+    ここでは英語版Wikipediaにならって逆像を$f^{-1}[B]$とかいたが，
+    逆写像と全く同じように$f^{-1}(B)$と書く場合も多い．
+}．
+任意の写像$f$に対し，逆写像が存在するとは限らないが，逆像は必ず存在する．
+
+\begin{example}
+    写像$f$を，$f \colon \symbb{R} \ni x \mapsto \lfloor x \rfloor \in \symbb{R}$で定義する．
+    $f$の像は$f[\symbb{R}] = \symbb{Z}$である．
+    部分集合の像はたとえば$f[ \Set{  x \in \symbb{R}  \given  \abs{x} < 2  } ] = \{ -2, 1, 0, 1 \}$である．
+    逆像はたとえば$f^{-1}[ \{ 1, 2, 3 \} ] = \Set{  x \in \symbb{R}  \given  1 \leq x < 4  }$である．
+    また，$f^{-1}[ \{ 0.5 \} ] = \emptyset$である．
+\end{example}
+
+
+次に特殊な写像を定義する．
+
+\begin{definition}[恒等写像]
+    \label{dfn:identity-map}
+    以下のような写像$\mathrm{id}_X \colon X \to X$を\word{恒等写像}[こう|とう|しゃ|ぞう][こうとうしやそう](identity map)という．
+    \[ X \ni x \mapsto x \in X \]
+    恒等写像とは，任意の$x \in X$を$x$自身にうつす写像のことである．
+\end{definition}
+
+なお，集合$X, Y$について，$X = Y$でなくとも$X \subset Y$を満たせば写像$\iota \colon X \ni x \mapsto x \in Y$は定義できる．
+$X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$なら$\iota$は\word{包含写像}[ほう|がん|しゃ|ぞう][ほうかんしやそう](inclusion map)であり恒等写像ではない．
+
+\begin{definition}[単射]
+    \label{dfn:injection}
+    写像$f \colon X \to Y$は，
+    任意の$x, x' \in X$に対して，$f(x) = f(x')$ならば$x = x'$が成り立つとき，\word{単射}[たん|しゃ][たんしや](injection)であるという．
+\end{definition}
+
+\begin{definition}[全射]
+    \label{dfn:surjection}
+    写像$f \colon X \to Y$は，
+    任意の$y \in Y$に対して，$x \in X$が存在して，$y = f(x)$となるとき，\word{全射}[ぜん|しゃ][せんしや](surjection)であるという．
+\end{definition}
+
+\begin{definition}[全単射]
+    \label{dfn:bijection}
+    写像$f \colon X \to Y$が単射かつ全射のとき，\word{全単射}[ぜん|たん|しゃ][せんたんしや](bijection)という．
+\end{definition}
+
+集合$X$と$Y$のあいだに全単射が存在する場合，この2つを同じ集合とみなすことができる（ことがある）．
+
+\begin{example}
+    包含写像$X \hookrightarrow Y$は単射である．
+\end{example}
+
+次に2つ以上の写像の関係についてみる．
+
+\begin{definition}[写像の一致]
+    写像$f \colon X \to Y$と$g \colon X \to Y$が等しいとは，任意の$x \in X$に対して，$f(x) = g(x)$であることをいう．
+\end{definition}
+
+\begin{definition}[写像の合成]
+    $X, Y, Z$を集合，$f \colon X \to Y$，$g \colon Y \to Z$を写像とする．
+    $x \in X$を$g(f(x)) \in Z$にうつす写像を$f$と$g$の\word{合成写像}といい，$g \circ f$であらわす．
+\end{definition}
+
+
+\begin{definition}[逆写像]
+    \label{dfn:inverse-map}
+    $X, Y$を集合，$f \colon X \to Y$を写像とする．
+    写像$g \colon Y \to X$が
+    \[  f \circ g = \mathrm{id}_Y  \quad \text{かつ} \quad  g \circ f = \mathrm{id}_X  \]
+    をみたすとき，$g$は$f$の\word{逆写像}[ぎゃく|しゃ|ぞう]であるといい，$f^{-1}$とかく%
+    \footnote{
+        $f \circ g = g \circ f = \mathrm{id}$と覚えている人がいるかもしれないが，誤り．
+        $f \circ g \colon Y \to Y$と$g \circ f \colon X \to X$は一般に異なる写像である．
+    }．
+\end{definition}
+
+\begin{theorem}
+    \label{thm:inverse-map-exists-iff}
+    写像$f \colon X \to Y$に対して，逆写像$f^{-1} \colon Y \to X$が存在する必要十分条件は，$f$が全単射であることである．
+\end{theorem}
+
+
+\begin{definition}[写像の制限]
+    \label{dfn:restriction}
+    $X, Y$を集合，$f \colon X \to Y$を写像とする．
+    部分集合$U \subset X$に対し，写像$f \vert_{U} \colon U \to Y$を
+    \begin{equation*}
+        f \vert_U  \colon  U \ni x \longmapsto f(x) \in Y
+    \end{equation*}
+    で定める．$f \vert_U$を$f$の\word{制限}[せい|げん][せいけん](restriction)という．
+\end{definition}
+
+
+
+
+\subsection{群・環・体}
+
+\begin{definition}[群]
+    \label{dfn:group}
+    $G$を集合，$\dotprod \colon G \times G \to G$を二項演算とする．
+    $G$の元が，演算$\dotprod$に対して以下を満たすとき，
+    $(G, \dotprod)$は\word{群}[ぐん](group)であるという．
+    \begin{enumerate}
+        \item 任意の$a, b, c \in G$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
+        \item ある$e \in G$が存在して，任意の$a \in G$に対し，$a \dotprod e = e \dotprod a = a$である．
+        \item 任意の$a \in G$に対し，ある$a^{-1} \in G$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = e$である．
+    \end{enumerate}
+    群$(G, \dotprod)$のことを単に$G$とかくこともある．
+\end{definition}
+
+\begin{example}
+    \begin{equation*}
+        \mathrm{SO}(n, \symbb{R}) \coloneq \Set{ A \colon \text{実成分$n$-次正方行列} \given \det A = 1 }
+    \end{equation*}
+    とする．これは行列としての積に対して群をなす．
+\end{example}
+
+\begin{example}
+    自然数全体の集合$\symbb{N}$は，通常の和$+$に対して群をなす．
+\end{example}
+
+\begin{example}
+    実数全体の集合$\symbb{R}$は，通常の積$\times$に対して群をなさない．
+    なぜなら，$0 \in \symbb{R}$に対して，$0 \times x = 1$となるような$x \in \symbb{R}$が存在しないため．
+\end{example}
+
+
+\begin{definition}[環]
+    \label{dfn:ring}
+    $R$を集合，$+$と$\dotprod$を$R$上の二項演算とする．
+    以下がみたされるとき，$(R, +, \dotprod)$は\word{環}[かん](ring)であるという．
+    \begin{enumerate}[ref={条件-\arabic*}]
+        \item \label{ring:sum-associative} 任意の$a, b, c \in R$に対し，$(a + b) + c = a + (b + c)$である．
+        \item \label{ring:sum-zero} ある$0 \in R$が存在して，任意の$a \in R$に対し，$a + 0 = 0 + a = a$である．
+        \item \label{ring:sum-opposite} 任意の$a \in R$に対し，ある$-a \in R$が存在して，$a + (-a) = (-a) + a = 0$である．
+        \item \label{ring:sum-commutative} 任意の$a, b \in R$に対し，$a + b = b + a$である．
+        \item \label{ring:prod-associative} 任意の$a, b, c \in R$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
+        \item \label{ring:prod-one} ある$1 \in R$が存在して，任意の$a \in R$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
+        \item \label{ring:distributive} 任意の$a, b, c \in R$に対し，$(a + b) \dotprod c = a \dotprod c + b \dotprod c$であり，$a \dotprod (b + c) = a \dotprod b + a \dotprod c$である．
+    \end{enumerate}
+    さらに以下がみたされるとき，$(R, +, \dotprod)$は\word{可換環}(commutative ring)であるという．
+    \begin{enumerate}[resume]
+        \item 任意の$a, b \in R$に対し，$a \dotprod b = b \dotprod a$である．
+    \end{enumerate}
+    二項演算$+$のことを\word{和}あるいは\word{加法}，
+    $\dotprod$のことを\word{積}あるいは\word{乗法}という．
+
+\end{definition}
+
+\cref{dfn:ring}において，
+\cref{ring:sum-associative,ring:sum-zero,ring:sum-opposite,ring:sum-commutative}は，$(R, +)$がアーベル群（\cref{dfn:group}）であることを要請している．
+
+
+\begin{example}
+    $n$-次正方行列全体の集合は，行列の和$+$と積$\dotprod$に関して環であるが，$n = 1$の場合をのぞき可換環でない．
+\end{example}
+
+
+
+\begin{definition}[体]
+    \label{dfn:field}
+    $\symbb{K}$を集合，$+$と$\dotprod$を$\symbb{K}$上の二項演算とする．
+    以下がみたされるとき，$(\symbb{K}, +, \dotprod)$は\word{体}[たい](field)であるという．
+    \begin{enumerate}
+        \item \label{field:sum-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) + c = a + (b + c)$である．
+        \item \label{field:sum-zero} ある$0 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a + 0 = 0 + a = a$である．
+        \item \label{field:sum-opposite} 任意の$a \in \symbb{K}$に対し，ある$-a \in \symbb{K}$が存在して，$a + (-a) = (-a) + a = 0$である．
+        \item \label{field:sum-commutative} 任意の$a, b \in \symbb{K}$に対し，$a + b = b + a$である．
+        \item \label{field:prod-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
+        \item \label{field:prod-one} ある$1 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
+        \item \label{field:prod-reciprocal} 任意の$a \in \symbb{K} \setminus \{0\}$に対し，ある$a^{-1} \in \symbb{K}$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = 1$である．
+        \item \label{field:prod-commutative} 任意の$a, b \in \symbb{K}$に対し，$a \dotprod b = b \dotprod a$である．
+        \item \label{field:distributive} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) \dotprod c = a \dotprod c + b \dotprod c$であり，$a \dotprod (b + c) = a \dotprod b + a \dotprod c$である．
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    有理数全体の集合$\symbb{Q}$，実数全体の集合$\symbb{R}$，複素数全体の集合$\symbb{C}$は，
+    それぞれ通常の和と積に関して体になる．
+\end{example}
+
+体をひとことでいえば，「四則演算（和・差・積・商）ができる集合」である．
+実数や複素数は体の典型的なものである．
+本稿で「体$\symbb{K}$」と書いてある場合，実数$\symbb{R}$もしくは複素数$\symbb{C}$と読み替えて差支えない．
+
+
+
+\subsection{同値関係・同値類}
+
+\subsubsection{同値関係}
+
+\begin{definition}[二項関係]
+    \label{dfn:binary-relation}
+    $X$を集合とする．
+    規則$\mathbin{\rho}$が$X$上の\word{二項関係}(binary relation)であるとは，
+    任意の$x, y \in X$に対し，$x \mathbin{\rho} y$が満たされるか満たされないかを判別できるときをいう．
+\end{definition}
+
+\begin{example}
+    $<$は$\symbb{R}$上の二項関係である．
+    実際，任意の$a, b \in \symbb{R}$に対し，$a<b$が真であるか偽であるかを判別できる．
+\end{example}
+
+
+\begin{definition}[同値関係]
+    \label{dfn:equivalence-relation}
+    $X$を集合とする．
+    $X$上の二項関係$\sim$が\word{同値関係}(equivalence relation)であるとは，以下をすべて満たすことをいう．
+    \begin{enumerate}
+        \item （\word{反射律}(reflexivity)）任意の$x, y \in X$に対し，$x \sim x$である．
+        \item （\word{対称律}(symmetry)）任意の$x, y \in X$に対し，$x \sim y$ならば$y \sim x$である．
+        \item （\word{推移律}(transitivity)）任意の$x, y, z \in X$に対し，$x \sim y$かつ$y \sim z$ならば$x \sim z$である．
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    任意の集合$X$に対して，$=$は$X$上の自明な同値関係である．
+\end{example}
+
+\begin{example}
+    $\symbb{C}$上の二項関係$\sim$を
+    \begin{equation*}
+        x \sim y  \iff  \abs{x} = \abs{y}
+    \end{equation*}
+    で定めると，$\sim$は同値関係である．
+\end{example}
+
+
+
+\subsubsection{同値類}
+
+\begin{definition}[同値類]
+    \label{dfn:equivalence-class}
+    $X$を集合，$\sim$を$X$上の同値関係とする．
+    $x \in X$に対し，
+    \begin{equation}
+        \eqclass{x}  \coloneq  \Set{ y \in X  \given  x \sim y } \subset X
+    \end{equation}
+    を元$x$の\word{同値類}[どう|ち|るい](equivalence class)という．
+    また，$x$のことを同値類$\eqclass{x}$の\word{代表元}[だい|ひょう|げん](representative)という．
+\end{definition}
+
+\begin{definition}[商集合]
+    $X$を集合，$\sim$を$X$上の同値関係とする．
+    同値類全体の集合
+    \begin{equation}
+        X/{\sim} \coloneq \Set{ \eqclass{x} \subset X  \given  x \in X }
+    \end{equation}
+    を\word{商集合}[しょう|しゅう|ごう](quotient set)という，
+\end{definition}
+
+
+\begin{example}
+    $\symbb{Z}$に対し，同値関係$\sim$を
+    \begin{equation*}
+        x \sim y  \iff  \text{$x-y$が$3$で割りきれる}
+    \end{equation*}
+    で定める．
+    つまり，$x$を3で割ったときの余りと$y$を5で割ったときの余りが同じであるとき，$x \sim y$とする．
+    たとえば，$0 \sim 3 \sim 6 \sim \dotsb$であり，$-1 \sim 2 \sim 5 \sim \dotsb$である．
+    したがって同値類は，
+    \begin{align*}
+           \eqclass{0} &= \{ \dotsc, -3, 0, 3, 6, 9, \dotsc \}
+        &  \eqclass{1} &= \{ \dotsc, -2, 1, 4, 7, 10, \dotsc \}
+        \\ \eqclass{2} &= \{ \dotsc, -1, 2, 5, 8, 11, \dotsc \}
+    \end{align*}
+    であり，商集合$\symbb{Z}/{\sim} = \{ \eqclass{0}, \eqclass{1}, \eqclass{2} \}$である
+    \footnote{この場合の商集合を特に$\symbb{Z}/3$とかくこともある}．
+    
+    また，$\eqclass{0} = \eqclass{3} = \eqclass{6} = \dotsb$．
+    このことからわかるように，1つの同値類に対する\emph{代表元の取り方は一般に一意ではない}．
+
+    明らかに$\symbb{Z} = \eqclass{0} \sqcup \eqclass{1} \sqcup \eqclass{2}$であり，同値類が互いに交わらずに$\symbb{Z}$を分割している．
+\end{example}
+
+
+例で見た「同値類が互いに交わらずに集合を分割する」ことは，一般の集合においても成り立つ．
+\begin{theorem}
+    同値関係$\sim$が定義された集合$X$は，同値類によって互いに交わらない部分集合に分割される．
+    すなわち適当な$x_1, x_2, \dotsc \in X$を用いて
+    \begin{equation*}
+        X = \eqclass{x_1} \sqcup \eqclass{x_2} \sqcup \dotsb
+            \quad \text{（非交和\refdfn{dfn:disjoint-union}）}
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    $X = \eqclass{x_1} \cup \eqclass{x_2} \cup \dotsb$は明らかなので，非交和であることを示す．
+    $\eqclass{x} \cap \eqclass{y} \neq \emptyset$なら$\eqclass{x} = \eqclass{y}$を示せばよい．
+
+    そこで$z \in \eqclass{x} \cap \eqclass{y}$とする．
+    $z \in \eqclass{x}$より$x \sim z$であり，
+    $z \in \eqclass{y}$なので$y \sim z$である．
+    $\sim$の対称律と推移律を用いると，$x \sim y$がいえる．
+    したがって$\eqclass{x} = \eqclass{y}$である．
+\end{proof}
+
+
+\subsection{便利な記号}
+
+この節では，数式を扱ううえで便利な記号を導入する．
+
+\begin{definition}[クロネッカーのデルタ]
+    \label{dfn:Kronecker-delta}
+    次で定義される$\delta_{i, j}$を\word{クロネッカーのデルタ}という：
+    \begin{equation}
+        \delta_{i, j} = 
+            \begin{cases}
+                1  &  \text{if } i  =   j ,  \\
+                0  &  \text{if } i \neq j .
+            \end{cases}
+    \end{equation}
+\end{definition}
+
+
+
+\end{document}
+

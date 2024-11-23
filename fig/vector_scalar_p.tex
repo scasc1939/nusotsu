@@ -1,0 +1,23 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\usepackage[bold-style=ISO]{unicode-math}
+
+
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at (40:1.5);
+        \coordinate (B) at (40:2.5);
+        \node [below left] at (O) {$O$};
+        \node at (A) {};
+        \node at (B) {};
+        \draw [red, -Stealth, very thick] (O) -- node [above left] {$\symbf{x}$} (A);
+        \begin{scope}[transform canvas={xshift=1.5mm, yshift=-1.5mm}]
+            \draw [purple, -Stealth, ultra thick] (O) -- node [below right] {$c \symbf{x}$} (B);
+        \end{scope}
+    \end{tikzpicture}
+\end{document}

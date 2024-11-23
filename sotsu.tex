@@ -1,0 +1,365 @@
+% \documentclass[draft]{sotsu}
+\documentclass{sotsu}
+
+\newif\ifdraft
+\drafttrue
+\draftfalse % これをコメントアウト（先頭に % ）すると draft モードになる
+
+\usepackage{sotsu}
+
+
+\usepackage{subfiles}
+
+\graphicspath{{./fig/}}
+
+
+
+\addbibresource{sotsu.bib}
+
+
+% \newcommand{\dotprod}{\mathbin{\mdsmwhtcircle}}
+\newcommand{\dotprod}{\mathbin{\ast}}
+
+\makeatletter
+
+% \newcommand{\scaprod}{\mathbin{\diamondcdot}}
+\newcommand{\scaprod}{\mathbin{\star}}
+\newcommand{\scaprodvar}{\mathbin{\varstar}}
+
+\newcommand{\vecplus}{\tplus}
+\newcommand{\vecminus}{\tminus}
+
+\makeatother
+
+
+\ifdraft
+    \DeclareDocumentCommand{\index}{O{} m}{}
+\else
+    \makeindex
+\fi
+
+
+
+
+\begin{document}
+
+
+\tableofcontents
+
+
+\subfile{sub/set_theory.tex}
+
+\subfile{sub/vector_space.tex}
+
+\subfile{sub/inner_product.tex}
+
+
+
+\section{ヒルベルト空間}
+
+\subsection{距離空間}
+
+\begin{definition}[距離]
+    \label{dfn:distance}
+    $X$を集合とする．写像$d \colon X \times X \to \symbb{R}$が以下を満たすとき，
+    \word{距離}(distance)あるいは\word{計量}(metric)という．
+    \begin{itemize}
+        \item 任意の$x, y, z \in X$に対し，
+        \begin{enumerate}
+            \item $d(x, y) \geq 0$である．ただし，$d(x, y) = 0$となるのは$x = y$のときに限る．
+            \item $d(x, y) = d(y, x)$である．
+            \item $d(x, z) \leq d(x, y) + d(y, z)$である．
+        \end{enumerate}
+    \end{itemize}
+    $(X, d)$を\word{距離空間}[][きよりくうかん](metric space)という．
+\end{definition}
+
+
+\begin{example}
+    $X = \symbb{R}^n$（実ユークリッド空間）とする．
+    $\symbf{x}, \symbf{y} \in \symbb{R}^n$に対して，
+    $d_2 (\symbf{x}, \symbf{y}) = \sqrt{ \sum_{i = 1}^{n} \abs{x_i - y_i}^2 }$と定めると，これは距離である．
+
+    特に，実数全体の集合$\symbb{R}$は，距離$d(x, y) \coloneq \abs{x - y}$に対して距離空間になる．
+\end{example}
+
+\begin{proposition}
+    \label{thm:norm-is-distance}
+    $V$をノルム空間\refdfn{dfn:norm}，$\norm{\bigdot}$を$V$上のノルムとする．
+    $\symbf{x}, \symbf{y} \in V$に対し，$\norm{\symbf{x} \tminus \symbf{y}}$は，$V$上の距離である．
+    すなわち，ノルム空間は距離空間である．
+\end{proposition}
+
+\begin{proof}
+    ノルムの定義より従う．
+\end{proof}
+
+
+
+
+\subsection{収束列とコーシー列}
+
+ヒルベルト空間を扱ううえで避けて通れないのが，「\ruby{完備}{かん|び}」という概念である．
+完備性を定義するための準備として，ある値に収束する数列について議論する．
+
+これから$X$の点列といった場合，
+$\symbb{N}$で順序付けられた$X$の加算部分集合，つまり
+$(x_1, x_2, \dots, x_i, \dotsc)$であり，$i \in \symbb{N}$，$x_i \in X$であるものをいうことにする．
+
+\begin{definition}[収束列]
+    \label{dfn:convergent-sequence}
+    $(X, d)$を距離空間とする．
+    $X$の点列$(x_1, x_2, \dotsc)$が$x \in X$に\word{収束する}(converge)とは，
+    任意の$\varepsilon > 0$に対し，ある$N \in \symbb{N}$が存在して，
+    任意の$n > N$に対し，$d(x_n, x) < \varepsilon$となることをいう．
+    
+    このときの$x$のことを\word{極限}[きょく|げん](limit)という．
+    \ruby{収束先}{しゅう|そく|さき}ということもある．
+
+    また，$X$の点列$(x_1, x_2, \dotsc)$が\word{収束列}(convergent sequence)であるとは，
+    点列がある$x \in X$に収束することをいう．
+\end{definition}
+
+記号$\lim$を用いると，点列$(x_i)$が$x$に収束することを
+\[  \lim_{n \to \infty} d(x_n, x) = 0  \]
+とかける．
+
+収束列の極限はただ一つに定まる．
+実際，$X$の点列$(x_i)$の極限が$x$と$x'$の2つあったとすると，
+\begin{equation*}
+    \begin{split}
+        d(x, x') &\leq d(x, x_n) + d(x_n, x)  \qquad \text{(三角不等式)}  \\
+            &= d(x_n, x) + d(x_n, x)  
+            \xrightarrow{n \to \infty} 0
+    \end{split}
+\end{equation*}
+であるので，$x = x'$である\refdfn{dfn:distance}．
+
+
+\begin{definition}[コーシー列]
+    \label{dfn:Cauchy-sequence}
+    $(X, d)$を距離空間とする．
+    $X$の点列$(x_1, x_2, \dotsc)$が\word{コーシー列}(Cauchy sequence)であるとは，
+    任意の$\varepsilon > 0$に対し，ある$N \in \symbb{N}$が存在して，
+    任意の$n, m > N$に対し，$ d(x_n, x_m) < \varepsilon $となることをいう．
+\end{definition}
+
+記号$\lim$を用いると，コーシー列の定義は
+$\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
+
+収束列の定義とコーシー列の定義はよく似ているが，前者は収束先$x \in X$の存在を要請しているのに対し，後者はそうでない．
+収束列とコーシー列には，次のような関係がある．
+\begin{theorem}
+    \label{thm:convergent-is-Cauchy}
+    距離空間の収束列は常にコーシー列である．
+\end{theorem}
+
+\begin{proof}
+    $(x_i)$を収束列，その極限を$x \in X$とする．
+    定義より，任意の$\delta > 0$に対し，ある$N > \symbb{N}$が存在して，
+    任意の$n > N$に対し，$d(x_n, x) < \delta$である．
+    すると，任意の$m, n > N$に対し，
+    \begin{equation*}
+        \begin{split}
+            d(x_m, x_n) &\leq d(x_m, x) + d(x, x_n)  \qquad \text{(三角不等式)}  \\
+                &= d(x_m, x) + d(x_n, x)  \\
+                &< 2\delta
+        \end{split}
+    \end{equation*}
+    である．
+    $\delta \coloneq \varepsilon/2$とおけば，コーシー列の条件\refdfn{dfn:Cauchy-sequence}が成立する．
+\end{proof}
+
+距離空間において，すべての収束列はコーシー列であるが，その逆は必ずしも成立しない．
+コーシー列が収束列でない例をいくつか挙げる．
+
+\begin{example}
+    $\symbb{Q}$の点列$(1, 1.4, 1.41, 1.414, \dotsc)$は明らかにコーシー列である．
+    しかし，この点列の収束先は$\sqrt{2} \notin \symbb{Q}$であり，$\symbb{Q}$の収束列でない．
+\end{example}
+
+\begin{example}
+    開区間$(0, 1) \subset \symbb{R}$の点列$(0.1, 0.01, 0.001, 0.0001, \dotsc)$は明らかにコーシー列である．
+    しかし，この点列の収束先は$0 \notin (0, 1)$であり，$(0, 1)$の収束列でない．
+\end{example}
+
+
+\subsection{距離空間の完備性}
+
+\begin{definition}
+    距離空間$(X, d)$において，任意のコーシー列が収束列であるとき，\word{完備}[かん|び](complete)であるという．
+    このとき，$(X, d)$のことを\word{完備距離空間}(complete metric space)という．
+\end{definition}
+
+\begin{proposition}[実数の完備性]
+    実数全体の集合$\symbb{R}$は完備である．
+\end{proposition}
+
+\begin{proof}
+    実数を，有理数列のうちコーシー列であるものの同値類\refdfn{dfn:equivalence-class}として公理的に構成することでわかる．
+\end{proof}
+
+\begin{definition}[閉包]
+    \label{dfn:closure-by-sequence}
+    $(X, d)$を距離空間，$\symcal{D} \subset X$を部分集合とする．
+    $\symcal{D}$に属するすべての収束列の極限からなる集合を
+    $\symcal{D}$の\word{閉包}[へい|ほう](closure)といい，$\cl{\symcal{D}}$とかく．
+    つまり
+    \begin{equation}
+        \cl{\symcal{D}} \coloneq \Set{ x \in X  \given  \exists (x_i) \subset \symcal{D} \text{ s.t. } \lim_{n \to \infty} d(x_i, x) = 0 }
+    \end{equation}
+\end{definition}
+
+$x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，定義上は全く関係ない．
+
+\begin{corollary}
+    任意の$\symcal{D} \subset X$の閉包$\cl{\symcal{D}}$について，
+    $\symcal{D} \subset \cl{\symcal{D}}$である．
+\end{corollary}
+
+\begin{proof}
+    $x \in \symcal{D}$とする．
+    $\symcal{D}$の点列$(x, x, x, \dotsc)$は明らかに$x$に収束するので$x \in \cl{\symcal{D}}$である．
+\end{proof}
+
+次に稠密を定義する．
+
+\begin{definition}[稠密]
+    $(X, d)$を距離空間とする．部分集合$A \subset X$の閉包$\cl{A}$が$X$に一致するとき，
+    $A$は$X$の\word{稠密}[ちゅう|みつ][ちゆうみつ](dense)な部分集合であるという．
+\end{definition}
+
+\begin{corollary}
+    $A$が$X$の稠密な部分集合である必要十分条件は，
+    $x \in X$の任意の近傍が$A$と共通部分を持つことである．
+\end{corollary}
+
+\begin{proof}
+    
+\end{proof}
+
+
+
+\subsection{ヒルベルト空間}
+
+ベクトル空間における完備性について考えてみよう．
+
+$V$をノルム空間\refdfn{dfn:norm}とする．
+$\symbf{x}, \symbf{y} \in V$の距離\refdfn{dfn:distance}は，
+$d(\symbf{x}, \symbf{y}) \coloneq \norm{\symbf{x} - \symbf{y}}$で定義できる（\cref{thm:norm-is-distance}）．
+すると，$V$の収束列\refdfn{dfn:convergent-sequence}とコーシー列\refdfn{dfn:Cauchy-sequence}は，以下のように定義できる．
+\begin{itemize}
+    \item $V$の点列$(\symbf{v}_i)$が収束列であるとは，$(\symbf{v}_i)$がある$\symbf{v} \in V$に収束する，
+        つまり$\lim_{n \to \infty} x_n = x \in V$となることをいう．
+    \item $V$の点列$(\symbf{v}_i)$がコーシー列であるとは，
+        $\lim_{n, m \to \infty} = 0$であることをいう．
+\end{itemize}
+これらを用いて，ノルム空間の完備性を定義することができる．
+
+\begin{definition}
+    ノルム空間$V$が完備であるとは，$V$のコーシー列が収束列であることをいう．
+\end{definition}
+
+\begin{definition}[バナッハ空間]
+    \label{dfn:Banach-space}
+    完備なノルム空間を\word{バナッハ空間}(Banach space)
+\end{definition}
+
+内積空間\refdfn{dfn:inner-product}では，内積から導かれるノルムが存在するのであった．
+このノルムを用いれば，完備な内積空間というものを定義することができる．
+
+\begin{definition}[ヒルベルト空間]
+    \label{dfn:Hilbert-space}
+    完備な内積空間を\word{ヒルベルト空間}(Hilbert space)という．
+\end{definition}
+
+\begin{proposition}
+    実ユークリッド空間$\symbb{R}^n$および複素ユークリッド空間$\symbb{C}^n$はヒルベルト空間である．
+\end{proposition}
+
+
+
+\section{関数空間}
+
+関数とは，$\symbb{R} \text{ or } \symbb{C}$から$\symbb{R} \text{ or } \symbb{C}$への写像をいうのであった．
+
+これからの議論では$\symbb{C}$から$\symbb{C}$への関数を扱うが，どちらの$\symbb{C}$を$\symbb{R}$もしくは（良い）部分集合$X \subset \symbb{C}$に置き換えてもよい．
+
+\subsection{ベクトル空間としての関数空間}
+
+\begin{proposition}
+    \label{thm:function-space-is-vector-space}
+    $\symbb{C}$から$\symbb{C}$への関数全体の集合は，以下で定義される和$\plushat$とスカラー倍$\hat{\scaprod}$のもとで，体$\symbb{K}$上のベクトル空間になる．
+    \begin{itemize}
+        \item $f, g$を，$c \in \symbb{K}$とする．
+        \begin{enumerate}
+            \item 関数の和$f \plushat g$は，
+                任意の$x \in \symbb{C}$に対して$ ( f \plushat g )(\symbf{x}) = f(x) \doubleplus g(x) $である関数と定める．
+            \item 関数のスカラー倍$c \mathbin{\hat{\scaprod}} f$は，
+                任意の$x \in \symbb{C}$に対して$ ( c \mathbin{\hat{\scaprod}} g )(x) = c \scaprodvar f(x) $である関数と定める．
+        \end{enumerate}
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}
+    \refdfn{dfn:vector-space}の条件を満たすことを示せばよい．
+\end{proof}
+
+
+
+\subsection{内積空間としての関数空間}
+
+\begin{definition}
+    \label{dfn:square-integrable-function-space}
+    $[a, b] \subset \symbb{R}$から$\symbb{C}$への\word{2乗可積分関数空間}(square integrable function space)$L^2$を
+    \begin{equation*}
+        L^2 (a, b) \coloneq \Set*{ f \colon [a, b] \to \symbb{C}  \given  \int_a^b \abs{f(x)} \dd{x} < \infty }
+    \end{equation*}
+    で定義する．
+\end{definition}
+
+\begin{proposition}
+    2乗可積分関数空間$L^2 (a, b)$は，以下で定義される内積$(\bigdot, \bigdot)$に対して内積空間\refdfn{dfn:inner-product}になる．
+    \begin{align}
+        (f, g)_{L^2} \coloneq \int_a^b \conj{f}(x) g(x) \dd{x}
+    \end{align}
+    当然ノルム\refdfn{dfn:norm,dfn:norm-by-inner-product}も以下のように定義できる．
+    \begin{align}
+        \norm{f}_{L^2}^2 \coloneq (f, f)_{L^2} = \int_a^b \abs{f(x)}^2 \dd{x}
+    \end{align}
+\end{proposition}
+
+
+\subfile{sub/linear_map.tex}
+
+
+\subfile{sub/dual_space.tex}
+
+
+\subfile{sub/operator.tex}
+
+
+
+\printbibheading
+
+\printbibliography[
+    keyword=set,
+    heading=subbibliography,
+    title={集合論}
+]
+\printbibliography[
+    keyword=lin, 
+    heading=subbibliography, 
+    title={線形代数}
+]
+
+
+
+
+\ifdraft
+\else
+    \printindex
+\fi
+
+
+\end{document}

@@ -1,0 +1,230 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sotsu}
+
+\RequirePackage{amsmath}
+
+\RequirePackage{amsthm}
+
+
+
+\usepackage{graphicx}
+
+
+
+\DeclareEmphSequence{%
+    \rmfamily\mcfamily\bfseries,%
+    \rmfamily\gtfamily\bfseries\itshape%
+}
+
+
+
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+% \tcolorboxenvironment{definition}{
+%     enhanced jigsaw,
+%     interior hidden,
+%     colframe=cyan,
+%     before skip=10pt,
+%     after skip=10pt,
+%     % breakable,
+%     % title={Definition},
+% }
+% \tcolorboxenvironment{proof}{
+%     blanker,
+%     breakable,
+%     left=5mm,
+%     before skip=10pt,
+%     after skip=10pt,
+%     borderline west={1mm}{0pt}{red}
+% }
+
+\RequirePackage{mathtools}
+
+\newtheorem*{example}{例}
+
+\usepackage{pxrubrica}
+\rubyfontsetup{\mcfamily\mdseries}
+
+\usepackage{makeidx}
+
+\ExplSyntaxOn
+\NewDocumentCommand{\word}{m o o !d()}{
+
+    \IfValueTF{#2}{
+        % ひとつめの[]が存在するとき
+        \IfBlankTF{#2}{
+            % ひとつめの[]が空のとき（ルビなし）
+            {\gtfamily\bfseries#1}
+        }{
+            % ひとつめの[]が空でないとき（ルビあり）
+            {\gtfamily\bfseries\ruby{#1}{#2}}
+        }
+    }{
+        % ひとつめの[]が存在しないとき（ルビなし）
+        {\gtfamily\bfseries#1}
+    }
+
+    % ふたつめの[]が存在するとき
+    \IfValueTF{#3}{
+        \index{#3@#1}
+    }{
+    }
+    
+    \IfValueT{#4}
+        {~({\rmfamily\bfseries#4})}
+}
+\ExplSyntaxOff
+
+\newcommand{\bigdot}{\mdblkcircle}
+
+\newcommand{\iu}{\symup{i}}
+
+\newcommand{\cl}[1]{\mathrm{Cl}(#1)}
+
+\newcommand{\umat}{\symup{I}}
+\newcommand{\tp}[1]{{}^{\mathrm{t}}#1}
+
+\newcommand{\dual}[1]{{#1}^*}
+
+\DeclareMathOperator{\image}{Im}
+\DeclareMathOperator{\domain}{Dom}
+\let\ker\relax
+\DeclareMathOperator{\ker}{Ker}
+
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\dimker}{null}
+
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\eqclass}{\lbrack}{\rbrack}
+
+\DeclarePairedDelimiter{\spanning}{\langle}{\rangle}
+
+\NewDocumentCommand{\conj}{s m}{
+    \IfBooleanTF{#1}
+        {(#2)^*}
+        {#2^*}
+}
+
+
+
+\usepackage[
+    bold-style=ISO
+]{unicode-math}
+
+\usepackage[default]{fontsetup}
+\setmathfont{New Computer Modern Math}
+\setmathfont{Concrete Math}
+    [range={\symcal}]
+
+
+\AtBeginDocument{
+    \let\mfrakR\Re
+    \let\mfrakI\Im
+    \let\Re\relax
+    \let\Im\relax
+    \DeclareMathOperator{\Re}{Re}    
+    \DeclareMathOperator{\Im}{Im}
+}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 相互参照
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[
+    bookmarksnumbered,
+    citebordercolor={0 .3 .1},
+]{hyperref}
+\usepackage{cleveref}
+
+\newcommand{\crefrangeconjunction}{から}
+\newcommand{\crefpairconjunction}{と}
+\newcommand{\crefmiddleconjunction}{，}
+\newcommand{\creflastconjunction}{および}
+
+\crefname{itemi}{}{}
+\crefname{itemii}{}{}
+\crefname{enumi}{}{}
+\crefname{enumii}{}{}
+
+\crefname{figure}{図}{図}
+
+\newtheorem{definition}{定義}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命題}
+\newtheorem{corollary}[theorem]{系}
+\newtheorem{lemma}[theorem]{補題}
+
+\crefname{definition}{定義}{定義}
+\crefname{theorem}{定理}{定理}
+\crefname{proposition}{命題}{定理}
+\crefname{corollary}{系}{系}
+\crefname{lemma}{補題}{補題}
+
+
+
+
+
+
+\ExplSyntaxOn
+\NewDocumentCommand{\refdfn}{m}{
+    \textsuperscript{ ( \cref{#1} ) }
+}
+\NewDocumentCommand{\refthm}{m}{
+    \textsuperscript{ ( \cref{#1} ) }
+}
+\ExplSyntaxOff
+
+
+
+
+
+\RequirePackage{enumitem}
+
+\setlist[enumerate,1]{
+    label={(\arabic*)},
+    labelsep=0.5em,
+}
+
+
+
+% just to make sure it exists
+\providecommand\given{}
+% can be useful to refer to this outside \Set
+\newcommand\SetSymbol[1][]{%
+\ #1\vert
+\allowbreak
+\ 
+\mathopen{}}
+\DeclarePairedDelimiterX\Set[1]\{\}{%
+\renewcommand\given{\SetSymbol[\delimsize]}
+#1
+}
+
+
+
+
+\usepackage{derivative}
+
+\DeclareDerivative{\dv}{\mathrm{d}}
+\DeclareDifferential{\dd}{\mathrm{d}}
+
+
+
+\usepackage[
+    font={bf,sf}
+]{caption}
+
+\usepackage[
+    font={bf,sf}
+]{subcaption}
+
+
+
+\usepackage{biblatex}
+
+

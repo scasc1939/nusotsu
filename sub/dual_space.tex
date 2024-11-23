@@ -1,0 +1,121 @@
+\documentclass[../sotsu.tex]{subfiles}
+
+\begin{document}
+
+
+\section{双対空間}
+
+\subsection{双対空間}
+
+\begin{definition}[線形汎関数]
+    $V$を$\symbb{K}$上のベクトル空間\refdfn{dfn:vector-space}とする。
+    線形写像\refdfn{dfn:linear-map}$f \colon V \to \symbb{K}$を
+    \word{線形形式}[][せんけいけいしき](linear form)
+    あるいは\word{線形汎関数}[せん|けい|はん|かん|すう][せんけいはんかんすう](linear functional)という。
+\end{definition}
+
+\begin{example}
+    $V = \symbb{R}^3$（3次元ユークリッド空間）とする。
+    $\symbb{R}^3$のベクトルをその第1成分にうつす写像
+    $f \colon \symbf{v} \mapsto v_1 \in \symbb{R}$は$V$の線形汎関数である。
+\end{example}
+
+
+\begin{definition}[双対空間]
+    \label{dfn:dual-space}
+    $V$上の線形汎関数全体の集合
+    \begin{equation}
+        \dual{V}  \coloneq  \Set{  f \colon V \to \symbb{K}  \given  \text{$f$は線形汎関数}  }
+    \end{equation}
+    を$V$の\word{双対空間}[そう|つい|くう|かん][そうついくうかん](dual space)という\cite[\S 4.1]{saito-lin-2007}。
+\end{definition}
+
+
+\begin{proposition}
+    ベクトル空間$V$の双対空間$\dual{V}$は、ベクトル空間をなす\cite[\S 4.1]{saito-lin-2007}。
+\end{proposition}
+
+\begin{proof}
+    $\dual{V}$の元が、\cref{thm:linear-map-space}で定義される和とスカラー倍について、
+    \cref{dfn:vector-space}の公理を満たすことを示せばよい。
+\end{proof}
+
+
+\begin{definition}[双対基底]
+    \label{dfn:dual-basis}
+    $V$を$\symbb{K}$上の有限次元ベクトル空間、$\symbf{x}_1, \dots, \symbf{x}_n$を$V$の基底とすると、
+    各$i = 1, \dots, n$に対し
+    \begin{equation}
+        \label{eq:dual-basis}
+        f_i (\symbf{x}_j) = \delta_{i, j} \quad \text{\refdfn{dfn:Kronecker-delta}}
+    \end{equation}
+    を満たす線形汎関数$f_i \colon V \to \symbb{K}$がただひとつ存在する。
+    このとき、$f_1, \dots, f_n$は$\dual{V}$の基底になる。
+
+    \cref{eq:dual-basis}で定義される$f_1, \dots, f_n$を$\symbf{x}_1, \dots, \symbf{x}_n$の\word{双対基底}[そう|つい|き|てい][そうついきてい](dual basis)という。
+\end{definition}
+
+このような定義が可能であることについては証明を要するが、ここでは省略する。
+
+\begin{example}
+    $V = \symbb{R}^n$とし、ある$\symbf{a} \in V$をとる。
+    線形汎関数$f_{\symbf{a}} \colon V \to \symbb{R}$を
+    \[  f_{\symbf{a}} \colon V \ni \symbf{v} \longmapsto \tp{\symbf{a}} \cdotp \symbf{v} \in \symbb{R}  \]
+    で定める。
+    $\symbb{R}^n$の標準基底$\symbf{e}_1, \dots, \symbf{e}_n$に対する双対基底は、
+    $f_{\symbf{e}_1}, \dots, f_{\symbf{e}_n}$である。
+    これは行ベクトル$\tp{\symbf{e}_1}, \dots, \tp{\symbf{e}_n}$とみることができる。。
+\end{example}
+
+
+
+\subsection{零化空間}
+
+
+\begin{definition}[零化空間]
+    $V$をベクトル空間、$\dual{V}$をその双対空間とする。
+    $V$の部分ベクトル空間$W$に対し、
+    \begin{equation}
+        W^\perp  \coloneq  \Set{  f \in \dual{V}  \given  f(W) = \{ 0 \}  }
+    \end{equation}
+を$W$の\word{零化空間}[れい|か|くう|かん][れいかくうかん](annihilator)という\cite[\S 4.2]{saito-lin-2007}。
+\end{definition}
+
+\begin{proposition}
+    部分ベクトル空間$W \subset V$の零化空間$W^\perp$は、$\dual{V}$の部分ベクトル空間である。
+\end{proposition}
+
+\begin{proof}
+    写像$\dual{i}$を、線形汎関数$f \colon V \to \symbb{K}$を$W$に制限する写像と定める：
+    \[  \dual{i} \colon \dual{V} \ni f \longmapsto f \vert_W \in \dual{W}  \]
+    このとき、任意の$f, g \in \dual{V}$および$c \in \symbb{K}$について
+    $\dual{i}(f + g) = \dual{i}(f) + \dual{i}(g)$かつ$\dual{i}(cf) = c \cdotp \dual{i}(f)$であるので、
+    $\dual{i}$は線形写像である。
+    すると$W^\perp = \ker( \dual{i} \colon \dual{V} \to \dual{W} )$\refdfn{dfn:kernel-of-linear-map}とかけるので、
+    $W^\perp$は$\dual{V}$の部分ベクトル空間である。
+\end{proof}
+
+
+
+\subsection{内積空間における線形汎関数}
+
+内積は線形汎関数の一種である。
+
+\begin{proposition}
+    $V$を内積空間\refdfn{dfn:inner-product}、$\symbf{u} \in V$をあるベクトルとする。
+    任意のベクトル$\symbf{v} \in V$に対して内積$(\symbf{u}, \symbf{v})$を与える写像
+    \begin{equation}
+        (\symbf{u}, \bigdot) \colon V \ni \symbf{v} \longmapsto (\symbf{u}, \symbf{v}) \in \symbb{R}
+    \end{equation}
+    は線形汎関数である。
+\end{proposition}
+
+\begin{proof}
+    内積の線形性より$(\symbf{u}, \bigdot)$が線形なのは明らかである。
+\end{proof}
+
+
+
+
+
+\end{document}

@@ -1,0 +1,297 @@
+\documentclass[../sotsu.tex]{subfiles}
+
+\begin{document}
+
+\section{内積空間とノルム空間}
+
+これからベクトル空間の上に「\ruby{内積}{ない|せき}」および「ノルム」という演算を導入する．
+内積を用いることで，2つのベクトルが「直交」するということを代数的に表現できる．
+また，ノルムを用いれば2点間の距離を定義することができる．
+
+これまでは一般の体$\symbb{K}$上のベクトル空間を考えてきたが，
+内積を考える上では，体を$\symbb{R}$もしくは$\symbb{C}$に限る必要がある．
+そこでこれからは$\symbb{K}$のかわりに$\symbb{C}$と書くことにする．
+以降の$\symbb{C}$を$\symbb{R}$に置き換えることも容易である．
+
+
+\subsection{内積空間}
+\label{sec:inner-product-space}
+
+まず、2つのベクトルから実数を得る演算である内積を定義する。
+
+\begin{definition}[内積]
+    \label{dfn:inner-product}
+    $V$をベクトル空間\refdfn{dfn:vector-space}とする．
+    写像$({\bigdot}, {\bigdot}) \colon V \times V \to \symbb{R}$は以下を満たすとき，\word{内積}[ない|せき][ないせき](inner product)であるという．
+    \begin{itemize}
+        \item 任意の$\symbf{u}, \symbf{v}, \symbf{w} \in V, \  c \in \symbb{C}$に対し，
+        \begin{enumerate}
+            \item \label{innerp:sum} $(\symbf{u}, \symbf{v} \tplus \symbf{w}) = (\symbf{u}, \symbf{v}) + (\symbf{u}, \symbf{w})$である．
+            \item \label{innerp:scalar} $(\symbf{u}, c\symbf{v}) = c(\symbf{u}, \symbf{v})$である．
+            \item \label{innerp:conjugate-symmetry} $(\symbf{u}, \symbf{v}) = \conj{(\symbf{v}, \symbf{u})}$である．
+            \item \label{innerp:positive-definiteness}$(\symbf{v}, \symbf{v}) \geq 0$である．
+                また，$(\symbf{v}, \symbf{v}) = 0$であるのは$\symbf{v} = \symbf{0}$であるときに限る．
+        \end{enumerate}
+    \end{itemize}
+    内積をもつベクトル空間を\word{内積空間}[][ないせきくうかん](inner product space)という．
+\end{definition}
+
+\begin{corollary}
+    内積は以下を満たす．
+    \begin{itemize}
+        \item 任意の$\symbf{u}, \symbf{v}, \symbf{w} \in V, \  a, b \in \symbb{C}$に対し，
+        \begin{enumerate}
+            \item \label{innerp:linearity} （\word{線形性}(linearity)） $(\symbf{u}, a\symbf{v} \tplus b\symbf{w}) = a (\symbf{u}, \symbf{v}) + b (\symbf{u}, \symbf{w})$
+            \item \label{innerp:antilinearity} （\word{反線形性}(antilinearity)） $(a\symbf{u} \tplus b\symbf{v}, \symbf{w}) = \conj{a} (\symbf{u}, \symbf{w}) + \conj{b} (\symbf{v}, \symbf{w})$
+            \item $(\symbf{v}, \symbf{0}) = (\symbf{0}, \symbf{v}) = 0$
+        \end{enumerate}
+
+        \cref{innerp:linearity,innerp:antilinearity}をあわせて\word{半双線形}[][はんそうせんけい](sesqui-linear)であるという．
+    \end{itemize}
+\end{corollary}
+
+
+\begin{example}
+    実ユークリッド空間$\symbb{R}^n$において，
+    \begin{equation*}
+        (\symbf{a}, \symbf{b}) \coloneq \sum_{i=1}^{n} a_i b_i
+    \end{equation*}
+    は内積である．また，複素ユークリッド空間$\symbb{C}^n$において，
+    \begin{equation*}
+        (\symbf{a}, \symbf{b}) \coloneq \sum_{i=1}^{n} \conj{a_i} b_i
+    \end{equation*}
+    は内積である．これらを特に\word{標準内積}[][ひようしゆんないせき]という．
+\end{example}
+
+
+\begin{definition}
+    \label{dfn:orthogonal}
+    \label{dfn:parallel}
+    $V$を内積空間とする．
+    ベクトル$\symbf{v}, \symbf{u} \in V \setminus \{\symbf{0}\}$は，
+    $(\symbf{v}, \symbf{u}) = 0$であるとき，\word{直交する}(orthogonal)といい，$\symbf{v} \perp \symbf{u}$とかく．
+    また，$c \in \symbb{C} \setminus \{0\}$を用いて$\symbf{v} = c\symbf{u}$とかけるとき，
+    \word{平行である}(parallel)といい，$\symbf{v} \parallel \symbf{u}$とかく．
+\end{definition}
+
+
+\begin{definition}[直交補空間]
+    $V$をベクトル空間、$W \subset V$を部分ベクトル空間とする。
+    $W$のベクトルすべてと直交するようなベクトルの集合、つまり
+    \begin{equation}
+        W^\perp  \coloneq  \Set{  \symbf{v} \in V  
+                                \given  \text{任意の$\symbf{u} \in W$に対して$\symbf{v} \perp \symbf{u}$}  }
+    \end{equation}
+    を$W$の\word{直交補空間}[][ちよつこうほくうかん](orthogonal compliment)という。
+\end{definition}
+
+\begin{corollary}
+    $V$をベクトル空間とする。
+    $W \subset V$の直交補空間$W^\perp$は$V$の部分ベクトル空間である。
+\end{corollary}
+
+
+
+
+
+\subsection{ノルム空間}
+\label{sec:norm-space}
+
+\subsubsection{ノルムの一般論}
+
+\begin{definition}[ノルム]
+    \label{dfn:norm}
+    $V$をベクトル空間とする．
+    写像$\norm{\bigdot} \colon V \to \symbb{R}$は以下を満たすとき，\word{ノルム}(norm)という．
+    \begin{itemize}
+        \item 任意の$\symbf{u}, \symbf{v} \in V$および$c \in \symbb{C}$に対し，
+        \begin{enumerate}
+            \item \label{norm:positivity}$\norm{\symbf{v}} \geq 0$である．
+                また，$\norm{\symbf{v}} = 0$となるのは$\symbf{v} = \symbf{0}$のときに限る．
+            \item \label{norm:absolute-homogeneity} $\norm{c\symbf{v}} = \abs{c} \norm{\symbf{v}}$である．
+            \item \label{norm:triangle-inequality} （\word{三角不等式}(triangle inequality)）
+                $\norm{\symbf{u} \tplus \symbf{v}} \leq \norm{\symbf{u}} + \norm{\symbf{v}}$である．
+                また，等号が成立するのは$\symbf{u}$と$\symbf{v}$が一次従属\refdfn{dfn:linearly-independent}のときに限る．
+        \end{enumerate}
+    \end{itemize}
+    ノルムが定義されたベクトル空間のことを\word{ノルム空間}(normed space)という．
+\end{definition}
+
+\begin{example}
+    実ユークリッド空間のベクトル$\symbf{v} = (v_1, \dots, v_n) \in \symbb{R}^n$において，以下はいずれもノルムである．
+    \begin{align}
+        \norm{\symbf{v}}_1      &\coloneq        \sum_{i=1}^{n}  \abs{v_i},      &
+        \norm{\symbf{v}}_2      &\coloneq \sqrt{ \sum_{i=1}^{n}  \abs{v_i}^2 },  &
+        \norm{\symbf{v}}_\infty &\coloneq \max_{1 \leq i \leq n} \abs{v_i}.      &
+    \end{align}
+\end{example}
+
+ノルムは距離とみなすことができる（\cref{thm:norm-is-distance}）．
+
+
+\subsection{内積とノルムの関係}
+
+\cref{sec:inner-product-space}では内積を，
+\cref{sec:norm-space}ではノルムを導入した．
+これらはそれぞれ独立に定義される概念であるが，特殊なベクトル空間においてはこの2つを統一することが可能である．
+まずは内積からノルムを定義しよう．
+
+\begin{definition}[内積から導かれるノルム]
+    \label{dfn:norm-by-inner-product}
+    $V$を内積空間とする．
+    写像$\norm{\bigdot} \colon V \to \symbb{R}$を以下で定義すると，これはノルムである．
+    \begin{equation}
+        \label{eq:norm-by-inner-product}
+        \norm{\symbf{v}} \coloneq \sqrt{(\symbf{v}, \symbf{v})}
+    \end{equation}
+    したがって，内積空間は\cref{eq:norm-by-inner-product}で定義されたノルムに対してノルム空間になる．
+\end{definition}
+
+\begin{proof}
+    \cref{eq:norm-by-inner-product}が\cref{dfn:norm}を満たすことを示せばよい．
+    \cref{norm:positivity}は内積の定義（\cref{dfn:inner-product}）から明らかなので，\cref{norm:triangle-inequality}を示す．
+    そのために，まず次の補題を示す．
+
+    \begin{lemma}[コーシー--シュワルツの不等式]
+        \label{thm:Cauchy-Schwarz-inequality}
+        $V$を内積空間，$\norm{\bigdot}$を内積から導かれるノルムとする．
+        このとき，任意の$\symbf{x}, \symbf{y}$について
+        \begin{equation}
+            \label{eq:Cauchy-Schwarz-inequality}
+            \abs{(\symbf{x}, \symbf{y})} \leq \norm{\symbf{x}} \norm{\symbf{y}}
+        \end{equation}
+        が成り立つ（\word{コーシー--シュワルツの不等式}(Cauchy--Schwarz inequality)）．
+    \end{lemma}
+
+    \begin{proof}[\cref{thm:Cauchy-Schwarz-inequality}の証明]
+        $\symbf{y} = 0$のときは，$\abs{(\symbf{x}, \symbf{y})} = \norm{\symbf{x}} \norm{\symbf{y}} = 0$なので成り立つ．
+        $\symbf{y} \neq 0$のときを考える．
+        任意の$\lambda, \mu \in \symbb{C}$について内積の正値性から$\norm{\lambda \symbf{x} \tplus \mu \symbf{y} } \geq \symbf{0}$がいえる．
+        そこで$\lambda = -\conj{(\symbf{x}, \symbf{y})}$，$\mu = \norm{\symbf{x}}^2$とおくと，
+        \begin{equation*}
+            \begin{split}
+                0 &\leq ( \lambda \symbf{x} \tplus \mu \symbf{y}, \  \lambda \symbf{x} \tplus \mu \symbf{y} )  \\
+                  &= \lambda \conj{\lambda} ( \symbf{x}, \symbf{x} ) 
+                    + \lambda \conj{\mu} (\symbf{x}, \symbf{y}) 
+                    + \mu \conj{\lambda} (\symbf{y}, \symbf{x}) 
+                    + \mu \conj{\mu} (\symbf{y}, \symbf{y})  \\
+                  &= \abs{ (\symbf{x}, \symbf{y}) }^2 \norm{\symbf{x}}^2
+                    - \conj{(\symbf{x}, \symbf{y})} \norm{\symbf{x}}^2 (\symbf{x}, \symbf{y}) 
+                    - \norm{\symbf{x}}^2 (\symbf{x}, \symbf{y}) (\symbf{y}, \symbf{x}) 
+                    + \norm{\symbf{x}}^4 (\symbf{y}, \symbf{y})  \\
+                  &= \norm{\symbf{x}}^2   \Bigl[  -\abs{ (\symbf{x}, \symbf{y}) }^2 +  \norm{\symbf{x}}^2 \norm{\symbf{y}}^2 \Bigr]
+            \end{split}
+        \end{equation*}
+        である．$\symbf{y} \neq 0$なので，内積の正値性より$\norm{\symbf{x}} > 0$．
+        そこで両辺を$\norm{\symbf{x}}^2$で割れば\cref{eq:Cauchy-Schwarz-inequality}が示される．
+    \end{proof}
+
+    \cref{thm:Cauchy-Schwarz-inequality}を用いると，
+    \begin{equation*}
+        \begin{split}
+            \norm{\symbf{x} \vecplus \symbf{y}}^2
+                &= (\symbf{x} \vecplus \symbf{y}, \  \symbf{x} \vecplus \symbf{y})  \\
+                &= \norm{\symbf{x}}^2 + 2 \Re (\symbf{x}, \symbf{y}) + \norm{\symbf{y}}^2  \\
+                &\leq \norm{\symbf{x}}^2 + 2 \abs{ (\symbf{x}, \symbf{y}) } + \norm{\symbf{y}}^2  \\
+                &= \norm{\symbf{x}}^2 + \norm{\symbf{y}}^2
+        \end{split}
+    \end{equation*}
+    と示される．
+\end{proof}
+
+
+\begin{theorem}[中線定理]
+    \label{thm:parallelogram-law}
+    $V$を内積空間、$\norm{\bigdot} = (\bigdot, \bigdot)$を内積から導かれるノルムとする。
+    \begin{equation}
+        \norm{\symbf{v} \vecplus \symbf{u}}^2 + \norm{\symbf{v} \vecplus \symbf{u}}^2
+            = 2 \bigl( \norm{\symbf{v}}^2 + \norm{\symbf{u}}^2 \bigr)
+    \end{equation}
+    が成立する（\word{中線定理}[ちゅう|せん|てい|り][ちゆうせんていり](parallelogram law)）。
+\end{theorem}
+
+\begin{proof}
+    ノルムを内積に直して計算すれば容易に示される。
+\end{proof}
+
+
+一般の内積空間には，\cref{dfn:norm-by-inner-product}によるノルムが存在することが分かった．
+それでは逆に，一般のノルム空間に内積は存在するのだろうか．
+それを考えるために，まず内積空間で成立する恒等式を見る．
+
+
+\begin{theorem}[偏極恒等式]
+    \label{thm:polarization-identity}
+    $V$を内積空間，$\norm{\bigdot}$を内積から導かれるノルムとする．
+    任意のベクトル$\symbf{x}, \symbf{y} \in V$に対して，以下の\word{偏極恒等式}(polarization identity)が成立する．
+    \begin{equation}
+        \label{eq:polarization-identity}
+        (\symbf{x}, \symbf{y})
+            = \frac{1}{4} \bigl(  
+                \norm{\symbf{x} \vecplus \symbf{y}}^2
+                - \norm{\symbf{x} \vecminus \symbf{y}}^2
+                - \iu \norm{\symbf{x} \vecplus \iu \symbf{y}}^2
+                + \iu \norm{\symbf{x} \vecminus \iu \symbf{y}}^2
+              \bigr)
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    ノルムを内積に戻して，半双線形を用いて計算する．
+    \begin{alignat*}{2}
+        \norm{\symbf{x} \vecplus \symbf{y}}^2  
+            &= (\symbf{x} \vecplus \symbf{y}, \  \symbf{x} \tplus \symbf{y})
+            &&= +\bigl[ (\symbf{x}, \symbf{x}) + (\symbf{x}, \symbf{y}) + (\symbf{y}, \symbf{x}) + (\symbf{y}, \symbf{y}) \bigr]
+            \\
+        -\norm{\symbf{x} \vecminus \symbf{y}}^2
+            &= -(\symbf{x} \vecminus \symbf{y}, \  \symbf{x} \vecminus \symbf{y})
+            &&= -\bigl[ (\symbf{x}, \symbf{x}) - (\symbf{x}, \symbf{y}) - (\symbf{y}, \symbf{x}) + (\symbf{y}, \symbf{y}) \bigr]
+            \\
+        -\iu \norm{\symbf{x} \vecplus \iu \symbf{y}}^2
+            &= -\iu (\symbf{x} \vecplus \iu \symbf{y}, \  \symbf{x} \vecplus \iu \symbf{y})
+            &&= -\iu \bigl[ (\symbf{x}, \symbf{x}) + \iu (\symbf{x}, \symbf{y}) - \iu (\symbf{y}, \symbf{x}) + (\symbf{y}, \symbf{y}) \bigr]
+            \\
+        +\iu \norm{\symbf{x} \vecminus \iu \symbf{y}} 
+            &= +\iu (\symbf{x} \vecminus \iu \symbf{y}, \  \symbf{x} \vecminus \iu \symbf{y})
+            &&= +\iu \bigl[ (\symbf{x}, \symbf{x}) - \iu (\symbf{x}, \symbf{y}) + \iu (\symbf{y}, \symbf{x}) + (\symbf{y}, \symbf{y}) \bigr]
+    \end{alignat*}
+\end{proof}
+
+
+内積空間においてはノルムから内積を構成できることが分かった．
+しかし，一般のノルム空間で内積が構成できるとは限らない．
+そのことを示すのが次の定理である．
+
+
+\begin{theorem}[ジョルダン--フォン・ノイマンの定理]
+    $V$をノルム空間とする．
+    $V$上のノルムが中線定理\refthm{thm:parallelogram-law}を満たすならば，$V$は内積空間である
+    （\word{ジョルダン--フォン・ノイマンの定理}(Jordan--von~Neumann theorem)）．
+\end{theorem}
+
+
+\subsection{内積空間の基底}
+
+一般のベクトル空間において基底\refdfn{dfn:basis}が存在するのであった．
+内積空間においては，よい性質をもつ基底をとることができる．
+
+\begin{definition}[正規直交基底]
+    $V$を有限次元の内積空間とする．
+    $V$の基底$ \{ \symbf{v}_1, \dots, \symbf{v}_n \} \subset V$が次の性質を満たすとき，
+    \word{正規直交基底}[せい|き|ちょっ|こう|き|てい](orthonormal basis)という．
+    \begin{equation*}
+        (\symbf{v}_i, \symbf{v}_j) = \delta_{i,j} 
+            \quad \text{Kronecker delta\refdfn{dfn:Kronecker-delta}}
+    \end{equation*}
+\end{definition}
+
+有限次元の内積空間では，正規直交基底を具体的に構成することができる．
+
+\begin{theorem}[グラム--シュミットの正規直交化]
+    $ \{ \symbf{v}_1, \dots, \symbf{v}_n \} \subset V$を有限次元の内積空間$V$の基底とする．
+    このとき，$V$の正規直交基底$ \{ \symbf{u}_1, \dots, \symbf{u}_n \} \subset V$をつくることができる
+    （\word{グラム--シュミットの正規直交化}(Gram–Schmidt process)）．
+\end{theorem}
+
+
+\end{document}

@@ -1,0 +1,24 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\usepackage[bold-style=ISO]{unicode-math}
+\usepackage{bm}
+
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at (1, 1.5);
+        \coordinate (B) at (2.5, 1.5);
+        \node [below left] at (O) {$O$};
+        % \node at (A) {$A$};
+        % \node at (B) {$B$};
+        \draw [red, -Stealth, very thick] (O) -- node [left] {$\symbf{x}$} (A);
+        \draw [blue, -Stealth, very thick] (A) -- node [above] {$\symbf{y}$} (B);
+        \begin{scope}[transform canvas={yshift=-1.0mm}]
+            \draw [purple, -Stealth, ultra thick] (O) -- node [below right] {$\symbf{x} \bm{+} \symbf{y}$} (B);
+        \end{scope}
+    \end{tikzpicture}
+\end{document}

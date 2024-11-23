@@ -1,0 +1,67 @@
+\documentclass[../sotsu.tex]{subfiles}
+
+\begin{document}
+
+\section{演算子}
+
+\subsection{演算子とは}
+
+\begin{definition}[演算子]
+    $\symcal{H}, \symcal{H}'$を$\symbb{C}$上のヒルベルト空間\refdfn{dfn:Hilbert-space}とする．
+    部分ベクトル空間\refdfn{dfn:vector-subspace}$\symcal{A}$から$\symcal{H}'$への写像\refdfn{dfn:map}
+    \begin{equation*}
+        \hat{A} \colon \symcal{A} \to \symcal{H}'
+    \end{equation*}
+    のことを，$\symcal{H}$から$\symcal{H}'$への\word{演算子}[えん|ざん|し][えんさんし](operator)または\word{作用素}[さ|よう|そ][さようそ]という．
+\end{definition}
+
+\begin{definition}[演算子の定義域]
+    $\symcal{A}$のことを$\hat{A}$の\word{定義域}[てい|ぎ|いき][ていきいき](domain)といい，$D(\hat{A})$などとかく．
+\end{definition}
+
+$f$を$\symcal{H}$から$\symcal{H}'$への写像としたとき，任意の$x \in \symcal{H}$に対して$f(x)$が定義されていなければいけなかった．
+言い換えれば，定義域が$\symcal{H}$全体である．
+それに対して，$\symcal{H}$から$\symcal{H}'$への演算子$\hat{A}$は，
+任意の$x \in \symcal{H}$に対して$\hat{A}(x)$が定義されている必要はなく，
+部分ベクトル空間$D(\hat{A})$の元に対して定義されていれば十分である．
+
+
+\begin{definition}[演算子の一致]
+    $\hat{A}, \hat{B} \colon \symcal{H} \to \symcal{H}'$を演算子とする．
+    $D(\hat{A}) = D(\hat{B})$かつ任意の$x \in D(A)$に対し$\hat{A}(x) = \hat{B}(x)$であるとき，
+    演算子$\hat{A}$と$\hat{B}$は一致するという．
+\end{definition}
+
+2つの写像$f, g$において，定義域（もしくは終域）が一致しない場合，異なる写像とみなすのであった．
+同様に，2つの演算子$\hat{A}, \hat{B}$の定義域$D(\hat{A}), D(\hat{B})$が一致しない場合，違う演算子とみなす．
+
+
+\subsection{線形演算子}
+
+ベクトル空間上の写像として，線形写像\refdfn{dfn:linear-map}というものを考えることができた．
+同じように，線形な演算子を考える．
+\begin{definition}[線形演算子]
+    $\symbb{C}$上のヒルベルト空間$\symcal{H}$から$\symcal{H}'$への演算子$\hat{A}$は，次の性質を満たすとき，
+    \word{線形演算子}[せん|けい|えん|ざん|し][せんけいえんさんし](linear operator)という．
+    \begin{itemize}
+        \item 任意の$\symbf{x}, \symbf{y} \in \symcal{H}$，任意の$a, b \in \symbb{C}$に対し，
+        \item \begin{enumerate}
+            \item （線形性）$\hat{A}( a \symbf{x} + b \symbf{y} ) = a \hat{A} (\symbf{x}) + b \hat{A} (\symbf{y})$である．
+        \end{enumerate}
+    \end{itemize}
+\end{definition}
+
+量子力学において，演算子が線形であることは本質的である．
+
+
+
+\subsection{エルミート演算子}
+
+
+
+
+
+
+
+
+\end{document}

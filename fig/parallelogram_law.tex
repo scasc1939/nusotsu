@@ -1,0 +1,34 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{xcolor}
+
+
+\usepackage[bold-style=ISO]{unicode-math}
+\usepackage{bm}
+
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at (-1.5, -2.5);
+        \coordinate (B) at ( 3.0, -2.5);
+        \path (A) -- (B) coordinate[midway] (M);
+
+        % \node at (M) {$M$};
+        % \node at (O) {$O$};
+        % \node at (A) {$A$};
+        % \node at (B) {$B$};
+
+        \draw [] (O) -- (A) -- (B) -- cycle;
+
+        \draw [magenta, -Stealth, very thick] (O) -- (A) node [midway, above left] {$\symbf{x}$};
+        \draw [cyan,   -Stealth, very thick] (O) -- (B) node [midway, above right] {$\symbf{y}$};
+
+        \draw [purple, -Stealth, very thick] (O) -- (M) node [near end, right] {$\frac{1}{2} (\symbf{x} + \symbf{y})$};
+        \draw [teal, -Stealth, very thick] (M) -- (A) node [midway, below] {$\frac{1}{2} (\symbf{x} - \symbf{y})$};
+        
+    \end{tikzpicture}
+\end{document}
