@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{feynman_d}
+\ProvidesClass{sotsu}
 
 \LoadClass[
     % book,
