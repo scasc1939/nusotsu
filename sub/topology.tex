@@ -46,44 +46,44 @@
 
 
 \begin{definition}
-    $(X, d)$を距離空間、$\varepsilon > 0$をある実数とする。
-    ある点$a \in X$に対し、\word{$\varepsilon$-近傍}%
+    $(X, d)$を距離空間，$\varepsilon > 0$をある実数とする．
+    ある点$a \in X$に対し，\word{$\varepsilon$-近傍}%
     \index{eきんほう@$\varepsilon$-近傍}%
     を
     \begin{equation}
         \neigh(a; \varepsilon) \coloneq \Set{  x \in X  \given  d(x, a) < \varepsilon  }
     \end{equation}
-    で定める。
+    で定める．
 \end{definition}
 
-$(X, d)$を距離空間、$A \subset X$を部分集合とする。
+$(X, d)$を距離空間，$A \subset X$を部分集合とする．
 
 \begin{definition}
-    $a \in X$が$A$の内点であるとは、
-    ある$\varepsilon > 0$が存在して、
-    $\neigh(a; \varepsilon) \subset A$となることをいう。
+    $a \in X$が$A$の内点であるとは，
+    ある$\varepsilon > 0$が存在して，
+    $\neigh(a; \varepsilon) \subset A$となることをいう．
 
-    $A$の内点全体の集合を、$A$の\word{内部}[][ないぶ](interior)といい、
-    $\operatorname{int}(A)$、$A^i$などとあらわす。
+    $A$の内点全体の集合を，$A$の\word{内部}[][ないぶ](interior)といい，
+    $\operatorname{int}(A)$，$A^i$などとあらわす．
 \end{definition}
 
 \begin{definition}
-    $a \in X$が$A$の触点であるとは、
-    任意の$\varepsilon > 0$に対し、
-    $\neigh(a; \varepsilon) \cap A \neq \emptyset$となることをいう。
+    $a \in X$が$A$の触点であるとは，
+    任意の$\varepsilon > 0$に対し，
+    $\neigh(a; \varepsilon) \cap A \neq \emptyset$となることをいう．
 
-    $A$の触点全体の集合を、$A$の\word{閉包}[へい|ほう][へいほう](closure)といい、
-    $\bar{A}$、$\operatorname{cl}(A)$、$A^a$などとあらわす。
+    $A$の触点全体の集合を，$A$の\word{閉包}[へい|ほう][へいほう](closure)といい，
+    $\bar{A}$，$\operatorname{cl}(A)$，$A^a$などとあらわす．
 \end{definition}
 
 
 \begin{definition}[開集合と閉集合]
     \label{dfn:open-set-and-closed-set}
-    $(X, d)$を距離空間とする。
+    $(X, d)$を距離空間とする．
     \begin{enumerate}
-        \item $A \subset X$の内部が$A$自身と一致するとき、
-            $A$は\word{開集合}[][かいしゆうこう](open set)であるとは、
-        \item $A \subset X$の$A$の閉包$\cl{A}$が$A$と一致するとき、
+        \item $A \subset X$の内部が$A$自身と一致するとき，
+            $A$は\word{開集合}[][かいしゆうこう](open set)であるとは，
+        \item $A \subset X$の$A$の閉包$\cl{A}$が$A$と一致するとき，
             $A$は\word{閉集合}[][へいしゆうこう](closed set)である
     \end{enumerate}
 \end{definition}
@@ -236,58 +236,58 @@ $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，
 
 \begin{definition}
     \label{dfn:topology}
-    距離空間$(X, d)$において、すべての開集合$A \in \pset(X)$
+    距離空間$(X, d)$において，すべての開集合$A \in \pset(X)$
     （つまり$A \subset_{\text{open}} X$）
-    を集めた集合族を\word{位相}[い|そう][いそう](topology)といい、
-    $\topology_d$であらわす。
+    を集めた集合族を\word{位相}[い|そう][いそう](topology)といい，
+    $\topology_d$であらわす．
 \end{definition}
 
-定義より$\topology_d \subset \pset(X)$である。
+定義より$\topology_d \subset \pset(X)$である．
 
 \begin{definition}
     \label{dfn:topological-space}
-    距離空間$(X, d)$において位相$\topology_d$が定められているとき、
-    $(X, \topology_d)$を\word{位相空間}[い|そう|くう|かん][いそうくうかん]という。
+    距離空間$(X, d)$において位相$\topology_d$が定められているとき，
+    $(X, \topology_d)$を\word{位相空間}[い|そう|くう|かん][いそうくうかん]という．
 \end{definition}
 
-実は位相空間というのは、距離空間よりも広い概念である。
-しかし、ここでは距離空間の別の見方が位相空間であるとしておく。
+実は位相空間というのは，距離空間よりも広い概念である．
+しかし，ここでは距離空間の別の見方が位相空間であるとしておく．
 
 
 
 \subsection{コンパクト集合}
 
 \begin{definition}[被覆]
-    $X$を集合、$A \subset X$をその部分集合とする。
-    $\symfrak{G} \subset \pset(X)$が$A \subset \bigcup \symfrak{G}$をみたすとき、
-    $\symfrak{G}$は$A$の\word{被覆}[ひ|ふく][ひふく]である（あるいは$\symfrak{G}$は$A$を被覆する）という\cite[\S 22]{uchida-set-2020}。
+    $X$を集合，$A \subset X$をその部分集合とする．
+    $\symfrak{G} \subset \pset(X)$が$A \subset \bigcup \symfrak{G}$をみたすとき，
+    $\symfrak{G}$は$A$の\word{被覆}[ひ|ふく][ひふく]である（あるいは$\symfrak{G}$は$A$を被覆する）という\cite[\S 22]{uchida-set-2020}．
 \end{definition}
 
-特に、位相空間$(X, \topology)$の部分集合$A \subset X$において、
-開集合の族$\symfrak{G} \in \topology$が$A$を被覆するとき、
-$\symfrak{G}$は$A$の\word{開被覆}[][かいひふく]であるという。
+特に，位相空間$(X, \topology)$の部分集合$A \subset X$において，
+開集合の族$\symfrak{G} \in \topology$が$A$を被覆するとき，
+$\symfrak{G}$は$A$の\word{開被覆}[][かいひふく]であるという．
 
 \begin{definition}[コンパクト集合]
-    位相空間$(X, \topology)$の部分集合$A \subset X$について、
-    $A$の任意の開被覆$\symfrak{G} \subset \topology$に対し、
+    位相空間$(X, \topology)$の部分集合$A \subset X$について，
+    $A$の任意の開被覆$\symfrak{G} \subset \topology$に対し，
     有限個の開集合$O_1, \dots, O_n \in \symfrak{G}$が存在して
     \begin{equation*}
         A \subset O_1 \cup \dots \cup O_n
     \end{equation*}
-    とかけるとき、$A$は\word{コンパクト}[][こんはくと](compact)であるという。
+    とかけるとき，$A$は\word{コンパクト}[][こんはくと](compact)であるという．
 
-    $X$自身がコンパクトであるとき、$(X, \topology)$を\word{コンパクト空間}[][こんはくとくうかん]という\cite[\S 22]{uchida-set-2020}。
+    $X$自身がコンパクトであるとき，$(X, \topology)$を\word{コンパクト空間}[][こんはくとくうかん]という\cite[\S 22]{uchida-set-2020}．
 \end{definition}
 
 \begin{proposition}
     \label{thm:compact-set-is-bounded-closed-set}
-    距離空間$(X, d)$におけるコンパクト集合は、有界な閉集合である\cite[\S 22]{uchida-set-2020}。
+    距離空間$(X, d)$におけるコンパクト集合は，有界な閉集合である\cite[\S 22]{uchida-set-2020}．
 \end{proposition}
 
 \begin{theorem}
     \label{thm:Heine-Borel-theorem}
-    通常の位相に関して（つまり通常の開集合・閉集合を考えた場合）、
-    $\symbb{R}$の任意の閉区間$[a, b]$はコンパクトである（\word{ハイネ--ボレルの被覆定理}[][はいねほれるのひふくていり](Heine--Borel theorem)）\cite[\S 22]{uchida-set-2020}。
+    通常の位相に関して（つまり通常の開集合・閉集合を考えた場合），
+    $\symbb{R}$の任意の閉区間$[a, b]$はコンパクトである（\word{ハイネ--ボレルの被覆定理}[][はいねほれるのひふくていり](Heine--Borel theorem)）\cite[\S 22]{uchida-set-2020}．
 \end{theorem}
 
 

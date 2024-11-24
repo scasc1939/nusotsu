@@ -50,7 +50,7 @@
 
 線形写像全体の集合$\mathrm{Hom}_{\symbb{K}}(V, W)$は，適切な和とスカラー倍の下でベクトル空間\refdfn{dfn:vector-space}をなす．
 
-\begin{corollary}
+\begin{proposition}
     \label{thm:linear-map-space}
     $\mathrm{Hom}_{\symbb{K}}(V, W)$は，以下で定義される和$\plushat$とスカラー倍$\hat{\scaprod}$のもとで，体$\symbb{K}$上のベクトル空間になる\cite[\S 4.4]{saito-lin-2007}．
     \begin{itemize}
@@ -59,23 +59,16 @@
             \item 和$f \plushat g \in \mathrm{Hom}_{\symbb{K}}(V, W)$は，
                 任意の$\symbf{v} \in V$に対して$ ( f \plushat g )(\symbf{v}) = f(\symbf{v}) \doubleplus g(\symbf{v}) $である写像と定める．
             \item スカラー倍$c \mathbin{\hat{\scaprod}} f \in \mathrm{Hom}_{\symbb{K}}(V, W)$は，
-                任意の$\symbf{v} \in V$に対して$ ( c \mathbin{\hat{\scaprod}} g )(\symbf{v}) = c \scaprodvar f(\symbf{v}) $である写像と定める．
+                任意の$\symbf{v} \in V$に対して$ ( c \mathbin{\hat{\scaprod}} f )(\symbf{v}) = c \scaprodvar f(\symbf{v}) $である写像と定める．
         \end{enumerate}
     \end{itemize}
-    % \begin{align}
-    %     f \plushat g
-    %         &\iff  ( f \plushat g )(\symbf{v}) = f(\symbf{v}) \doubleplus g(\symbf{v}) \text{ for all $\symbf{v} \in V$ }
-    %     \\
-    %     c \hat{\scaprod} f
-    %         &\iff  ( c \hat{\scaprod} f )(\symbf{v}) = c \scaprodvar f(\symbf{v}) \text{ for all $\symbf{v} \in V$ }
-    % \end{align}
-\end{corollary}
+\end{proposition}
 
 
 
-\begin{theorem}
+\begin{proposition}
     $\symbb{K}$上の$n$-次元ベクトル空間と$\symbb{K}^n$は同型である\cite{saito-lin-2007}．
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
     $\symbb{K}$上の$n$-次元ベクトル空間$V$の基底$\{\symbf{u}_1, \dots, \symbf{u}_n\}$をひとつとる．
@@ -91,6 +84,14 @@
     $f$が線形であることも明らかである．
 \end{proof}
 
+\begin{corollary}
+    $\symbb{K}$上の2つの$n$-次元ベクトル空間$U, V$は同型である．
+\end{corollary}
+
+\begin{proof}
+    同型$f \colon V \similarrightarrow \symbb{K}$と同型$g \colon \symbb{K} \similarrightarrow U$の合成$g \circ f \colon V \similarrightarrow U$が同型であることから従う．
+\end{proof}
+
 
 \subsection{像と核}
 
@@ -104,7 +105,7 @@
     \end{equation}
     を$f$の\word{像}[ぞう][そう](image)という．
 
-    $\image f$の次元$\rank f \coloneq \dim \image f$を、$f$の\word{階数}[かい|すう][かいすう](rank)という\cite{miyake-lin-2008}。
+    $\image f$の次元$\rank f \coloneq \dim \image f$を，$f$の\word{階数}[かい|すう][かいすう](rank)という\cite{miyake-lin-2008}．
 \end{definition}
 
 \begin{definition}[核]
@@ -117,7 +118,7 @@
     \end{equation}
     を$f$の\word{核}[かく][かく](kernel)という．
 
-    $\ker f$の次元$\dimker f \coloneq \dim \ker f$を、$f$の\word{退化次数}[たい|か|じ|すう][たいかしすう](nullity)という\cite{miyake-lin-2008}。
+    $\ker f$の次元$\dimker f \coloneq \dim \ker f$を，$f$の\word{退化次数}[たい|か|じ|すう][たいかしすう](nullity)という\cite{miyake-lin-2008}．
 \end{definition}
 
 像$\image f$は一般の写像についても定義できた\refdfn{dfn:image}が，
@@ -140,53 +141,53 @@
 
 \begin{theorem}
     \label{thm:rank-nullity}
-    $V, W$を有限次元のベクトル空間とする。
-    線形写像$f \colon V \to W$の像と核について、
-    $\image f + \dimker f = \dim V$が成り立つ\cite[\S 5.1]{miyake-lin-2008}。
+    $V, W$を有限次元のベクトル空間とする．
+    線形写像$f \colon V \to W$の像と核について，
+    $\image f + \dimker f = \dim V$が成り立つ\cite[\S 5.1]{miyake-lin-2008}．
 \end{theorem}
 
 \begin{proof}
-    $\ker f$の基底を$\symbf{x}_1, \dots, \symbf{x}_n$とし、
+    $\ker f$の基底を$\symbf{x}_1, \dots, \symbf{x}_n$とし，
     $\symbf{x}_{n+1}, \dots, \symbf{x}_{n+m}$を
     $f(\symbf{x}_{n+1}) = \symbf{y}_1, \dots, f(\symbf{x}_{n+m}) = \symbf{y}_m$
-    （$\symbf{y}_1, \dots, \symbf{y}_m$は$\image f$の基底）となるようにとる。
-    このとき$\symbf{x}_1, \  \dotsc, \  \symbf{x}_{n+m}$が$V$の基底になる。
+    （$\symbf{y}_1, \dots, \symbf{y}_m$は$\image f$の基底）となるようにとる．
+    このとき$\symbf{x}_1, \  \dotsc, \  \symbf{x}_{n+m}$が$V$の基底になる．
 
-    まず、\textgt{$\symbf{x}_1, \dots, \symbf{x}_{n+m}$は一次独立である}ことを示す。
+    まず，\textgt{$\symbf{x}_1, \dots, \symbf{x}_{n+m}$は一次独立である}ことを示す．
     \begin{equation*}
         c_1 \symbf{x}_1 + \dots + a_n \symbf{x}_n
             + c_{n+1} \symbf{x}_{n+1} + \dots + c_{n+m} \symbf{x}_{n+m}
                 = \symbf{0}
     \end{equation*}
-    とおく。これに線形写像$f$を施すと、
+    とおく．これに線形写像$f$を施すと，
     \begin{equation*}
         c_{n+1} \symbf{y}_{1} + \dots + c_{n+m} \symbf{y}_{m} = \symbf{0}
     \end{equation*}
-    となり、$\symbf{y}_1, \dots, \symbf{y}_m$は一次独立であるから$c_{n+1} = \dots = c_{n+m} = 0$である。
+    となり，$\symbf{y}_1, \dots, \symbf{y}_m$は一次独立であるから$c_{n+1} = \dots = c_{n+m} = 0$である．
     したがって
     \begin{equation*}
         c_1 \symbf{x}_1 + \dots + c_n \symbf{x}_n = \symbf{0}
     \end{equation*}
-    であるから$c_1 = \dots = c_n = 0$である。
-    よって$c_1 = \dots = c_{n+m} = 0$がいえた。
+    であるから$c_1 = \dots = c_n = 0$である．
+    よって$c_1 = \dots = c_{n+m} = 0$がいえた．
 
-    次に\textgt{$\symbf{x}_1, \dots, \symbf{x}_{n+m}$は$V$を生成する}ことを示す。
-    任意の$\symbf{x} \in V$をとる。
-    $f(\symbf{x}) \in \image f$であるので、$\image f$の基底を用いて
+    次に\textgt{$\symbf{x}_1, \dots, \symbf{x}_{n+m}$は$V$を生成する}ことを示す．
+    任意の$\symbf{x} \in V$をとる．
+    $f(\symbf{x}) \in \image f$であるので，$\image f$の基底を用いて
     \begin{equation*}
         f(\symbf{x}) = c_{n+1} \symbf{y}_1 + \dots + c_{n+m} \symbf{y}_m
     \end{equation*}
-    とかける。$\symbf{y}_i = f(\symbf{x}_{n+i})$を用いると
+    とかける．$\symbf{y}_i = f(\symbf{x}_{n+i})$を用いると
     \begin{equation*}
         f(\symbf{x} - c_{n+1} \symbf{x}_{n+1} - \dots - c_{n+m} \symbf{x}_{n+m}) = \symbf{0}
     \end{equation*}
-    であるので、$\symbf{x} - c_{n+1} \symbf{x}_{n+1} - \dots - c_{n+m} \symbf{x}_{n+m} \in \ker f$である。
+    であるので，$\symbf{x} - c_{n+1} \symbf{x}_{n+1} - \dots - c_{n+m} \symbf{x}_{n+m} \in \ker f$である．
     よって
     \begin{equation*}
         \symbf{x} - c_{n+1} \symbf{x}_{n+1} - \dots - c_{n+m} \symbf{x}_{n+m} 
             = c_1 \symbf{x}_1 + \dots + c_n \symbf{x}_n
     \end{equation*}
-    とかける。この式を変形すれば、$\symbf{x}$が$\symbf{x}_1, \dots, \symbf{x}_{n+m}$の線形結合であらわされた。
+    とかける．この式を変形すれば，$\symbf{x}$が$\symbf{x}_1, \dots, \symbf{x}_{n+m}$の線形結合であらわされた．
 \end{proof}
 
 

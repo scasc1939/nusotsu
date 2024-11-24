@@ -16,7 +16,7 @@
 \end{definition}
 
 \begin{definition}[演算子の定義域]
-    $\symcal{A}$のことを$\hat{A}$の\word{定義域}[てい|ぎ|いき][ていきいき](domain)といい，$\operatorname{Dom}(\hat{A})$、$D(\hat{A})$などとかく．
+    $\symcal{A}$のことを$\hat{A}$の\word{定義域}[てい|ぎ|いき][ていきいき](domain)といい，$\operatorname{Dom}(\hat{A})$，$D(\hat{A})$などとかく．
 \end{definition}
 
 $f$を$\symcal{H}$から$\symcal{H}'$への写像としたとき，任意の$x \in \symcal{H}$に対して$f(x)$が定義されていなければいけなかった．
@@ -37,23 +37,23 @@ $f$を$\symcal{H}$から$\symcal{H}'$への写像としたとき，任意の$x \
 
 \par
 
-集合$X$から$X$自身への写像\refdfn{dfn:map}においては、すべての元を自身へとうつす恒等写像\refdfn{dfn:identity-map}が存在した。
-それと同様に、任意の$\symbf{x} \in \symcal{H}$をそれ自身にうつす演算子
+集合$X$から$X$自身への写像\refdfn{dfn:map}においては，すべての元を自身へとうつす恒等写像\refdfn{dfn:identity-map}が存在した．
+それと同様に，任意の$\symbf{x} \in \symcal{H}$をそれ自身にうつす演算子
 $\idop \colon \symcal{H} \to \symcal{H}$を\word{恒等演算子}[][こうとうえんさんし](identity operator)という：
-$\idop(\symbf{x}) = \symbf{x}$。
+$\idop(\symbf{x}) = \symbf{x}$．
 
-逆写像に対応する概念も定義できる。
-$\hat{A} \colon \symcal{H} \to \symcal{H}$を$\domain(\hat{A})$で定義された演算子とする。
-任意の$\symbf{x} \in \domain(\hat{A})$に対し、
+逆写像に対応する概念も定義できる．
+$\hat{A} \colon \symcal{H} \to \symcal{H}$を$\domain(\hat{A})$で定義された演算子とする．
+任意の$\symbf{x} \in \domain(\hat{A})$に対し，
 $\hat{A}^{-1} ( \hat{A} (\symbf{x}) ) = \hat{A} ( \hat{A}^{-1} (\symbf{x}) ) $
-をみたす演算子$\hat{A}^{-1} \colon \symcal{H} \to \symcal{H}$が存在するとき、
-これを$\hat{A}$の\word{逆演算子}[][きやくえんさんし](inverse operator)という。
+をみたす演算子$\hat{A}^{-1} \colon \symcal{H} \to \symcal{H}$が存在するとき，
+これを$\hat{A}$の\word{逆演算子}[][きやくえんさんし](inverse operator)という．
 
 写像$f \colon X \to Y$の定義域を$A \subset X$に制限\refdfn{dfn:restriction}した写像
-$f \vert_A \colon A \to Y$を考えることができた。
-同様に、演算子$\hat{A} \colon \symcal{H} \to \symcal{H}'$の定義域を
-$\domain(\hat{B}) \subset \domain(\hat{A})$に制限した演算子$\hat{B} \colon \symcal{H} \to \symcal{H}'$を考えることができる。
-写像のときと同様に、$\hat{B}$を$\hat{A}$の\word{制限}[][せいけん](restriction)という。
+$f \vert_A \colon A \to Y$を考えることができた．
+同様に，演算子$\hat{A} \colon \symcal{H} \to \symcal{H}'$の定義域を
+$\domain(\hat{B}) \subset \domain(\hat{A})$に制限した演算子$\hat{B} \colon \symcal{H} \to \symcal{H}'$を考えることができる．
+写像のときと同様に，$\hat{B}$を$\hat{A}$の\word{制限}[][せいけん](restriction)という．
 
 
 \subsection{線形演算子}
@@ -65,7 +65,7 @@ $\domain(\hat{B}) \subset \domain(\hat{A})$に制限した演算子$\hat{B} \col
     \word{線形演算子}[せん|けい|えん|ざん|し][せんけいえんさんし](linear operator)という．
     \begin{itemize}
         \item 任意の$\symbf{x}, \symbf{y} \in \symcal{H}$，任意の$a, b \in \symbb{C}$に対し，
-        \item \begin{enumerate}
+        \begin{enumerate}
             \item （線形性）$\hat{A}( a \symbf{x} + b \symbf{y} ) = a \hat{A} (\symbf{x}) + b \hat{A} (\symbf{y})$である．
         \end{enumerate}
     \end{itemize}
@@ -75,32 +75,32 @@ $\domain(\hat{B}) \subset \domain(\hat{A})$に制限した演算子$\hat{B} \col
 
 \par
 
-線形写像\refdfn{dfn:linear-map}のときと同様に、零演算子を定義できる。
-すなわち、任意の$\symbf{x} \in \symcal{H}$をゼロベクトル$\symbf{0} \in \symcal{H}'$にうつす演算子
-$\zeroop \colon \symcal{H} \to \symcal{H}'$を\word{零演算子}[][れいえんざんし](zero operator)という：
-$\zeroop(\symbf{x}) = \symbf{0}$。
+線形写像における零写像と同じように，\word{零演算子}[][れいえんざんし](zero operator)を定義できる．
+すなわち，任意の$\symbf{x} \in \symcal{H}$をゼロベクトル$\symbf{0} \in \symcal{H}'$にうつす演算子
+$\zeroop \colon \symcal{H} \to \symcal{H}'$を零演算子という：
+$\zeroop(\symbf{x}) = \symbf{0}$．
 
 \begin{definition}
     \label{dfn:operator-sum-scalar}
-    $\hat{A}, \hat{B} \colon \symcal{H} \to \symcal{H}'$を$\domain(\hat{A})$で定義された演算子、
-    $c \in \symbb{K}$をスカラーとする。
-    演算子の和・スカラー倍を、以下のように定義する。
+    $\hat{A}, \hat{B} \colon \symcal{H} \to \symcal{H}'$を$\domain(\hat{A})$で定義された演算子，
+    $c \in \symbb{K}$をスカラーとする．
+    演算子の和・スカラー倍を，以下のように定義する．
     \begin{enumerate}
-        \item 演算子の和$\hat{A} + \hat{B}$を、任意の$\symbf{x} \in \domain(\hat{A})$に対し、
-            $( \hat{A} + \hat{B} )(\symbf{x}) = \hat{A}(\symbf{x}) + \hat{B}(\symbf{x})$であるような演算子と定める。
-        \item 演算子のスカラー倍$c\hat{A}$を、任意の$\symbf{x} \in \domain(\hat{A})$に対し、
-            $( c\hat{A} )(\symbf{x}) = c \cdotp \hat{A}(\symbf{x})$であるような演算子と定める。
+        \item 演算子の和$\hat{A} + \hat{B}$を，任意の$\symbf{x} \in \domain(\hat{A})$に対し，
+            $( \hat{A} + \hat{B} )(\symbf{x}) = \hat{A}(\symbf{x}) + \hat{B}(\symbf{x})$であるような演算子と定める．
+        \item 演算子のスカラー倍$c\hat{A}$を，任意の$\symbf{x} \in \domain(\hat{A})$に対し，
+            $( c\hat{A} )(\symbf{x}) = c \cdotp \hat{A}(\symbf{x})$であるような演算子と定める．
     \end{enumerate}
-    また、$\hat{E} \colon \symcal{H} \to \symcal{H}'$、$\hat{F} \colon \symcal{H}' \to \symcal{H}''$を演算子とすると、
-    演算子の積は次のように定義する。
+    また，$\hat{E} \colon \symcal{H} \to \symcal{H}'$，$\hat{F} \colon \symcal{H}' \to \symcal{H}''$を演算子とすると，
+    演算子の積は次のように定義する．
     \begin{enumerate}[resume]
-        \item 演算子の積$\hat{E} \hat{F}$を、任意の$\symbf{x} \in \domain(\hat{E})$に対し、
-            $ \hat{E} \hat{F} (\symbf{x}) = \hat{E} ( \hat{F} (\symbf{x}) )$であるような演算子と定める。
+        \item 演算子の積$\hat{E} \hat{F}$を，任意の$\symbf{x} \in \domain(\hat{E})$に対し，
+            $ \hat{E} \hat{F} (\symbf{x}) = \hat{E} ( \hat{F} (\symbf{x}) )$であるような演算子と定める．
     \end{enumerate}
-    この定義より、$\domain(\hat{F}) \supset \range(\hat{F})$でなければ演算子の積$\hat{E} \hat{F}$が定義できないことがわかる。
+    この定義より，$\domain(\hat{F}) \supset \range(\hat{F})$でなければ演算子の積$\hat{E} \hat{F}$が定義できないことがわかる．
 \end{definition}
 
-微分演算子$\dv{}{x} \colon L^2 \to L^2$は、
+微分演算子$\dv{}{x} \colon L^2 \to L^2$は，
 ヒルベルト空間$L^2$\refdfn{dfn:square-integrable-function-space}
 
 

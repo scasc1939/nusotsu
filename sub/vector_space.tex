@@ -80,7 +80,7 @@ $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]�
 のように，各成分の和として定義する．
 ベクトルの和は，2つの矢印をつなげた見たときの矢印に相当する（\cref{fig:vector-sum}）．
 
-また，ベクトルの「\word{スカラー倍}」を、
+また，ベクトルの「\word{スカラー倍}」を，
 \begin{equation*}
     \lambda \scaprod 
     \begin{pmatrix}
@@ -91,8 +91,8 @@ $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]�
         \lambda a  \\  \lambda b  \\  \lambda c
     \end{pmatrix}
 \end{equation*}
-で定義する。
-ベクトルのスカラー倍は、向きを保ったまま長さを$\lambda$倍した矢印に対応する（\cref{fig:vector-scalar-p}）。
+で定義する．
+ベクトルのスカラー倍は，向きを保ったまま長さを$\lambda$倍した矢印に対応する（\cref{fig:vector-scalar-p}）．
 
 \begin{figure}[tbp]
     \centering
@@ -111,7 +111,7 @@ $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]�
     \caption{ベクトルの演算}
 \end{figure}
 
-このように定義されたベクトルの和とスカラー倍についての性質を抽出したのが\cref{dfn:vector-space}である。
+このように定義されたベクトルの和とスカラー倍についての性質を抽出したのが\cref{dfn:vector-space}である．
 
 
 
@@ -179,8 +179,8 @@ $\symbf{v} \vecplus (-\symbf{u}) \eqcolon \symbf{v} \vecminus \symbf{u}$とか�
     $W$が$V$の和とスカラー倍に対してベクトル空間になるとき，$W$は$U$の\word{部分ベクトル空間}(vector subspace)あるいは単に\word{部分空間}(subspace)であるという．
 \end{definition}
 
-部分空間と部分集合を取り違えないように注意が必要である。
-部分集合のうちベクトル空間になるものが部分空間（部分ベクトル空間）である。
+部分空間と部分集合を取り違えないように注意が必要である．
+部分集合のうちベクトル空間になるものが部分空間（部分ベクトル空間）である．
 
 \begin{theorem}
     \label{thm:vector-subspace-iff}
@@ -197,31 +197,31 @@ $\symbf{v} \vecplus (-\symbf{u}) \eqcolon \symbf{v} \vecminus \symbf{u}$とか�
 
 \begin{proposition}
     \label{thm:intersection-of-vector-space}
-    $V$をベクトル空間、$W_1, W_2 \subset V$を部分ベクトル空間とする。
-    このとき共通部分\refdfn{dfn:intersection-of-set}$W_1 \cap W_2$は$V$の部分ベクトル空間である。
+    $V$をベクトル空間，$W_1, W_2 \subset V$を部分ベクトル空間とする．
+    このとき共通部分\refdfn{dfn:intersection-of-set}$W_1 \cap W_2$は$V$の部分ベクトル空間である．
 \end{proposition}
 
 \begin{proof}
-    \cref{thm:vector-subspace-iff}を確かめればよい。
+    \cref{thm:vector-subspace-iff}を確かめればよい．
 \end{proof}
 
 
 \begin{definition}[和空間]
     \label{dfn:sum-of-vector-space}
-    $V$をベクトル空間、$W_1, W_2 \subset V$を部分ベクトル空間とする。
+    $V$をベクトル空間，$W_1, W_2 \subset V$を部分ベクトル空間とする．
     \begin{equation}
         W_1 + W_2 \coloneq \Set{  \symbf{v}_1 \vecplus \symbf{v}_2  \given  \symbf{v}_1 \in W_1, \  \symbf{v}_2 \in W_2  }
     \end{equation}
-    は$V$の部分ベクトル空間である。
+    は$V$の部分ベクトル空間である．
 \end{definition}
-なお、和空間$W_1 + W_2$と和集合\refdfn{dfn:union-of-set}$W_1 \cup W_2$は異なる概念である。
-一般に$W_1 \cup W_2$は部分ベクトル空間にならない。
+なお，和空間$W_1 + W_2$と和集合\refdfn{dfn:union-of-set}$W_1 \cup W_2$は異なる概念である．
+一般に$W_1 \cup W_2$は部分ベクトル空間にならない．
 
 \begin{definition}[直和空間]
     \label{dfn:direct-sum-of-vector-space}
-    和空間$W_1 + W_2$で、特に$W_1 \cap W_2 = \{ \symbf{0} \}$であるとき、
-    \word{直和}[ちょく|わ][ちよくわ](direct sum)といい、
-    $W_1 \oplus W_2$とかく。
+    和空間$W_1 + W_2$で，特に$W_1 \cap W_2 = \{ \symbf{0} \}$であるとき，
+    \word{直和}[ちょく|わ][ちよくわ](direct sum)といい，
+    $W_1 \oplus W_2$とかく．
 \end{definition}
 
 
@@ -313,9 +313,9 @@ $c_i$が有限個を除きゼロである，つまり$c_1 \symbf{v}_1 \vecplus c
 \end{example}
 
 \begin{example}
-    複素数全体の集合$\symbb{C}$は、
-    $\symbb{C}$上のベクトル空間と考えると$\dim_{\symbb{C}} = 1$（基底$1$）、
-    $\symbb{R}$上のベクトル空間と考えると$\dim_{\symbb{R}} = 2$（基底$1, \iu$）である。
+    複素数全体の集合$\symbb{C}$は，
+    $\symbb{C}$上のベクトル空間と考えると$\dim_{\symbb{C}} = 1$（基底$1$），
+    $\symbb{R}$上のベクトル空間と考えると$\dim_{\symbb{R}} = 2$（基底$1, \iu$）である．
 \end{example}
 
 
@@ -342,7 +342,7 @@ $c_i$が有限個を除きゼロである，つまり$c_1 \symbf{v}_1 \vecplus c
 ここまでは，ベクトル空間に基底が存在すると仮定したうえで議論してきた．
 実は，任意のベクトル空間について，基底が存在することを示すことができる．
 
-証明にはツォルンの補題を用いる。
+証明にはツォルンの補題を用いる．
 
 
 \end{document}
