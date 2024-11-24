@@ -16,24 +16,44 @@
 \end{definition}
 
 \begin{definition}[演算子の定義域]
-    $\symcal{A}$のことを$\hat{A}$の\word{定義域}[てい|ぎ|いき][ていきいき](domain)といい，$D(\hat{A})$などとかく．
+    $\symcal{A}$のことを$\hat{A}$の\word{定義域}[てい|ぎ|いき][ていきいき](domain)といい，$\operatorname{Dom}(\hat{A})$、$D(\hat{A})$などとかく．
 \end{definition}
 
 $f$を$\symcal{H}$から$\symcal{H}'$への写像としたとき，任意の$x \in \symcal{H}$に対して$f(x)$が定義されていなければいけなかった．
 言い換えれば，定義域が$\symcal{H}$全体である．
 それに対して，$\symcal{H}$から$\symcal{H}'$への演算子$\hat{A}$は，
 任意の$x \in \symcal{H}$に対して$\hat{A}(x)$が定義されている必要はなく，
-部分ベクトル空間$D(\hat{A})$の元に対して定義されていれば十分である．
+部分ベクトル空間$\domain(\hat{A})$の元に対して定義されていれば十分である．
 
 
 \begin{definition}[演算子の一致]
     $\hat{A}, \hat{B} \colon \symcal{H} \to \symcal{H}'$を演算子とする．
-    $D(\hat{A}) = D(\hat{B})$かつ任意の$x \in D(A)$に対し$\hat{A}(x) = \hat{B}(x)$であるとき，
+    $\domain(\hat{A}) = \domain(\hat{B})$かつ任意の$x \in \domain(A)$に対し$\hat{A}(x) = \hat{B}(x)$であるとき，
     演算子$\hat{A}$と$\hat{B}$は一致するという．
 \end{definition}
 
 2つの写像$f, g$において，定義域（もしくは終域）が一致しない場合，異なる写像とみなすのであった．
-同様に，2つの演算子$\hat{A}, \hat{B}$の定義域$D(\hat{A}), D(\hat{B})$が一致しない場合，違う演算子とみなす．
+同様に，2つの演算子$\hat{A}, \hat{B}$の定義域$\domain(\hat{A}), \domain(\hat{B})$が一致しない場合，違う演算子とみなす．
+
+\par
+
+集合$X$から$X$自身への写像\refdfn{dfn:map}においては、すべての元を自身へとうつす恒等写像\refdfn{dfn:identity-map}が存在した。
+それと同様に、任意の$\symbf{x} \in \symcal{H}$をそれ自身にうつす演算子
+$\idop \colon \symcal{H} \to \symcal{H}$を\word{恒等演算子}[][こうとうえんさんし](identity operator)という：
+$\idop(\symbf{x}) = \symbf{x}$。
+
+逆写像に対応する概念も定義できる。
+$\hat{A} \colon \symcal{H} \to \symcal{H}$を$\domain(\hat{A})$で定義された演算子とする。
+任意の$\symbf{x} \in \domain(\hat{A})$に対し、
+$\hat{A}^{-1} ( \hat{A} (\symbf{x}) ) = \hat{A} ( \hat{A}^{-1} (\symbf{x}) ) $
+をみたす演算子$\hat{A}^{-1} \colon \symcal{H} \to \symcal{H}$が存在するとき、
+これを$\hat{A}$の\word{逆演算子}[][きやくえんさんし](inverse operator)という。
+
+写像$f \colon X \to Y$の定義域を$A \subset X$に制限\refdfn{dfn:restriction}した写像
+$f \vert_A \colon A \to Y$を考えることができた。
+同様に、演算子$\hat{A} \colon \symcal{H} \to \symcal{H}'$の定義域を
+$\domain(\hat{B}) \subset \domain(\hat{A})$に制限した演算子$\hat{B} \colon \symcal{H} \to \symcal{H}'$を考えることができる。
+写像のときと同様に、$\hat{B}$を$\hat{A}$の\word{制限}[][せいけん](restriction)という。
 
 
 \subsection{線形演算子}
@@ -53,9 +73,43 @@ $f$を$\symcal{H}$から$\symcal{H}'$への写像としたとき，任意の$x \
 
 量子力学において，演算子が線形であることは本質的である．
 
+\par
+
+線形写像\refdfn{dfn:linear-map}のときと同様に、零演算子を定義できる。
+すなわち、任意の$\symbf{x} \in \symcal{H}$をゼロベクトル$\symbf{0} \in \symcal{H}'$にうつす演算子
+$\zeroop \colon \symcal{H} \to \symcal{H}'$を\word{零演算子}[][れいえんざんし](zero operator)という：
+$\zeroop(\symbf{x}) = \symbf{0}$。
+
+\begin{definition}
+    \label{dfn:operator-sum-scalar}
+    $\hat{A}, \hat{B} \colon \symcal{H} \to \symcal{H}'$を$\domain(\hat{A})$で定義された演算子、
+    $c \in \symbb{K}$をスカラーとする。
+    演算子の和・スカラー倍を、以下のように定義する。
+    \begin{enumerate}
+        \item 演算子の和$\hat{A} + \hat{B}$を、任意の$\symbf{x} \in \domain(\hat{A})$に対し、
+            $( \hat{A} + \hat{B} )(\symbf{x}) = \hat{A}(\symbf{x}) + \hat{B}(\symbf{x})$であるような演算子と定める。
+        \item 演算子のスカラー倍$c\hat{A}$を、任意の$\symbf{x} \in \domain(\hat{A})$に対し、
+            $( c\hat{A} )(\symbf{x}) = c \cdotp \hat{A}(\symbf{x})$であるような演算子と定める。
+    \end{enumerate}
+    また、$\hat{E} \colon \symcal{H} \to \symcal{H}'$、$\hat{F} \colon \symcal{H}' \to \symcal{H}''$を演算子とすると、
+    演算子の積は次のように定義する。
+    \begin{enumerate}[resume]
+        \item 演算子の積$\hat{E} \hat{F}$を、任意の$\symbf{x} \in \domain(\hat{E})$に対し、
+            $ \hat{E} \hat{F} (\symbf{x}) = \hat{E} ( \hat{F} (\symbf{x}) )$であるような演算子と定める。
+    \end{enumerate}
+    この定義より、$\domain(\hat{F}) \supset \range(\hat{F})$でなければ演算子の積$\hat{E} \hat{F}$が定義できないことがわかる。
+\end{definition}
+
+微分演算子$\dv{}{x} \colon L^2 \to L^2$は、
+ヒルベルト空間$L^2$\refdfn{dfn:square-integrable-function-space}
+
+
 
 
 \subsection{エルミート演算子}
+
+
+
 
 
 

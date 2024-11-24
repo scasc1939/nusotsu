@@ -78,30 +78,56 @@
 
 \newcommand{\bigdot}{\mdblkcircle}
 
+% 虚数単位
 \newcommand{\iu}{\symup{i}}
 
+% 閉方（closure）
 \newcommand{\cl}[1]{\mathrm{Cl}(#1)}
 
+% 単位行列
 \newcommand{\umat}{\symup{I}}
+% 転置（transpose）
 \newcommand{\tp}[1]{{}^{\mathrm{t}}#1}
 
+% 双対空間（dual space）
 \newcommand{\dual}[1]{{#1}^*}
 
+% 恒等演算子（identity operator）、ゼロ演算子（zero operator）
+\newcommand{\idop}{\hat{1}}
+\newcommand{\zeroop}{\hat{0}}
+
+% 冪集合（power set）
+\newcommand{\pset}{\symcal{P}}
+
+% 位相（topology）
+\newcommand{\topology}{\symcal{O}}
+
+% 近傍（neighborhood）
+\newcommand{\neigh}{N}
+
+% 像（image）、定義域（domain）、値域（range）
 \DeclareMathOperator{\image}{Im}
 \DeclareMathOperator{\domain}{Dom}
+\DeclareMathOperator{\range}{Ran}
+% 核（kernel）
 \let\ker\relax
 \DeclareMathOperator{\ker}{Ker}
 
+% 階数（rank）、退化次数（nullity）
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\dimker}{null}
 
-
+% 絶対値、ノルム
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+% 同値類（equivalence class）
 \DeclarePairedDelimiter{\eqclass}{\lbrack}{\rbrack}
 
+% ベクトルの組が生成する（span）ベクトル空間
 \DeclarePairedDelimiter{\spanning}{\langle}{\rangle}
 
+% 複素共役（complex conjugate）
 \NewDocumentCommand{\conj}{s m}{
     \IfBooleanTF{#1}
         {(#2)^*}

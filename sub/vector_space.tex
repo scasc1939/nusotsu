@@ -179,6 +179,9 @@ $\symbf{v} \vecplus (-\symbf{u}) \eqcolon \symbf{v} \vecminus \symbf{u}$とか�
     $W$が$V$の和とスカラー倍に対してベクトル空間になるとき，$W$は$U$の\word{部分ベクトル空間}(vector subspace)あるいは単に\word{部分空間}(subspace)であるという．
 \end{definition}
 
+部分空間と部分集合を取り違えないように注意が必要である。
+部分集合のうちベクトル空間になるものが部分空間（部分ベクトル空間）である。
+
 \begin{theorem}
     \label{thm:vector-subspace-iff}
     $V$をベクトル空間とする．$U \subset V$が以下の条件を満たす場合，$U$は$V$の部分ベクトル空間になる．
@@ -191,21 +194,23 @@ $\symbf{v} \vecplus (-\symbf{u}) \eqcolon \symbf{v} \vecminus \symbf{u}$とか�
     この条件をわざわざ加えるのは，$U \neq \emptyset$であることを保証するためである．
 \end{theorem}
 
-\begin{example}
-    何かないかな・・・
-\end{example}
 
-\begin{example}
-    $V$をベクトル空間，$W_1, W_2 \subset V$を部分ベクトル空間とする．
-    このとき$W \coloneq W_1 \cap W_2 \subset V$は$V$の部分ベクトル空間である．
-\end{example}
+\begin{proposition}
+    \label{thm:intersection-of-vector-space}
+    $V$をベクトル空間、$W_1, W_2 \subset V$を部分ベクトル空間とする。
+    このとき共通部分\refdfn{dfn:intersection-of-set}$W_1 \cap W_2$は$V$の部分ベクトル空間である。
+\end{proposition}
+
+\begin{proof}
+    \cref{thm:vector-subspace-iff}を確かめればよい。
+\end{proof}
 
 
 \begin{definition}[和空間]
     \label{dfn:sum-of-vector-space}
     $V$をベクトル空間、$W_1, W_2 \subset V$を部分ベクトル空間とする。
     \begin{equation}
-        W_1 + W_2 \coloneq \Set{  \symbf{v}_1 \vecplus \symbf{v}_2  \given  \symbf{v}_1 \in W_1, \  \symbf{v}_2  }
+        W_1 + W_2 \coloneq \Set{  \symbf{v}_1 \vecplus \symbf{v}_2  \given  \symbf{v}_1 \in W_1, \  \symbf{v}_2 \in W_2  }
     \end{equation}
     は$V$の部分ベクトル空間である。
 \end{definition}
