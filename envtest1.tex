@@ -1,0 +1,59 @@
+\documentclass[]{sotsu}
+
+\usepackage{xcolor}
+
+\usepackage{cleveref}
+
+\usepackage{bxjalipsum}
+
+\ExplSyntaxOn
+
+\newcounter{definition}
+\counterwithin{definition}{section}
+\setcounter{definition}{0}
+
+\NewDocumentEnvironment{definition}{!o}{
+    \refstepcounter{definition}
+    \medbreak
+    \colorbox{darkgray}{
+        \textcolor{white}{
+            \textbf{定義\,\thedefinition}
+        }
+    }
+    \IfValueT{#1}{
+        \IfBlankF{#1}{
+            \hspace{0.5em}
+            ({#1})
+        }    
+    }
+}{
+    ╱
+    \par\medbreak
+}
+
+\ExplSyntaxOff
+
+\begin{document}
+
+\setcounter{section}{3}
+
+\section{吾輩}
+
+\jalipsum[3]{wagahai}
+
+\begin{definition}[吾輩である話]
+    \label{wagahai}
+    \jalipsum[4]{wagahai}
+\end{definition}
+
+\begin{definition}
+    \label{watashi}
+    \jalipsum[1]{wagahai}
+\end{definition}
+
+\jalipsum[6]{wagahai}
+
+定義~\ref{wagahai}は示唆的である。
+\cref{watashi}は明らかである。
+
+\end{document}

@@ -7,8 +7,8 @@
 
 \usepackage{sotsu}
 
-
 \usepackage{subfiles}
+
 
 \graphicspath{{./fig/}}
 
@@ -17,21 +17,7 @@
 \addbibresource{sotsu.bib}
 
 
-% \newcommand{\dotprod}{\mathbin{\mdsmwhtcircle}}
-\newcommand{\dotprod}{\mathbin{\ast}}
-
-\makeatletter
-
-% \newcommand{\scaprod}{\mathbin{\diamondcdot}}
-\newcommand{\scaprod}{\mathbin{\star}}
-\newcommand{\scaprodvar}{\mathbin{\varstar}}
-
-\newcommand{\vecplus}{\tplus}
-\newcommand{\vecminus}{\tminus}
-
-\makeatother
-
-
+% 索引
 \ifdraft
     \DeclareDocumentCommand{\index}{O{} m}{}
 \else
@@ -44,10 +30,16 @@
 \begin{document}
 
 
+% 目次
 \tableofcontents
 
 
+\chapter{数学の基礎}
+
+
 \subfile{sub/set_theory.tex}
+
+\subfile{sub/algebra.tex}
 
 \subfile{sub/vector_space.tex}
 
@@ -67,10 +59,10 @@ $\symbf{x}, \symbf{y} \in V$の距離\refdfn{dfn:distance}は，
 $d(\symbf{x}, \symbf{y}) \coloneq \norm{\symbf{x} - \symbf{y}}$で定義できる（\cref{thm:norm-is-distance}）．
 すると，$V$の収束列\refdfn{dfn:convergent-sequence}とコーシー列\refdfn{dfn:Cauchy-sequence}は，以下のように定義できる．
 \begin{itemize}
-    \item $V$の点列$(\symbf{v}_i)$が収束列であるとは，$(\symbf{v}_i)$がある$\symbf{v} \in V$に収束する，
+    \item $V$の点列$\sequ{\symbf{v}_i}$が収束列であるとは，$\sequ{\symbf{v}_i}$がある$\symbf{v} \in V$に収束する，
         つまり$\lim_{n \to \infty} x_n = x \in V$となることをいう．
-    \item $V$の点列$(\symbf{v}_i)$がコーシー列であるとは，
-        $\lim_{n, m \to \infty} = 0$であることをいう．
+    \item $V$の点列$\sequ{\symbf{v}_i}$がコーシー列であるとは，
+        $\lim_{m, n \to \infty} \norm{\symbf{v}_m - \symbf{v}_n} = 0$であることをいう．
 \end{itemize}
 これらを用いて，ノルム空間の完備性を定義することができる．
 
@@ -80,7 +72,7 @@ $d(\symbf{x}, \symbf{y}) \coloneq \norm{\symbf{x} - \symbf{y}}$で定義でき�
 
 \begin{definition}[バナッハ空間]
     \label{dfn:Banach-space}
-    完備なノルム空間を\word{バナッハ空間}(Banach space)
+    完備なノルム空間を\word{バナッハ空間}(Banach space)という。
 \end{definition}
 
 内積空間\refdfn{dfn:inner-product}では，内積から導かれるノルムが存在するのであった．
@@ -96,95 +88,27 @@ $d(\symbf{x}, \symbf{y}) \coloneq \norm{\symbf{x} - \symbf{y}}$で定義でき�
 \end{proposition}
 
 
-
-\section{関数空間}
-
-関数とは，$\symbb{R} \text{ or } \symbb{C}$から$\symbb{R} \text{ or } \symbb{C}$への写像をいうのであった．
-
-これからの議論では$\symbb{C}$から$\symbb{C}$への関数を扱うが，どちらの$\symbb{C}$を$\symbb{R}$もしくは（良い）部分集合$X \subset \symbb{C}$に置き換えてもよい．
-
-\subsection{ベクトル空間としての関数空間}
-
-\begin{proposition}
-    \label{thm:function-space-is-vector-space}
-    $\symbb{C}$から$\symbb{C}$への関数全体の集合は，以下で定義される和$\plushat$とスカラー倍$\hat{\scaprod}$のもとで，体$\symbb{K}$上のベクトル空間になる．
-    \begin{itemize}
-        \item $f, g$を，$c \in \symbb{K}$とする．
-        \begin{enumerate}
-            \item 関数の和$f \plushat g$は，
-                任意の$x \in \symbb{C}$に対して$ ( f \plushat g )(\symbf{x}) = f(x) \doubleplus g(x) $である関数と定める．
-            \item 関数のスカラー倍$c \mathbin{\hat{\scaprod}} f$は，
-                任意の$x \in \symbb{C}$に対して$ ( c \mathbin{\hat{\scaprod}} g )(x) = c \scaprodvar f(x) $である関数と定める．
-        \end{enumerate}
-    \end{itemize}
-\end{proposition}
-
-\begin{proof}
-    \refdfn{dfn:vector-space}の条件を満たすことを示せばよい．
-\end{proof}
-
-
-
-\subsection{内積空間としての関数空間}
-
-\begin{definition}
-    \label{dfn:class-C^k-function}
-    複素関数$f$が\word{$C^k$-級関数}[][Cきゆうかんすう](class $C^k$-function)であるとは，
-    $f(x)$が$\symbb{C}$上で$k$回微分可能かつ$k$次導関数が連続であることをいう．
-    $f(x)$が無限回微分可能であるとき$C^\infty$-級関数であるという．
-
-    $C^k$-級関数全体の集合を$C^k$とかく．
-    特に連続関数全体の集合は$C^0$である．
-\end{definition}
-
-\begin{example}
-    $e^x$，$\sin x$，$\cos x$は$C^\infty$-級関数である．
-\end{example}
-
-\begin{example}
-    $C^0 \subsetneq C^1 \subsetneq C^2 \subsetneq \dotsb$であり，
-    $\bigcap_{k \in \symbb{N}} C^k = C^\infty$である．
-\end{example}
-
-
-\begin{definition}
-    \label{dfn:square-integrable-function-space}
-    $[a, b] \subset \symbb{R}$から$\symbb{C}$への\word{2乗可積分関数空間}(square integrable function space) $L^2$を
-    \begin{equation*}
-        L^2 (a, b) \coloneq \Set*{ f \colon [a, b] \to \symbb{C}  \given  \int_a^b \abs{f(x)} \dd{x} < \infty }
-    \end{equation*}
-    で定義する．
-\end{definition}
-
-\begin{proposition}
-    2乗可積分関数空間$L^2 (a, b)$は，以下で定義される内積$(\bigdot, \bigdot)$に対して内積空間\refdfn{dfn:inner-product}になる．
-    \begin{align}
-        (f, g)_{L^2} \coloneq \int_a^b \conj{f}(x) g(x) \dd{x}
-    \end{align}
-    当然ノルム\refdfn{dfn:norm,dfn:norm-by-inner-product}も以下のように定義できる．
-    \begin{align}
-        \norm{f}_{L^2}^2 \coloneq (f, f)_{L^2} = \int_a^b \abs{f(x)}^2 \dd{x}
-    \end{align}
-\end{proposition}
-
-\begin{definition}
-    連続な2乗可積分関数空間を
-    \( L^2 C \coloneq L^2 \cap C^0 \)
-    で定める．
-\end{definition}
-
-
-
-
-
-
 \subfile{sub/linear_map.tex}
 
 
 \subfile{sub/dual_space.tex}
 
 
+\subfile{sub/functional_analysis.tex}
+
+
 \subfile{sub/operator.tex}
+
+
+
+\chapter{量子力学へ}
+
+\subfile{sub/bra_ket.tex}
+
+
+\ModifyHeading{section}{
+    pagebreak=nariyuki,
+}
 
 
 

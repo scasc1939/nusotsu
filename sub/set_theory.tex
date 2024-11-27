@@ -3,7 +3,7 @@
 \begin{document}
 
 
-\section{集合論・代数学の基礎}
+\section{集合論の基礎}
 
 \subsection{集合}
 
@@ -123,7 +123,18 @@ $X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
     $X \sqcup Y$とかく．
 \end{definition}
 
+\begin{definition}
+    \label{dfn:power-set}
+    $X$を集合とする。
+    $X$の部分集合すべてを元として含む集合を、
+    $X$の\word{冪集合}[べき|しゅう|ごう][へきしゆうこう](power set)といい、
+    $\symcal{P}(X)$、$\symfrak{P}(X)$、$2^X$などとかく。
+\end{definition}
 
+\begin{example}
+    $X = \{ a, b \}$とすると、
+    $\pset(X) = \bigl\{ \emptyset, \  \{ a \}, \  \{ b \}, \  \{ a, b \}  \bigr\}$である。
+\end{example}
 
 
 
@@ -300,97 +311,29 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 \end{definition}
 
 
+\subsection{集合の濃度}
 
+この節では``集合の大きさ''である「濃度」を定義する。
 
-\subsection{群・環・体}
-
-\begin{definition}[群]
-    \label{dfn:group}
-    $G$を集合，$\dotprod \colon G \times G \to G$を二項演算とする．
-    $G$の元が，演算$\dotprod$に対して以下を満たすとき，
-    $(G, \dotprod)$は\word{群}[ぐん](group)であるという．
-    \begin{enumerate}
-        \item 任意の$a, b, c \in G$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
-        \item ある$e \in G$が存在して，任意の$a \in G$に対し，$a \dotprod e = e \dotprod a = a$である．
-        \item 任意の$a \in G$に対し，ある$a^{-1} \in G$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = e$である．
-    \end{enumerate}
-    群$(G, \dotprod)$のことを単に$G$とかくこともある．
+\begin{definition}
+    集合$X$の``元のかず''を\word{濃度}[のう|ど][のうと](cardinality)という。
+    $X$の濃度を$\lvert X \rvert$、$\# X$などとあらわす。
 \end{definition}
 
-\begin{example}
-    \begin{equation*}
-        \mathrm{SO}(n, \symbb{R}) \coloneq \Set{ A \colon \text{実成分$n$-次正方行列} \given \det A = 1 }
-    \end{equation*}
-    とする．これは行列としての積に対して群をなす．
-\end{example}
+$X$が有限集合の場合、$X$の濃度は元の数そのものである。
+しかし、$X$が無限集合であるときも濃度$\card X$は定義できる。
 
-\begin{example}
-    自然数全体の集合$\symbb{N}$は，通常の和$+$に対して群をなす．
-\end{example}
-
-\begin{example}
-    実数全体の集合$\symbb{R}$は，通常の積$\times$に対して群をなさない．
-    なぜなら，$0 \in \symbb{R}$に対して，$0 \times x = 1$となるような$x \in \symbb{R}$が存在しないため．
-\end{example}
-
-
-\begin{definition}[環]
-    \label{dfn:ring}
-    $R$を集合，$+$と$\dotprod$を$R$上の二項演算とする．
-    以下がみたされるとき，$(R, +, \dotprod)$は\word{環}[かん](ring)であるという．
-    \begin{enumerate}[ref={条件-\arabic*}]
-        \item \label{ring:sum-associative} 任意の$a, b, c \in R$に対し，$(a + b) + c = a + (b + c)$である．
-        \item \label{ring:sum-zero} ある$0 \in R$が存在して，任意の$a \in R$に対し，$a + 0 = 0 + a = a$である．
-        \item \label{ring:sum-opposite} 任意の$a \in R$に対し，ある$-a \in R$が存在して，$a + (-a) = (-a) + a = 0$である．
-        \item \label{ring:sum-commutative} 任意の$a, b \in R$に対し，$a + b = b + a$である．
-        \item \label{ring:prod-associative} 任意の$a, b, c \in R$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
-        \item \label{ring:prod-one} ある$1 \in R$が存在して，任意の$a \in R$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
-        \item \label{ring:distributive} 任意の$a, b, c \in R$に対し，$(a + b) \dotprod c = a \dotprod c + b \dotprod c$であり，$a \dotprod (b + c) = a \dotprod b + a \dotprod c$である．
-    \end{enumerate}
-    さらに以下がみたされるとき，$(R, +, \dotprod)$は\word{可換環}(commutative ring)であるという．
-    \begin{enumerate}[resume]
-        \item 任意の$a, b \in R$に対し，$a \dotprod b = b \dotprod a$である．
-    \end{enumerate}
-    二項演算$+$のことを\word{和}あるいは\word{加法}，
-    $\dotprod$のことを\word{積}あるいは\word{乗法}という．
-
+\begin{definition}
+    集合$X$と集合$Y$の間に全単射が存在するとき、
+    $X$と$Y$の濃度は等しいと定め、
+    $X \sim Y$とかく。
 \end{definition}
 
-\cref{dfn:ring}において，
-\cref{ring:sum-associative,ring:sum-zero,ring:sum-opposite,ring:sum-commutative}は，$(R, +)$がアーベル群（\cref{dfn:group}）であることを要請している．
-
-
-\begin{example}
-    $n$-次正方行列全体の集合は，行列の和$+$と積$\dotprod$に関して環であるが，$n = 1$の場合をのぞき可換環でない．
-\end{example}
-
-
-
-\begin{definition}[体]
-    \label{dfn:field}
-    $\symbb{K}$を集合，$+$と$\dotprod$を$\symbb{K}$上の二項演算とする．
-    以下がみたされるとき，$(\symbb{K}, +, \dotprod)$は\word{体}[たい](field)であるという．
-    \begin{enumerate}
-        \item \label{field:sum-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) + c = a + (b + c)$である．
-        \item \label{field:sum-zero} ある$0 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a + 0 = 0 + a = a$である．
-        \item \label{field:sum-opposite} 任意の$a \in \symbb{K}$に対し，ある$-a \in \symbb{K}$が存在して，$a + (-a) = (-a) + a = 0$である．
-        \item \label{field:sum-commutative} 任意の$a, b \in \symbb{K}$に対し，$a + b = b + a$である．
-        \item \label{field:prod-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
-        \item \label{field:prod-one} ある$1 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
-        \item \label{field:prod-reciprocal} 任意の$a \in \symbb{K} \setminus \{0\}$に対し，ある$a^{-1} \in \symbb{K}$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = 1$である．
-        \item \label{field:prod-commutative} 任意の$a, b \in \symbb{K}$に対し，$a \dotprod b = b \dotprod a$である．
-        \item \label{field:distributive} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) \dotprod c = a \dotprod c + b \dotprod c$であり，$a \dotprod (b + c) = a \dotprod b + a \dotprod c$である．
-    \end{enumerate}
+\begin{definition}[可算集合]
+    集合$X$の濃度が$\symbb{N}$の濃度と等しいとき、
+    $X$を\word{可算集合}という。
 \end{definition}
 
-\begin{example}
-    有理数全体の集合$\symbb{Q}$，実数全体の集合$\symbb{R}$，複素数全体の集合$\symbb{C}$は，
-    それぞれ通常の和と積に関して体になる．
-\end{example}
-
-体をひとことでいえば，「四則演算（和・差・積・商）ができる集合」である．
-実数や複素数は体の典型的なものである．
-本稿で「体$\symbb{K}$」と書いてある場合，実数$\symbb{R}$もしくは複素数$\symbb{C}$と読み替えて差支えない．
 
 
 

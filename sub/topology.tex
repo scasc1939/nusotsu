@@ -13,9 +13,9 @@
     \begin{itemize}
         \item 任意の$x, y, z \in X$に対し，
         \begin{enumerate}
-            \item $d(x, y) \geq 0$である．ただし，$d(x, y) = 0$となるのは$x = y$のときに限る．
-            \item $d(x, y) = d(y, x)$である．
-            \item $d(x, z) \leq d(x, y) + d(y, z)$である．
+            \item \label{dist:positivity} $d(x, y) \geq 0$である．ただし，$d(x, y) = 0$となるのは$x = y$のときに限る．
+            \item \label{dist:symmetry} $d(x, y) = d(y, x)$である．
+            \item \label{dist:triangle-inequality}$d(x, z) \leq d(x, y) + d(y, z)$である．
         \end{enumerate}
     \end{itemize}
     $(X, d)$を\word{距離空間}[][きよりくうかん](metric space)という．
@@ -30,6 +30,9 @@
     特に，実数全体の集合$\symbb{R}$は，距離$d(x, y) \coloneq \abs{x - y}$に対して距離空間になる．
 \end{example}
 
+ベクトル空間$V$においてノルムが定義されているとする。
+以下に示すように、ノルムは距離の一種である。
+
 \begin{proposition}
     \label{thm:norm-is-distance}
     $V$をノルム空間\refdfn{dfn:norm}，$\norm{\bigdot}$を$V$上のノルムとする．
@@ -38,8 +41,22 @@
 \end{proposition}
 
 \begin{proof}
-    ノルムの定義より従う．
+    ノルムの公理（\cref{dfn:norm}）から距離の公理が導かれることを示せばよい．
 \end{proof}
+
+距離空間を考える上では、距離が定義されている\word{普遍集合}[][ふへんしゆうこう]を世界のすべてと考えるほうが都合がよい。
+このような考えのもとで、補集合という概念が定義される。
+
+\begin{definition}
+    $(X, d)$を距離空間、$A \subset X$を部分集合とする。
+    集合
+    \begin{equation*}
+        \Set{  x \in X  \given  x \notin A  }
+    \end{equation*}
+    を$A$の\word{補集合}[ほ|しゅう|ごう][ほしゆうこう]という。
+\end{definition}
+
+
 
 
 \subsection{内部と閉包}
@@ -80,13 +97,24 @@ $(X, d)$を距離空間，$A \subset X$を部分集合とする．
 \begin{definition}[開集合と閉集合]
     \label{dfn:open-set-and-closed-set}
     $(X, d)$を距離空間とする．
-    \begin{enumerate}
-        \item $A \subset X$の内部が$A$自身と一致するとき，
+    \begin{enumerate}[ref={\cref{dfn:open-set-and-closed-set}.\arabic*}]
+        \item \label{dfn:open-set}
+            $A \subset X$の内部が$A$自身と一致するとき，
             $A$は\word{開集合}[][かいしゆうこう](open set)であるとは，
-        \item $A \subset X$の$A$の閉包$\cl{A}$が$A$と一致するとき，
+        \item \label{dfn:closed-set}
+            $A \subset X$の$A$の閉包$\cl{A}$が$A$と一致するとき，
             $A$は\word{閉集合}[][へいしゆうこう](closed set)である
     \end{enumerate}
 \end{definition}
+
+開集合\refdfn{dfn:open-set}の補集合は閉集合である。
+逆に、閉集合の補集合は開集合である。
+
+
+\begin{example}
+    $(X, d)$を距離空間とする。
+    $X$は開集合かつ閉集合である。また$\emptyset$も開集合かつ閉集合である。
+\end{example}
 
 
 
@@ -96,24 +124,27 @@ $(X, d)$を距離空間，$A \subset X$を部分集合とする．
 完備性を定義するための準備として，ある値に収束する数列について議論する．
 
 これから$X$の点列といった場合，
-$\symbb{N}$で順序付けられた$X$の加算部分集合，つまり
-$(x_1, x_2, \dots, x_i, \dotsc)$であり，$i \in \symbb{N}$，$x_i \in X$であるものをいうことにする．
+自然数で順序付けられた$X$の加算部分集合，つまり
+$\sequ{x_i}[i \in \symbb{N}] = (x_1, x_2, \dots, x_i, \dotsc)$であり，$i \in \symbb{N}$，$x_i \in X$であるものをいうことにする．
+
+集合$X$上の点列を、自然数全体から$X$への写像$f \colon \symbb{N} \to X$ととらえることもできる。
+この立場からは、$X$上の点列全体の集合を$X^{\symbb{N}}$とかく。
 
 \begin{definition}[収束列]
     \label{dfn:convergent-sequence}
     $(X, d)$を距離空間とする．
-    $X$の点列$(x_1, x_2, \dotsc)$が$x \in X$に\word{収束する}(converge)とは，
+    $X$の点列$\sequ{x_i}[i \in \symbb{N}]$が$x \in X$に\word{収束する}(converge)とは，
     任意の$\varepsilon > 0$に対し，ある$N \in \symbb{N}$が存在して，
     任意の$n > N$に対し，$d(x_n, x) < \varepsilon$となることをいう．
     
-    このときの$x$のことを\word{極限}[きょく|げん](limit)という．
+    このときの$x$のことを\word{極限}[きょく|げん](limit)という\cite{uchida-set-2020}．
     \ruby{収束先}{しゅう|そく|さき}ということもある．
 
-    また，$X$の点列$(x_1, x_2, \dotsc)$が\word{収束列}(convergent sequence)であるとは，
-    点列がある$x \in X$に収束することをいう．
+    また，$X$の点列$\sequ{x_i}[i \in \symbb{N}]$が\word{収束列}(convergent sequence)であるとは，
+    この点列がある$x \in X$に収束することをいう．
 \end{definition}
 
-記号$\lim$を用いると，点列$(x_i)$が$x$に収束することを
+記号$\lim$を用いると，点列$\sequ{x_i}$が$x$に収束することを
 \[  \lim_{n \to \infty} d(x_n, x) = 0  \]
 とかける．
 
@@ -134,7 +165,7 @@ $(x_1, x_2, \dots, x_i, \dotsc)$であり，$i \in \symbb{N}$，$x_i \in X$で�
     $(X, d)$を距離空間とする．
     $X$の点列$(x_1, x_2, \dotsc)$が\word{コーシー列}(Cauchy sequence)であるとは，
     任意の$\varepsilon > 0$に対し，ある$N \in \symbb{N}$が存在して，
-    任意の$n, m > N$に対し，$ d(x_n, x_m) < \varepsilon $となることをいう．
+    任意の$n, m > N$に対し，$ d(x_n, x_m) < \varepsilon $となることをいう\cite{uchida-set-2020}．
 \end{definition}
 
 記号$\lim$を用いると，コーシー列の定義は
@@ -218,17 +249,35 @@ $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，
 次に稠密を定義する．
 
 \begin{definition}[稠密]
-    $(X, d)$を距離空間とする．部分集合$A \subset X$の閉包$\cl{A}$が$X$に一致するとき，
-    $A$は$X$の\word{稠密}[ちゅう|みつ][ちゆうみつ](dense)な部分集合であるという．
+    $(X, d)$を距離空間とする．
+    $A \subset B$をみたす$X$の2つの部分集合について、
+    $B \subset \cl{A}$であるとき、
+    $A$は$B$において\word{稠密}[ちゅう|みつ][ちゆうみつ](dense)であるという\cite{iwanami-functional}．
+
+    特に$\cl{A} = X$であるとき、
+    $A$は$X$において稠密である。
 \end{definition}
 
 \begin{proposition}
-    $A$が$X$の稠密な部分集合である必要十分条件は，
-    $x \in X$の任意の近傍が$A$と共通部分を持つことである．
+    距離空間の部分集合$A$が$B$において稠密である必要十分条件は，
+    任意の$x \in B$の任意の近傍が$A$と共通部分を持つことである\cite{iwanami-functional}．
 \end{proposition}
 
 \begin{proof}
-    
+    \textsf{必要性} \quad 
+    $x \in B$の近傍を$N$とおく。
+    $x$は$N$の内点であるから、
+    $\neigh(x; \varepsilon) \subset N$となる$\varepsilon > 0$が存在する。
+    一方、$A$が$B$において稠密という仮定から、
+    任意の$x \in B$は$A$の閉包に含まれる。
+    すなわち任意の$\varepsilon > 0$に対して、
+    $\neigh(x; \varepsilon) \cap A \neq \emptyset$である。
+    したがって、$N \cap A \neq \emptyset$がいえる。
+
+    \textsf{十分性} \quad 
+    任意の$x \in B$に対して、その$\varepsilon$-近傍$\neigh(x; \varepsilon)$を考えると、
+    仮定より任意の$\varepsilon > 0$に対して$\neigh(x; \varepsilon) \cap A \neq 0$だから、
+    $x \in \cl{A}$。
 \end{proof}
 
 
@@ -253,6 +302,9 @@ $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，
 実は位相空間というのは，距離空間よりも広い概念である．
 しかし，ここでは距離空間の別の見方が位相空間であるとしておく．
 
+位相空間では、$A$の内部を「$A$に含まれる開集合の中で最大のもの」、
+$A$の閉包を「$A$を含む閉集合の中で最小のもの」と定義する。
+
 
 
 \subsection{コンパクト集合}
@@ -268,6 +320,7 @@ $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，
 $\symfrak{G}$は$A$の\word{開被覆}[][かいひふく]であるという．
 
 \begin{definition}[コンパクト集合]
+    \label{dfn:compact-set}
     位相空間$(X, \topology)$の部分集合$A \subset X$について，
     $A$の任意の開被覆$\symfrak{G} \subset \topology$に対し，
     有限個の開集合$O_1, \dots, O_n \in \symfrak{G}$が存在して
