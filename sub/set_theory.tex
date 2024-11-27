@@ -3,9 +3,10 @@
 \begin{document}
 
 
-\section{集合論の基礎}
+\section{集合・写像}
 
 \subsection{集合}
+\label{sec:set}
 
 「集合」をきちんと定義するのは難しいが，ここでは以下のように考える．
 
@@ -123,22 +124,33 @@ $X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
     $X \sqcup Y$とかく．
 \end{definition}
 
-\begin{definition}
-    \label{dfn:power-set}
-    $X$を集合とする。
-    $X$の部分集合すべてを元として含む集合を、
-    $X$の\word{冪集合}[べき|しゅう|ごう][へきしゆうこう](power set)といい、
-    $\symcal{P}(X)$、$\symfrak{P}(X)$、$2^X$などとかく。
-\end{definition}
 
-\begin{example}
-    $X = \{ a, b \}$とすると、
-    $\pset(X) = \bigl\{ \emptyset, \  \{ a \}, \  \{ b \}, \  \{ a, b \}  \bigr\}$である。
-\end{example}
+% 冪集合
+% %%%%%%%%%%%%%%%
+
+% 集合論ではある``普遍集合''の部分集合がよく登場する。
+% 部分集合を扱う上で便利であるのが冪集合である。
+
+% \begin{definition}
+%     \label{dfn:power-set}
+%     $X$を集合とする。
+%     $X$の部分集合すべてを元として含む集合を、
+%     $X$の\word{冪集合}[べき|しゅう|ごう][へきしゆうこう](power set)といい%
+%     \footnote{``略字で\ruby{巾}{べき}集合''とかくことも多い。}、
+%     $\symcal{P}(X)$、$\symfrak{P}(X)$、$2^X$などとかく。
+% \end{definition}
+
+% \begin{example}
+%     $X = \{ a, b \}$とすると、
+%     $\pset(X) = \bigl\{ \emptyset, \  \{ a \}, \  \{ b \}, \  \{ a, b \}  \bigr\}$である。
+% \end{example}
 
 
 
 \subsection{写像}
+\label{sec:map}
+
+
 
 \begin{definition}[写像]
     \label{dfn:map}
@@ -227,7 +239,7 @@ $f$の値域といった場合，$f$の終域を指すことも像を指すこ�
 任意の写像$f$に対し，逆写像が存在するとは限らないが，逆像は必ず存在する．
 
 \begin{example}
-    写像$f$を，$f \colon \symbb{R} \ni x \mapsto \lfloor x \rfloor \in \symbb{R}$で定義する．
+    写像$f$を，$f \colon \symbb{R} \ni x \longmapsto \lfloor x \rfloor \in \symbb{R}$（$x$を超えない最大の整数）で定義する．
     $f$の像は$f[\symbb{R}] = \symbb{Z}$である．
     部分集合の像はたとえば$f[ \Set{  x \in \symbb{R}  \given  \abs{x} < 2  } ] = \{ -2, 1, 0, 1 \}$である．
     逆像はたとえば$f^{-1}[ \{ 1, 2, 3 \} ] = \Set{  x \in \symbb{R}  \given  1 \leq x < 4  }$である．
@@ -240,18 +252,25 @@ $f$の値域といった場合，$f$の終域を指すことも像を指すこ�
 \begin{definition}[恒等写像]
     \label{dfn:identity-map}
     以下のような写像$\mathrm{id}_X \colon X \to X$を\word{恒等写像}[こう|とう|しゃ|ぞう][こうとうしやそう](identity map)という．
-    \[ X \ni x \mapsto x \in X \]
+    \[ X \ni x \longmapsto x \in X \]
     恒等写像とは，任意の$x \in X$を$x$自身にうつす写像のことである．
 \end{definition}
 
 なお，集合$X, Y$について，$X = Y$でなくとも$X \subset Y$を満たせば写像$\iota \colon X \ni x \mapsto x \in Y$は定義できる．
 $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$なら$\iota$は\word{包含写像}[ほう|がん|しゃ|ぞう][ほうかんしやそう](inclusion map)であり恒等写像ではない．
 
+\begin{example}
+    $\symbb{N}$から$\symbb{N}$への写像$f \colon x \mapsto x$は恒等写像$\mathrm{id}_{\symbb{N}}$である。
+    しかし、$\symbb{N}$から$\symbb{Z}$への写像$g \colon x \mapsto x$は包含写像であるが、恒等写像ではない。
+\end{example}
+
 \begin{definition}[単射]
     \label{dfn:injection}
     写像$f \colon X \to Y$は，
     任意の$x, x' \in X$に対して，$f(x) = f(x')$ならば$x = x'$が成り立つとき，\word{単射}[たん|しゃ][たんしや](injection)であるという．
 \end{definition}
+
+単射の定義は「$x \neq x'$ならば$f(x) \neq f(x')$」と言い換えることもできる。
 
 \begin{definition}[全射]
     \label{dfn:surjection}
@@ -265,6 +284,11 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 \end{definition}
 
 集合$X$と$Y$のあいだに全単射が存在する場合，この2つを同じ集合とみなすことができる（ことがある）．
+
+単射を$X \rightarrowtail Y$、
+全射を$X \twoheadrightarrow Y$、
+全単射を$X \twoheadrightarrowtail Y$とかくこともある%
+\cite{unicode-arrows}\cite{unicode-arrows-B}。
 
 \begin{example}
     包含写像$X \hookrightarrow Y$は単射である．
@@ -323,10 +347,15 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 $X$が有限集合の場合、$X$の濃度は元の数そのものである。
 しかし、$X$が無限集合であるときも濃度$\card X$は定義できる。
 
-\begin{definition}
-    集合$X$と集合$Y$の間に全単射が存在するとき、
-    $X$と$Y$の濃度は等しいと定め、
-    $X \sim Y$とかく。
+\begin{definition}[濃度の大小]
+    $X, Y$を集合とする。それぞれの濃度の関係を、次のように定める。
+    \begin{enumerate}
+        \item 集合$X$から$Y$の間に全単射$f \colon X \twoheadrightarrowtail Y$が存在するとき、
+            $X$と$Y$の濃度は等しいと定め、
+            $X \sim Y$とかく。
+        \item 集合$X$から$Y$への単射$f \colon X \rightarrowtail Y$が存在し、
+            $X$の濃度は$Y$よりも小さいと定める。
+    \end{enumerate}
 \end{definition}
 
 \begin{definition}[可算集合]
