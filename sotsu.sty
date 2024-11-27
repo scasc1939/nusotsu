@@ -198,7 +198,8 @@
 
 \usepackage[
     bookmarksnumbered,
-    citebordercolor={0 .3 .1},
+    colorlinks=true,
+    citecolor=teal,
 ]{hyperref}
 \usepackage{cleveref}
 
@@ -229,9 +230,10 @@
 \NewDocumentEnvironment{definition}{!o}{
     \refstepcounter{definition}
     \medbreak
+    \noindent
     \colorbox{darkgray}{
         \textcolor{white}{
-            \textbf{定義\,\thedefinition}
+            { \bfseries\rmfamily\gtfamily 定義\,\thedefinition}
         }
     }
     \IfValueT{#1}{
@@ -240,6 +242,7 @@
             ({#1})
         }    
     }
+    \hspace{0.2em}
 }{
     ╱
     \par\medbreak
@@ -256,17 +259,20 @@
 
 
 
-
-
-
 \ExplSyntaxOn
-\NewDocumentCommand{\refdfn}{m}{
-    \textsuperscript{ ( \cref{#1} ) }
+% usage: \refdfn - [text] {label}
+\NewDocumentCommand{\refdfn}{t- o m}{
+    \IfValueT{#2}{
+        % usage: \hyperref [label] {text}
+        \hyperref[#3]{#2}
+    }
+    % -が指定されていなければ
+    \IfBooleanF{#1}{
+        \textsuperscript{ ( \cref{#3} ) }
+    }
 }
-\NewDocumentCommand{\refthm}{m}{
-    \textsuperscript{ ( \cref{#1} ) }
-}
-\ExplSyntaxOff
+% とりあえず \refthm はコピー
+\NewCommandCopy\refthm\refdfn
 
 
 
