@@ -40,5 +40,41 @@
 \counterwithout{section}{chapter}
 
 
+% 目次
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tocloft}
+
+% タイトル（「目次」）
+\renewcommand{\cfttoctitlefont}{\huge\bfseries\gtfamily\sffamily}
+
+% 章タイトル（「○○」など）のフォント
+\renewcommand{\cftchapfont}{\large\bfseries\gtfamily\sffamily}
+\renewcommand{\cftsecfont}{\bfseries\mcfamily\rmfamily}
+\renewcommand{\cftsubsecfont}{\mdseries}
+
+% ページ番号のフォント
+\renewcommand{\cftchappagefont}{\cftchapfont}
+\renewcommand{\cftsecpagefont}{\cftsecfont}
+\renewcommand{\cftsubsecpagefont}{\cftsubsecfont}
+
+% ラベル（1.1 など）の幅
+\setlength{\cftchapnumwidth}{5\zw}
+\setlength{\cftsecnumwidth}{4\zw}
+\setlength{\cftsubsecnumwidth}{3\zw}
+
+% ラベル（1.1 など）のインデント
+\setlength{\cftchapindent}{0pt}
+\setlength{\cftsecindent}{1\zw}
+\setlength{\cftsubsecindent}{2\zw}
+
+% ドット
+\renewcommand{\cftchapdotsep}{\cftnodots}
+\renewcommand{\cftsecdotsep}{\cftnodots}
+\renewcommand{\cftsubsecdotsep}{3.3}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftsubsecdotsep}}
+
+
+
 \usepackage[deluxe]{luatexja-preset}
 
