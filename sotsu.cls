@@ -4,6 +4,7 @@
 \LoadClass[
     % book,
     % twoside,
+    report,
     paper=a4,
     fontsize=11pt,
     baselineskip=20pt,
@@ -14,6 +15,7 @@
 \ExplSyntaxOn
 
 \ModifyHeading{section}{
+    label_format={\S\thesection},
     format={
         \null
         \hfill
@@ -34,6 +36,8 @@
 }
 
 \ExplSyntaxOff
+
+\counterwithout{section}{chapter}
 
 
 \usepackage[deluxe]{luatexja-preset}
