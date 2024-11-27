@@ -76,5 +76,35 @@
 
 
 
+% 索引
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% jlreq クラス（ https://github.com/abenori/jlreq/blob/master/jlreq.cls ）に定義
+% \indexname = `索引'
+
+\renewenvironment{theindex}{%
+    \jlreq@oldfontcommand@enable
+    \jlreq@iftdir{\clearpage\yoko\jlreq@resttatetrue}{\jlreq@resttatefalse}% 常に横書きにする
+    \if@twocolumn\@restonecolfalse\else\@restonecoltrue\fi % 2段組みかどうか保存
+    \columnseprule\z@ \columnsep 2\jlreq@mol % ？
+    \twocolumn[\chapter*{\indexname}]% !!! 章を追加
+    \phantomsection % !!! ハイパーリンク用（ hyperref パッケージ）
+    \addcontentsline{toc}{chapter}{\indexname}% !!! 章を目次に追加
+    \@mkboth{\indexname}{\indexname}% ヘッダーを更新
+    \jlreq@theindex@pagestyle % ページスタイルを索引のものに変更
+    \parindent\z@ % インデントなし
+    \parskip\z@ \@plus .03\jlreq@gol\relax % 段落の間？
+    \let\item\@idxitem
+}{%
+    \ifx\jlreq@theindex@savedpagestyle\@undefined\else\expandafter\pagestyle\expandafter{\jlreq@theindex@savedpagestyle}\fi % ページスタイルを元に戻す
+    \let\jlreq@theindex@savedpagestyle\@undefined % 保存したページスタイルを消去
+    \if@restonecol\onecolumn\else\clearpage\fi % 1段組みに戻す
+    \ifjlreq@resttate\tate\fi % 縦書きに戻す
+    \jlreq@oldfontcommand@disable % ？
+}
+
+\renewcommand{\indexspace}{\par\vspace{-2.0ex}}
+
+
+
 \usepackage[deluxe]{luatexja-preset}
 

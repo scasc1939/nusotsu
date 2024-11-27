@@ -111,8 +111,19 @@ $d(\symbf{x}, \symbf{y}) \coloneq \norm{\symbf{x} - \symbf{y}}$で定義でき�
 }
 
 
+% もとの bibintoc だと目次からのハイパーリンクがうまく作動しない
 
-\printbibheading
+\defbibheading{newbibintoc}[\bibname]{%
+    \chapter*{#1}% 
+    \phantomsection % ハイパーリンク用
+    \addcontentsline{toc}{chapter}{\bibname}% 目次に追加
+    \markboth{#1}{#1}% ヘッダーの更新
+}
+
+\printbibheading[
+    heading=newbibintoc,
+    title={参考文献}
+]
 
 \printbibliography[
     keyword=set,
@@ -136,6 +147,7 @@ $d(\symbf{x}, \symbf{y}) \coloneq \norm{\symbf{x} - \symbf{y}}$で定義でき�
     heading=subbibliography,
     title={その他}
 ]
+
 
 
 
