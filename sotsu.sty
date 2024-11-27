@@ -9,6 +9,8 @@
 
 \usepackage{graphicx}
 
+\usepackage{xcolor}
+
 
 
 \DeclareEmphSequence{%
@@ -76,13 +78,22 @@
 }
 \ExplSyntaxOff
 
+
 \newcommand{\bigdot}{\mdblkcircle}
 
 % 虚数単位
 \newcommand{\iu}{\symup{i}}
 
-% 閉方（closure）
+% 濃度（cardinality）
+\newcommand{\card}{\#}
+
+% 閉包（closure）
 \newcommand{\cl}[1]{\mathrm{Cl}(#1)}
+
+% 点列
+\NewDocumentCommand{\sequ}{m O{}}{
+    (#1)_{#2}
+}
 
 % 単位行列
 \newcommand{\umat}{\symup{I}}
@@ -105,6 +116,17 @@
 % 近傍（neighborhood）
 \newcommand{\neigh}{N}
 
+% 積の記号
+\newcommand{\dotprod}{\mathbin{\ast}}
+
+% スカラー倍の記号
+\newcommand{\scaprod}{\mathbin{\star}}
+\newcommand{\scaprodvar}{\mathbin{\varstar}}
+
+% ベクトルの和の記号
+\newcommand{\vecplus}{\tplus}
+\newcommand{\vecminus}{\tminus}
+
 % 像（image）、定義域（domain）、値域（range）
 \DeclareMathOperator{\image}{Im}
 \DeclareMathOperator{\domain}{Dom}
@@ -117,6 +139,9 @@
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\dimker}{null}
 
+% 台（support）
+\DeclareMathOperator{\supp}{supp}
+
 % 絶対値、ノルム
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
@@ -126,6 +151,16 @@
 
 % ベクトルの組が生成する（span）ベクトル空間
 \DeclarePairedDelimiter{\spanning}{\langle}{\rangle}
+
+% ブラ（bra）、ケット（ket）
+\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
+\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{%
+    #1\,\delimsize\vert\,\mathopen{}#2%
+}
+\DeclarePairedDelimiterX\mel[3]{\langle}{\rangle}{%
+    #1\,\delimsize\vert\,\mathopen{}#2\,\delimsize\vert\,\mathopen{}#3%
+}
 
 % 複素共役（complex conjugate）
 \NewDocumentCommand{\conj}{s m}{
@@ -179,11 +214,39 @@
 
 \crefname{figure}{図}{図}
 
-\newtheorem{definition}{定義}[section]
+% \newtheorem{definition}{定義}[section]
 \newtheorem{theorem}{定理}[section]
 \newtheorem{proposition}[theorem]{命題}
 \newtheorem{corollary}[theorem]{系}
 \newtheorem{lemma}[theorem]{補題}
+
+\ExplSyntaxOn
+
+\newcounter{definition}
+\counterwithin{definition}{section}
+\setcounter{definition}{0}
+
+\NewDocumentEnvironment{definition}{!o}{
+    \refstepcounter{definition}
+    \medbreak
+    \colorbox{darkgray}{
+        \textcolor{white}{
+            \textbf{定義\,\thedefinition}
+        }
+    }
+    \IfValueT{#1}{
+        \IfBlankF{#1}{
+            \hspace{0.5em}
+            ({#1})
+        }    
+    }
+}{
+    ╱
+    \par\medbreak
+}
+
+\ExplSyntaxOff
+
 
 \crefname{definition}{定義}{定義}
 \crefname{theorem}{定理}{定理}
