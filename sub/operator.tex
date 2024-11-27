@@ -3,14 +3,17 @@
 \begin{document}
 
 \section{演算子}
+\label{sec:operator}
 
 \subsection{演算子とは}
+\label{sec:operator-intro}
 
-集合$X$の元を集合$Y$の元にうつす規則のことを\refdfn-[写像]{dfn:map}といったのであった。
+\cref{sec:map}で扱ったように、
+集合$X$の元を集合$Y$の元にうつす規則のことを\refdfn-[写像]{dfn:map}というのであった。
 
 \begin{definition}[演算子]
-    $\symcal{H}, \symcal{H}'$を$\symbb{C}$上のヒルベルト空間\refdfn{dfn:Hilbert-space}とする．
-    部分ベクトル空間\refdfn{dfn:vector-subspace}$\symcal{A}$から$\symcal{H}'$への写像\refdfn{dfn:map}
+    $\symcal{H}, \symcal{H}'$を$\symbb{C}$上の\refdfn-[ヒルベルト空間]{dfn:Hilbert-space}とする．
+    \refdfn-[部分ベクトル空間]{dfn:vector-subspace}$\symcal{A}$から$\symcal{H}'$への写像\refdfn{dfn:map}
     \begin{equation*}
         \hat{A} \colon \symcal{A} \to \symcal{H}'
     \end{equation*}
@@ -39,19 +42,19 @@ $f$を$\symcal{H}$から$\symcal{H}'$への写像としたとき，任意の$x \
 
 \par
 
-集合$X$から$X$自身への写像\refdfn{dfn:map}においては，すべての元を自身へとうつす恒等写像\refdfn{dfn:identity-map}が存在した．
+集合$X$から$X$自身への写像においては，すべての元を自身へとうつす\refdfn[恒等写像]{dfn:identity-map}が存在した．
 それと同様に，任意の$\symbf{x} \in \symcal{H}$をそれ自身にうつす演算子
 $\idop \colon \symcal{H} \to \symcal{H}$を\word{恒等演算子}[][こうとうえんさんし](identity operator)という：
 $\idop(\symbf{x}) = \symbf{x}$．
 
-逆写像に対応する概念も定義できる．
+\refdfn[逆写像]{dfn:inverse-map}に対応する概念も定義できる．
 $\hat{A} \colon \symcal{H} \to \symcal{H}$を$\domain(\hat{A})$で定義された演算子とする．
 任意の$\symbf{x} \in \domain(\hat{A})$に対し，
 $\hat{A}^{-1} ( \hat{A} (\symbf{x}) ) = \hat{A} ( \hat{A}^{-1} (\symbf{x}) ) $
 をみたす演算子$\hat{A}^{-1} \colon \symcal{H} \to \symcal{H}$が存在するとき，
 これを$\hat{A}$の\word{逆演算子}[][きやくえんさんし](inverse operator)という．
 
-写像$f \colon X \to Y$の定義域を$A \subset X$に制限\refdfn{dfn:restriction}した写像
+写像$f \colon X \to Y$の定義域を$A \subset X$に\refdfn[制限]{dfn:restriction}した写像
 $f \vert_A \colon A \to Y$を考えることができた．
 同様に，演算子$\hat{A} \colon \symcal{H} \to \symcal{H}'$の定義域を
 $\domain(\hat{B}) \subset \domain(\hat{A})$に制限した演算子$\hat{B} \colon \symcal{H} \to \symcal{H}'$を考えることができる．
@@ -59,8 +62,9 @@ $\domain(\hat{B}) \subset \domain(\hat{A})$に制限した演算子$\hat{B} \col
 
 
 \subsection{線形演算子}
+\label{sec:linear-operator}
 
-ベクトル空間上の写像として，線形写像\refdfn{dfn:linear-map}というものを考えることができた．
+ベクトル空間上の写像として，\refdfn-[線形写像]{dfn:linear-map}というものを考えることができた．
 同じように，線形な演算子を考える．
 \begin{definition}[線形演算子]
     $\symbb{C}$上のヒルベルト空間$\symcal{H}$から$\symcal{H}'$への演算子$\hat{A}$は，次の性質を満たすとき，
@@ -125,7 +129,7 @@ $\zeroop(\symbf{x}) = \symbf{0}$．
 
 
 \subsection{エルミート演算子}
-
+\label{sec:Hermitian-operator}
 
 
 

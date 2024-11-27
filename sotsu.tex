@@ -34,19 +34,35 @@
 \tableofcontents
 
 
-\chapter{数学の基礎}
-
+\chapter{集合と距離空間}
 
 \subfile{sub/set_theory.tex}
 
+\subfile{sub/topology.tex}
+
 \subfile{sub/algebra.tex}
+
+
+\chapter{線形代数・ベクトル空間}
 
 \subfile{sub/vector_space.tex}
 
 \subfile{sub/inner_product.tex}
 
-\subfile{sub/topology.tex}
+\subfile{sub/linear_map.tex}
 
+\subfile{sub/dual_space.tex}
+
+
+\chapter{関数解析}
+
+量子力学の根底をなす「ヒルベルト空間」は、
+\cref{sec:vector-space}で扱ったベクトル空間の一種である。
+しかし、ヒルベルト空間を構成する要素は単なる数ベクトルではなく関数、しかも無限次元である。
+それゆえ、有限次元では自明であるかのように思える定理のいくつかが破綻する。
+このような無限次元ベクトル空間を扱う数学の分野が関数解析である。
+
+\subfile{sub/functional_analysis.tex}
 
 \section{ヒルベルト空間}
 
@@ -86,15 +102,6 @@ $d(\symbf{x}, \symbf{y}) \coloneq \norm{\symbf{x} - \symbf{y}}$で定義でき�
 \begin{proposition}
     実ユークリッド空間$\symbb{R}^n$および複素ユークリッド空間$\symbb{C}^n$はヒルベルト空間である．
 \end{proposition}
-
-
-\subfile{sub/linear_map.tex}
-
-
-\subfile{sub/dual_space.tex}
-
-
-\subfile{sub/functional_analysis.tex}
 
 
 \subfile{sub/operator.tex}
