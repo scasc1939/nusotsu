@@ -3,6 +3,12 @@
 \begin{document}
 
 \section{内積空間とノルム空間}
+\label{sec:inner-product-space}
+
+\cref{sec:vector-space}では、
+数ベクトルを一般化した概念である\refdfn-[ベクトル空間]{dfn:vector-space}について扱った。
+そこではベクトルの和とスカラー倍が存在するのであった。
+しかし、ベクトルの「長さ」あるいは2つのベクトルの「角度」という概念は定義していなかった。
 
 これからベクトル空間の上に「\ruby{内積}{ない|せき}」および「ノルム」という演算を導入する．
 内積を用いることで，2つのベクトルが「直交」するということを代数的に表現できる．
@@ -200,6 +206,10 @@
 \end{proof}
 
 
+一般のノルムについては成立しないが、
+内積から導かれるノルムについてのみ成立するのが、
+以下の中線定理である。
+
 \begin{theorem}[中線定理]
     \label{thm:parallelogram-law}
     $V$を内積空間，$\norm{\bigdot} = (\bigdot, \bigdot)$を内積から導かれるノルムとする．
@@ -215,10 +225,7 @@
 \end{proof}
 
 
-一般の内積空間には，\cref{dfn:norm-by-inner-product}によるノルムが存在することが分かった．
-それでは逆に，一般のノルム空間に内積は存在するのだろうか．
-それを考えるために，まず内積空間で成立する恒等式を見る．
-
+次に、内積空間における内積から導かれるノルムについて成立する恒等式を見る．
 
 \begin{theorem}[偏極恒等式]
     \label{thm:polarization-identity}
@@ -257,17 +264,23 @@
     \end{alignat*}
 \end{proof}
 
-
-内積空間においてはノルムから内積を構成できることが分かった．
-しかし，一般のノルム空間で内積が構成できるとは限らない．
+一般の内積空間においては，\cref{dfn:norm-by-inner-product}によるノルムが存在すること、
+そのノルムから内積を再構成できることが分かった．
+それでは，一般のノルム空間においても\cref{thm:polarization-identity}によって内積が定義できるのであろうか．
 そのことを示すのが次の定理である．
 
-
-\begin{theorem}[ジョルダン--フォン・ノイマンの定理]
+\begin{theorem}
+    \word{ジョルダン--フォン・ノイマンの定理}[][しよるたんふおんのいまんのていり](Jordan--von~Neumann theorem)：
     $V$をノルム空間とする．
-    $V$上のノルムが中線定理\refthm{thm:parallelogram-law}を満たすならば，$V$は内積空間である
-    （\word{ジョルダン--フォン・ノイマンの定理}(Jordan--von~Neumann theorem)）．
+    $V$上のノルムが中線定理\refthm{thm:parallelogram-law}を満たすならば，$V$は内積空間である．
 \end{theorem}
+
+
+\begin{proof}
+    \cref{dfn:norm-by-inner-product}により``内積''$(\symbf{x}, \symbf{y})$を定義し、
+    それが内積の公理を満たすことを示す。
+\end{proof}
+
 
 
 \subsection{内積空間の基底}
@@ -287,11 +300,13 @@
 
 有限次元の内積空間では，正規直交基底を具体的に構成することができる．
 
-\begin{theorem}[グラム--シュミットの正規直交化]
+\begin{theorem}
+    \word{グラム--シュミットの正規直交化}[][くらむしゆみつとのせいきちよつこうか](Gram–Schmidt process)：
     $ \{ \symbf{v}_1, \dots, \symbf{v}_n \} \subset V$を有限次元の内積空間$V$の基底とする．
-    このとき，$V$の正規直交基底$ \{ \symbf{u}_1, \dots, \symbf{u}_n \} \subset V$をつくることができる
-    （\word{グラム--シュミットの正規直交化}(Gram–Schmidt process)）．
+    このとき，$V$の正規直交基底$ \{ \symbf{u}_1, \dots, \symbf{u}_n \} \subset V$をつくることができる。
 \end{theorem}
+
+
 
 
 \end{document}

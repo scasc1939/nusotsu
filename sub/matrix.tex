@@ -1,0 +1,247 @@
+\documentclass[../sotsu.tex]{subfiles}
+
+\begin{document}
+
+
+\section{行列}
+\label{sec:matrix}
+
+この章では行列の性質を述べる。
+
+\subsection{行列の定義}
+
+用語の定義にとどめる。
+
+\begin{definition}[行列]
+    $\symbb{K}$を\refdfn[体]{dfn:field}とする。
+    $\symbb{K}$の元（すなわち数字）を縦横に$m \times n$個ならべたものを\word{行列}[ぎょう|れつ][きようれつ](matrix)という。
+    \begin{equation}
+        \label{eq:matrix-example}
+        A \coloneq 
+        \begin{pmatrix}
+            a_{11}  &  a_{12}  &  \cdots  &  a_{1n}  \\
+            a_{21}  &  a_{22}  &  \cdots  &  a_{2n}  \\
+            \vdots  &  \vdots  &  \ddots  &  \vdots  \\
+            a_{m1}  &  a_{m2}  &  \cdots  &  a_{mn}
+        \end{pmatrix}
+        , \qquad 
+        a_{ij} \in \symbb{K}
+    \end{equation}
+    縦が\word{列}[れつ]、横が\word{行}[ぎょう]である。
+
+    \cref{eq:matrix-example}において、
+    上から$i$番目、左から$j$番目にある数字$a_{ij}$のことを、
+    $A$の$ij$-成分という。
+    これを$(A)_{ij}$とかくこともある。
+\end{definition}
+
+\cref{eq:matrix-example}の行列$A$を、$(a_{ij})_{1 \leq i \leq m, \  1 \leq j \leq n}$とあらわすこともある。
+
+\begin{definition}
+    \label{dfn:set-of-matrix}
+    $\symbb{K}$-係数の$m \times n$-行列全体の集合を$M_{mn}(\symbb{K})$とあらわす。
+\end{definition}
+
+名前がついている特別な行列がいくつかある。
+
+\begin{definition}[正方行列]
+    行と列の数が同じ行列、すなわち$n \times n$-行列を\word{正方行列}[せい|ほう|ぎょう|れつ]という。
+    特に大きさを明示する場合、$n$-\ruby{次}{じ}正方行列という。
+\end{definition}
+
+\begin{definition}
+    正方行列のなかで、$ii$-成分が$1$、それ以外が$0$である行列
+    \begin{equation}
+        I \coloneq 
+        \begin{pmatrix}
+            1  &  0  &  \cdots  &  0  \\
+            0  &  1  &  \cdots  &  0  \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0  &  0  &  \cdots  &  1  
+        \end{pmatrix}
+    \end{equation}
+    を\word{単位行列}[たん|い|ぎょう|れつ]という。
+\end{definition}
+
+\begin{definition}
+    \label{dfn:inverse-of-matrix}
+    $A$を$n$-次正方行列とする。
+    \begin{equation}
+        A A^{-1} = A^{-1} A = I
+    \end{equation}
+    となるような$n$-次正方行列$A^{-1}$が存在するとき、
+    $A^{-1}$を$A$の\word{逆行列}という。
+\end{definition}
+
+
+\begin{definition}
+    行列の和・倍・積を以下のように定義する。
+    \begin{enumerate}
+        \item 2つの$m \times n$行列$A = (a_{ij})$，$B = (b_{ij})$の和は
+            \begin{equation}
+                A + B \coloneq (a_{ij} + b_{ij})_{1 \leq i \leq m, \  1 \leq j \leq n}
+            \end{equation}
+        \item 行列$A = (a_{ij})$の$c$（$\in \symbb{K}$）倍は
+            \begin{equation}
+                c \cdotp A \coloneq (c \cdotp a_{ij})_{1 \leq i \leq m, \  1 \leq j \leq n}
+            \end{equation}
+        \item $m \times n$行列$A = (a_{ij})$、$n \times l$行列$B = (b_{jk})$の積は
+            \begin{equation}
+                A \cdotp B \coloneq \left( \sum_{1 \leq j \leq n} a_{ij} \cdotp b_{jk} \right)_{1 \leq i \leq m, \  1 \leq k \leq l}
+            \end{equation}
+    \end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+    行列の演算についての性質を挙げる。
+    $p \times q$行列$A$、$q \times r$行列$B$、$r \times s$行列$C$とする。
+    \begin{itemize}
+        \item $M_{mn}(\symbb{K})$は和について\refdfn[アーベル群]{dfn:group}をなす。すなわち
+        \begin{enumerate}
+            \item （結合律）$(A + B) + C = A + (B + C)$であり、
+            \item （単位元）$A + O = O + A = A$であり、
+            \item （逆元）$A + (-A) = (-A) + A$となる$-A$が存在し、
+            \item （交換律）$A + B = B + A$である。
+        \end{enumerate}
+        \item $M_{mn}(\symbb{K})$は積について結合的であり、また単位元をもつ。
+            すなわち、
+        \begin{enumerate}
+            \item （結合律）$(AB)C = A(BC)$であり、
+            \item （単位元）$AI = IA = A$である。
+        \end{enumerate}
+        \item 
+    \end{itemize}
+\end{proposition}
+
+
+
+\subsection{置換}
+
+\begin{definition}
+    \label{dfn:permutation}
+    集合$\{ 1, 2, \dots, n \}$から自身への\refdfn[写像]{dfn:map}のうち\refdfn-[全単射]{dfn:bijection}であるものを、
+    $n$-文字の\word{置換}[ち|かん][ちかん]という。
+    それぞれの元を$1 \mapsto \sigma(1), \  2 \mapsto \sigma(2), \  \dotsc$とうつすものを
+    \begin{equation*}
+        \sigma = 
+        \begin{pmatrix}
+                   1  &        2  & \cdots &        n  \\
+            \sigma(1) & \sigma(2) & \cdots & \sigma(n)
+        \end{pmatrix}
+    \end{equation*}
+    とかく。
+    $n$文字の置換$\sigma$全体がなす集合を$\symfrak{S}_n$とかく。
+\end{definition}
+
+\begin{definition}
+    \label{dfn:identity-permutation}
+    置換$\sigma$のうち\refdfn-[恒等写像]{dfn:identity-map}であるものを\word{恒等置換}という。   
+\end{definition}
+
+\begin{definition}
+    \label{dfn:inverse-of-permutation}
+    置換$\sigma$の\refdfn-[逆写像]{dfn:inverse-map}$\sigma^{-1}$を\word{逆置換}という。
+\end{definition}
+
+任意の置換$\sigma \in \symfrak{S}_n$は全単射であるから、
+逆置換$\sigma^{-1} \in \symfrak{S}_n$が必ず存在する。
+
+\begin{definition}[置換の積]
+    \label{dfn:product-of-permutation}
+    $\sigma, \tau \in \symfrak{S}_n$とする。
+    2つの置換の積$\sigma\tau$を、写像の合成$\sigma \circ \tau$として定める。
+\end{definition}
+
+なお、一般に$\sigma \tau \neq \tau \sigma$である。
+
+この記法を用いると、
+任意の置換$\sigma \in \symfrak{S}_n$とその逆置換$\sigma^{-1}$について、
+$\sigma \sigma^{-1} = \sigma^{-1} \sigma = \text{恒等置換}$である。
+
+\begin{proposition}
+    $n$-文字の置換全体の集合$\symfrak{S}_n$は、
+    \cref{dfn:product-of-permutation}で定義される積に対して群をなす。
+\end{proposition}
+
+\begin{proof}
+    結合律は\refdfn[写像の合成が結合的である]{thm:map-is-associative}ことよりいえる。
+    単位元は\refdfn-[恒等置換]{dfn:identity-permutation}、
+    逆元は\refdfn-[逆置換]{dfn:inverse-of-permutation}である。
+\end{proof}
+
+\begin{definition}
+    \label{dfn:transposition}
+    置換$\sigma \in \symfrak{S}_n$のうち、
+    $\sigma(i) \neq i$となる$i$が2つだけのもの、
+    つまり2つの数字を入れ替えるだけの置換を\word{互換}[ご|かん][こかん](transposition)という。
+\end{definition}
+
+\begin{proposition}
+    任意の置換は互換の積としてあらわされる。
+\end{proposition}
+
+置換に対し、互換の積によるあらわしかたは一意ではない。
+
+\begin{proposition}
+    \label{thm:parity-of-permutation}
+    任意の置換を互換に分解したとき、含まれる互換の数の偶奇は積のあらわしかたによらない。
+\end{proposition}
+
+証明は複雑なため省略するが、
+これによって次に示す$\sgn$の定義を正当化される。
+
+\begin{definition}
+    \label{dfn:sign-of-permutation}
+    置換$\sigma$を互換による積であらわしたとき、
+    互換が奇数個なら$\sgn(\sigma) = -1$、偶数個なら$\sgn(\sigma) = +1$となるように
+    $\sgn \colon \symfrak{S}_n \to \{ +1, -1 \}$を定義する。
+    これを置換の\word{符号}[ふ|ごう][ふこう](sign)という。
+\end{definition}
+
+$\sgn(\sigma)$のことを$(-1)^\sigma$や$(-)^\sigma$とかくこともある。
+
+\begin{corollary}
+    任意の置換$\sigma, \tau \in \symfrak{S}_n$について、
+    $\sgn(\sigma \tau) = \sgn \sigma \cdotp \sgn \tau$である。
+\end{corollary}
+
+
+
+\subsection{行列式}
+
+\begin{definition}
+    $n$-次の正方行列$A = (a_{ij})$に対して、
+    \begin{equation}
+        \det A  \coloneq  \sum_{\sigma \in \symfrak{S}_n} \sgn(\sigma) \, a_{1, \sigma(1)} a_{2, \sigma(2)} \dotsm a_{n, \sigma(n)} 
+    \end{equation}
+    で定義される写像$\det \colon M_{nn}(\symbb{K}) \to \symbb{K}$を\word{行列式}[ぎょう|れつ|しき][きようれつしき](determinant)という。
+\end{definition}
+
+\begin{proposition}
+    $A$を$n$-次正方行列とする。
+    行列式について、以下が成り立つ。
+    \begin{enumerate}
+        \item $\det A = \det \tp{A}$
+        \item $\det (cA) = c^n \det A$
+    \end{enumerate}
+\end{proposition}
+
+\begin{definition}
+    \label{dfn:invertible-matrix}
+    正方行列$A$に対し、\refdfn-[逆行列]{dfn:inverse-of-matrix}$A^{-1}$が存在するとき、
+    $A$を\word{正則行列}[せい|そく|ぎょう|れつ][せいそくきようれつ](invertible matrix)という。
+\end{definition}
+
+\begin{proposition}
+    以下は同値。
+    \begin{enumerate}
+        \item $A$は正則行列。
+        \item $A$の行列式$\det A = 0$。
+        \item $A \symbf{x} = \symbf{0}$の解は自明な解$\symbf{x} = \symbf{0}$のみである。
+    \end{enumerate}
+\end{proposition}
+
+
+
+\end{document}

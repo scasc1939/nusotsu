@@ -16,6 +16,7 @@
         \item ある$e \in G$が存在して，任意の$a \in G$に対し，$a \dotprod e = e \dotprod a = a$である．
         \item 任意の$a \in G$に対し，ある$a^{-1} \in G$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = e$である．
     \end{enumerate}
+    さらに以下を満たすとき、$(G, \dotprod)$を\word{アーベル群}[][ああへるくん](Abelian group)であるという
     群$(G, \dotprod)$のことを単に$G$とかくこともある．
 \end{definition}
 
@@ -42,27 +43,31 @@
     \label{dfn:ring}
     $R$を集合，$+$と$\dotprod$を$R$上の二項演算とする．
     以下がみたされるとき，$(R, +, \dotprod)$は\word{環}[かん][かん](ring)であるという．
-    \begin{enumerate}[ref={条件-\arabic*}]
-        \item \label{ring:sum-associative} 任意の$a, b, c \in R$に対し，$(a + b) + c = a + (b + c)$である．
-        \item \label{ring:sum-zero} ある$0 \in R$が存在して，任意の$a \in R$に対し，$a + 0 = 0 + a = a$である．
-        \item \label{ring:sum-opposite} 任意の$a \in R$に対し，ある$-a \in R$が存在して，$a + (-a) = (-a) + a = 0$である．
-        \item \label{ring:sum-commutative} 任意の$a, b \in R$に対し，$a + b = b + a$である．
-        \item \label{ring:prod-associative} 任意の$a, b, c \in R$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
-        \item \label{ring:prod-one} ある$1 \in R$が存在して，任意の$a \in R$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
-        \item \label{ring:distributive} 任意の$a, b, c \in R$に対し，$(a + b) \dotprod c = a \dotprod c + b \dotprod c$であり，$a \dotprod (b + c) = a \dotprod b + a \dotprod c$である．
-    \end{enumerate}
-    さらに以下がみたされるとき，$(R, +, \dotprod)$は\word{可換環}[][かかんかん](commutative ring)であるという．
-    \begin{enumerate}[resume]
+    \begin{itemize}
+        \item 和について、$(R, +)$はアーベル群である。すなわち
+        \begin{enumerate}
+            \item \label{ring:sum-associative} 任意の$a, b, c \in R$に対し，$(a + b) + c = a + (b + c)$である．
+            \item \label{ring:sum-zero} ある$0 \in R$が存在して，任意の$a \in R$に対し，$a + 0 = 0 + a = a$である．
+            \item \label{ring:sum-opposite} 任意の$a \in R$に対し，ある$-a \in R$が存在して，$a + (-a) = (-a) + a = 0$である．
+            \item \label{ring:sum-commutative} 任意の$a, b \in R$に対し，$a + b = b + a$である．
+        \end{enumerate}
+        \item 積について、
+        \begin{enumerate}[resume]
+            \item \label{ring:prod-associative} 任意の$a, b, c \in R$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
+            \item \label{ring:prod-one} ある$1 \in R$が存在して，任意の$a \in R$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
+        \end{enumerate}
+        \item 和と積の関係について、
+        \begin{enumerate}[resume]
+            \item \label{ring:distributive} 任意の$a, b, c \in R$に対し，$(a + b) \dotprod c = a \dotprod c + b \dotprod c$であり，$a \dotprod (b + c) = a \dotprod b + a \dotprod c$である．
+        \end{enumerate}
+    \end{itemize}
+    さらに積について以下がみたされるとき，$(R, +, \dotprod)$は\word{可換環}[][かかんかん](commutative ring)であるという．
+    \begin{enumerate}[start=9]
         \item 任意の$a, b \in R$に対し，$a \dotprod b = b \dotprod a$である．
     \end{enumerate}
     二項演算$+$のことを\word{和}あるいは\word{加法}，
     $\dotprod$のことを\word{積}あるいは\word{乗法}という．
-
 \end{definition}
-
-\cref{dfn:ring}において，
-\cref{ring:sum-associative,ring:sum-zero,ring:sum-opposite,ring:sum-commutative}は，$(R, +)$がアーベル群（\cref{dfn:group}）であることを要請している．
-
 
 \begin{example}
     $n$-次正方行列全体の集合は，行列の和$+$と積$\dotprod$に関して環であるが，$n = 1$の場合をのぞき可換環でない．
@@ -80,17 +85,26 @@
     \label{dfn:field}
     $\symbb{K}$を集合，$+$と$\dotprod$を$\symbb{K}$上の二項演算とする．
     以下がみたされるとき，$(\symbb{K}, +, \dotprod)$は\word{体}[たい][たい](field)であるという．
-    \begin{enumerate}
-        \item \label{field:sum-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) + c = a + (b + c)$である．
-        \item \label{field:sum-zero} ある$0 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a + 0 = 0 + a = a$である．
-        \item \label{field:sum-opposite} 任意の$a \in \symbb{K}$に対し，ある$-a \in \symbb{K}$が存在して，$a + (-a) = (-a) + a = 0$である．
-        \item \label{field:sum-commutative} 任意の$a, b \in \symbb{K}$に対し，$a + b = b + a$である．
-        \item \label{field:prod-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
-        \item \label{field:prod-one} ある$1 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
-        \item \label{field:prod-reciprocal} 任意の$a \in \symbb{K} \setminus \{0\}$に対し，ある$a^{-1} \in \symbb{K}$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = 1$である．
-        \item \label{field:prod-commutative} 任意の$a, b \in \symbb{K}$に対し，$a \dotprod b = b \dotprod a$である．
-        \item \label{field:distributive} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) \dotprod c = (a \dotprod c) + (b \dotprod c)$であり，$a \dotprod (b + c) = (a \dotprod b) + (a \dotprod c)$である．
-    \end{enumerate}
+    \begin{itemize}
+        \item 和について、$(\symbb{K}, +)$はアーベル群である。
+        \begin{enumerate}
+            \item \label{field:sum-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) + c = a + (b + c)$である．
+            \item \label{field:sum-zero} ある$0 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a + 0 = 0 + a = a$である．
+            \item \label{field:sum-opposite} 任意の$a \in \symbb{K}$に対し，ある$-a \in \symbb{K}$が存在して，$a + (-a) = (-a) + a = 0$である．
+            \item \label{field:sum-commutative} 任意の$a, b \in \symbb{K}$に対し，$a + b = b + a$である．
+        \end{enumerate}
+        \item 積について、$(\symbb{K} \setminus \{ 0 \}, \  \dotprod)$はアーベル群である。
+        \begin{enumerate}[resume]
+            \item \label{field:prod-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
+            \item \label{field:prod-one} ある$1 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
+            \item \label{field:prod-reciprocal} 任意の$a \in \symbb{K} \setminus \{0\}$に対し，ある$a^{-1} \in \symbb{K}$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = 1$である．
+            \item \label{field:prod-commutative} 任意の$a, b \in \symbb{K}$に対し，$a \dotprod b = b \dotprod a$である．
+        \end{enumerate}
+        \item 和と積の関係について、
+        \begin{enumerate}[resume]
+            \item \label{field:distributive} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) \dotprod c = (a \dotprod c) + (b \dotprod c)$であり，$a \dotprod (b + c) = (a \dotprod b) + (a \dotprod c)$である．
+        \end{enumerate}    
+    \end{itemize}
 \end{definition}
 
 \begin{example}

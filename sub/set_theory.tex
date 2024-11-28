@@ -301,10 +301,10 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 \end{definition}
 
 \begin{definition}[写像の合成]
+    \label{dfn:map-composition}
     $X, Y, Z$を集合，$f \colon X \to Y$，$g \colon Y \to Z$を写像とする．
     $x \in X$を$g(f(x)) \in Z$にうつす写像を$f$と$g$の\word{合成写像}といい，$g \circ f$であらわす．
 \end{definition}
-
 
 \begin{definition}[逆写像]
     \label{dfn:inverse-map}
@@ -322,6 +322,30 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
     \label{thm:inverse-map-exists-iff}
     写像$f \colon X \to Y$に対して，逆写像$f^{-1} \colon Y \to X$が存在する必要十分条件は，$f$が全単射であることである．
 \end{theorem}
+
+\begin{proof}
+    略。
+\end{proof}
+
+\begin{proposition}
+    \label{thm:map-is-associative}
+    $X, Y, Z, W$を集合、$f \colon Z \to W$、$g \colon Y \to Z$、$h \colon X \to Y$を写像とする。
+    このとき$f \circ (g \circ h) = (f \circ g) \circ h$である。
+\end{proposition}
+
+\begin{proof}
+    任意の元$x \in X$に対して、
+    \begin{gather*}
+        [f \circ (g \circ h)] \, (x)
+            = f([g \circ h] \, (x))
+            = f(g(h(x)))
+        \\
+        [(f \circ g) \circ h] \, (x)
+            = [f \circ g] \, (h(x))
+            = f(g(h(x)))
+    \end{gather*}
+    より$[f \circ (g \circ h)] \, (x) = [(f \circ g) \circ h] \, (x)$であることから従う。
+\end{proof}
 
 
 \begin{definition}[写像の制限]

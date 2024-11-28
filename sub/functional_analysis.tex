@@ -96,6 +96,7 @@ $C_0 (\Omega)$もベクトル空間になっている。
 \begin{proposition}
     2乗可積分関数空間$L^2 (a, b)$は，以下で定義される内積$(\bigdot, \bigdot)$に対して内積空間\refdfn{dfn:inner-product}になる．
     \begin{align}
+        \label{eq:L^2-inner-product}
         (f, g)_{L^2} \coloneq \int_a^b \conj{f}(x) g(x) \dd{x}
     \end{align}
     当然ノルム\refdfn{dfn:norm,dfn:norm-by-inner-product}も以下のように定義できる．
@@ -104,16 +105,16 @@ $C_0 (\Omega)$もベクトル空間になっている。
     \end{align}
 \end{proposition}
 
-\begin{definition}
-    連続な2乗可積分関数空間を
-    \( L^2 C^0 \coloneq L^2 \cap C^0 \)
-    で定める．
-\end{definition}
+\begin{proof}
+    \cref{eq:L^2-inner-product}がノルムの内積を満たすのは明らかであるから、
+    $(f, g)_{L^2}$がwell-definedであることを示す。
+    
+\end{proof}
 
 
 $u$を$\Omega \subset_{\text{open}} \symbb{R}^n$で定義された関数とする。
 $u$が$\Omega$で局所可積分であるとは、
-任意のコンパクト集合$K \subset \Omega$に対し
+任意の\refdfn[コンパクト集合]{dfn:compact-set}$K \subset \Omega$に対し
 \begin{equation*}
     \int_K \abs{ u(x) } \dd{x} < \infty
 \end{equation*}
