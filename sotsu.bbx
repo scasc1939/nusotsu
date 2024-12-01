@@ -1,0 +1,58 @@
+\ProvidesFile{bibtest1.bbx}[2024/12/01 for test]
+
+\RequireBibliographyStyle{numeric}
+
+\RequirePackage{ifthen}
+
+
+\DeclareNameFormat{jpname}{%
+    \ifthenelse{\value{listcount}<\value{listtotal}}{%
+        \namepartfamily%
+        \namepartgiven%
+        \addcomma\addspace% カンマ＋スペースを追加
+    }{%
+        \namepartfamily%
+        \namepartgiven%
+    }%
+}
+
+\DeclareFieldFormat{sans-title}{{\sffamily#1}}
+
+% language は表示しない
+\DeclareListFormat{language}{}
+
+
+\renewbibmacro{author}{%
+    \iflistundef{language}{%
+        \printnames{author}%
+    }{%
+        \printnames[jpname]{author}%
+    }%
+}
+
+
+
+% \thelist{language}
+% ↑ language = "english" だと空
+% language = "japanese" だと "japanese"
+
+
+\renewbibmacro*{title}{%
+  \ifboolexpr{%
+    % タイトルとサブタイトルが両方とも存在しない？
+    test {\iffieldundef{title}}
+    and
+    test {\iffieldundef{subtitle}}
+  }%
+  {}% 存在しないなら、何もしない
+  {% 存在するのなら
+    \printtext[sans-title]{%
+      \printfield[titlecase]{title}%
+      \setunit{\subtitlepunct}%
+      \printfield[titlecase]{subtitle}%
+    }%
+    \newunit%
+  }%
+  \printfield{titleaddon}%
+}
+
