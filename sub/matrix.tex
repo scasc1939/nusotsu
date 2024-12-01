@@ -202,9 +202,17 @@ $\sigma \sigma^{-1} = \sigma^{-1} \sigma = \text{恒等置換}$である。
 $\sgn(\sigma)$のことを$(-1)^\sigma$や$(-)^\sigma$とかくこともある。
 
 \begin{corollary}
+    \label{thm:sign-of-product-of-permutation}
+    \label{thm:sign-of-inverse-of-permutation}
     任意の置換$\sigma, \tau \in \symfrak{S}_n$について、
     $\sgn(\sigma \tau) = \sgn \sigma \cdotp \sgn \tau$である。
+    特に、$\sgn(\sigma^{-1}) = \sgn(\sigma)$である。
 \end{corollary}
+
+\begin{proof}
+    前半は$\sigma$、$\tau$をそれぞれ互換の積であらわせば明らか。
+    後半は$\sgn(\sigma) \cdotp \sgn(\sigma^{-1}) = \sgn(\sigma \cdotp \sigma^{-1}) = \sgn(\text{恒等置換}) = 1$であることからわかる。
+\end{proof}
 
 
 
@@ -226,6 +234,18 @@ $\sgn(\sigma)$のことを$(-1)^\sigma$や$(-)^\sigma$とかくこともある�
         \item $\det (cA) = c^n \det A$
     \end{enumerate}
 \end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $\tp{A}$の行列式は
+            \[  \det \tp{A} = \sum_{\sigma \in \symfrak{S}_n} \sgn(\sigma) \, a_{\sigma(1), 1} a_{\sigma(2), 2} \dotsm a_{\sigma(n), n}  \]
+            であるが、$\sigma(i)$が連番になるように$a_{\sigma(i), i}$の順番を入れ替えることで、
+            \[  \det \tp{A} = \sum_{\sigma^{-1} \in \symfrak{S}_n} \sgn(\sigma^{-1}) \, a_{1, \sigma^{-1}(1)} a_{2, \sigma^{-1}(2)} \dotsm a_{n, \sigma^{-1}(n)}  \]
+            と書き換えられ、
+            \cref{thm:sign-of-inverse-of-permutation}より$\sgn(\sigma) = \sgn(\sigma^{-1})$であることから従う。
+        \item 行列式の定義より明らかである。
+    \end{enumerate}
+\end{proof}
 
 \begin{definition}
     \label{dfn:invertible-matrix}

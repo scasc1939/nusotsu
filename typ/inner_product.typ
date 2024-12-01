@@ -95,7 +95,7 @@ $ norm(bold(x)) = sqrt(bold(x) dot bold(x)) $ <eq:norm-of-real-vector>
 次に，複素ベクトル$bold(x) = vec(x, y, z)$と$bold(a) = vec(a, b, c)$の内積について考えてみよう．
 たとえば
 $ vec(x, y, z) dot vec(a, b, c) := a x + b y + c z $
-とと定義する．
+と定義する．
 すると，$bold(x)$の"長さ"は
 $ norm(bold(x))
   = sqrt(bold(x) dot bold(x))
@@ -133,7 +133,7 @@ $ bold(a) dot bold(x) := a^* x + b^* y + c^* z $ <eq:inner-product-for-complex-v
 内積の左側はふつうの分配法則だが，
 右側は
 $ (a bold(x) + b bold(y), thick  bold(z)) 
-	= a^* (bold(x), bold(z)) + b^* (bold(y), bold(z))) $
+	= a^* (bold(x), bold(z)) + b^* (bold(y), bold(z)) $
 である．特に，左側のベクトルに係数をかけるときは，
 $ c(bold(x), bold(y)) = (c^* bold(x), bold(y)) $
 である．
