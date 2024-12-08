@@ -1,0 +1,70 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{math}
+
+
+\usepackage{xcolor}
+
+
+\usepackage[bold-style=ISO]{unicode-math}
+
+
+\directlua{mylib = require("rational_countable")}
+\newcommand{\iscoprime}[2]{ \directlua{ tex.sprint(mylib.coprime( #1 , #2 )) } }
+
+
+\begin{document}
+
+\large
+
+\begin{tikzpicture}
+    % グラフの軸
+    \node at (0, 0) [above left] {$O$};
+    \draw [very thick, -Stealth] (-1,  0) -- ( 6,  0) node[above] {$p$};
+    \draw [very thick, -Stealth] ( 0,  1) -- ( 0, -6) node[left]  {$q$};
+
+    % x-軸めもり
+    \foreach \x in {1, 2, ..., 5} {
+        \draw [semithick] 
+               (\x, 0.1) node[above] {$\x$}
+            -- (\x, -0.1);
+        \draw [dashed] (\x,  0) -- (\x, -6);
+    }
+    % y-軸めもり
+    \foreach \y in {1, 2, ..., 5} {
+        \draw [semithick]
+               (-0.1, -\y) node[left] {$\y$}
+            -- (0.1, -\y);
+        \draw [dashed] (0, -\y) -- (6, -\y);
+    }
+
+    % \foreach \x in {1, 2, ..., 5} {
+    %     \foreach \y in {-1, -2, ..., -5} {
+    %         \fill (\x, \y) circle (1mm);
+    %     }
+    % }
+
+    % 点の描画
+    \tikzmath{
+        int \a, \b;
+        for \a in {1, 2, ..., 5} {
+            for \b in {1, 2, ..., 5} {
+                if \iscoprime{\a}{\b} < 1 then {
+                    { \draw (\a, -\b) circle (1mm); };
+                } else {
+                    { \fill (\a, -\b) circle (1mm); };
+                };
+            };
+        };
+    }
+
+    % 矢印の描画
+    \foreach \n in {1, 2, ..., 4} {
+        \draw [-{Stealth[length=5mm, open]}] 
+            (\n + 2,  1) node[above, xshift=3mm] {(\n)}
+             -- (-1,  -\n - 2);
+    }
+\end{tikzpicture}
+
+\end{document}
