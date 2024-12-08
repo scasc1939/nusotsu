@@ -1,7 +1,3 @@
-// #set page(
-//   paper: "a4", 
-//   margin: (x: 3.0cm, y: 3.0cm)
-// )
 #set page(
   paper: "a5", 
   margin: (x: 1.5cm, y: 2.0cm),
@@ -139,4 +135,59 @@ $ c(bold(x), bold(y)) = (c^* bold(x), bold(y)) $
 である．
 
 
+=== 内積の具体例
+
+3次元複素ユークリッド空間$CC^3$を考える．
+ベクトル$bold(x), bold(y)$の内積を，前に扱ったように
+$ (bold(x), bold(y)) = sum_(i=1)^3 (x_i)^* y_i $
+としよう．
+これが内積の定義をみたすことはすぐわかる．
+
+たとえば，$bold(x) = (5i, 3, 1-i)$，$bold(y) = (2, i, 3+i)$とすると，内積は
+$ (bold(x), bold(y)) 
+	&= (5i)^* dot 2 + 3 i + (1-i)^* (3+i) \
+	&= (-5i) dot 2 + 3 i + (1+i)(3+i) \
+	&= -10 i + 3 i + (3 + 4i) \
+	&= 2 - 3 i
+$<eq:inner-product-Euclid-example-1>
+である．
+一方，内積の順番を逆にすると，
+$ (bold(x), bold(y)) = 3 + 3i $<eq:inner-product-Euclid-example-2>
+であるから，注意しなくてはならない．
+
+また，ベクトル$bold(x)$のノルムは
+$ norm(bold(x)) 
+  &= sqrt( abs(5i)^2 + abs(3)^2 + abs(1-i)^2 ) \
+	&= sqrt( 25 + 9 + 2 )
+	= sqrt( 36 )
+	= 6
+$
+と計算できる．
+#footnote[てきとうに数字をきめたらうまくいった]
+ノルムというのはベクトルの長さであるから，
+もちろん正の実数（or 0）になる．
+
+次に，ベクトル$bold(x)$を$i$倍したものの内積を考えてみよう．
+$i dot bold(x) = (-5, 3i, 1 + i)$であるから，
+$ (bold(x), bold(y))
+  &= (-5)^* dot 2 + (3i)^* dot i + (1 + i)^* (3 + i) \
+	&= -10 + (-3i) i + (1 - i)(3 + i) \
+	&= -10 + 3 + (4 - 2i) \
+	&= -3 - 2i
+$<eq:inner-product-Euclid-example-3>
+ところが，@eq:inner-product-Euclid-example-1 と @eq:inner-product-Euclid-example-3 を見くらべると
+$ (i bold(x), thick bold(y))
+	= -i(bold(x), bold(y)) $
+になっている．つまり，
+$ (c bold(x), bold(y)) = c^* (bold(x), bold(y)) $
+なのである．
+左からスカラーが出てくると，複素共役になる．
+
+その一方で，
+$ (bold(x), i bold(y)) = i (bold(x), bold(y)) $
+であることもわかる（@eq:inner-product-Euclid-example-2 と見比べる）．
+つまり，右からスカラーが出てきても複素共役にはならない．
+
+内積では，右と左とでスカラー倍の性質が変わってしまうのである．
+ベクトルのノルム＝長さを実数にするために，定義の段階で対称性を捨てたのでしかたがない．
 
