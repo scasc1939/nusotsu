@@ -131,21 +131,21 @@ $X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
 % 冪集合
 % %%%%%%%%%%%%%%%
 
-% 集合論ではある``普遍集合''の部分集合がよく登場する。
-% 部分集合を扱う上で便利であるのが冪集合である。
+% 集合論ではある``普遍集合''の部分集合がよく登場する．
+% 部分集合を扱う上で便利であるのが冪集合である．
 
 % \begin{definition}
 %     \label{dfn:power-set}
-%     $X$を集合とする。
-%     $X$の部分集合すべてを元として含む集合を、
+%     $X$を集合とする．
+%     $X$の部分集合すべてを元として含む集合を，
 %     $X$の\word{冪集合}[べき|しゅう|ごう][へきしゆうこう](power set)といい%
-%     \footnote{``略字で\ruby{巾}{べき}集合''とかくことも多い。}、
-%     $\symcal{P}(X)$、$\symfrak{P}(X)$、$2^X$などとかく。
+%     \footnote{``略字で\ruby{巾}{べき}集合''とかくことも多い．}，
+%     $\symcal{P}(X)$，$\symfrak{P}(X)$，$2^X$などとかく．
 % \end{definition}
 
 % \begin{example}
-%     $X = \{ a, b \}$とすると、
-%     $\pset(X) = \bigl\{ \emptyset, \  \{ a \}, \  \{ b \}, \  \{ a, b \}  \bigr\}$である。
+%     $X = \{ a, b \}$とすると，
+%     $\pset(X) = \bigl\{ \emptyset, \  \{ a \}, \  \{ b \}, \  \{ a, b \}  \bigr\}$である．
 % \end{example}
 
 
@@ -154,19 +154,19 @@ $X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
 
 \begin{definition}
     \label{dfn:family-of-sets}
-    集合からなる集合を\word{集合族}[しゅう|ごう|ぞく][しゆうこうそく](family of sets)という。
+    集合からなる集合を\word{集合族}[しゅう|ごう|ぞく][しゆうこうそく](family of sets)という．
 \end{definition}
 
 \begin{example}
-    $\bigl\{ \{ \ \}, \  \{ 1 \}, \  \{ 1, 2 \}, \  \{ 1, 2, 3 \}  \bigr\}$は集合族である。
+    $\bigl\{ \{ \ \}, \  \{ 1 \}, \  \{ 1, 2 \}, \  \{ 1, 2, 3 \}  \bigr\}$は集合族である．
 \end{example}
 
 \begin{example}
-    任意の集合$X$に対し、その冪集合$\pset(X)$は（$X$の部分集合を元にもつ）集合族である。
+    任意の集合$X$に対し，その冪集合$\pset(X)$は（$X$の部分集合を元にもつ）集合族である．
 \end{example}
 
-元が集合である集合に対して名前がついているのは、
-単にそのような集合をよく扱うからである。
+元が集合である集合に対して名前がついているのは，
+単にそのような集合をよく扱うからである．
 
 
 
@@ -282,8 +282,8 @@ $f$の値域といった場合，$f$の終域を指すことも像を指すこ�
 $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$なら$\iota$は\word{包含写像}[ほう|がん|しゃ|ぞう][ほうかんしやそう](inclusion map)であり恒等写像ではない．
 
 \begin{example}
-    $\symbb{N}$から$\symbb{N}$への写像$f \colon x \mapsto x$は恒等写像$\mathrm{id}_{\symbb{N}}$である。
-    しかし、$\symbb{N}$から$\symbb{Z}$への写像$g \colon x \mapsto x$は包含写像であるが、恒等写像ではない。
+    $\symbb{N}$から$\symbb{N}$への写像$f \colon x \mapsto x$は恒等写像$\mathrm{id}_{\symbb{N}}$である．
+    しかし，$\symbb{N}$から$\symbb{Z}$への写像$g \colon x \mapsto x$は包含写像であるが，恒等写像ではない．
 \end{example}
 
 \begin{definition}[単射]
@@ -292,7 +292,7 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
     任意の$x, x' \in X$に対して，$f(x) = f(x')$ならば$x = x'$が成り立つとき，\word{単射}[たん|しゃ][たんしや](injection)であるという．
 \end{definition}
 
-単射の定義は「$x \neq x'$ならば$f(x) \neq f(x')$」と言い換えることもできる。
+単射の定義は「$x \neq x'$ならば$f(x) \neq f(x')$」と言い換えることもできる．
 
 \begin{definition}[全射]
     \label{dfn:surjection}
@@ -307,10 +307,10 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 
 集合$X$と$Y$のあいだに全単射が存在する場合，この2つを同じ集合とみなすことができる（ことがある）．
 
-単射を$X \rightarrowtail Y$、
-全射を$X \twoheadrightarrow Y$、
+単射を$X \rightarrowtail Y$，
+全射を$X \twoheadrightarrow Y$，
 全単射を$X \twoheadrightarrowtail Y$とかくこともある%
-\cite{unicode-arrows}\cite{unicode-arrows-B}。
+\cite{unicode-arrows}\cite{unicode-arrows-B}．
 
 \begin{example}
     包含写像$X \hookrightarrow Y$は単射である．
@@ -346,17 +346,17 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 \end{theorem}
 
 \begin{proof}
-    略。
+    略．
 \end{proof}
 
 \begin{proposition}
     \label{thm:map-is-associative}
-    $X, Y, Z, W$を集合、$f \colon Z \to W$、$g \colon Y \to Z$、$h \colon X \to Y$を写像とする。
-    このとき$f \circ (g \circ h) = (f \circ g) \circ h$である。
+    $X, Y, Z, W$を集合，$f \colon Z \to W$，$g \colon Y \to Z$，$h \colon X \to Y$を写像とする．
+    このとき$f \circ (g \circ h) = (f \circ g) \circ h$である．
 \end{proposition}
 
 \begin{proof}
-    任意の元$x \in X$に対して、
+    任意の元$x \in X$に対して，
     \begin{gather*}
         [f \circ (g \circ h)] \, (x)
             = f([g \circ h] \, (x))
@@ -366,7 +366,7 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
             = [f \circ g] \, (h(x))
             = f(g(h(x)))
     \end{gather*}
-    より$[f \circ (g \circ h)] \, (x) = [(f \circ g) \circ h] \, (x)$であることから従う。
+    より$[f \circ (g \circ h)] \, (x) = [(f \circ g) \circ h] \, (x)$であることから従う．
 \end{proof}
 
 
@@ -383,115 +383,203 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 
 \subsection{集合の濃度}
 
-この節では``集合の大きさ''である「濃度」を定義する。
+この節では``集合の大きさ''である「濃度」を定義する．
 
 \begin{definition}
-    集合$X$の``元のかず''を\word{濃度}[のう|ど][のうと](cardinality)という。
-    $X$の濃度を$\lvert X \rvert$、$\# X$などとあらわす。
+    集合$X$の``元のかず''を\word{濃度}[のう|ど][のうと](cardinality)という．
+    $X$の濃度を$\lvert X \rvert$，$\# X$などとあらわす．
 \end{definition}
 
-濃度とは、集合がもつ`元の数'を一般化した概念である。
-$X$が有限集合の場合、$X$の濃度は元の数そのものである。
-しかし、$X$が元を無限に持つときにも濃度$\card X$は定義できる。
-さらに、次の定義からは、無限大の濃度にも差があることがわかる。
+濃度とは，集合がもつ`元の数'を一般化した概念である．
+$X$が有限集合の場合，$X$の濃度は元の数そのものである．
+しかし，$X$が元を無限に持つときにも濃度$\card X$は定義できる．
+さらに，次の定義からは，無限大の濃度にも差があることがわかる．
 
 \begin{definition}[濃度の大小]
-    $X, Y$を集合とする。それぞれの濃度の関係を、次のように定める。
+    $X, Y$を集合とする．それぞれの濃度の関係を，次のように定める．
     \begin{enumerate}
-        \item 集合$X$から$Y$の間に全単射$f \colon X \twoheadrightarrowtail Y$が存在するとき、
-            $X$と$Y$の濃度は等しいと定め、
-            $X \sim Y$とかく。
-        \item 集合$X$から$Y$への単射$f \colon X \rightarrowtail Y$が存在するとき、
-            $X$の濃度は$Y$よりも小さいと定める。
+        \item 集合$X$から$Y$の間に全単射$f \colon X \twoheadrightarrowtail Y$が存在するとき，
+            $X$と$Y$の濃度は等しいと定め，
+            $X \sim Y$とかく．
+        \item 集合$X$から$Y$への単射$f \colon X \rightarrowtail Y$が存在するとき，
+            $X$の濃度は$Y$よりも小さいと定める．
     \end{enumerate}
 \end{definition}
 
-ある濃度をもつ集合には、特別な名前がついている。
+ある濃度をもつ集合には，特別な名前がついている．
 
 \begin{definition}[有限集合]
-    集合$X$の濃度が$0, 1, 2, \dotsc$のとき（すなわち元を有限個だけもつとき）、
-    $X$を\word{有限集合}(finite set)という。
-    有限集合でない集合を\word{無限集合}(infinite set)という。
+    集合$X$の濃度が$0, 1, 2, \dotsc$のとき（すなわち元を有限個だけもつとき），
+    $X$を\word{有限集合}(finite set)という．
+    有限集合でない集合を\word{無限集合}(infinite set)という．
 \end{definition}
 
 \begin{definition}[\ruby{可算}{か|さん}集合]
     \label{dfn:countably-infinite}
-    集合$X$の濃度が$\symbb{N}$の濃度と等しいとき、
+    集合$X$の濃度が$\symbb{N}$の濃度と等しいとき，
     $X$を\word{可算無限集合}(countably infinite set)\index{かさん@可算!むけんしゆうこう@\indexdash 無限集合}%
-    あるいは\word{可算集合}(countable set)\index{かさん@可算!しゆうこう@\indexdash 集合}という。
+    あるいは\word{可算集合}(countable set)\index{かさん@可算!しゆうこう@\indexdash 集合}という．
 \end{definition}
 
 \begin{definition}[\ruby{高々}{たか|だか}可算集合]
     \label{dfn:at-most-countable}
     可算無限集合と有限集合をあわせて%
-    \word{高々加算集合}(at most countable set)\index{たかたかかさんしゆうこう@高々可算集合}%
-    または\word{可算集合}(countable set)という。
+    \word{高々可算集合}(at most countable set)\index{たかたかかさんしゆうこう@高々可算集合}%
+    または\word{可算集合}(countable set)という．
 
-    高々可算でない集合を\word{非可算集合}(uncountable set)という。
+    高々可算でない集合を\word{非可算集合}(uncountable set)という．
 \end{definition}
 
-定義からわかるように、「可算集合」という言葉は紛らわしいので使わないことにする。
+定義からわかるように，「可算集合」という言葉は紛らわしいので使わないことにする．
 
-「集合$X$は高々可算」「可算無限個の元」などの言い方もする。
+「集合$X$は高々可算」「可算無限個の元」などの言い方もする．
 
-\cref{sec:measure}では「可算無限個の集合$A_1, A_2, \dotsc$」という表現があるが、
-これは$A_1$や$A_2$が可算無限集合といっているのではなく、
+\cref{sec:measure}では「可算無限個の集合$A_1, A_2, \dotsc$」という表現があるが，
+これは$A_1$や$A_2$が可算無限集合といっているのではなく，
 $A_1, A_2, \dotsc$の数が可算無限個あるということである%
 \footnote{
-    形式的には\refdfn-[集合族]{dfn:family-of-sets}$\{ A_1, A_2, \dotsc \}$が可算無限集合であるということ。
-}。
+    形式的には\refdfn-[集合族]{dfn:family-of-sets}$\{ A_1, A_2, \dotsc \}$が可算無限集合であるということ．
+}．
 
 
 \begin{proposition}
-    有理数全体の集合$\symbb{Q}$は\refdfn-[加算無限集合]{dfn:countably-infinite}である。
+    \label{thm:rational-numbers-are-countable}
+    有理数全体の集合$\symbb{Q}$は\refdfn-[可算無限集合]{dfn:countably-infinite}である．
 \end{proposition}
 
-にわかには信じがたいが、
-自然数の`かず'と有理数の`かず'は同じだと主張している。
+にわかには信じがたいが，
+自然数の`かず'と有理数の`かず'は同じだと主張している．
 
 \begin{figure}[tbp]
     \centering
     \includegraphics[width=0.5\linewidth]{rational_countable.pdf}
     \caption{
-        正の有理数に番号をつける方法。
-        まず図のように格子をかき、正の有理数$p/q$に対応する点を黒く塗る。
-        次に(1)のように線を引くと、有理数$1/1 = 1$があるので、これを1番目の有理数とする。
-        続けて(2)の線を引くと、有理数$2$と$1/2$があるので、それぞれ順に2番目と3番目の有理数とする。
-        これを(3)、(4)と繰り返すと、正の有理数すべてに番号がつけられる。
+        正の有理数に番号をつける方法．
+        まず図のように格子をかき，正の有理数$p/q$に対応する点を黒く塗る．
+        次に(1)のように線を引くと，有理数$1/1 = 1$があるので，これを1番目の有理数とする．
+        続けて(2)の線を引くと，有理数$2$と$1/2$があるので，それぞれ順に2番目と3番目の有理数とする．
+        これを(3)，(4)と繰り返すと，正の有理数すべてに番号がつけられる．
     }
     \label{fig:positive-rational-count}
 \end{figure}
 
 
 \begin{proof}
-    まず、正の自然数に\cref{fig:positive-rational-count}の方法で番号をつけると、
+    まず，正の自然数に\cref{fig:positive-rational-count}の方法で番号をつけると，
     \[  1, \ 
         2, \ \frac{1}{2}, \ 
         3, \ \frac{1}{3}, \ 
         4, \ \frac{2}{3}, \ \frac{3}{2}, \ \frac{1}{4}, \ 
         \dotsc  \]
-    となる。これを正負交互に並べる。すると
+    となる．これを正負交互に並べる．すると
     \[  \overset{1}{0}, \ 
         \overset{2}{1}, \ \overset{3}{-1}, \ 
         \overset{4}{2}, \ \overset{5}{-2}, \ \overset{6}{\frac{1}{2}}, \ \overset{7}{-\frac{1}{2}}, \ 
         \overset{8}{3}, \ \overset{9}{-3}, \ \dotsc  \]
-    となる。このようにして有理数と番号（自然数）が1対1に結び付く。
+    となる．このようにして有理数と番号（自然数）が1対1に結び付く．
 \end{proof}
 
 
+
 \begin{theorem}
-    実数全体の集合$\symbb{R}$は非可算無限集合である。
+    実数全体の集合$\symbb{R}$は非可算無限集合である\cite[\S 7]{uchida-set-2020}．
 \end{theorem}
+
+\begin{proof}
+    $(0, 1] \subset \symbb{R}$が非可算であることを示せば十分である．
+    まず$(0, 1]$は明らかに有限集合ではない．
+    そこで，$(0, 1]$が\refdfn-[可算無限集合]{dfn:countably-infinite}であると仮定する．
+    $(0, 1]$の元（つまり$0$より大きく$1$以下の実数）が自然数で$x_1, x_2, \dotsc$とラベル付けされるので，
+    それぞれ小数展開して
+    \begin{align*}
+        x_1 &= 0.c_{11}c_{12}c_{13}c_{14}c_{15}\dotso \\
+        x_2 &= 0.c_{21}c_{22}c_{23}c_{24}c_{25}\dotso \\
+        x_3 &= 0.c_{31}c_{32}c_{33}c_{34}c_{35}\dotso \\
+        &\vdots 
+    \end{align*}
+    のように並べる\footnote{
+        このとき，有限小数$0.2$は$0.19999\dotso$のように無限小数になるように表記する．
+        こうすることで，小数展開が一意になる\cite[\S 7]{uchida-set-2020}．
+    }．
+    ここで
+    \begin{equation*}
+        y \coloneq 0. a_1 a_2 a_3 a_4 a_5 \dotso;
+            \quad a_i \coloneq
+            \begin{cases}
+                1  &  \text{if } c_{ii}   =  0  \\
+                0  &  \text{if } c_{ii} \neq 0
+            \end{cases}
+    \end{equation*}
+    は明らかに$(0, 1]$の元であるが，
+    どの$x_i$とも（小数点以下$i$桁目が）一致しない．
+    したがって$(0, 1]$が可算であるという仮定が誤りである\cite[\S 7]{uchida-set-2020}．
+\end{proof}
+
+
+
+\begin{proposition}
+    \label{thm:countable-subset}
+    任意の無限集合は，\refdfn-[可算無限]{dfn:countably-infinite}である部分集合を持つ．
+\end{proposition}
+
+\begin{proof}
+    無限集合$X$からある元$x_1$をとる．
+    次に，$X \setminus \{ x_1 \}$から元$x_2$を適当に選んでとる．
+    さらに，$X \setminus \{ x_1, x_2 \}$から元$x_3$をとる．
+    $X$は無限集合ゆえ，この操作を無限回繰り返すことができる%
+    \footnote{
+        ここで，無限集合から元をえらぶという操作を無限回行っている．
+        この操作が可能であることは，実は選択公理によって保障される．
+        選択公理は基底の存在定理の証明でも用いられる，
+        数学で最も基本的な（そして最も議論をよんだ）公理のひとつである．
+    }．
+    このように構成された集合$\{ x_1, x_2, x_3, \dotsc \}$は可算無限集合である．
+\end{proof}
+
+
+\begin{corollary}
+    可算無限は，無限の中で最も小さい．
+\end{corollary}
+
+\begin{proof}
+    \cref{thm:countable-subset}より，
+    任意の無限集合が可算無限集合を含む，
+    すなわち無限の大きさは可算無限以上であることから従う．
+\end{proof}
+
+
+
+\begin{proposition}
+    $\symbb{N} \times \symbb{N}$は可算無限である．
+    より一般に，$\underbrace{\symbb{N} \times \dots \times \symbb{N}}_{\text{有限個}}$
+    は可算集合である．
+\end{proposition}
+
+\begin{proof}
+    $\symbb{N} \times \symbb{N}$が可算であることは，
+    \cref{fig:positive-rational-count}とまったく同じ手順で示される．
+\end{proof}
+
+
+この節で最も重要なのは，
+無限の中にもレベルがあるということである．
+すなわち，
+\begin{enumerate}
+    \item 有限個
+    \item 可算無限個（たとえば$\symbb{N}$，$\symbb{Q}$，$\symbb{N} \times \symbb{N}$）
+    \item 非可算無限個（たとえば$\symbb{R}$）
+\end{enumerate}
+可算であるか非可算であるかの区別は重要である．
 
 
 
 
 \subsection{同値類}
 
-有理数$1/3$と$2/6$は、見た目こそ違うが同じ数である。
-このようなものを「同じ」として扱う方法が\ruby{同値類}{どう|ち|るい}である。
+有理数$1/3$と$2/6$は，見た目こそ違うが同じ数である．
+このようなものを「同じ」として扱う方法が\ruby{同値類}{どう|ち|るい}である．
 
-まず同値関係について見る。
+まず同値関係について見る．
 
 \begin{definition}[二項関係]
     \label{dfn:binary-relation}
@@ -530,7 +618,7 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
 \end{example}
 
 
-この同値関係を使って、同値類というものを定義できる。
+この同値関係を使って，同値類というものを定義できる．
 
 \begin{definition}[同値類]
     \label{dfn:equivalence-class}

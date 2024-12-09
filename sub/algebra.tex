@@ -16,7 +16,7 @@
         \item ある$e \in G$が存在して，任意の$a \in G$に対し，$a \dotprod e = e \dotprod a = a$である．
         \item 任意の$a \in G$に対し，ある$a^{-1} \in G$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = e$である．
     \end{enumerate}
-    さらに以下を満たすとき、$(G, \dotprod)$を\word{アーベル群}[][ああへるくん](Abelian group)であるという
+    さらに以下を満たすとき，$(G, \dotprod)$を\word{アーベル群}[][ああへるくん](Abelian group)であるという
     群$(G, \dotprod)$のことを単に$G$とかくこともある．
 \end{definition}
 
@@ -44,19 +44,19 @@
     $R$を集合，$+$と$\dotprod$を$R$上の二項演算とする．
     以下がみたされるとき，$(R, +, \dotprod)$は\word{環}[かん][かん](ring)であるという．
     \begin{itemize}
-        \item 和について、$(R, +)$はアーベル群である。すなわち
+        \item 和について，$(R, +)$はアーベル群である．すなわち
         \begin{enumerate}
             \item \label{ring:sum-associative} 任意の$a, b, c \in R$に対し，$(a + b) + c = a + (b + c)$である．
             \item \label{ring:sum-zero} ある$0 \in R$が存在して，任意の$a \in R$に対し，$a + 0 = 0 + a = a$である．
             \item \label{ring:sum-opposite} 任意の$a \in R$に対し，ある$-a \in R$が存在して，$a + (-a) = (-a) + a = 0$である．
             \item \label{ring:sum-commutative} 任意の$a, b \in R$に対し，$a + b = b + a$である．
         \end{enumerate}
-        \item 積について、
+        \item 積について，
         \begin{enumerate}[resume]
             \item \label{ring:prod-associative} 任意の$a, b, c \in R$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
             \item \label{ring:prod-one} ある$1 \in R$が存在して，任意の$a \in R$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
         \end{enumerate}
-        \item 和と積の関係について、
+        \item 和と積の関係について，
         \begin{enumerate}[resume]
             \item \label{ring:distributive} 任意の$a, b, c \in R$に対し，$(a + b) \dotprod c = a \dotprod c + b \dotprod c$であり，$a \dotprod (b + c) = a \dotprod b + a \dotprod c$である．
         \end{enumerate}
@@ -77,30 +77,30 @@
 
 \subsection{体}
 
-これから実数・複素数のもつ性質を抽象化した「\ruby{体}{たい}」を定義する。
-量子力学において扱う体は基本的に複素数体であるので、わざわざ抽象化を行う動機が見えづらいかもしれない。
-しかし、例えば量子情報の分野においては体として有限体を扱うことがあるので、ここで一般の体についての性質を議論しておく。
+これから実数・複素数のもつ性質を抽象化した「\ruby{体}{たい}」を定義する．
+量子力学において扱う体は基本的に複素数体であるので，わざわざ抽象化を行う動機が見えづらいかもしれない．
+しかし，例えば量子情報の分野においては体として有限体を扱うことがあるので，ここで一般の体についての性質を議論しておく．
 
 \begin{definition}[体]
     \label{dfn:field}
     $\symbb{K}$を集合，$+$と$\dotprod$を$\symbb{K}$上の二項演算とする．
     以下がみたされるとき，$(\symbb{K}, +, \dotprod)$は\word{体}[たい][たい](field)であるという．
     \begin{itemize}
-        \item 和について、$(\symbb{K}, +)$はアーベル群である。
+        \item 和について，$(\symbb{K}, +)$はアーベル群である．
         \begin{enumerate}
             \item \label{field:sum-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) + c = a + (b + c)$である．
             \item \label{field:sum-zero} ある$0 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a + 0 = 0 + a = a$である．
             \item \label{field:sum-opposite} 任意の$a \in \symbb{K}$に対し，ある$-a \in \symbb{K}$が存在して，$a + (-a) = (-a) + a = 0$である．
             \item \label{field:sum-commutative} 任意の$a, b \in \symbb{K}$に対し，$a + b = b + a$である．
         \end{enumerate}
-        \item 積について、$(\symbb{K} \setminus \{ 0 \}, \  \dotprod)$はアーベル群である。
+        \item 積について，$(\symbb{K} \setminus \{ 0 \}, \  \dotprod)$はアーベル群である．
         \begin{enumerate}[resume]
             \item \label{field:prod-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
             \item \label{field:prod-one} ある$1 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
             \item \label{field:prod-reciprocal} 任意の$a \in \symbb{K} \setminus \{0\}$に対し，ある$a^{-1} \in \symbb{K}$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = 1$である．
             \item \label{field:prod-commutative} 任意の$a, b \in \symbb{K}$に対し，$a \dotprod b = b \dotprod a$である．
         \end{enumerate}
-        \item 和と積の関係について、
+        \item 和と積の関係について，
         \begin{enumerate}[resume]
             \item \label{field:distributive} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) \dotprod c = (a \dotprod c) + (b \dotprod c)$であり，$a \dotprod (b + c) = (a \dotprod b) + (a \dotprod c)$である．
         \end{enumerate}    

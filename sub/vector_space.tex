@@ -12,10 +12,10 @@
 そこで，数ベクトルの概念を一般化・抽象化する必要がある．
 この章ではベクトルの性質を抽象化し，ベクトル空間について定義する．
 
-\subsection*{序：3次元ユークリッド空間$\symbb{R}^3$の性質}
-\addcontentsline{toc}{subsection}{\numberline{序}3次元ユークリッド空間\texorpdfstring{$\symbb{R}^3$}{ℝ³}の性質}
 
-この節では，数ベクトルの性質を確かめる．
+\subsection{3次元ユークリッド空間$\symbb{R}^3$の性質}
+
+この節では，ユークリッド空間$\symbb{R}^3$における数ベクトルの性質を確かめる．
 
 $n$個の数字\footnote{ここでは実数または複素数のこと．}を縦に並べたものを「$n$-\ruby{次}{じ}の\ruby{列}{れつ}ベクトル」と呼び，
 横に並べたものを「$n$-次の\ruby{行}{ぎょう}ベクトル」と呼ぶ\cite{miyake-lin-2008}．
@@ -64,6 +64,9 @@ $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]�
 
 ベクトル$\tp{(a, b, c)}$は，ある点から$x$-軸方向へ$a$，$y$-軸方向へ$b$，$z$-軸方向へ$c$だけ動いた点を結ぶ矢印として考えることができる．
 
+
+\subsubsection*{ベクトルの演算}
+
 ベクトル同士の「\ruby{和}{わ}」（足し算）を
 \begin{equation*}
     \begin{pmatrix}
@@ -81,7 +84,7 @@ $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]�
 のように，各成分の和として定義する．
 ベクトルの和は，2つの矢印をつなげた見たときの矢印に相当する（\cref{fig:vector-sum}）．
 
-また，ベクトルの「\word{スカラー倍}」を，
+また，ベクトルの「スカラー倍」を，
 \begin{equation*}
     \lambda \scaprod 
     \begin{pmatrix}
@@ -112,7 +115,24 @@ $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]�
     \caption{ベクトルの演算}
 \end{figure}
 
-このように定義されたベクトルの和とスカラー倍についての性質を抽出したのが\cref{dfn:vector-space}である．
+
+\subsubsection*{ベクトルの内積}
+
+$\symbf{a}$と$\symbf{x}$を列ベクトルとすると，
+それらの間の\refdfn[内積]{dfn:inner-product}は，以下のように定義できるのだった．
+\begin{equation*}
+    (\symbf{a}, \symbf{x})
+        = \symbf{a} \cdotp \symbf{x}
+        = \norm{\symbf{a}} \norm{\symbf{x}} \cos \theta
+\end{equation*}
+ここで，$\norm{\symbf{a}}$はベクトル$\symbf{a}$の\refdfn[長さ]{dfn:norm}であり，
+これは三平方の定理より
+\[  \norm{\symbf{a}} = \sqrt{ a^2 + b^2 + c^2 }  \]
+で与えられる．
+また，$\theta$は$\norm{\symbf{a}}$と$\norm{\symbf{x}}$のなす角度である．
+
+2つのベクトルが\refdfn[直交]{dfn:orthogonal}する場合（$\theta = \pi/2$），
+$\cos \theta = 0$となるから，内積は$0$になる．
 
 
 
@@ -126,8 +146,8 @@ $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]�
     このとき$V$の元を\word{ベクトル}(vector)，$\symbb{K}$の元を\word{スカラー}(scalar)という．
     \begin{enumerate}
         \item \label{vector:sum-associative} 任意の$\symbf{u}, \symbf{v}, \symbf{w} \in V$に対して，$(\symbf{u} \vecplus \symbf{v}) \vecplus \symbf{w} = \symbf{u} \vecplus (\symbf{v} \vecplus \symbf{w})$である．
-        \item \label{vector:sum-zero} ある$\symbf{0} \in V$が存在し，任意の$\symbf{v} \in V$に対して，$\symbf{v} \vecplus \symbf{0} = \symbf{0} \vecplus \symbf{v} = \symbf{v}$である．
-        \item \label{vector:sum-opposite} 任意の$\symbf{v} \in V$に対して，ある$-\symbf{v}$が存在して，$\symbf{v} \vecplus (-\symbf{v}) = (-\symbf{v}) \vecplus \symbf{v} = \symbf{0}$である．
+        \item \label{vector:sum-zero} ある$\symbf{0} \in V$がただひとつ存在し，任意の$\symbf{v} \in V$に対して，$\symbf{v} \vecplus \symbf{0} = \symbf{0} \vecplus \symbf{v} = \symbf{v}$である．
+        \item \label{vector:sum-opposite} 任意の$\symbf{v} \in V$に対して，ある$-\symbf{v}$がただひとつ存在して，$\symbf{v} \vecplus (-\symbf{v}) = (-\symbf{v}) \vecplus \symbf{v} = \symbf{0}$である．
         \item \label{vector:sum-commutative} 任意の$\symbf{u}, \symbf{v} \in V$に対して，$\symbf{u} \vecplus \symbf{v} = \symbf{v} \vecplus \symbf{u}$である．
         \item \label{vector:scalar-distributive} 任意の$\symbf{u}, \symbf{v} \in V$および任意の$c \in \symbb{K}$に対して，$c \scaprod (\symbf{u} \vecplus \symbf{v}) = (c \scaprod \symbf{u}) \vecplus (c \scaprod \symbf{v})$である．
         \item \label{vector:scalar-sum} 任意の$\symbf{v} \in V$および任意の$a, b$に対して，$(a + b) \scaprod \symbf{v} = (a \scaprod \symbf{v}) \vecplus (b \scaprod \symbf{v})$である．
@@ -137,16 +157,14 @@ $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]�
     ベクトル空間$(V, \vecplus, \scaprod)$のことを単に$V$と書くこともある．
 \end{definition}
 
+\cref{dfn:vector-space}は，
+ユークリッド空間における数ベクトルがもつ性質を抽出したものである．
+
 \begin{corollary}
     ベクトル空間$V$は以下を満たす．
     \begin{itemize}
-        \item 零ベクトルについて，
-        \begin{enumerate}
-            \item $\symbf{0}$は一意に定まる．
-        \end{enumerate}
-        \item 任意の$\symbf{v} \in V$に対し，
+        \item 任意の$\symbf{v}\in V$に対し，
         \begin{enumerate}[resume]
-            \item $-\symbf{v}$は一意に定まる．
             \item $ 0 \scaprod \symbf{v} = \symbf{0} $である．
             \item $ (-1) \scaprod \symbf{v} = -\symbf{v} $である．
         \end{enumerate}
@@ -155,9 +173,6 @@ $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]�
 
 \begin{proof}
     \begin{enumerate}
-        \item 零ベクトル$\symbf{0}, \symbf{0}'$をとると，$\symbf{0} = \symbf{0} \vecplus \symbf{0}' = \symbf{0}'$．
-        \item $\symbf{v}$の逆元として$\symbf{u}, \symbf{u}'$をとると，
-            $\symbf{u}  =  \symbf{u} \vecplus (\symbf{v} \vecplus \symbf{u}')  =  (\symbf{u} \vecplus \symbf{v}) \vecplus \symbf{u}'  =  \symbf{u}'$．
         \item $ 0 \scaprod \symbf{v} = (0 + 0) \scaprod \symbf{v} = 0 \scaprod \symbf{v} \vecplus 0 \scaprod \symbf{v} $より従う．
         \item $ \symbf{v} \vecplus (-1) \scaprod \symbf{v} = 1 \scaprod \symbf{v} \vecplus (-1) \scaprod \symbf{v} = (1 + (-1)) \scaprod \symbf{v} = 0 \scaprod \symbf{v} = \symbf{0} $より従う．
     \end{enumerate}
@@ -165,11 +180,6 @@ $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]�
 
 $\symbf{v} \vecplus (-\symbf{u}) \eqcolon \symbf{v} \vecminus \symbf{u}$とかくことが多い．
 
-
-\begin{example}
-    実ユークリッド空間$\symbb{R}^n$は，適切な和とスカラー倍の下で$\symbb{R}$上のベクトル空間になる．
-    また，複素ユークリッド空間$\symbb{C}^n$は，$\symbb{R}$上のベクトル空間であり，また$\symbb{C}$上のベクトル空間でもある．
-\end{example}
 
 
 \subsection{部分ベクトル空間}
@@ -229,6 +239,13 @@ $\symbf{v} \vecplus (-\symbf{u}) \eqcolon \symbf{v} \vecminus \symbf{u}$とか�
 
 \subsection{ベクトルの一次独立・一次従属}
 
+ベクトルをスカラー倍したものや，
+ベクトル同士の和をとったものもベクトルである．
+この考え方を推し進めると，線形結合という概念にいきつく．
+
+記号の煩雑さを防ぐため，この節からスカラー倍の記号$\scaprod$を省略し，
+$c \scaprod \symbf{v} \eqcolon c \symbf{v}$とかく．
+
 \begin{definition}[ベクトルの線形結合]
     \label{dfn:linear-combination}
     $V$を$\symbb{K}$上のベクトル空間，$\symbf{v}_1, \symbf{v}_2, \dotsc \in V$をベクトル，$c_1, c_2, \dotsc \in \symbb{K}$を有限個を除いてゼロであるスカラーとする．
@@ -244,6 +261,14 @@ $c_i$が有限個を除きゼロである，つまり$c_1 \symbf{v}_1 \vecplus c
     e^x = 1 + x + \frac{1}{2!} x^2 + \frac{1}{3!} x^3 + \dotsb
 \end{equation*}
 と書けるが，明らかに$e^x \notin \symbb{R}[x]$である．
+
+
+定義より，ベクトル空間は線形結合に対して閉じている．
+したがって，ベクトル$\symbf{v}_1, \dots, \symbf{v}_n$がベクトル空間$V$に属するなら，
+それらの線形結合$c_1 \symbf{v}_1 \vecplus \dotsb \vecplus c_n \symbf{v}_n$も$V$に属する．
+そうすると，ベクトル空間$V$を作るのにすべてのベクトルを使う必要はなく，
+\ruby{種}{たね}となるベクトルをいくつか列挙すれば，
+残りのベクトルはそれらの線形結合で自動的に作られるのではないかという発想が生まれる．
 
 
 \begin{definition}[ベクトル空間の生成系]
@@ -315,8 +340,8 @@ $c_i$が有限個を除きゼロである，つまり$c_1 \symbf{v}_1 \vecplus c
 
 \begin{example}
     複素数全体の集合$\symbb{C}$は，
-    $\symbb{C}$上のベクトル空間と考えると$\dim_{\symbb{C}} = 1$（基底$1$），
-    $\symbb{R}$上のベクトル空間と考えると$\dim_{\symbb{R}} = 2$（基底$1, \iu$）である．
+    $\symbb{C}$上のベクトル空間と考えると$\dim_{\symbb{C}} \symbb{C} = 1$（基底$1$），
+    $\symbb{R}$上のベクトル空間と考えると$\dim_{\symbb{R}} \symbb{C} = 2$（基底$1, \iu$）である．
 \end{example}
 
 
@@ -338,12 +363,12 @@ $c_i$が有限個を除きゼロである，つまり$c_1 \symbf{v}_1 \vecplus c
 
 
 
-\subsubsection{任意のベクトル空間に基底が存在する}
+\subsubsection*{任意のベクトル空間に基底が存在する}
 
 ここまでは，ベクトル空間に基底が存在すると仮定したうえで議論してきた．
 実は，任意のベクトル空間について，基底が存在することを示すことができる．
 
-証明にはツォルンの補題を用いる．
+証明は極めて抽象的であるので省略する．
 
 
 \end{document}

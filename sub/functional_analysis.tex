@@ -6,23 +6,23 @@
 
 \section{関数解析}
 
-この節では関数をベクトル空間の\ruby{元}{げん}として扱う。
-ベクトル空間の係数体$\symbb{K}$は$\symbb{R}$もしくは$\symbb{C}$に限る。
+この節では関数をベクトル空間の\ruby{元}{げん}として扱う．
+ベクトル空間の係数体$\symbb{K}$は$\symbb{R}$もしくは$\symbb{C}$に限る．
 
 \subsection{関数空間}
 
-関数$\psi(x_1, x_2, \dotsc)$のようなものを考えよう。
+関数$\psi(x_1, x_2, \dotsc)$のようなものを考えよう．
 
 \begin{definition}
-    $\Omega \subset \symbb{R}$を$n$次元ユークリッド空間$\symbb{R}^n$の開集合\refdfn{dfn:open-set-and-closed-set}とする。
-    $\Omega$における連続関数全体の集合を$C^0 (\Omega)$でかく。
+    $\Omega \subset \symbb{R}$を$n$次元ユークリッド空間$\symbb{R}^n$の開集合\refdfn{dfn:open-set-and-closed-set}とする．
+    $\Omega$における連続関数全体の集合を$C^0 (\Omega)$でかく．
 \end{definition}
 
 \begin{proposition}
     \label{thm:continuous-function-space-is-vector-space}
-    $C(\Omega)$は以下のように定義される和とスカラー倍に関して、ベクトル空間をなしている。
+    $C(\Omega)$は以下のように定義される和とスカラー倍に関して，ベクトル空間をなしている．
     \begin{itemize}
-        \item $f, g \in C(\Omega)$，$c \in \symbb{K}$に対して、
+        \item $f, g \in C(\Omega)$，$c \in \symbb{K}$に対して，
         \begin{enumerate}
             \item 関数の和$f \plushat g$は，
                 任意の$x \in \symbb{C}$に対して$ ( f \plushat g )(\symbf{x}) = f(x) \doubleplus g(x) $である関数と定める．
@@ -38,15 +38,15 @@
 
 
 \begin{definition}
-    ある関数$u \in C(\Omega)$に対し、$u(x) \neq 0$であるような$x \in \Omega$の集合の閉包\refdfn{dfn:closure}
+    ある関数$u \in C(\Omega)$に対し，$u(x) \neq 0$であるような$x \in \Omega$の集合の閉包\refdfn{dfn:closure}
     \begin{equation}
         \supp u  \coloneq  \cl{ \Set{  x \in \Omega  \given  u(x) \neq 0  } }
     \end{equation}
-    を$u$の\word{台}[だい][だい](support)という。
+    を$u$の\word{台}[だい][だい](support)という．
 \end{definition}
 
-関数$u \in C(\Omega)$の中で、$\supp u$がコンパクト\refdfn{dfn:compact-set}であるもの全体の集合を$C_0 (\Omega)$とかく。
-$C_0 (\Omega)$もベクトル空間になっている。
+関数$u \in C(\Omega)$の中で，$\supp u$がコンパクト\refdfn{dfn:compact-set}であるもの全体の集合を$C_0 (\Omega)$とかく．
+$C_0 (\Omega)$もベクトル空間になっている．
 
 
 \begin{definition}
@@ -72,9 +72,9 @@ $C_0 (\Omega)$もベクトル空間になっている。
 
 \subsection{関数空間のノルム}
 
-ここでは関数空間上にノルムが定義できる場合について考える。
+ここでは関数空間上にノルムが定義できる場合について考える．
 
-関数空間においてもっとも一般的なノルムは``最大値ノルム''である。
+関数空間においてもっとも一般的なノルムは``最大値ノルム''である．
 
 \begin{definition}
     \label{dfn:square-integrable-function-space}
@@ -91,7 +91,7 @@ $C_0 (\Omega)$もベクトル空間になっている。
 
 \subsection{内積空間としての関数空間}
 
-関数空間に内積が定義できる場合。
+関数空間に内積が定義できる場合．
 
 \begin{proposition}
     2乗可積分関数空間$L^2 (a, b)$は，以下で定義される内積$(\bigdot, \bigdot)$に対して内積空間\refdfn{dfn:inner-product}になる．
@@ -106,20 +106,20 @@ $C_0 (\Omega)$もベクトル空間になっている。
 \end{proposition}
 
 \begin{proof}
-    \cref{eq:L^2-inner-product}がノルムの内積を満たすのは明らかであるから、
-    $(f, g)_{L^2}$がwell-definedであることを示す。
+    \cref{eq:L^2-inner-product}がノルムの内積を満たすのは明らかであるから，
+    $(f, g)_{L^2}$がwell-definedであることを示す．
     
 \end{proof}
 
 
-$u$を$\Omega \subset_{\text{open}} \symbb{R}^n$で定義された関数とする。
-$u$が$\Omega$で局所可積分であるとは、
+$u$を$\Omega \subset_{\text{open}} \symbb{R}^n$で定義された関数とする．
+$u$が$\Omega$で局所可積分であるとは，
 任意の\refdfn[コンパクト集合]{dfn:compact-set}$K \subset \Omega$に対し
 \begin{equation*}
     \int_K \abs{ u(x) } \dd{x} < \infty
 \end{equation*}
-であることをいう。
-連続関数$C(\Omega)$は局所可積分である。
+であることをいう．
+連続関数$C(\Omega)$は局所可積分である．
 
 
 

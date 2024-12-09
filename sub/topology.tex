@@ -31,8 +31,8 @@
     特に，実数全体の集合$\symbb{R}$は，距離$d(x, y) \coloneq \abs{x - y}$に対して距離空間になる．
 \end{example}
 
-ベクトル空間$V$においてノルムが定義されているとする。
-以下に示すように、ノルムは距離の一種である。
+ベクトル空間$V$においてノルムが定義されているとする．
+以下に示すように，ノルムは距離の一種である．
 
 \begin{proposition}
     \label{thm:norm-is-distance}
@@ -45,22 +45,22 @@
     ノルムの公理（\cref{dfn:norm}）から距離の公理が導かれることを示せばよい．
 \end{proof}
 
-距離空間を考える上では、距離が定義されている\word{普遍集合}[][ふへんしゆうこう]を世界のすべてと考えるほうが都合がよい。
-このような考えのもとで、補集合という概念が定義される。
+距離空間を考える上では，距離が定義されている\word{普遍集合}[][ふへんしゆうこう]を世界のすべてと考えるほうが都合がよい．
+このような考えのもとで，補集合という概念が定義される．
 
 \begin{definition}
-    $(X, d)$を距離空間、$A \subset X$を部分集合とする。
+    $(X, d)$を距離空間，$A \subset X$を部分集合とする．
     集合
     \begin{equation*}
         \Set{  x \in X  \given  x \notin A  }
     \end{equation*}
-    を$A$の\word{補集合}[ほ|しゅう|ごう][ほしゆうこう]という。
+    を$A$の\word{補集合}[ほ|しゅう|ごう][ほしゆうこう]という．
 \end{definition}
 
 
 
 
-\subsection{内部と閉包、開集合と閉集合}
+\subsection{内部と閉包，開集合と閉集合}
 
 
 \begin{definition}
@@ -105,20 +105,20 @@ $(X, d)$を距離空間，$A \subset X$を部分集合とする．
     \begin{enumerate}
         \item 
             $A \subset X$の内部$\operatorname{int} A$が$A$自身と一致するとき，
-            $A$を\word{開集合}[][かいしゆうこう](open set)（あるいは\ruby{開}{かい}である）という。
+            $A$を\word{開集合}[][かいしゆうこう](open set)（あるいは\ruby{開}{かい}である）という．
         \item 
             $A \subset X$の閉包$\cl{A}$が$A$自身と一致するとき，
-            $A$を\word{閉集合}[][へいしゆうこう](closed set)（あるいは\ruby{閉}{へい}である） という。
+            $A$を\word{閉集合}[][へいしゆうこう](closed set)（あるいは\ruby{閉}{へい}である） という．
     \end{enumerate}
 \end{definition}
 
-開集合の補集合は閉集合である。
-逆に、閉集合の補集合は開集合である。
+開集合の補集合は閉集合である．
+逆に，閉集合の補集合は開集合である．
 
 
 \begin{example}
-    $(X, d)$を距離空間とする。
-    $X$は開集合かつ閉集合である。また$\emptyset$も開集合かつ閉集合である。
+    $(X, d)$を距離空間とする．
+    $X$は開集合かつ閉集合である．また$\emptyset$も開集合かつ閉集合である．
 \end{example}
 
 
@@ -132,8 +132,8 @@ $(X, d)$を距離空間，$A \subset X$を部分集合とする．
 自然数で順序付けられた$X$の加算部分集合，つまり
 $\sequ{x_i}[i \in \symbb{N}] = (x_1, x_2, \dots, x_i, \dotsc)$であり，$i \in \symbb{N}$，$x_i \in X$であるものをいうことにする．
 
-集合$X$上の点列を、自然数全体から$X$への写像$f \colon \symbb{N} \to X$ととらえることもできる。
-この立場からは、$X$上の点列全体の集合を$X^{\symbb{N}}$とかく。
+集合$X$上の点列を，自然数全体から$X$への写像$f \colon \symbb{N} \to X$ととらえることもできる．
+この立場からは，$X$上の点列全体の集合を$X^{\symbb{N}}$とかく．
 
 \begin{definition}[収束列]
     \label{dfn:convergent-sequence}
@@ -239,9 +239,9 @@ $\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
     \end{equation}
 \end{definition}
 
-\cref{dfn:closure}で与えた閉包の定義と一致する。
-$A$の閉包というのは、$A$に適当な元を加えて閉集合\refdfn{dfn:closed-set}にしたもの、
-あるいは$A$のコーシー列が収束するようにしたものと考えることができる。
+\cref{dfn:closure}で与えた閉包の定義と一致する．
+$A$の閉包というのは，$A$に適当な元を加えて閉集合\refdfn{dfn:closed-set}にしたもの，
+あるいは$A$のコーシー列が収束するようにしたものと考えることができる．
 
 $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，定義上は全く関係ない．
 
@@ -259,12 +259,12 @@ $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，
 
 \begin{definition}[稠密]
     $(X, d)$を距離空間とする．
-    $A \subset B$をみたす$X$の2つの部分集合について、
-    $B \subset \cl{A}$であるとき、
+    $A \subset B$をみたす$X$の2つの部分集合について，
+    $B \subset \cl{A}$であるとき，
     $A$は$B$において\word{稠密}[ちゅう|みつ][ちゆうみつ](dense)であるという\cite{iwanami-functional}．
 
-    特に$\cl{A} = X$であるとき、
-    $A$は$X$において稠密である。
+    特に$\cl{A} = X$であるとき，
+    $A$は$X$において稠密である．
 \end{definition}
 
 \begin{proposition}
@@ -274,19 +274,19 @@ $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，
 
 \begin{proof}
     \textsf{必要性} \quad 
-    $x \in B$の近傍を$N$とおく。
-    $x$は$N$の内点であるから、
-    $\neigh(x; \varepsilon) \subset N$となる$\varepsilon > 0$が存在する。
-    一方、$A$が$B$において稠密という仮定から、
-    任意の$x \in B$は$A$の閉包に含まれる。
-    すなわち任意の$\varepsilon > 0$に対して、
-    $\neigh(x; \varepsilon) \cap A \neq \emptyset$である。
-    したがって、$N \cap A \neq \emptyset$がいえる。
+    $x \in B$の近傍を$N$とおく．
+    $x$は$N$の内点であるから，
+    $\neigh(x; \varepsilon) \subset N$となる$\varepsilon > 0$が存在する．
+    一方，$A$が$B$において稠密という仮定から，
+    任意の$x \in B$は$A$の閉包に含まれる．
+    すなわち任意の$\varepsilon > 0$に対して，
+    $\neigh(x; \varepsilon) \cap A \neq \emptyset$である．
+    したがって，$N \cap A \neq \emptyset$がいえる．
 
     \textsf{十分性} \quad 
-    任意の$x \in B$に対して、その$\varepsilon$-近傍$\neigh(x; \varepsilon)$を考えると、
-    仮定より任意の$\varepsilon > 0$に対して$\neigh(x; \varepsilon) \cap A \neq 0$だから、
-    $x \in \cl{A}$。
+    任意の$x \in B$に対して，その$\varepsilon$-近傍$\neigh(x; \varepsilon)$を考えると，
+    仮定より任意の$\varepsilon > 0$に対して$\neigh(x; \varepsilon) \cap A \neq 0$だから，
+    $x \in \cl{A}$．
 \end{proof}
 
 
@@ -311,8 +311,8 @@ $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，
 実は位相空間というのは，距離空間よりも広い概念である．
 しかし，ここでは距離空間の別の見方が位相空間であるとしておく．
 
-位相空間では、$A$の内部を「$A$に含まれる開集合の中で最大のもの」、
-$A$の閉包を「$A$を含む閉集合の中で最小のもの」と定義する。
+位相空間では，$A$の内部を「$A$に含まれる開集合の中で最大のもの」，
+$A$の閉包を「$A$を含む閉集合の中で最小のもの」と定義する．
 
 
 
@@ -344,7 +344,7 @@ $A$の閉包を「$A$を含む閉集合の中で最小のもの」と定義す�
 %     $X$自身がコンパクトであるとき，$(X, \topology)$を\word{コンパクト空間}[][こんはくとくうかん]という\cite[\S 22]{uchida-set-2020}．
 % \end{definition}
 
-% 一般の位相空間におけるコンパクト集合の定義はわかりづらいが、距離空間においては簡明な言いかえが存在する。
+% 一般の位相空間におけるコンパクト集合の定義はわかりづらいが，距離空間においては簡明な言いかえが存在する．
 
 % \begin{proposition}
 %     \label{thm:compact-set-is-bounded-closed-set}
@@ -363,7 +363,7 @@ $A$の閉包を「$A$を含む閉集合の中で最小のもの」と定義す�
 
 \begin{definition}
     \label{dfn:compact-set}
-    距離空間$(X, d)$において、有界な閉集合$A \subset X$を\word{コンパクト集合}[][こんはくとしゆうこう](compact set)という。
+    距離空間$(X, d)$において，有界な閉集合$A \subset X$を\word{コンパクト集合}[][こんはくとしゆうこう](compact set)という．
 \end{definition}
 
 

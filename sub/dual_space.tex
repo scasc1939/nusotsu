@@ -98,44 +98,44 @@
 
 \subsection{双対写像}
 
-双対空間から双対空間への写像を定義する。
+双対空間から双対空間への写像を定義する．
 
 \begin{definition}
     \label{dfn:dual-map}
-    $V, W$を$\symbb{K}$上のベクトル空間とし、
-    $f \colon V \to W$を線形写像とする。
+    $V, W$を$\symbb{K}$上のベクトル空間とし，
+    $f \colon V \to W$を線形写像とする．
     $W$の双対空間の元$g \in \dual{W}$を$V$の線形形式$g \circ f \colon V \to \symbb{K}$にうつす写像
-    $\dual{f} \colon \dual{W} \to \dual{V}$を、
-    $f$の\word{双対写像}[][そうついしやそう]という\cite[\S 4.3]{saito-lin-2007}。
+    $\dual{f} \colon \dual{W} \to \dual{V}$を，
+    $f$の\word{双対写像}[][そうついしやそう]という\cite[\S 4.3]{saito-lin-2007}．
 \end{definition}
 
-双対写像$\dual{f}$は線形写像である\cite[\S 4.3]{saito-lin-2007}。
+双対写像$\dual{f}$は線形写像である\cite[\S 4.3]{saito-lin-2007}．
 
 \begin{proposition}
     \label{thm:dual-map-property}
-    $U, V, W$をベクトル空間、$c \in \symbb{K}$を体、
-    線形写像$f, g \colon U \to V$、$h \colon V \to W$とする。
-    双対写像について、以下が成り立つ\cite[\S 4.3]{saito-lin-2007}。
+    $U, V, W$をベクトル空間，$c \in \symbb{K}$を体，
+    線形写像$f, g \colon U \to V$，$h \colon V \to W$とする．
+    双対写像について，以下が成り立つ\cite[\S 4.3]{saito-lin-2007}．
     \begin{enumerate}
-        \item $V$上の恒等写像の双対は、$\dual{V}$上の恒等写像である。
-            すなわち$\dual{(\mathrm{id}_V)} = \mathrm{id}_{\dual{V}}$が成り立つ。
-        \item $\dual{(\bigdot)}$は線形的である。
-            すなわち$\dual{(f + g)} = \dual{f} + \dual{g}$であり、$\dual{(cf)} = c\dual{f}$である。
-        \item 合成写像の双対は、順序を逆にする。
-            すなわち$\dual{(f \circ h)} = \dual{h} \circ \dual{f}$である。
+        \item $V$上の恒等写像の双対は，$\dual{V}$上の恒等写像である．
+            すなわち$\dual{(\mathrm{id}_V)} = \mathrm{id}_{\dual{V}}$が成り立つ．
+        \item $\dual{(\bigdot)}$は線形的である．
+            すなわち$\dual{(f + g)} = \dual{f} + \dual{g}$であり，$\dual{(cf)} = c\dual{f}$である．
+        \item 合成写像の双対は，順序を逆にする．
+            すなわち$\dual{(f \circ h)} = \dual{h} \circ \dual{f}$である．
     \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-    任意の$j \in \dual{V}$あるいは$k \in \dual{W}$をとって証明する。
+    任意の$j \in \dual{V}$あるいは$k \in \dual{W}$をとって証明する．
     \begin{enumerate}
-        \item $\dual{(\mathrm{id}_V)}(j) = j \circ \mathrm{id}_V = j$である。
-        \item $\dual{(f + g)}(j) = j \circ (f + g) = j \circ f + j \circ g = \dual{f}(j) + \dual{g}(j)$である。
-            また、$\dual{(cf)}(j) = j \circ (cf) = c \cdotp (j \circ f) = c\dual{f}$である。
+        \item $\dual{(\mathrm{id}_V)}(j) = j \circ \mathrm{id}_V = j$である．
+        \item $\dual{(f + g)}(j) = j \circ (f + g) = j \circ f + j \circ g = \dual{f}(j) + \dual{g}(j)$である．
+            また，$\dual{(cf)}(j) = j \circ (cf) = c \cdotp (j \circ f) = c\dual{f}$である．
         \item \(
             \dual{(f \circ g)}(j) = j \circ (f \circ g) = (j \circ f) \circ g = \dual{f} \circ g 
                 = \dual{h}( \dual{f}(j) ) = (\dual{h} \circ \dual{f})(j)
-            \)である。
+            \)である．
     \end{enumerate}
 \end{proof}
 
@@ -145,7 +145,7 @@
 
 \subsection{内積空間における線形汎関数}
 
-\cref{sec:inner-product-space}で扱った内積は、
+\cref{sec:inner-product-space}で扱った内積は，
 実は線形汎関数の一種である．
 
 \begin{proposition}

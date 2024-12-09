@@ -6,128 +6,128 @@
 \section{測度}
 \label{sec:measure}
 
-実ユークリッド空間$\symbb{R}^n$の適当な部分集合においては、``体積''が定義できる。
-この体積という概念を一般化したものが\ruby{測度}{そく|ど}である。
+実ユークリッド空間$\symbb{R}^n$の適当な部分集合においては，``体積''が定義できる．
+この体積という概念を一般化したものが\ruby{測度}{そく|ど}である．
 
-この節の議論は\citeauthor{ito-lebesgue-1963}『\citetitle{ito-lebesgue-1963}』による。
-同書において集合の和$A + B$とかかれているのは、直和$A \sqcup B$の意味である。
-測度について$m(A \overset{直和}{+} B) = m(A) + m(B)$であることを考えれば合理的な表記ともいえるが、
-本稿ではベクトル空間の\refdfn[和空間]{dfn:sum-of-vector-space}とまぎらわしいので用いない。
+この節の議論は\citeauthor{ito-lebesgue-1963}『\citetitle{ito-lebesgue-1963}』による．
+同書において集合の和$A + B$とかかれているのは，直和$A \sqcup B$の意味である．
+測度について$m(A \overset{直和}{+} B) = m(A) + m(B)$であることを考えれば合理的な表記ともいえるが，
+本稿ではベクトル空間の\refdfn[和空間]{dfn:sum-of-vector-space}とまぎらわしいので用いない．
 
 
 \subsection{ユークリッド空間における体積}
 
-測度の定義をする前に、
-通常のユークリッド空間における「体積」とは何かについて考える。
+測度の定義をする前に，
+通常のユークリッド空間における「体積」とは何かについて考える．
 
-$X = \symbb{R}$を実数の空間とする。
-$\symbb{R}$の部分集合であって、
+$X = \symbb{R}$を実数の空間とする．
+$\symbb{R}$の部分集合であって，
 \begin{equation}
     \label{eq:interval-example}
     (a, b] \coloneq \Set{  x \in \symbb{R}  \given  a < x \leq b  },
     \qquad -\infty \leq a < b < \infty
 \end{equation}
-とあらわされるものを\word{区間}[く|かん][くかん]という\cite{ito-lebesgue-1963}。
+とあらわされるものを\word{区間}[く|かん][くかん]という\cite{ito-lebesgue-1963}．
 
-$X = \symbb{R}^n$を実ユークリッド空間とする。
-ユークリッド空間の``領域''を、直積
+$X = \symbb{R}^n$を実ユークリッド空間とする．
+ユークリッド空間の``領域''を，直積
 \begin{equation}
     I \coloneq (a_1, b_1] \times \dots \times (a_n, b_n],
     \qquad -\infty \leq a_i < b_i < \infty
 \end{equation}
-で定める。
-$I$は、$n$-次元の直方体（長方形）領域である。
+で定める．
+$I$は，$n$-次元の直方体（長方形）領域である．
 
-さらに、有限個の区間$I_i$（$i = 1, 2, \dots, N$）の\refdfn[直和（非交和）]{dfn:disjoint-union}
+さらに，有限個の区間$I_i$（$i = 1, 2, \dots, N$）の\refdfn[直和（非交和）]{dfn:disjoint-union}
 \begin{equation}
     I_1 \sqcup I_2 \sqcup \dots \sqcup I_N
 \end{equation}
-を\word{区間塊}という。
-いくつかの直方体が組み合わさっている領域が区間塊である。
-直和であるから、直方体同士はくっついていても離れていてもよいが、重なってはいけない。
+を\word{区間塊}という．
+いくつかの直方体が組み合わさっている領域が区間塊である．
+直和であるから，直方体同士はくっついていても離れていてもよいが，重なってはいけない．
 
-$n$-次元ユークリッド空間における区間全体の集合を$\symfrak{I}_n$、
-区間塊全体の集合を$\symfrak{F}_n$とかく\cite{ito-lebesgue-1963}。
+$n$-次元ユークリッド空間における区間全体の集合を$\symfrak{I}_n$，
+区間塊全体の集合を$\symfrak{F}_n$とかく\cite{ito-lebesgue-1963}．
 
 
 \subsection{有限加法族}
 
 \begin{definition}
     \label{dfn:finitely-additive-class}
-    空間$X$の部分集合の\refdfn[族]{dfn:family-of-sets}（つまり$X$の部分集合からなる集合）$\symfrak{F}$が以下の3つを満たすとき、
-    $\symfrak{F}$を\word{有限加法族}という。
+    空間$X$の部分集合の\refdfn[族]{dfn:family-of-sets}（つまり$X$の部分集合からなる集合）$\symfrak{F}$が以下の3つを満たすとき，
+    $\symfrak{F}$を\word{有限加法族}という．
     \begin{enumerate}
         \item \label{field-of-sets:empty-or-X}
-            $X, \emptyset \in \symfrak{F}$である。
+            $X, \emptyset \in \symfrak{F}$である．
         \item \label{field-of-sets:complementation}
             $A \in \symfrak{F}$なら$A^{\mathrm{c}} \in \symfrak{F}$
-            （ただし補集合$A^{\mathrm{c}} = X \setminus A$）。
+            （ただし補集合$A^{\mathrm{c}} = X \setminus A$）．
         \item \label{field-of-sets:operation} 
-            $A, B \in \symfrak{F}$ならば、
-            $A \cup B \in \symfrak{F}$、
-            $A \cap B \in \symfrak{F}$、
-            $A \setminus B \in \symfrak{F}$が成り立つ。
+            $A, B \in \symfrak{F}$ならば，
+            $A \cup B \in \symfrak{F}$，
+            $A \cap B \in \symfrak{F}$，
+            $A \setminus B \in \symfrak{F}$が成り立つ．
     \end{enumerate}
 \end{definition}
 
-面積・体積を考えられる領域の条件である。
+面積・体積を考えられる領域の条件である．
 
-実は、\cref{field-of-sets:empty-or-X}は$X$か空集合$\emptyset$どちらか片方だけで十分であるし、
-\cref{field-of-sets:operation}の3条件はどれかひとつで十分である。
+実は，\cref{field-of-sets:empty-or-X}は$X$か空集合$\emptyset$どちらか片方だけで十分であるし，
+\cref{field-of-sets:operation}の3条件はどれかひとつで十分である．
 
 \begin{example}
-    $n$-次元ユークリッド空間における区間塊全体の集合$\symfrak{F}_n$は有限加法族である\cite[\S 4]{ito-lebesgue-1963}。
+    $n$-次元ユークリッド空間における区間塊全体の集合$\symfrak{F}_n$は有限加法族である\cite[\S 4]{ito-lebesgue-1963}．
 \end{example}
 
 \begin{definition}
     \label{dfn:content-measure}
-    $X$を空間、$\symfrak{F}$を有限加法族とする。
-    $\symfrak{F}$の元（つまり$X$の部分集合）$A$を実数にうつす関数$m$が以下の条件を満たすとき、
-    $m$を\word{有限加法的測度}という。
+    $X$を空間，$\symfrak{F}$を有限加法族とする．
+    $\symfrak{F}$の元（つまり$X$の部分集合）$A$を実数にうつす関数$m$が以下の条件を満たすとき，
+    $m$を\word{有限加法的測度}という．
     \begin{enumerate}
         \item \label{content-measure:positivity}
-            任意の$A \in \symfrak{F}$に対し、$0 \leq m(A) \leq +\infty$である。
-            特に、$m(\emptyset) = 0$である。
+            任意の$A \in \symfrak{F}$に対し，$0 \leq m(A) \leq +\infty$である．
+            特に，$m(\emptyset) = 0$である．
         \item \label{content-measure:additivity}（\word{有限加法性}）
-            $A, B \in \symfrak{F}$かつ$A \cap B = \emptyset$（交わらない）なら、
-            $m(A \sqcup B) = m(A) + m(B)$である。
+            $A, B \in \symfrak{F}$かつ$A \cap B = \emptyset$（交わらない）なら，
+            $m(A \sqcup B) = m(A) + m(B)$である．
 
-            より一般に、$A_1, \dots, A_n \in \symfrak{F}$が$A_j \cup A_k = \emptyset$（$j \neq k$）、
-            つまり互いに交わらないなら、
+            より一般に，$A_1, \dots, A_n \in \symfrak{F}$が$A_j \cup A_k = \emptyset$（$j \neq k$），
+            つまり互いに交わらないなら，
             \begin{equation*}
                 m \ab( \bigsqcup_{i=1}^{n} A_i ) = \sum_{i=1}^{n} m(A_i)
             \end{equation*}
     \end{enumerate}
-    以下の性質は定義からただちに導かれるが、
-    重要なので定義として加えておく。
+    以下の性質は定義からただちに導かれるが，
+    重要なので定義として加えておく．
     \begin{enumerate}[resume]
         \item \label{content-measure:monotonicity}（\word{単調性}）
-            $A \subset B$（$\in \symfrak{F}$）なら$m(A) \leq m(B)$である。
-        \item $m(A \setminus B) = m(A) - m(B)$である。
+            $A \subset B$（$\in \symfrak{F}$）なら$m(A) \leq m(B)$である．
+        \item $m(A \setminus B) = m(A) - m(B)$である．
         \item \label{content-measure:subadditivity}（\word{有限劣加法性}）
-            $A_1, \dots, A_n \in \symfrak{F}$なら、
+            $A_1, \dots, A_n \in \symfrak{F}$なら，
             \begin{equation*}
                 m \ab( \bigcup_{i=1}^{n} A_i ) \leq \sum_{i=1}^{n} m(A_i)
             \end{equation*}
     \end{enumerate}
 \end{definition}
 
-\cref{content-measure:additivity}より、
-2つの領域$A$、$B$が全く重なっていなければ、
-2つを合わせた領域$A \cup B$の体積は、$A$の体積と$B$の体積の和になるはずである。
-また、$A$と$B$が一部重なっている場合、
+\cref{content-measure:additivity}より，
+2つの領域$A$，$B$が全く重なっていなければ，
+2つを合わせた領域$A \cup B$の体積は，$A$の体積と$B$の体積の和になるはずである．
+また，$A$と$B$が一部重なっている場合，
 $A \cup B$の体積は単純な和よりもすこし小さくなるはずであるということを
-\cref{content-measure:subadditivity}は主張している。
+\cref{content-measure:subadditivity}は主張している．
 
-\cref{content-measure:monotonicity}より、
-領域$A$が完全に$B$に含まれているのなら、$A$の体積が$B$の体積を超えることはない。
+\cref{content-measure:monotonicity}より，
+領域$A$が完全に$B$に含まれているのなら，$A$の体積が$B$の体積を超えることはない．
 
 
 
 \begin{proposition}
     \label{thm:Lebesgue-finitely-additive-measure}
     $N$-次元ユークリッド空間$\symbb{R}^N$における区間塊$E = I_1 + \dots + I_n$
-    （$E \in \symfrak{F}_N$、$I_i \in \symfrak{I}$）に対し、
+    （$E \in \symfrak{F}_N$，$I_i \in \symfrak{I}$）に対し，
     \begin{equation}
         \begin{split}
             m^* (E)  &\coloneq  \prod_\nu (b_\nu - a_\nu)  \\
@@ -135,8 +135,8 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
                      \quad \text{ただし} \quad I_\nu = (a_\nu, b_\nu]
         \end{split}
     \end{equation}
-    は$\symfrak{F}_N$上の有限加法的測度である（\cref{eq:interval-example}を参照）。
-    さらに$m^*$は完全加法的である。
+    は$\symfrak{F}_N$上の有限加法的測度である（\cref{eq:interval-example}を参照）．
+    さらに$m^*$は完全加法的である．
 \end{proposition}
 
 
@@ -144,47 +144,47 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
 \subsection{外測度}
 
 \begin{definition}[外測度]
-    $X$を集合、$\Gamma$を$X$の部分集合から実数への関数とする。
-    任意の部分集合$A, B$について、
+    $X$を集合，$\Gamma$を$X$の部分集合から実数への関数とする．
+    任意の部分集合$A, B$について，
     \begin{enumerate}
-        \item （非負性）$0 \leq \Gamma(A) \leq +\infty$であり、さらに$\Gamma(\emptyset) = 0$である。
-        \item （単調性）$A \subset B$なら$\Gamma(A) \leq \Gamma(B)$である。
+        \item （非負性）$0 \leq \Gamma(A) \leq +\infty$であり，さらに$\Gamma(\emptyset) = 0$である．
+        \item （単調性）$A \subset B$なら$\Gamma(A) \leq \Gamma(B)$である．
         \item （劣加法性）$\Gamma \ab( \bigcup_{n=1}^{\infty} A_n ) \leq \sum_{n=1}^{\infty} \Gamma(A_n)$
     \end{enumerate}
-    の3つが満たされるとき、
+    の3つが満たされるとき，
     $\Gamma$を\word{カラテオドリの外測度}(Carathéodory outer measure)%
     \index{かいそくと@外測度!からておとりの@カラテオドリの⸺}%
     \index{からておとりのかいそくと@カラテオドリの外測度|see{外測度}}%
-    \cite{rikagaku-eiwa}、
+    \cite{rikagaku-eiwa}，
     あるいは単に\word{外測度}[がい|そく|ど][かいそくと](outer measure)という\cite{ito-lebesgue-1963}%
-    \footnote{\person{Constantin Carathéodory}{1873}{1950}。ドイツの数学者。熱力学第二法則の定式化でも知られる。\cite{nipponica}}。
+    \footnote{\person{Constantin Carathéodory}{1873}{1950}．ドイツの数学者．熱力学第二法則の定式化でも知られる．\cite{nipponica}}．
 \end{definition}
 
 \begin{theorem}
     \label{thm:finite-additive-to-outer-measure}
-    空間$X$を考え、$\symfrak{F}$を有限加法族、$m$を$\symfrak{F}$上の有限加法的測度とする。
-    $\symfrak{F}$に属する集合$E$の測度は$m(E)$と定義できる。
-    これを$X$の任意の集合$A$（$A \in \symfrak{F}$とは限らない）に対して拡張しよう。
+    空間$X$を考え，$\symfrak{F}$を有限加法族，$m$を$\symfrak{F}$上の有限加法的測度とする．
+    $\symfrak{F}$に属する集合$E$の測度は$m(E)$と定義できる．
+    これを$X$の任意の集合$A$（$A \in \symfrak{F}$とは限らない）に対して拡張しよう．
 
-    $A \subset X$を集合とする。
+    $A \subset X$を集合とする．
     高々加算個の$\symfrak{F}$の集合の組$\{ E_n \}$で$A$を覆う%
     \footnote{
-        つまり、
+        つまり，
         $\displaystyle A \subset \bigcup_{n=1}^{\infty} E_n$となるような集合の組$ \{ E_n \} $
-        （ただし$E_k \in \symfrak{F}$）であり、
-        $E_1, E_2, \dotsc$と数えると加算無限個（ないしは有限個）である。
-        $E_k$は加算集合でなくてもよい。
-    }。
-    このような覆いかたは必ず存在し\footnote{たとえば1個の集合$X$で$A$を覆うことができる。}、
+        （ただし$E_k \in \symfrak{F}$）であり，
+        $E_1, E_2, \dotsc$と数えると加算無限個（ないしは有限個）である．
+        $E_k$は加算集合でなくてもよい．
+    }．
+    このような覆いかたは必ず存在し\footnote{たとえば1個の集合$X$で$A$を覆うことができる．}，
     またそれぞれの覆いかた$\{ E_n \}$について
-    $\sum_{n=1}^{\infty} m(E_n)$を計算することができる。
+    $\sum_{n=1}^{\infty} m(E_n)$を計算することができる．
 
-    このような$A$の覆いかたすべてを考え、
+    このような$A$の覆いかたすべてを考え，
     そのうえで
     \begin{equation*}
         \Gamma(A)  \coloneq  \inf_{ \{ E_n \} } \sum_{n=1}^{\infty} m(E_n)
     \end{equation*}
-    と定めると、$\Gamma$は外測度である。
+    と定めると，$\Gamma$は外測度である．
 \end{theorem}
 
 
@@ -193,11 +193,11 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
     \cref{thm:Lebesgue-finitely-additive-measure}%
     で定義した$m^*$を%
     \cref{thm:finite-additive-to-outer-measure}%
-    の方法によって拡張した$\mu^*$を、
+    の方法によって拡張した$\mu^*$を，
     \word{ルベーグ外測度}(Lebesgue outer measure)%
     \index{るへえく@ルベーグ!\indexdash かいそくと@外測度|see{外測度}}%
     \index{かいそくと@外測度!るへえく@ルベーグ\indexdash}%
-    という。
+    という．
 \end{definition}
 
 
@@ -205,41 +205,41 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
 \subsection{測度}
 
 \begin{definition}
-    $X$を空間とする。
-    集合族$\symfrak{B}$が以下の条件を満たすとき、
+    $X$を空間とする．
+    集合族$\symfrak{B}$が以下の条件を満たすとき，
     $\sigma$-\word{加法族}という\footnote{
-        \word{完全加法族}[][かんせんかほうそく]という場合や、
-        単に\word{加法族}[][かほうそく]ということもある。
-    }。
+        \word{完全加法族}[][かんせんかほうそく]という場合や，
+        単に\word{加法族}[][かほうそく]ということもある．
+    }．
     \begin{enumerate}
-        \item $X, \emptyset \in \symfrak{B}$である。
-        \item $A \in \symfrak{B}$なら$A^{\mathrm{c}} \in \symfrak{B}$である。
-        \item $\symfrak{B}$に属する加算個の集合$A_1, A_2, \dotsc \in \symfrak{B}$に対し、
-            \(  \bigcup_{n=1}^{\infty} A_n  \in  \symfrak{B}  \)。
+        \item $X, \emptyset \in \symfrak{B}$である．
+        \item $A \in \symfrak{B}$なら$A^{\mathrm{c}} \in \symfrak{B}$である．
+        \item $\symfrak{B}$に属する加算個の集合$A_1, A_2, \dotsc \in \symfrak{B}$に対し，
+            \(  \bigcup_{n=1}^{\infty} A_n  \in  \symfrak{B}  \)．
     \end{enumerate}
-    より一般に、$\symfrak{B}$に属する集合の和・差・重なりを加算無限回とってできた集合は$\symfrak{B}$に属する。
+    より一般に，$\symfrak{B}$に属する集合の和・差・重なりを加算無限回とってできた集合は$\symfrak{B}$に属する．
 \end{definition}
 
-$\sigma$-加法族は\refdfn-[有限加法族]{dfn:finitely-additive-class}である。
+$\sigma$-加法族は\refdfn-[有限加法族]{dfn:finitely-additive-class}である．
 
 
 
 \begin{definition}
-    $\symfrak{B}$を$\sigma$-加法族とする。
-    以下の条件を満たす$\mu$を\word{測度}[そく|ど](measure)\index{そくと@測度}という。
+    $\symfrak{B}$を$\sigma$-加法族とする．
+    以下の条件を満たす$\mu$を\word{測度}[そく|ど](measure)\index{そくと@測度}という．
     \begin{enumerate}
-        \item 任意の$A \in \symfrak{B}$に対し、$0 \leq \mu(A) \leq \infty$である。
-        \item 高々加算個の集合\footnote{$A_i$が加算集合といっているのではない。}%
-            $A_1, A_2, \dotsc \in \symfrak{B}$が互いに交わらないとき（$i \neq j$なら$A_i \cap A_j = \emptyset$）、
+        \item 任意の$A \in \symfrak{B}$に対し，$0 \leq \mu(A) \leq \infty$である．
+        \item 高々加算個の集合\footnote{$A_i$が加算集合といっているのではない．}%
+            $A_1, A_2, \dotsc \in \symfrak{B}$が互いに交わらないとき（$i \neq j$なら$A_i \cap A_j = \emptyset$），
             \[  \bigsqcup_{n=1}^{\infty} A_n  \in  \symfrak{B}  \]
     \end{enumerate}
-    これらより、
+    これらより，
     \begin{enumerate}[resume]
         \item \label{content-measure:monotonicity}（\word{単調性}）
-            $A, B \in \symfrak{B}$が$A \subset B$であるなら$\mu(A) \leq \mu(B)$である。
-        \item $m(A \setminus B) = m(A) - m(B)$である。
+            $A, B \in \symfrak{B}$が$A \subset B$であるなら$\mu(A) \leq \mu(B)$である．
+        \item $m(A \setminus B) = m(A) - m(B)$である．
         \item \label{content-measure:subadditivity}（\word{劣加法性}）
-            $A_1, A_2, \dotsc \in \symfrak{F}$（高々加算個）なら、
+            $A_1, A_2, \dotsc \in \symfrak{F}$（高々加算個）なら，
             \begin{equation*}
                 \mu \ab( \bigcup_{i=1}^{n} A_i ) \leq \sum_{i=1}^{n} \mu(A_i)
             \end{equation*}
