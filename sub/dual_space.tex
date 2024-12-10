@@ -8,16 +8,16 @@
 \subsection{双対空間}
 
 \begin{definition}[線形汎関数]
-    $V$を$\symbb{K}$上のベクトル空間\refdfn{dfn:vector-space}とする．
-    線形写像\refdfn{dfn:linear-map}$f \colon V \to \symbb{K}$を
+    $V$を$𝕂$上のベクトル空間\refdfn{dfn:vector-space}とする．
+    線形写像\refdfn{dfn:linear-map}$f \colon V \to 𝕂$を
     \word{線形形式}[][せんけいけいしき](linear form)
     あるいは\word{線形汎関数}[せん|けい|はん|かん|すう][せんけいはんかんすう](linear functional)という．
 \end{definition}
 
 \begin{example}
-    $V = \symbb{R}^3$（3次元ユークリッド空間）とする．
-    $\symbb{R}^3$のベクトルをその第1成分にうつす写像
-    $f \colon \symbf{v} \longmapsto v_1 \in \symbb{R}$は$V$の線形汎関数である．
+    $V = ℝ^3$（3次元ユークリッド空間）とする．
+    $ℝ^3$のベクトルをその第1成分にうつす写像
+    $f \colon 𝒗 \longmapsto v_1 \in ℝ$は$V$の線形汎関数である．
 \end{example}
 
 
@@ -25,7 +25,7 @@
     \label{dfn:dual-space}
     $V$上の線形汎関数全体の集合
     \begin{equation}
-        \dual{V}  \coloneq  \Set{  f \colon V \to \symbb{K}  \given  \text{$f$は線形汎関数}  }
+        \dual{V}  \coloneq  \Set{  f \colon V \to 𝕂  \given  \text{$f$は線形汎関数}  }
     \end{equation}
     を$V$の\word{双対空間}[そう|つい|くう|かん][そうついくうかん](dual space)という\cite[\S 4.1]{saito-lin-2007}．
 \end{definition}
@@ -43,26 +43,26 @@
 
 \begin{definition}[双対基底]
     \label{dfn:dual-basis}
-    $V$を$\symbb{K}$上の有限次元ベクトル空間，$\symbf{x}_1, \dots, \symbf{x}_n$を$V$の基底とすると，
+    $V$を$𝕂$上の有限次元ベクトル空間，$𝒙_1, \dots, 𝒙_n$を$V$の基底とすると，
     各$i = 1, \dots, n$に対し
     \begin{equation}
         \label{eq:dual-basis}
-        f_i (\symbf{x}_j) = \delta_{i, j} \quad \text{\refdfn{dfn:Kronecker-delta}}
+        f_i (𝒙_j) = \delta_{i, j} \quad \text{\refdfn{dfn:Kronecker-delta}}
     \end{equation}
-    を満たす線形汎関数$f_i \colon V \to \symbb{K}$がただひとつ存在する．
+    を満たす線形汎関数$f_i \colon V \to 𝕂$がただひとつ存在する．
     このとき，$f_1, \dots, f_n$は$\dual{V}$の基底になる．
 
-    \cref{eq:dual-basis}で定義される$f_1, \dots, f_n$を$\symbf{x}_1, \dots, \symbf{x}_n$の\word{双対基底}[そう|つい|き|てい][そうついきてい](dual basis)という．
+    \cref{eq:dual-basis}で定義される$f_1, \dots, f_n$を$𝒙_1, \dots, 𝒙_n$の\word{双対基底}[そう|つい|き|てい][そうついきてい](dual basis)という．
 \end{definition}
 
 このような定義が可能であることについては証明を要するが，ここでは省略する．
 
 \begin{example}
-    $V = \symbb{R}^n$とし，ある$\symbf{a} \in V$をとる．
-    線形汎関数$f_{\symbf{a}} \colon V \to \symbb{R}$を
-    \[  f_{\symbf{a}} \colon V \ni \symbf{v} \longmapsto \tp{\symbf{a}} \cdotp \symbf{v} \in \symbb{R}  \]
+    $V = ℝ^n$とし，ある$\symbf{a} \in V$をとる．
+    線形汎関数$f_{\symbf{a}} \colon V \to ℝ$を
+    \[  f_{\symbf{a}} \colon V \ni 𝒗 \longmapsto \tp{\symbf{a}} \cdotp 𝒗 \in ℝ  \]
     で定める．
-    $\symbb{R}^n$の標準基底$\symbf{e}_1, \dots, \symbf{e}_n$に対する双対基底は，
+    $ℝ^n$の標準基底$\symbf{e}_1, \dots, \symbf{e}_n$に対する双対基底は，
     $f_{\symbf{e}_1}, \dots, f_{\symbf{e}_n}$である．
     これは行ベクトル$\tp{\symbf{e}_1}, \dots, \tp{\symbf{e}_n}$とみることができる．．
 \end{example}
@@ -86,9 +86,9 @@
 \end{proposition}
 
 \begin{proof}
-    写像$\dual{i}$を，線形汎関数$f \colon V \to \symbb{K}$を$W$に制限する写像と定める：
+    写像$\dual{i}$を，線形汎関数$f \colon V \to 𝕂$を$W$に制限する写像と定める：
     \[  \dual{i} \colon \dual{V} \ni f \longmapsto f \vert_W \in \dual{W}  \]
-    このとき，任意の$f, g \in \dual{V}$および$c \in \symbb{K}$について
+    このとき，任意の$f, g \in \dual{V}$および$c \in 𝕂$について
     $\dual{i}(f + g) = \dual{i}(f) + \dual{i}(g)$かつ$\dual{i}(cf) = c \cdotp \dual{i}(f)$であるので，
     $\dual{i}$は線形写像である．
     すると$W^\perp = \ker( \dual{i} \colon \dual{V} \to \dual{W} )$\refdfn{dfn:kernel-of-linear-map}とかけるので，
@@ -102,9 +102,9 @@
 
 \begin{definition}
     \label{dfn:dual-map}
-    $V, W$を$\symbb{K}$上のベクトル空間とし，
+    $V, W$を$𝕂$上のベクトル空間とし，
     $f \colon V \to W$を線形写像とする．
-    $W$の双対空間の元$g \in \dual{W}$を$V$の線形形式$g \circ f \colon V \to \symbb{K}$にうつす写像
+    $W$の双対空間の元$g \in \dual{W}$を$V$の線形形式$g \circ f \colon V \to 𝕂$にうつす写像
     $\dual{f} \colon \dual{W} \to \dual{V}$を，
     $f$の\word{双対写像}[][そうついしやそう]という\cite[\S 4.3]{saito-lin-2007}．
 \end{definition}
@@ -113,7 +113,7 @@
 
 \begin{proposition}
     \label{thm:dual-map-property}
-    $U, V, W$をベクトル空間，$c \in \symbb{K}$を体，
+    $U, V, W$をベクトル空間，$c \in 𝕂$を体，
     線形写像$f, g \colon U \to V$，$h \colon V \to W$とする．
     双対写像について，以下が成り立つ\cite[\S 4.3]{saito-lin-2007}．
     \begin{enumerate}
@@ -149,17 +149,32 @@
 実は線形汎関数の一種である．
 
 \begin{proposition}
-    $V$を内積空間\refdfn{dfn:inner-product}，$\symbf{u} \in V$をあるベクトルとする．
-    任意のベクトル$\symbf{v} \in V$に対して内積$(\symbf{u}, \symbf{v})$を与える写像
+    $\symcal{V}$を内積空間\refdfn{dfn:inner-product}，$𝒖 \in V$をあるベクトルとする．
+    任意のベクトル$𝒗 \in V$に対して内積$\iparen{𝒖, 𝒗}$を与える写像
     \begin{equation}
-        (\symbf{u}, \bigdot) \colon V \ni \symbf{v} \longmapsto (\symbf{u}, \symbf{v}) \in \symbb{R}
+        \iparen{𝒖, \bigdot} \colon V \ni 𝒗 \longmapsto \iparen{𝒖, 𝒗} \in ℝ
     \end{equation}
     は線形汎関数である．
 \end{proposition}
 
 \begin{proof}
-    内積の線形性より$(\symbf{u}, \bigdot)$が線形なのは明らかである．
+    内積の線形性より$\iparen{𝒖, \bigdot}$が線形なのは明らかである．
 \end{proof}
+
+
+内積が線形汎関数であることはほぼ明らかである．
+真に驚くべきことは，すべての線形汎関数が内積の形でかけることである．
+
+
+\begin{theorem}[\word{リースの表現定理}(Riesz representation theorem)]
+    $\symcal{V}$を内積空間とする．
+    任意の線形汎関数$F \colon V \to 𝕂$は，
+    あるベクトル$\symbf{a} \in \symcal{V}$を用いて
+    \begin{equation}
+        F(\symbf{v}) \coloneq \iparen{ \symbf{a}, \symbf{v} }
+    \end{equation}
+    とかける．
+\end{theorem}
 
 
 

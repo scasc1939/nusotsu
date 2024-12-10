@@ -7,14 +7,14 @@
 \section{関数解析}
 
 この節では関数をベクトル空間の\ruby{元}{げん}として扱う．
-ベクトル空間の係数体$\symbb{K}$は$\symbb{R}$もしくは$\symbb{C}$に限る．
+ベクトル空間の係数体$𝕂$は$ℝ$もしくは$ℂ$に限る．
 
 \subsection{関数空間}
 
 関数$\psi(x_1, x_2, \dotsc)$のようなものを考えよう．
 
 \begin{definition}
-    $\Omega \subset \symbb{R}$を$n$次元ユークリッド空間$\symbb{R}^n$の開集合\refdfn{dfn:open-set-and-closed-set}とする．
+    $\Omega \subset ℝ$を$n$次元ユークリッド空間$ℝ^n$の開集合\refdfn{dfn:open-set-and-closed-set}とする．
     $\Omega$における連続関数全体の集合を$C^0 (\Omega)$でかく．
 \end{definition}
 
@@ -22,12 +22,12 @@
     \label{thm:continuous-function-space-is-vector-space}
     $C(\Omega)$は以下のように定義される和とスカラー倍に関して，ベクトル空間をなしている．
     \begin{itemize}
-        \item $f, g \in C(\Omega)$，$c \in \symbb{K}$に対して，
+        \item $f, g \in C(\Omega)$，$c \in 𝕂$に対して，
         \begin{enumerate}
             \item 関数の和$f \plushat g$は，
-                任意の$x \in \symbb{C}$に対して$ ( f \plushat g )(\symbf{x}) = f(x) \doubleplus g(x) $である関数と定める．
+                任意の$x \in ℂ$に対して$ ( f \plushat g )(𝒙) = f(x) \doubleplus g(x) $である関数と定める．
             \item 関数のスカラー倍$c \mathbin{\hat{\scaprod}} f$は，
-                任意の$x \in \symbb{C}$に対して$ ( c \mathbin{\hat{\scaprod}} g )(x) = c \scaprodvar f(x) $である関数と定める．
+                任意の$x \in ℂ$に対して$ ( c \mathbin{\hat{\scaprod}} g )(x) = c \scaprodvar f(x) $である関数と定める．
         \end{enumerate}
     \end{itemize}
 \end{proposition}
@@ -52,7 +52,7 @@ $C_0 (\Omega)$もベクトル空間になっている．
 \begin{definition}
     \label{dfn:class-C^k-function}
     複素関数$f$が\word{$C^k$-級関数}[][Cきゆうかんすう](class $C^k$-function)であるとは，
-    $f(x)$が$\symbb{C}$上で$k$回微分可能かつ$k$次導関数が連続であることをいう．
+    $f(x)$が$ℂ$上で$k$回微分可能かつ$k$次導関数が連続であることをいう．
     $f(x)$が無限回微分可能であるとき$C^\infty$-級関数であるという．
 
     $C^k$-級関数全体の集合を$C^k$とかく．
@@ -78,9 +78,9 @@ $C_0 (\Omega)$もベクトル空間になっている．
 
 \begin{definition}
     \label{dfn:square-integrable-function-space}
-    $[a, b] \subset \symbb{R}$から$\symbb{C}$への\word{2乗可積分関数空間}(square integrable function space) $L^2$を
+    $[a, b] \subset ℝ$から$ℂ$への\word{2乗可積分関数空間}(square integrable function space) $L^2$を
     \begin{equation*}
-        L^2 (a, b) \coloneq \Set*{ f \colon [a, b] \to \symbb{C}  \given  \int_a^b \abs{f(x)} \dd{x} < \infty }
+        L^2 (a, b) \coloneq \Set*{ f \colon [a, b] \to ℂ  \given  \int_a^b \abs{f(x)} \dd{x} < \infty }
     \end{equation*}
     で定義する．
 \end{definition}
@@ -112,7 +112,7 @@ $C_0 (\Omega)$もベクトル空間になっている．
 \end{proof}
 
 
-$u$を$\Omega \subset_{\text{open}} \symbb{R}^n$で定義された関数とする．
+$u$を$\Omega \subset_{\text{open}} ℝ^n$で定義された関数とする．
 $u$が$\Omega$で局所可積分であるとは，
 任意の\refdfn[コンパクト集合]{dfn:compact-set}$K \subset \Omega$に対し
 \begin{equation*}

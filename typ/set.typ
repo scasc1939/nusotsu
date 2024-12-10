@@ -216,7 +216,7 @@ $A = B$のときも$A subset B$（かつ$A supset B$）である．
 特に$A eq.not B$であるとき，$A subset.neq B$とかき，*$B$は$A$より真に大きい*という．
 
 
-=== $in$と$subset$、区別できますか？
+=== $in$と$subset$，区別できますか？
 
 集合として
 $ X := { 1, thick

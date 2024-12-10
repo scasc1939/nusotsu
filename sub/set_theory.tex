@@ -70,14 +70,14 @@ $X$と$a$の位置を入れ替えて$X \ni a$あるいは$a \nni X$とかいて�
         \\
         \text{有理数全体の集合} \, \symbb{Q} &= \Set*{  \frac{p}{q}  \given  p \in \symbb{Z}, \  q \in \symbb{N}  }
         \\
-        \text{実数全体の集合}  \, \symbb{R} &\phantom{=}
+        \text{実数全体の集合}  \, ℝ &\phantom{=}
         \\
-        \text{複素数全体の集合} \, \symbb{C} &= \Set{  a + b \iu  \given  a, b \in \symbb{R}  }
+        \text{複素数全体の集合} \, ℂ &= \Set{  a + b \iu  \given  a, b \in ℝ  }
     \end{align}
 \end{subequations}
 
 \begin{example}
-    \textgt{正の実数全体の集合}は，$\Set{  x \in \symbb{R}  \given  x > 0  }$とかける．
+    \textgt{正の実数全体の集合}は，$\Set{  x \in ℝ  \given  x > 0  }$とかける．
 \end{example}
 
 
@@ -215,12 +215,12 @@ $X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
 \end{example}
 
 \begin{example}
-    $X = \symbb{R}$，$Y = \symbb{R}$とする．
+    $X = ℝ$，$Y = ℝ$とする．
     $x \in X$に対して，$y \in Y$を
     \[ y = f(x) = x^2 \]
-    で定めたとき，$f$は$\symbb{R}$から$\symbb{R}$への写像である．
+    で定めたとき，$f$は$ℝ$から$ℝ$への写像である．
 
-    $\symbb{R}$から$\symbb{R}$への写像や$\symbb{C}$から$\symbb{C}$への写像を，特に\word{関数}[かん|すう](function)という．
+    $ℝ$から$ℝ$への写像や$ℂ$から$ℂ$への写像を，特に\word{関数}[かん|すう](function)という．
 \end{example}
 
 \begin{definition}[像]
@@ -261,10 +261,10 @@ $f$の値域といった場合，$f$の終域を指すことも像を指すこ�
 任意の写像$f$に対し，逆写像が存在するとは限らないが，逆像は必ず存在する．
 
 \begin{example}
-    写像$f$を，$f \colon \symbb{R} \ni x \longmapsto \lfloor x \rfloor \in \symbb{R}$（$x$を超えない最大の整数）で定義する．
-    $f$の像は$f[\symbb{R}] = \symbb{Z}$である．
-    部分集合の像はたとえば$f[ \Set{  x \in \symbb{R}  \given  \abs{x} < 2  } ] = \{ -2, 1, 0, 1 \}$である．
-    逆像はたとえば$f^{-1}[ \{ 1, 2, 3 \} ] = \Set{  x \in \symbb{R}  \given  1 \leq x < 4  }$である．
+    写像$f$を，$f \colon ℝ \ni x \longmapsto \lfloor x \rfloor \in ℝ$（$x$を超えない最大の整数）で定義する．
+    $f$の像は$f[ℝ] = \symbb{Z}$である．
+    部分集合の像はたとえば$f[ \Set{  x \in ℝ  \given  \abs{x} < 2  } ] = \{ -2, 1, 0, 1 \}$である．
+    逆像はたとえば$f^{-1}[ \{ 1, 2, 3 \} ] = \Set{  x \in ℝ  \given  1 \leq x < 4  }$である．
     また，$f^{-1}[ \{ 0.5 \} ] = \emptyset$である．
 \end{example}
 
@@ -482,11 +482,11 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
 
 
 \begin{theorem}
-    実数全体の集合$\symbb{R}$は非可算無限集合である\cite[\S 7]{uchida-set-2020}．
+    実数全体の集合$ℝ$は非可算無限集合である\cite[\S 7]{uchida-set-2020}．
 \end{theorem}
 
 \begin{proof}
-    $(0, 1] \subset \symbb{R}$が非可算であることを示せば十分である．
+    $(0, 1] \subset ℝ$が非可算であることを示せば十分である．
     まず$(0, 1]$は明らかに有限集合ではない．
     そこで，$(0, 1]$が\refdfn-[可算無限集合]{dfn:countably-infinite}であると仮定する．
     $(0, 1]$の元（つまり$0$より大きく$1$以下の実数）が自然数で$x_1, x_2, \dotsc$とラベル付けされるので，
@@ -567,7 +567,7 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
 \begin{enumerate}
     \item 有限個
     \item 可算無限個（たとえば$\symbb{N}$，$\symbb{Q}$，$\symbb{N} \times \symbb{N}$）
-    \item 非可算無限個（たとえば$\symbb{R}$）
+    \item 非可算無限個（たとえば$ℝ$）
 \end{enumerate}
 可算であるか非可算であるかの区別は重要である．
 
@@ -589,8 +589,8 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
 \end{definition}
 
 \begin{example}
-    不等号$<$は$\symbb{R}$上の二項関係である．
-    実際，任意の$a, b \in \symbb{R}$に対し，$a<b$が真であるか偽であるかを判別できる．
+    不等号$<$は$ℝ$上の二項関係である．
+    実際，任意の$a, b \in ℝ$に対し，$a<b$が真であるか偽であるかを判別できる．
 \end{example}
 
 
@@ -610,7 +610,7 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
 \end{example}
 
 \begin{example}
-    $\symbb{C}$上の二項関係$\sim$を
+    $ℂ$上の二項関係$\sim$を
     \begin{equation*}
         x \sim y  \iff  \abs{x} = \abs{y}
     \end{equation*}

@@ -13,8 +13,8 @@
 用語の定義にとどめる．
 
 \begin{definition}[行列]
-    $\symbb{K}$を\refdfn[体]{dfn:field}とする．
-    $\symbb{K}$の元（すなわち数字）を縦横に$m \times n$個ならべたものを\word{行列}[ぎょう|れつ][きようれつ](matrix)という．
+    $𝕂$を\refdfn[体]{dfn:field}とする．
+    $𝕂$の元（すなわち数字）を縦横に$m \times n$個ならべたものを\word{行列}[ぎょう|れつ][きようれつ](matrix)という．
     \begin{equation}
         \label{eq:matrix-example}
         A \coloneq 
@@ -25,7 +25,7 @@
             a_{m1}  &  a_{m2}  &  \cdots  &  a_{mn}
         \end{pmatrix}
         , \qquad 
-        a_{ij} \in \symbb{K}
+        a_{ij} \in 𝕂
     \end{equation}
     縦が\word{列}[れつ]，横が\word{行}[ぎょう]である．
 
@@ -39,7 +39,7 @@
 
 \begin{definition}
     \label{dfn:set-of-matrix}
-    $\symbb{K}$-係数の$m \times n$-行列全体の集合を$M_{mn}(\symbb{K})$とあらわす．
+    $𝕂$-係数の$m \times n$-行列全体の集合を$M_{mn}(𝕂)$とあらわす．
 \end{definition}
 
 名前がついている特別な行列がいくつかある．
@@ -81,7 +81,7 @@
             \begin{equation}
                 A + B \coloneq (a_{ij} + b_{ij})_{1 \leq i \leq m, \  1 \leq j \leq n}
             \end{equation}
-        \item 行列$A = (a_{ij})$の$c$（$\in \symbb{K}$）倍は，それぞれの成分の$c$倍
+        \item 行列$A = (a_{ij})$の$c$（$\in 𝕂$）倍は，それぞれの成分の$c$倍
             \begin{equation}
                 c \cdotp A \coloneq (c \cdotp a_{ij})_{1 \leq i \leq m, \  1 \leq j \leq n}
             \end{equation}
@@ -97,14 +97,14 @@
     行列の演算についての性質を挙げる．
     $p \times q$行列$A$，$q \times r$行列$B$，$r \times s$行列$C$とする．
     \begin{itemize}
-        \item $M_{mn}(\symbb{K})$は和について\refdfn[アーベル群]{dfn:group}をなす．すなわち
+        \item $M_{mn}(𝕂)$は和について\refdfn[アーベル群]{dfn:group}をなす．すなわち
         \begin{enumerate}
             \item （結合律）$(A + B) + C = A + (B + C)$であり，
             \item （単位元）$A + O = O + A = A$であり，
             \item （逆元）$A + (-A) = (-A) + A$となる$-A$が存在し，
             \item （交換律）$A + B = B + A$である．
         \end{enumerate}
-        \item $M_{mn}(\symbb{K})$は積について結合的であり，また単位元をもつ．
+        \item $M_{mn}(𝕂)$は積について結合的であり，また単位元をもつ．
             すなわち，
         \begin{enumerate}
             \item （結合律）$(AB)C = A(BC)$であり，
@@ -223,7 +223,7 @@ $\sgn(\sigma)$のことを$(-1)^\sigma$や$(-)^\sigma$とかくこともある�
     \begin{equation}
         \det A  \coloneq  \sum_{\sigma \in \symfrak{S}_n} \sgn(\sigma) \, a_{1, \sigma(1)} a_{2, \sigma(2)} \dotsm a_{n, \sigma(n)} 
     \end{equation}
-    で定義される写像$\det \colon M_{nn}(\symbb{K}) \to \symbb{K}$を\word{行列式}[ぎょう|れつ|しき][きようれつしき](determinant)という．
+    で定義される写像$\det \colon M_{nn}(𝕂) \to 𝕂$を\word{行列式}[ぎょう|れつ|しき][きようれつしき](determinant)という．
 \end{definition}
 
 \begin{proposition}
@@ -258,7 +258,7 @@ $\sgn(\sigma)$のことを$(-1)^\sigma$や$(-)^\sigma$とかくこともある�
     \begin{enumerate}
         \item $A$は正則行列．
         \item $A$の行列式$\det A = 0$．
-        \item $A \symbf{x} = \symbf{0}$の解は自明な解$\symbf{x} = \symbf{0}$のみである．
+        \item $A 𝒙 = \symbf{0}$の解は自明な解$𝒙 = \symbf{0}$のみである．
     \end{enumerate}
 \end{proposition}
 

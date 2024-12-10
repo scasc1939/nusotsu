@@ -13,31 +13,31 @@
 この章ではベクトルの性質を抽象化し，ベクトル空間について定義する．
 
 
-\subsection{3次元ユークリッド空間$\symbb{R}^3$の性質}
+\subsection{3次元ユークリッド空間$ℝ^3$の性質}
 
-この節では，ユークリッド空間$\symbb{R}^3$における数ベクトルの性質を確かめる．
+この節では，ユークリッド空間$ℝ^3$における数ベクトルの性質を確かめる．
 
 $n$個の数字\footnote{ここでは実数または複素数のこと．}を縦に並べたものを「$n$-\ruby{次}{じ}の\ruby{列}{れつ}ベクトル」と呼び，
 横に並べたものを「$n$-次の\ruby{行}{ぎょう}ベクトル」と呼ぶ\cite{miyake-lin-2008}．
 列ベクトルのことを「\ruby{縦}{たて}ベクトル」，行ベクトルを「\ruby{横}{よこ}ベクトル」ということもある．
 
-たとえば\cref{eq:complex-Euclidean-vector-example}の$\symbf{x}$は3次の列ベクトル，
-$\symbf{y}$は3次の行ベクトルである．
+たとえば\cref{eq:complex-Euclidean-vector-example}の$𝒙$は3次の列ベクトル，
+$𝒚$は3次の行ベクトルである．
 \begin{align}
     \label{eq:complex-Euclidean-vector-example}
-    \symbf{x} = 
+    𝒙 = 
     \begin{pmatrix}
         a  \\  b  \\  c
     \end{pmatrix}
     , \qquad
-    \symbf{y} = 
+    𝒚 = 
     \begin{pmatrix}
         a  &  b  &  c
     \end{pmatrix}
     \qquad 
-    \text{where $a, b, c \in \symbb{C}$}
+    \text{where $a, b, c \in ℂ$}
 \end{align}
-ここで，$a, b, c$はそれぞれある複素数である\footnote{$\symbb{C}$は複素数全体の集合．\cref{eq:number-sets}を参照}．
+ここで，$a, b, c$はそれぞれある複素数である\footnote{$ℂ$は複素数全体の集合．\cref{eq:number-sets}を参照}．
 $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]という．
 
 列ベクトルと行ベクトルは，「\word{転置}[てん|ち](transpose)」という操作によって移り変わる．
@@ -118,18 +118,18 @@ $a, b, c$のことをそれぞれ，ベクトルの\word{成分}[せい|ぶん]�
 
 \subsubsection*{ベクトルの内積}
 
-$\symbf{a}$と$\symbf{x}$を列ベクトルとすると，
+$\symbf{a}$と$𝒙$を列ベクトルとすると，
 それらの間の\refdfn[内積]{dfn:inner-product}は，以下のように定義できるのだった．
 \begin{equation*}
-    (\symbf{a}, \symbf{x})
-        = \symbf{a} \cdotp \symbf{x}
-        = \norm{\symbf{a}} \norm{\symbf{x}} \cos \theta
+    (\symbf{a}, 𝒙)
+        = \symbf{a} \cdotp 𝒙
+        = \norm{\symbf{a}} \norm{𝒙} \cos \theta
 \end{equation*}
 ここで，$\norm{\symbf{a}}$はベクトル$\symbf{a}$の\refdfn[長さ]{dfn:norm}であり，
 これは三平方の定理より
 \[  \norm{\symbf{a}} = \sqrt{ a^2 + b^2 + c^2 }  \]
 で与えられる．
-また，$\theta$は$\norm{\symbf{a}}$と$\norm{\symbf{x}}$のなす角度である．
+また，$\theta$は$\norm{\symbf{a}}$と$\norm{𝒙}$のなす角度である．
 
 2つのベクトルが\refdfn[直交]{dfn:orthogonal}する場合（$\theta = \pi/2$），
 $\cos \theta = 0$となるから，内積は$0$になる．
@@ -140,19 +140,19 @@ $\cos \theta = 0$となるから，内積は$0$になる．
 
 \begin{definition}[ベクトル空間]
     \label{dfn:vector-space}
-    $V$を集合，$(\symbb{K}, +, \dotprod)$を体\refdfn{dfn:field}とする．
-    $V$上の\word{和}$\vecplus\colon V \times V \to V$，\word{スカラー倍}$\scaprod \colon \symbb{K} \times V \to V$が定義され，
-    以下が満たされるとき，$(V, \vecplus, \scaprod)$を（$\symbb{K}$上の）\word{ベクトル空間}(vector space)あるいは\word{線形空間}[せん|けい|くう|かん](linear space)という．
-    このとき$V$の元を\word{ベクトル}(vector)，$\symbb{K}$の元を\word{スカラー}(scalar)という．
+    $V$を集合，$(𝕂, +, \dotprod)$を体\refdfn{dfn:field}とする．
+    $V$上の\word{和}$\vecplus\colon V \times V \to V$，\word{スカラー倍}$\scaprod \colon 𝕂 \times V \to V$が定義され，
+    以下が満たされるとき，$(V, \vecplus, \scaprod)$を（$𝕂$上の）\word{ベクトル空間}(vector space)あるいは\word{線形空間}[せん|けい|くう|かん](linear space)という．
+    このとき$V$の元を\word{ベクトル}(vector)，$𝕂$の元を\word{スカラー}(scalar)という．
     \begin{enumerate}
-        \item \label{vector:sum-associative} 任意の$\symbf{u}, \symbf{v}, \symbf{w} \in V$に対して，$(\symbf{u} \vecplus \symbf{v}) \vecplus \symbf{w} = \symbf{u} \vecplus (\symbf{v} \vecplus \symbf{w})$である．
-        \item \label{vector:sum-zero} ある$\symbf{0} \in V$がただひとつ存在し，任意の$\symbf{v} \in V$に対して，$\symbf{v} \vecplus \symbf{0} = \symbf{0} \vecplus \symbf{v} = \symbf{v}$である．
-        \item \label{vector:sum-opposite} 任意の$\symbf{v} \in V$に対して，ある$-\symbf{v}$がただひとつ存在して，$\symbf{v} \vecplus (-\symbf{v}) = (-\symbf{v}) \vecplus \symbf{v} = \symbf{0}$である．
-        \item \label{vector:sum-commutative} 任意の$\symbf{u}, \symbf{v} \in V$に対して，$\symbf{u} \vecplus \symbf{v} = \symbf{v} \vecplus \symbf{u}$である．
-        \item \label{vector:scalar-distributive} 任意の$\symbf{u}, \symbf{v} \in V$および任意の$c \in \symbb{K}$に対して，$c \scaprod (\symbf{u} \vecplus \symbf{v}) = (c \scaprod \symbf{u}) \vecplus (c \scaprod \symbf{v})$である．
-        \item \label{vector:scalar-sum} 任意の$\symbf{v} \in V$および任意の$a, b$に対して，$(a + b) \scaprod \symbf{v} = (a \scaprod \symbf{v}) \vecplus (b \scaprod \symbf{v})$である．
-        \item \label{vector:scalar-prod} 任意の$\symbf{v} \in V$および任意の$a, b$に対して，$(a \dotprod b) \scaprod \symbf{v} = a \scaprod (b \scaprod \symbf{v})$である．
-        \item \label{vector:scalar-identity} 任意の$\symbf{v} \in V$に対して，$1 \scaprod \symbf{v} = \symbf{v}$である．
+        \item \label{vector:sum-associative} 任意の$𝒖, 𝒗, 𝒘 \in V$に対して，$(𝒖 \vecplus 𝒗) \vecplus 𝒘 = 𝒖 \vecplus (𝒗 \vecplus 𝒘)$である．
+        \item \label{vector:sum-zero} ある$\symbf{0} \in V$がただひとつ存在し，任意の$𝒗 \in V$に対して，$𝒗 \vecplus \symbf{0} = \symbf{0} \vecplus 𝒗 = 𝒗$である．
+        \item \label{vector:sum-opposite} 任意の$𝒗 \in V$に対して，ある$-𝒗$がただひとつ存在して，$𝒗 \vecplus (-𝒗) = (-𝒗) \vecplus 𝒗 = \symbf{0}$である．
+        \item \label{vector:sum-commutative} 任意の$𝒖, 𝒗 \in V$に対して，$𝒖 \vecplus 𝒗 = 𝒗 \vecplus 𝒖$である．
+        \item \label{vector:scalar-distributive} 任意の$𝒖, 𝒗 \in V$および任意の$c \in 𝕂$に対して，$c \scaprod (𝒖 \vecplus 𝒗) = (c \scaprod 𝒖) \vecplus (c \scaprod 𝒗)$である．
+        \item \label{vector:scalar-sum} 任意の$𝒗 \in V$および任意の$a, b$に対して，$(a + b) \scaprod 𝒗 = (a \scaprod 𝒗) \vecplus (b \scaprod 𝒗)$である．
+        \item \label{vector:scalar-prod} 任意の$𝒗 \in V$および任意の$a, b$に対して，$(a \dotprod b) \scaprod 𝒗 = a \scaprod (b \scaprod 𝒗)$である．
+        \item \label{vector:scalar-identity} 任意の$𝒗 \in V$に対して，$1 \scaprod 𝒗 = 𝒗$である．
     \end{enumerate}
     ベクトル空間$(V, \vecplus, \scaprod)$のことを単に$V$と書くこともある．
 \end{definition}
@@ -163,22 +163,22 @@ $\cos \theta = 0$となるから，内積は$0$になる．
 \begin{corollary}
     ベクトル空間$V$は以下を満たす．
     \begin{itemize}
-        \item 任意の$\symbf{v}\in V$に対し，
+        \item 任意の$𝒗\in V$に対し，
         \begin{enumerate}[resume]
-            \item $ 0 \scaprod \symbf{v} = \symbf{0} $である．
-            \item $ (-1) \scaprod \symbf{v} = -\symbf{v} $である．
+            \item $ 0 \scaprod 𝒗 = \symbf{0} $である．
+            \item $ (-1) \scaprod 𝒗 = -𝒗 $である．
         \end{enumerate}
     \end{itemize}
 \end{corollary}
 
 \begin{proof}
     \begin{enumerate}
-        \item $ 0 \scaprod \symbf{v} = (0 + 0) \scaprod \symbf{v} = 0 \scaprod \symbf{v} \vecplus 0 \scaprod \symbf{v} $より従う．
-        \item $ \symbf{v} \vecplus (-1) \scaprod \symbf{v} = 1 \scaprod \symbf{v} \vecplus (-1) \scaprod \symbf{v} = (1 + (-1)) \scaprod \symbf{v} = 0 \scaprod \symbf{v} = \symbf{0} $より従う．
+        \item $ 0 \scaprod 𝒗 = (0 + 0) \scaprod 𝒗 = 0 \scaprod 𝒗 \vecplus 0 \scaprod 𝒗 $より従う．
+        \item $ 𝒗 \vecplus (-1) \scaprod 𝒗 = 1 \scaprod 𝒗 \vecplus (-1) \scaprod 𝒗 = (1 + (-1)) \scaprod 𝒗 = 0 \scaprod 𝒗 = \symbf{0} $より従う．
     \end{enumerate}
 \end{proof}
 
-$\symbf{v} \vecplus (-\symbf{u}) \eqcolon \symbf{v} \vecminus \symbf{u}$とかくことが多い．
+$𝒗 \vecplus (-𝒖) \eqcolon 𝒗 \vecminus 𝒖$とかくことが多い．
 
 
 
@@ -193,12 +193,18 @@ $\symbf{v} \vecplus (-\symbf{u}) \eqcolon \symbf{v} \vecminus \symbf{u}$とか�
 部分空間と部分集合を取り違えないように注意が必要である．
 部分集合のうちベクトル空間になるものが部分空間（部分ベクトル空間）である．
 
+\begin{example}
+    $V$をベクトル空間とすると，
+    $V$自身は部分ベクトル空間である．
+    また，零ベクトルのみを含む空間$\{ \symbf{0} \}$も部分ベクトル空間である．
+\end{example}
+
 \begin{theorem}
     \label{thm:vector-subspace-iff}
     $V$をベクトル空間とする．$U \subset V$が以下の条件を満たす場合，$U$は$V$の部分ベクトル空間になる．
     \begin{enumerate}
-        \item \label{vector-subspace:sum-closed} 任意の$\symbf{u}, \symbf{v} \in U$に対し，$\symbf{u} \vecplus \symbf{v} \in U$である（$U$は和で閉じている）．
-        \item \label{vector-subspace:scalar-closed} 任意の$\symbf{v} \in U$および任意の$c \in \symbb{K}$に対し，$c \scaprod \symbf{v} \in U$である（$U$はスカラー倍で閉じている）．
+        \item \label{vector-subspace:sum-closed} 任意の$𝒖, 𝒗 \in U$に対し，$𝒖 \vecplus 𝒗 \in U$である（$U$は和で閉じている）．
+        \item \label{vector-subspace:scalar-closed} 任意の$𝒗 \in U$および任意の$c \in 𝕂$に対し，$c \scaprod 𝒗 \in U$である（$U$はスカラー倍で閉じている）．
         \item \label{vector-subspace:zero} $\symbf{0} \in U$である．
     \end{enumerate}
     \cref{vector-subspace:zero}は\cref{vector-subspace:scalar-closed}で$c=0$とすれば自動的に満たされるように見える．
@@ -221,7 +227,7 @@ $\symbf{v} \vecplus (-\symbf{u}) \eqcolon \symbf{v} \vecminus \symbf{u}$とか�
     \label{dfn:sum-of-vector-space}
     $V$をベクトル空間，$W_1, W_2 \subset V$を部分ベクトル空間とする．
     \begin{equation}
-        W_1 + W_2 \coloneq \Set{  \symbf{v}_1 \vecplus \symbf{v}_2  \given  \symbf{v}_1 \in W_1, \  \symbf{v}_2 \in W_2  }
+        W_1 + W_2 \coloneq \Set{  𝒗_1 \vecplus 𝒗_2  \given  𝒗_1 \in W_1, \  𝒗_2 \in W_2  }
     \end{equation}
     は$V$の部分ベクトル空間である．
 \end{definition}
@@ -244,28 +250,28 @@ $\symbf{v} \vecplus (-\symbf{u}) \eqcolon \symbf{v} \vecminus \symbf{u}$とか�
 この考え方を推し進めると，線形結合という概念にいきつく．
 
 記号の煩雑さを防ぐため，この節からスカラー倍の記号$\scaprod$を省略し，
-$c \scaprod \symbf{v} \eqcolon c \symbf{v}$とかく．
+$c \scaprod 𝒗 \eqcolon c 𝒗$とかく．
 
 \begin{definition}[ベクトルの線形結合]
     \label{dfn:linear-combination}
-    $V$を$\symbb{K}$上のベクトル空間，$\symbf{v}_1, \symbf{v}_2, \dotsc \in V$をベクトル，$c_1, c_2, \dotsc \in \symbb{K}$を有限個を除いてゼロであるスカラーとする．
-    このとき，ベクトル$\symbf{v} = c_1 \symbf{v}_1 \vecplus c_2 \symbf{v}_2 \vecplus \dotsb$のことを，
-    ベクトル$\symbf{v}_1, \symbf{v}_2, \dotsc$の\word{線形結合}[せん|けい|けつ|ごう](linear combination)あるいは\word{一次結合}[いち|じ|けつ|ごう]という．
+    $V$を$𝕂$上のベクトル空間，$𝒗_1, 𝒗_2, \dotsc \in V$をベクトル，$c_1, c_2, \dotsc \in 𝕂$を有限個を除いてゼロであるスカラーとする．
+    このとき，ベクトル$𝒗 = c_1 𝒗_1 \vecplus c_2 𝒗_2 \vecplus \dotsb$のことを，
+    ベクトル$𝒗_1, 𝒗_2, \dotsc$の\word{線形結合}[せん|けい|けつ|ごう](linear combination)あるいは\word{一次結合}[いち|じ|けつ|ごう]という．
 \end{definition}
 
 \cref{dfn:linear-combination}において，
-$c_i$が有限個を除きゼロである，つまり$c_1 \symbf{v}_1 \vecplus c_2 \symbf{v}_2 \vecplus \dotsb$が有限和であるという条件は重要である．
-一般に，無限和では$c_1 \symbf{v}_1 \vecplus c_2 \symbf{v}_2 \vecplus \dotsb \in V$とは限らない．
-たとえば，実関数$e^x$は多項式ベクトル空間の元$1, x, x^2, x^3, \dotsc \in \symbb{R}[x]$を使って
+$c_i$が有限個を除きゼロである，つまり$c_1 𝒗_1 \vecplus c_2 𝒗_2 \vecplus \dotsb$が有限和であるという条件は重要である．
+一般に，無限和では$c_1 𝒗_1 \vecplus c_2 𝒗_2 \vecplus \dotsb \in V$とは限らない．
+たとえば，実関数$e^x$は多項式ベクトル空間の元$1, x, x^2, x^3, \dotsc \in ℝ[x]$を使って
 \begin{equation*}
     e^x = 1 + x + \frac{1}{2!} x^2 + \frac{1}{3!} x^3 + \dotsb
 \end{equation*}
-と書けるが，明らかに$e^x \notin \symbb{R}[x]$である．
+と書けるが，明らかに$e^x \notin ℝ[x]$である．
 
 
 定義より，ベクトル空間は線形結合に対して閉じている．
-したがって，ベクトル$\symbf{v}_1, \dots, \symbf{v}_n$がベクトル空間$V$に属するなら，
-それらの線形結合$c_1 \symbf{v}_1 \vecplus \dotsb \vecplus c_n \symbf{v}_n$も$V$に属する．
+したがって，ベクトル$𝒗_1, \dots, 𝒗_n$がベクトル空間$V$に属するなら，
+それらの線形結合$c_1 𝒗_1 \vecplus \dotsb \vecplus c_n 𝒗_n$も$V$に属する．
 そうすると，ベクトル空間$V$を作るのにすべてのベクトルを使う必要はなく，
 \ruby{種}{たね}となるベクトルをいくつか列挙すれば，
 残りのベクトルはそれらの線形結合で自動的に作られるのではないかという発想が生まれる．
@@ -273,33 +279,33 @@ $c_i$が有限個を除きゼロである，つまり$c_1 \symbf{v}_1 \vecplus c
 
 \begin{definition}[ベクトル空間の生成系]
     \label{dfn:spanning-set}
-    $V$を$\symbb{K}$上のベクトル空間，$W \subset V$を部分ベクトル空間とする．
-    ベクトルの組$\symbf{v}_1, \symbf{v}_2, \dotsc \in V$が$W$を\word{生成する}(generate)あるいは\word{張る}(span)とは，
-    $\symbf{v}_1, \symbf{v}_2, \dotsc \in V$から有限個のベクトル$\symbf{u}_1, \dots, \symbf{u}_n$を任意にとったときの線形結合の全体が$W$に一致する，すなわち
+    $V$を$𝕂$上のベクトル空間，$W \subset V$を部分ベクトル空間とする．
+    ベクトルの組$𝒗_1, 𝒗_2, \dotsc \in V$が$W$を\word{生成する}(generate)あるいは\word{張る}(span)とは，
+    $𝒗_1, 𝒗_2, \dotsc \in V$から有限個のベクトル$𝒖_1, \dots, 𝒖_n$を任意にとったときの線形結合の全体が$W$に一致する，すなわち
     \begin{equation*}
-        W = \Set{ c_1 \symbf{v}_1 \vecplus c_2 \symbf{v}_2 \vecplus \dotsb \in V  \given  c_1, c_2, \dotsc \in \symbb{K}, \  \text{$c_i$は有限個を除きゼロ}} \subset V
+        W = \Set{ c_1 𝒗_1 \vecplus c_2 𝒗_2 \vecplus \dotsb \in V  \given  c_1, c_2, \dotsc \in 𝕂, \  \text{$c_i$は有限個を除きゼロ}} \subset V
     \end{equation*}
     であることをいう．
-    また，$\symbf{v}_1, \symbf{v}_2, \dotsc \in V$が生成する部分ベクトル空間を
+    また，$𝒗_1, 𝒗_2, \dotsc \in V$が生成する部分ベクトル空間を
     \begin{equation}
         \label{eq:spanning-set-notation}
-        W = \spanning{\symbf{v}_1, \symbf{v}_2, \dotsc}
+        W = \spanning{𝒗_1, 𝒗_2, \dotsc}
     \end{equation}
     とかく．
 \end{definition}
 
 \begin{definition}[一次独立と一次従属]
     \label{dfn:linearly-independent}
-    $V$を$\symbb{K}$上のベクトル空間とする．
-    ベクトルの組$\symbf{v}_1, \symbf{v}_2, \dotsc \in V$が\word{一次独立}[いち|じ|どく|りつ](linearly independent)あるいは\word{線形独立}であるとは，
-    有限個を除き$0$である$c_1, c_2, \dotsc \in \symbb{K}$に対し，
+    $V$を$𝕂$上のベクトル空間とする．
+    ベクトルの組$𝒗_1, 𝒗_2, \dotsc \in V$が\word{一次独立}[いち|じ|どく|りつ](linearly independent)あるいは\word{線形独立}であるとは，
+    有限個を除き$0$である$c_1, c_2, \dotsc \in 𝕂$に対し，
     \begin{equation*}
-        c_1 \symbf{v}_1 \vecplus c_2 \symbf{v}_2 \vecplus \dotsb = \symbf{0}
+        c_1 𝒗_1 \vecplus c_2 𝒗_2 \vecplus \dotsb = \symbf{0}
         \iff
         c_1 = c_2 = \dots = 0
     \end{equation*}
     であることをいう．
-    ベクトルの組$\symbf{v}_1, \symbf{v}_2, \dotsc \in V$が一次独立でないとき，\word{一次従属}[いち|じ|じゅう|ぞく](linearly dependent)あるいは\word{線形従属}という．
+    ベクトルの組$𝒗_1, 𝒗_2, \dotsc \in V$が一次独立でないとき，\word{一次従属}[いち|じ|じゅう|ぞく](linearly dependent)あるいは\word{線形従属}という．
 \end{definition}
 
 
@@ -307,18 +313,18 @@ $c_i$が有限個を除きゼロである，つまり$c_1 \symbf{v}_1 \vecplus c
 
 \begin{definition}[基底]
     \label{dfn:basis}
-    $V$を$\symbb{K}$上のベクトル空間とする．
-    ベクトルの組$ \{ \symbf{v}_1, \symbf{v}_2, \dotsc \} \subset V$は，以下を満たすとき，\word{基底}[き|てい](basis)という．
+    $V$を$𝕂$上のベクトル空間とする．
+    ベクトルの組$ \{ 𝒗_1, 𝒗_2, \dotsc \} \subset V$は，以下を満たすとき，\word{基底}[き|てい](basis)という．
     \begin{enumerate}
-        \item \label{base:linearly-independent} $\symbf{v}_1, \symbf{v}_2, \dotsc$は一次独立である．
-        \item \label{base:spans-V} $\symbf{v}_1, \symbf{v}_2, \dotsc$は$V$を生成する．
-            すなわち，任意の$\symbf{v} \in V$に対して，有限個を除き$0$の，ある$c_1, c_2, \dotsc \in \symbb{K}$が存在し，$\symbf{v} = c_1 \symbf{v}_1 + c_2 \symbf{v}_2 + \dotsb$とかける．
+        \item \label{base:linearly-independent} $𝒗_1, 𝒗_2, \dotsc$は一次独立である．
+        \item \label{base:spans-V} $𝒗_1, 𝒗_2, \dotsc$は$V$を生成する．
+            すなわち，任意の$𝒗 \in V$に対して，有限個を除き$0$の，ある$c_1, c_2, \dotsc \in 𝕂$が存在し，$𝒗 = c_1 𝒗_1 + c_2 𝒗_2 + \dotsb$とかける．
     \end{enumerate}
 \end{definition}
 
 \begin{example}
-    $ \{ (1, 0, 0), \ (0, 1, 0), \ (0, 0, 1) \} $は$\symbb{R}^3$の基底である．
-    また，$ \{ (1, 1, 0), \ (1, -1, 0), \ (0, 0, 1) \} $も$\symbb{R}^3$の基底である．
+    $ \{ (1, 0, 0), \ (0, 1, 0), \ (0, 0, 1) \} $は$ℝ^3$の基底である．
+    また，$ \{ (1, 1, 0), \ (1, -1, 0), \ (0, 0, 1) \} $も$ℝ^3$の基底である．
 \end{example}
 
 例でみたように，一般にベクトル空間$V$が与えられたとき，その基底の取り方は一意ではない．
@@ -334,29 +340,29 @@ $c_i$が有限個を除きゼロである，つまり$c_1 \symbf{v}_1 \vecplus c
 \end{definition}
 
 \begin{example}
-    多項式ベクトル空間$\symbb{R}[x]$について，$\{ 1, x, x^2, \dotsc \}$は一次独立であり，さらに基底をなす．
+    多項式ベクトル空間$ℝ[x]$について，$\{ 1, x, x^2, \dotsc \}$は一次独立であり，さらに基底をなす．
     このように，ベクトル空間$V$の基底を構成するベクトルの数は無限個であるとき，$V$は\word{無限次元}(infinite dimensional)であるという．
 \end{example}
 
 \begin{example}
-    複素数全体の集合$\symbb{C}$は，
-    $\symbb{C}$上のベクトル空間と考えると$\dim_{\symbb{C}} \symbb{C} = 1$（基底$1$），
-    $\symbb{R}$上のベクトル空間と考えると$\dim_{\symbb{R}} \symbb{C} = 2$（基底$1, \iu$）である．
+    複素数全体の集合$ℂ$は，
+    $ℂ$上のベクトル空間と考えると$\dim_{ℂ} ℂ = 1$（基底$1$），
+    $ℝ$上のベクトル空間と考えると$\dim_{ℝ} ℂ = 2$（基底$1, \iu$）である．
 \end{example}
 
 
 \begin{corollary}[基底によるベクトルの展開]
     \label{thm:coordinates-by-basis}
     $V$をベクトル空間とする．
-    任意の$\symbf{v} \in V$は，$V$の基底$ \{ \symbf{u}_i \} $のうち有限個を用いて$\symbf{v} = c_1 \symbf{v}_1 \vecplus \dots \vecplus c_n \symbf{v}_n$とかける．
-    このとき，スカラーの組$c_1, \dots, c_n \in \symbb{K}$は一意に定まる．
+    任意の$𝒗 \in V$は，$V$の基底$ \{ 𝒖_i \} $のうち有限個を用いて$𝒗 = c_1 𝒗_1 \vecplus \dots \vecplus c_n 𝒗_n$とかける．
+    このとき，スカラーの組$c_1, \dots, c_n \in 𝕂$は一意に定まる．
 \end{corollary}
 
 \begin{proof}
     前半は基底の定義\refdfn{dfn:basis}より明らかなので，一意性を示す．
-    $\symbf{v} = a_1 \symbf{u}_1 \vecplus \dots \vecplus a_n \symbf{u}_n = b_1 \symbf{u}_1 \vecplus \dots \vecplus b_n \symbf{u}_n$と2通りにかけたとすると，
+    $𝒗 = a_1 𝒖_1 \vecplus \dots \vecplus a_n 𝒖_n = b_1 𝒖_1 \vecplus \dots \vecplus b_n 𝒖_n$と2通りにかけたとすると，
     \begin{equation*}
-        (a_1 \! - b_1) \symbf{u}_1 \vecplus \dots \vecplus (a_n \! - b_n) \symbf{u}_n = \symbf{0}
+        (a_1 \! - b_1) 𝒖_1 \vecplus \dots \vecplus (a_n \! - b_n) 𝒖_n = \symbf{0}
     \end{equation*}
     がいえるが，基底は一次独立なので$a_1 \! - b_1 = \dots = a_n \! - b_1 = 0$である．
 \end{proof}

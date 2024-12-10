@@ -6,7 +6,7 @@
 \section{測度}
 \label{sec:measure}
 
-実ユークリッド空間$\symbb{R}^n$の適当な部分集合においては，``体積''が定義できる．
+実ユークリッド空間$ℝ^n$の適当な部分集合においては，``体積''が定義できる．
 この体積という概念を一般化したものが\ruby{測度}{そく|ど}である．
 
 この節の議論は\citeauthor{ito-lebesgue-1963}『\citetitle{ito-lebesgue-1963}』による．
@@ -20,16 +20,16 @@
 測度の定義をする前に，
 通常のユークリッド空間における「体積」とは何かについて考える．
 
-$X = \symbb{R}$を実数の空間とする．
-$\symbb{R}$の部分集合であって，
+$X = ℝ$を実数の空間とする．
+$ℝ$の部分集合であって，
 \begin{equation}
     \label{eq:interval-example}
-    (a, b] \coloneq \Set{  x \in \symbb{R}  \given  a < x \leq b  },
+    (a, b] \coloneq \Set{  x \in ℝ  \given  a < x \leq b  },
     \qquad -\infty \leq a < b < \infty
 \end{equation}
 とあらわされるものを\word{区間}[く|かん][くかん]という\cite{ito-lebesgue-1963}．
 
-$X = \symbb{R}^n$を実ユークリッド空間とする．
+$X = ℝ^n$を実ユークリッド空間とする．
 ユークリッド空間の``領域''を，直積
 \begin{equation}
     I \coloneq (a_1, b_1] \times \dots \times (a_n, b_n],
@@ -126,7 +126,7 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
 
 \begin{proposition}
     \label{thm:Lebesgue-finitely-additive-measure}
-    $N$-次元ユークリッド空間$\symbb{R}^N$における区間塊$E = I_1 + \dots + I_n$
+    $N$-次元ユークリッド空間$ℝ^N$における区間塊$E = I_1 + \dots + I_n$
     （$E \in \symfrak{F}_N$，$I_i \in \symfrak{I}$）に対し，
     \begin{equation}
         \begin{split}

@@ -9,7 +9,7 @@
 
 \begin{definition}[距離]
     \label{dfn:distance}
-    $X$を集合とする．写像$d \colon X \times X \to \symbb{R}$が以下を満たすとき，
+    $X$を集合とする．写像$d \colon X \times X \to ℝ$が以下を満たすとき，
     \word{距離}(distance)あるいは\word{計量}(metric)という．
     \begin{itemize}
         \item 任意の$x, y, z \in X$に対し，
@@ -24,11 +24,11 @@
 
 
 \begin{example}
-    $X = \symbb{R}^n$（実ユークリッド空間）とする．
-    $\symbf{x}, \symbf{y} \in \symbb{R}^n$に対して，
-    $d_2 (\symbf{x}, \symbf{y}) = \sqrt{ \sum_{i = 1}^{n} \abs{x_i - y_i}^2 }$と定めると，これは距離である．
+    $X = ℝ^n$（実ユークリッド空間）とする．
+    $𝒙, 𝒚 \in ℝ^n$に対して，
+    $d_2 (𝒙, 𝒚) = \sqrt{ \sum_{i = 1}^{n} \abs{x_i - y_i}^2 }$と定めると，これは距離である．
 
-    特に，実数全体の集合$\symbb{R}$は，距離$d(x, y) \coloneq \abs{x - y}$に対して距離空間になる．
+    特に，実数全体の集合$ℝ$は，距離$d(x, y) \coloneq \abs{x - y}$に対して距離空間になる．
 \end{example}
 
 ベクトル空間$V$においてノルムが定義されているとする．
@@ -37,7 +37,7 @@
 \begin{proposition}
     \label{thm:norm-is-distance}
     $V$をノルム空間\refdfn{dfn:norm}，$\norm{\bigdot}$を$V$上のノルムとする．
-    $\symbf{x}, \symbf{y} \in V$に対し，$\norm{\symbf{x} \tminus \symbf{y}}$は，$V$上の距離である．
+    $𝒙, 𝒚 \in V$に対し，$\norm{𝒙 \tminus 𝒚}$は，$V$上の距離である．
     すなわち，ノルム空間は距離空間である．
 \end{proposition}
 
@@ -208,7 +208,7 @@ $\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
 \end{example}
 
 \begin{example}
-    開区間$(0, 1) \subset \symbb{R}$の点列$(0.1, 0.01, 0.001, 0.0001, \dotsc)$は明らかにコーシー列である．
+    開区間$(0, 1) \subset ℝ$の点列$(0.1, 0.01, 0.001, 0.0001, \dotsc)$は明らかにコーシー列である．
     しかし，この点列の収束先は$0 \notin (0, 1)$であり，$(0, 1)$の収束列でない．
 \end{example}
 
@@ -221,7 +221,7 @@ $\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
 \end{definition}
 
 \begin{proposition}[実数の完備性]
-    実数全体の集合$\symbb{R}$は完備である．
+    実数全体の集合$ℝ$は完備である．
 \end{proposition}
 
 \begin{proof}
@@ -354,7 +354,7 @@ $A$の閉包を「$A$を含む閉集合の中で最小のもの」と定義す�
 % \begin{theorem}
 %     \label{thm:Heine-Borel-theorem}
 %     通常の位相に関して（つまり通常の開集合・閉集合を考えた場合），
-%     $\symbb{R}$の任意の閉区間$[a, b]$はコンパクトである（\word{ハイネ--ボレルの被覆定理}[][はいねほれるのひふくていり](Heine--Borel theorem)）\cite[\S 22]{uchida-set-2020}．
+%     $ℝ$の任意の閉区間$[a, b]$はコンパクトである（\word{ハイネ--ボレルの被覆定理}[][はいねほれるのひふくていり](Heine--Borel theorem)）\cite[\S 22]{uchida-set-2020}．
 % \end{theorem}
 
 

@@ -22,7 +22,7 @@
 
 \begin{example}
     \begin{equation*}
-        \mathrm{SO}(n, \symbb{R}) \coloneq \Set{ A \colon \text{実成分$n$-次正方行列} \given \det A = 1 }
+        \mathrm{SO}(n, ℝ) \coloneq \Set{ A \colon \text{実成分$n$-次正方行列} \given \det A = 1 }
     \end{equation*}
     とする．これは行列としての積に対して群をなす．
 \end{example}
@@ -32,8 +32,8 @@
 \end{example}
 
 \begin{example}
-    実数全体の集合$\symbb{R}$は，通常の積$\times$に対して群をなさない．
-    なぜなら，$0 \in \symbb{R}$に対して，$0 \times x = 1$となるような$x \in \symbb{R}$が存在しないため．
+    実数全体の集合$ℝ$は，通常の積$\times$に対して群をなさない．
+    なぜなら，$0 \in ℝ$に対して，$0 \times x = 1$となるような$x \in ℝ$が存在しないため．
 \end{example}
 
 
@@ -83,38 +83,38 @@
 
 \begin{definition}[体]
     \label{dfn:field}
-    $\symbb{K}$を集合，$+$と$\dotprod$を$\symbb{K}$上の二項演算とする．
-    以下がみたされるとき，$(\symbb{K}, +, \dotprod)$は\word{体}[たい][たい](field)であるという．
+    $𝕂$を集合，$+$と$\dotprod$を$𝕂$上の二項演算とする．
+    以下がみたされるとき，$(𝕂, +, \dotprod)$は\word{体}[たい][たい](field)であるという．
     \begin{itemize}
-        \item 和について，$(\symbb{K}, +)$はアーベル群である．
+        \item 和について，$(𝕂, +)$はアーベル群である．
         \begin{enumerate}
-            \item \label{field:sum-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) + c = a + (b + c)$である．
-            \item \label{field:sum-zero} ある$0 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a + 0 = 0 + a = a$である．
-            \item \label{field:sum-opposite} 任意の$a \in \symbb{K}$に対し，ある$-a \in \symbb{K}$が存在して，$a + (-a) = (-a) + a = 0$である．
-            \item \label{field:sum-commutative} 任意の$a, b \in \symbb{K}$に対し，$a + b = b + a$である．
+            \item \label{field:sum-associative} 任意の$a, b, c \in 𝕂$に対し，$(a + b) + c = a + (b + c)$である．
+            \item \label{field:sum-zero} ある$0 \in 𝕂$が存在して，任意の$a \in 𝕂$に対し，$a + 0 = 0 + a = a$である．
+            \item \label{field:sum-opposite} 任意の$a \in 𝕂$に対し，ある$-a \in 𝕂$が存在して，$a + (-a) = (-a) + a = 0$である．
+            \item \label{field:sum-commutative} 任意の$a, b \in 𝕂$に対し，$a + b = b + a$である．
         \end{enumerate}
-        \item 積について，$(\symbb{K} \setminus \{ 0 \}, \  \dotprod)$はアーベル群である．
+        \item 積について，$(𝕂 \setminus \{ 0 \}, \  \dotprod)$はアーベル群である．
         \begin{enumerate}[resume]
-            \item \label{field:prod-associative} 任意の$a, b, c \in \symbb{K}$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
-            \item \label{field:prod-one} ある$1 \in \symbb{K}$が存在して，任意の$a \in \symbb{K}$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
-            \item \label{field:prod-reciprocal} 任意の$a \in \symbb{K} \setminus \{0\}$に対し，ある$a^{-1} \in \symbb{K}$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = 1$である．
-            \item \label{field:prod-commutative} 任意の$a, b \in \symbb{K}$に対し，$a \dotprod b = b \dotprod a$である．
+            \item \label{field:prod-associative} 任意の$a, b, c \in 𝕂$に対し，$(a \dotprod b) \dotprod c = a \dotprod (b \dotprod c)$である．
+            \item \label{field:prod-one} ある$1 \in 𝕂$が存在して，任意の$a \in 𝕂$に対し，$a \dotprod 1 = 1 \dotprod a = a$である．
+            \item \label{field:prod-reciprocal} 任意の$a \in 𝕂 \setminus \{0\}$に対し，ある$a^{-1} \in 𝕂$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = 1$である．
+            \item \label{field:prod-commutative} 任意の$a, b \in 𝕂$に対し，$a \dotprod b = b \dotprod a$である．
         \end{enumerate}
         \item 和と積の関係について，
         \begin{enumerate}[resume]
-            \item \label{field:distributive} 任意の$a, b, c \in \symbb{K}$に対し，$(a + b) \dotprod c = (a \dotprod c) + (b \dotprod c)$であり，$a \dotprod (b + c) = (a \dotprod b) + (a \dotprod c)$である．
+            \item \label{field:distributive} 任意の$a, b, c \in 𝕂$に対し，$(a + b) \dotprod c = (a \dotprod c) + (b \dotprod c)$であり，$a \dotprod (b + c) = (a \dotprod b) + (a \dotprod c)$である．
         \end{enumerate}    
     \end{itemize}
 \end{definition}
 
 \begin{example}
-    有理数全体の集合$\symbb{Q}$，実数全体の集合$\symbb{R}$，複素数全体の集合$\symbb{C}$は，
+    有理数全体の集合$\symbb{Q}$，実数全体の集合$ℝ$，複素数全体の集合$ℂ$は，
     それぞれ通常の和と積に関して体になる．
 \end{example}
 
 体をひとことでいえば，「四則演算（和・差・積・商）ができる集合」である．
 実数や複素数は体の典型的なものである．
-本稿で「体$\symbb{K}$」と書いてある場合，実数$\symbb{R}$もしくは複素数$\symbb{C}$と読み替えて差支えない．
+本稿で「体$𝕂$」と書いてある場合，実数$ℝ$もしくは複素数$ℂ$と読み替えて差支えない．
 
 
 \end{document}
