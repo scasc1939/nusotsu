@@ -60,11 +60,11 @@
 \begin{example}
     実ユークリッド空間$ℝ^n$において，
     \begin{equation*}
-        (\symbf{a}, \symbf{b}) \coloneq \sum_{i=1}^{n} a_i b_i
+        (\symbf{a}, \symbf{b}) ≔ \sum_{i=1}^{n} a_i b_i
     \end{equation*}
     は内積である．また，複素ユークリッド空間$ℂ^n$において，
     \begin{equation*}
-        (\symbf{a}, \symbf{b}) \coloneq \sum_{i=1}^{n} \conj{a_i} b_i
+        (\symbf{a}, \symbf{b}) ≔ \sum_{i=1}^{n} \conj{a_i} b_i
     \end{equation*}
     は内積である．これらを特に\word{標準内積}[][ひようしゆんないせき]という．
 \end{example}
@@ -82,19 +82,58 @@
 
 
 \begin{definition}[直交補空間]
+    \label{dfn:orthogonal-compliment}
     $V$をベクトル空間，$W \subset V$を部分ベクトル空間とする．
     $W$のベクトルすべてと直交するようなベクトルの集合，つまり
     \begin{equation}
-        W^\perp  \coloneq  \Set{  𝒗 \in V  
+        W^\perp  ≔  \Set{  𝒗 \in V  
                                 \given  \text{任意の$𝒖 \in W$に対して$𝒗 \perp 𝒖$}  }
     \end{equation}
-    を$W$の\word{直交補空間}[][ちよつこうほくうかん](orthogonal compliment)という．
+    を$W$の\word{直交補空間}(orthogonal compliment)%
+    \index{ちよつこうほくうかん@直交補空間}%
+    という．
 \end{definition}
 
 \begin{corollary}
     $V$をベクトル空間とする．
     $W \subset V$の直交補空間$W^\perp$は$V$の部分ベクトル空間である．
 \end{corollary}
+
+\begin{proof}
+    \refthm[部分ベクトル空間の公理]{thm:vector-subspace-iff}を確かめればよい．
+    すなわち，任意の$\symbf{v} \in W$に対し，
+    \begin{enumerate}
+        \item $\symbf{0} \in W^\perp$であることは，
+            $\iparen{\symbf{v}, \symbf{0}} = 0$から，
+        \item $\symbf{x}, \symbf{y} \in W^\perp$ならば$\symbf{x} + \symbf{y} \in W^\perp$であることは，
+            $\iparen{\symbf{x} + \symbf{y}, \  \symbf{v}} = \iparen{\symbf{x}, \symbf{v}} + \iparen{\symbf{y}, \symbf{v}}$から，
+        \item $\symbf{x} \in W^\perp$，$c \in \symbb{K}$ならば$c\symbf{x} \in W^\perp$であることは，
+            $\iparen{c\symbf{x}, \symbf{v}} = \conj{c} \iparen{\symbf{x}, \symbf{v}}$からいえる．
+    \end{enumerate}
+\end{proof}
+
+
+\begin{corollary}
+    部分ベクトル空間$W \subset V$とその直交補空間$W^\perp \subset W$について，
+    \[  W \cap W^\perp = \{ \symbf{0} \}  \]
+\end{corollary}
+
+\begin{proof}
+    $\symbf{x} \in W \cap W^\perp$をとる．
+    $\symbf{x} \in W^\perp$より，
+    任意の$\symbf{v} \in W$に対し$\iparen{\symbf{v}, \symbf{x}} = 0$である．
+    ここで，$\symbf{v} = \symbf{x} \in W$ととることができるので，
+    $\iparen{\symbf{x}, \symbf{x}} = 0$．したがって$\symbf{x} = \symbf{0}$である．
+\end{proof}
+
+任意のベクトル$\symbf{v} \in V$は，
+ある部分空間$W$に属するベクトル$\symbf{x}$とその直交補空間に属するベクトル$\symbf{y}$戸を用いて，
+$\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
+有限次元の場合はたしかに$V = W \oplus W^\perp$と\refdfn[直和分解]{dfn:direct-sum-of-vector-space}できる．
+しかし，無限次元の場合これは正しくない．
+
+無限次元ヒルベルト空間が直和分解できる条件については，
+\cref{thm:projection-theorem}で議論する．
 
 
 
@@ -126,13 +165,15 @@
 \begin{example}
     実ユークリッド空間のベクトル$𝒗 = (v_1, \dots, v_n) \in ℝ^n$において，以下はいずれもノルムである．
     \begin{align}
-        \norm{𝒗}_1      &\coloneq        \sum_{i=1}^{n}  \abs{v_i},      &
-        \norm{𝒗}_2      &\coloneq \sqrt{ \sum_{i=1}^{n}  \abs{v_i}^2 },  &
-        \norm{𝒗}_\infty &\coloneq \max_{1 \leq i \leq n} \abs{v_i}.      &
+        \norm{𝒗}_1      &≔        \sum_{i=1}^{n}  \abs{v_i},      &
+        \norm{𝒗}_2      &≔ \sqrt{ \sum_{i=1}^{n}  \abs{v_i}^2 },  &
+        \norm{𝒗}_\infty &≔ \max_{1 \leq i \leq n} \abs{v_i}.      &
     \end{align}
 \end{example}
 
 ノルムは距離とみなすことができる（\cref{thm:norm-is-distance}）．
+したがって，ノルム空間は距離空間であり，
+\cref{sec:metric-space}で導いたことがらが成り立つ．
 
 
 \subsection{内積とノルムの関係}
@@ -148,7 +189,7 @@
     写像$\norm{\bigdot} \colon V \to ℝ$を以下で定義すると，これはノルムである．
     \begin{equation}
         \label{eq:norm-by-inner-product}
-        \norm{𝒗} \coloneq \sqrt{\iparen{𝒗, 𝒗}}
+        \norm{𝒗} ≔ \sqrt{\iparen{𝒗, 𝒗}}
     \end{equation}
     したがって，内積空間は\cref{eq:norm-by-inner-product}で定義されたノルムに対してノルム空間になる．
 \end{definition}
@@ -275,11 +316,8 @@
     $V$上のノルムが\refthm-[中線定理]{thm:parallelogram-law}を満たすならば，$V$は内積空間である．
 \end{theorem}
 
-
-\begin{proof}
-    \cref{dfn:norm-by-inner-product}により``内積''$\iparen{𝒙, 𝒚}$を定義し，
-    それが内積の公理を満たすことを示す．
-\end{proof}
+\cref{dfn:norm-by-inner-product}により``内積''$\iparen{𝒙, 𝒚}$を定義し，
+それが内積の公理を満たすことを示す．
 
 
 
@@ -292,19 +330,44 @@
     $V$を有限次元の内積空間とする．
     $V$の基底$ \{ 𝒗_1, \dots, 𝒗_n \} \subset V$が次の性質を満たすとき，
     \word{正規直交基底}[せい|き|ちょっ|こう|き|てい](orthonormal basis)という．
-    \begin{equation*}
+    \begin{equation}
+        \label{eq:orthonormal-basis}
         \iparen{𝒗_i, 𝒗_j} = \delta_{i,j} 
             \quad \text{Kronecker delta\refdfn{dfn:Kronecker-delta}}
-    \end{equation*}
+    \end{equation}
 \end{definition}
+
+無限次元の場合も同様に定義できる．
 
 有限次元の内積空間では，正規直交基底を具体的に構成することができる．
 
 \begin{theorem}
+    \label{thm:Gram-Schmidt-process}
     \word{グラム--シュミットの正規直交化}[][くらむしゆみつとのせいきちよつこうか](Gram–Schmidt process)：
     $ \{ 𝒗_1, \dots, 𝒗_n \} \subset V$を有限次元の内積空間$V$の基底とする．
     このとき，$V$の正規直交基底$ \{ 𝒖_1, \dots, 𝒖_n \} \subset V$をつくることができる．
 \end{theorem}
+
+\begin{proof}
+    基底$𝒗_1, \dots, 𝒗_n$から具体的に$𝒖_1, \dots, 𝒖_n$を構成する．
+
+    まず$𝒖_1 ≔ 𝒗_1 / \norm{𝒗_1}$とおく．
+    このとき，$\iparen{𝒖_1, 𝒖_1} = 1$が成り立つ．
+
+    次に，$𝒖'_2 ≔ 𝒗_2 - \iparen{𝒖_1, 𝒗_2} 𝒖_1$とし，
+    $𝒖_2 ≔ 𝒖'_2 / \norm{𝒖'_2}$と定める．
+    このとき$\iparen{𝒖_1, 𝒖_2} = 0$であり，$\iparen{𝒖_2, 𝒖_2} = 1$である．
+
+    これを繰り返し，
+    \[  𝒖'_m ≔ 𝒗_m - \sum_{i=1}^{m-1} \iparen{𝒖_i, 𝒗_m} 𝒖_i，
+        \qquad 
+        𝒖_m ≔ 𝒖'_m  \]
+    と定めれば，$𝒖_1, \dots, 𝒖_n$は\cref{eq:orthonormal-basis}を満たす．
+\end{proof}
+
+グラム--シュミットの方法が使えるのは基底が有限個，つまり有限次元の場合だけであり，
+無限次元の場合は一般に成り立たない．
+無限次元ヒルベルト空間の場合は\cite{thm:basis-of-Hilbert-space}で議論する．
 
 
 

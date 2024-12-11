@@ -105,10 +105,12 @@ $(X, d)$を距離空間，$A \subset X$を部分集合とする．
     \begin{enumerate}
         \item 
             $A \subset X$の内部$\operatorname{int} A$が$A$自身と一致するとき，
-            $A$を\word{開集合}[][かいしゆうこう](open set)（あるいは\ruby{開}{かい}である）という．
+            $A$を\word{開集合}[かい|しゅう|ごう](open set)\index{かいしゆうこう@開集合}
+            （あるいは\ruby{開}{かい}である）という．
         \item 
             $A \subset X$の閉包$\cl{A}$が$A$自身と一致するとき，
-            $A$を\word{閉集合}[][へいしゆうこう](closed set)（あるいは\ruby{閉}{へい}である） という．
+            $A$を\word{閉集合}[へい|しゅう|ごう](closed set)\index{へいしゆうこう@閉集合}
+            （あるいは\ruby{閉}{へい}である） という．
     \end{enumerate}
 \end{definition}
 
@@ -145,7 +147,10 @@ $\sequ{x_i}[i \in \symbb{N}] = (x_1, x_2, \dots, x_i, \dotsc)$であり，$i \in
     このときの$x$のことを\word{極限}[きょく|げん](limit)という\cite{uchida-set-2020}．
     \ruby{収束先}{しゅう|そく|さき}ということもある．
 
-    また，$X$の点列$\sequ{x_i}[i \in \symbb{N}]$が\word{収束列}(convergent sequence)であるとは，
+    また，$X$の点列$\sequ{x_i}[i \in \symbb{N}]$が%
+    \word{収束列}(convergent sequence)%
+    \index{しゆうそくれつ@収束列}%
+    であるとは，
     この点列がある$x \in X$に収束することをいう．
 \end{definition}
 
@@ -162,13 +167,16 @@ $\sequ{x_i}[i \in \symbb{N}] = (x_1, x_2, \dots, x_i, \dotsc)$であり，$i \in
             \xrightarrow{n \to \infty} 0
     \end{split}
 \end{equation*}
-であるので，$x = x'$である\refdfn{dfn:distance}．
+であるので，\refdfn-[距離の公理]{dfn:distance}より$x = x'$である．
 
 
 \begin{definition}[コーシー列]
     \label{dfn:Cauchy-sequence}
     $(X, d)$を距離空間とする．
-    $X$の点列$(x_1, x_2, \dotsc)$が\word{コーシー列}(Cauchy sequence)であるとは，
+    $X$の点列$(x_1, x_2, \dotsc)$が
+    \word{コーシー列}(Cauchy sequence)%
+    \index{こおしいれつ@コーシー列}%
+    であるとは，
     任意の$\varepsilon > 0$に対し，ある$N \in \symbb{N}$が存在して，
     任意の$n, m > N$に対し，$ d(x_n, x_m) < \varepsilon $となることをいう\cite{uchida-set-2020}．
 \end{definition}
@@ -220,13 +228,23 @@ $\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
     このとき，$(X, d)$のことを\word{完備距離空間}(complete metric space)という．
 \end{definition}
 
+
 \begin{proposition}[実数の完備性]
     実数全体の集合$ℝ$は完備である．
 \end{proposition}
 
 \begin{proof}
-    実数を，有理数列のうちコーシー列であるものの同値類\refdfn{dfn:equivalence-class}として公理的に構成することでわかる．
+    実数の連続性から従う．
+    あるいは，実数を有理数列のうちコーシー列であるものの\refdfn-[同値類]{dfn:equivalence-class}として公理的に構成することでわかる\cite[付録]{uchida-set-2020}．
 \end{proof}
+
+
+\begin{corollary}
+    複素数全体の集合$\symbb{C}$は完備である．
+\end{corollary}
+
+
+点列の収束を用いて\refdfn-[閉包]{dfn:closure}を定義することもできる．
 
 \begin{definition}[点列による閉包の定義]
     \label{dfn:closure-by-sequence}
@@ -240,7 +258,7 @@ $\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
 \end{definition}
 
 \cref{dfn:closure}で与えた閉包の定義と一致する．
-$A$の閉包というのは，$A$に適当な元を加えて閉集合\refdfn{dfn:closed-set}にしたもの，
+$A$の閉包というのは，$A$に適当な元を加えて\refdfn-[閉集合]{dfn:closed-set}にしたもの，
 あるいは$A$のコーシー列が収束するようにしたものと考えることができる．
 
 $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，定義上は全く関係ない．
@@ -258,6 +276,7 @@ $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，
 次に稠密を定義する．
 
 \begin{definition}[稠密]
+    \label{dfn:dense}
     $(X, d)$を距離空間とする．
     $A \subset B$をみたす$X$の2つの部分集合について，
     $B \subset \cl{A}$であるとき，
@@ -288,6 +307,15 @@ $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，
     仮定より任意の$\varepsilon > 0$に対して$\neigh(x; \varepsilon) \cap A \neq 0$だから，
     $x \in \cl{A}$．
 \end{proof}
+
+
+\begin{definition}
+    \label{dfn:separable}
+    距離空間が\refdfn-[稠密]{dfn:dense}な\refdfn-[高々可算集合]{dfn:at-most-countable}をもつとき，
+    \word{可分}[か|ぶん][かふん](separable)であるという．
+\end{definition}
+
+
 
 
 \subsection{位相空間}

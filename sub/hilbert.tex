@@ -1,0 +1,190 @@
+\documentclass[../sotsu.tex]{subfiles}
+
+\begin{document}
+
+
+\section{ヒルベルト空間}
+
+\subsection{ヒルベルト空間}
+
+ベクトル空間における完備性について考えてみよう．
+
+$V$をノルム空間\refdfn{dfn:norm}とする．
+$𝒙, 𝒚 \in V$の距離\refdfn{dfn:distance}は，
+$d(𝒙, 𝒚) \coloneq \norm{𝒙 - 𝒚}$で定義できる（\cref{thm:norm-is-distance}）．
+すると，$V$の収束列\refdfn{dfn:convergent-sequence}とコーシー列\refdfn{dfn:Cauchy-sequence}は，以下のように定義できる．
+\begin{itemize}
+    \item $V$の点列$\sequ{𝒗_i}$が収束列であるとは，$\sequ{𝒗_i}$がある$𝒗 \in V$に収束する，
+        つまり$\lim_{n \to \infty} x_n = x \in V$となることをいう．
+    \item $V$の点列$\sequ{𝒗_i}$がコーシー列であるとは，
+        $\lim_{m, n \to \infty} \norm{𝒗_m - 𝒗_n} = 0$であることをいう．
+\end{itemize}
+これらを用いて，ノルム空間の完備性を定義することができる．
+
+\begin{definition}
+    ノルム空間$V$が完備であるとは，$V$のコーシー列が収束列であることをいう．
+\end{definition}
+
+\begin{definition}[バナッハ空間]
+    \label{dfn:Banach-space}
+    完備なノルム空間を\word{バナッハ空間}(Banach space)という．
+\end{definition}
+
+内積空間\refdfn{dfn:inner-product}では，内積から導かれるノルムが存在するのであった．
+このノルムを用いれば，完備な内積空間というものを定義することができる．
+
+\begin{definition}[ヒルベルト空間]
+    \label{dfn:Hilbert-space}
+    完備な内積空間を\word{ヒルベルト空間}(Hilbert space)という．
+\end{definition}
+
+\begin{proposition}
+    実ユークリッド空間$ℝ^n$および複素ユークリッド空間$ℂ^n$はヒルベルト空間である．
+\end{proposition}
+
+
+
+\subsection{射影定理}
+
+\refdfn[距離]{dfn:distance}%
+$d(𝒙, 𝒚) = \norm{𝒙 - 𝒚} = \sqrt{\iparen{𝒙 - 𝒚, \  𝒙 - 𝒚}}$である．
+
+\begin{lemma}
+    \label{thm:lemma-of-projection-theorem}
+    ヒルベルト空間$\symcal{H}$とその\refdfn-[閉]{dfn:closed-set}部分ベクトル空間$\symcal{D}$について，
+    ベクトル$𝒗 \in \symcal{H}$と$\symcal{D}$の距離を
+    \begin{equation*}
+        \symcal{d}(𝒗, \symcal{D}) 
+            \coloneq \inf_{𝒘 \in \symcal{D}} d(𝒗, 𝒘)
+            = \inf_{𝒘 \in \symcal{D}} \norm{𝒗 - 𝒘}
+    \end{equation*}
+    で定める．
+    このとき，
+    $\symcal{d}(𝒗, \symcal{D}) = d(𝒗, 𝒘)$となるような$𝒘 \in \symcal{D}$がただひとつ存在する．
+\end{lemma}
+
+\begin{proof}
+    $\symcal{d}(𝒗, \symcal{D})$の定義より，
+    $d(𝒗 - 𝒘_n) \xrightarrow{n \to \infty} \symcal{d}(𝒗, \symcal{D})$となるような$\symcal{D}$の点列$\sequ{𝒘_n}[n \in \symbb{N}]$がとれる．
+    すると，
+    \begin{equation*}
+        \begin{split}
+            d^2 (𝒘_m, 𝒘_n)
+                &= \norm{(𝒘_m + 𝒗) + (𝒗 - 𝒘_n)}^2  \\
+                &= 2 \ab( \norm{𝒘_m + 𝒗}^2 + \norm{𝒗 + 𝒘_n}^2 ) 
+                    - \norm{(𝒘_m - 𝒗) - (𝒗 - 𝒘_n)}^2
+                    \qquad \text{（\refthm[中線定理]{thm:parallelogram-law}）}  \\
+                &= 2 \ab( \norm{𝒗 - 𝒘_m}^2 + \norm{𝒗 - 𝒘_n}^2 )
+                    - 4 \norm*{ \frac{𝒘_m + 𝒘_n}{2} - 𝒗 }^2  \\
+                &\leq 2 \ab( \norm{𝒗 - 𝒘_m}^2 + \norm{𝒗 - 𝒘_n}^2 )
+                    - 4 \symcal{d}(𝒗, \symcal{D})  \\
+                &\xrightarrow{m, n \to \infty}
+                    2 \ab\big( \symcal{d}(𝒗, \symcal{D}) + \symcal{d}(𝒗, \symcal{D}) )
+                    - 4 \symcal{d}(𝒗, \symcal{D})
+                = 0
+        \end{split}
+    \end{equation*}
+    最後の不等号では，$(𝒘_m + 𝒘_n)/2 \in \symcal{D}$であること，
+    および$\symcal{d}(𝒗, \symcal{D})$の最小性を使った．
+
+    これにより，$\sequ{𝒘_n}[n \in \symbb{N}]$は\refdfn[コーシー列]{dfn:Cauchy-sequence}であり，
+    ヒルベルト空間の完備性からこれはある$𝒘 \in \symcal{D}$に収束する．
+
+    一意性を示す．$𝒘, 𝒘' \in W$がともに$\symcal{d}(𝒗, \symcal{D}) = d(𝒗, 𝒘^{(\prime)})$を満たすとして，
+    $d^2 (𝒘, 𝒘')$を上の方法で計算すると，これは$0$になるので，$𝒘 = 𝒘'$である．
+\end{proof}
+
+
+\begin{theorem}[射影定理]
+    \label{thm:projection-theorem}
+    ヒルベルト空間$\symcal{H}$に対し，閉部分ベクトル空間$\symcal{D} \subset \symcal{H}$とその\refdfn[直交補空間]{dfn:orthogonal-compliment}$\symcal{D}^\perp$をとる．
+    このとき，任意のベクトル$\symbf{z}$に対し，
+    $\symbf{x} \in \symcal{D}$と$\symbf{y} \in \symcal{D}^\perp$がそれぞれただひとつ存在し，
+    $\symcal{z} = \symcal{x} + \symcal{y}$とかける．
+    すなわち$\symcal{H} = \symcal{D} \oplus \symcal{D}^\perp$と\refdfn[直和分解]{dfn:direct-sum-of-vector-space}できる．
+\end{theorem}
+
+\begin{proof}
+    $\symbf{z} \in \symcal{H}$とする．
+    \cref{thm:lemma-of-projection-theorem}の方法で$\symbf{x} \in \symcal{D}$をとる．
+    このとき$\symbf{y} \coloneq \symbf{z} - \symbf{x} \in \symcal{D}^\perp$を示せばよい．
+    任意の$\lambda \in \symbb{R}$および$\symbf{a} \in \symcal{D}$に対し，
+    \begin{equation*}
+        \begin{split}
+            0 \leq \norm{\symbf{y}}^2
+                &= \norm{\symbf{z} - \symbf{x}}^2  \\
+                &\leq \norm{\symbf{z} - (\symbf{x} - \lambda \symbf{a})}^2
+                    \quad \text{（$\symbf{x} - \lambda \symbf{a} \in \symcal{D}$，
+                                $\norm{\symbf{z} - \symbf{x}}$の最小性）} \\
+                &= \norm{\symbf{y} + \lambda \symbf{a}}^2  \\
+                &= \norm{\symbf{y}}^2 + 2 \lambda \Re \iparen{\symbf{y}, \symbf{a}} + \lambda^2 \norm{\symbf{a}}^2  \\
+        \end{split}
+    \end{equation*}
+    したがって，
+    \(  2 \lambda \Re \iparen{\symbf{y}, \symbf{a}} + \lambda^2 \norm{\symbf{a}}^2  \geq  0  \)
+    であるが，$\lambda \in \symbb{R}$は任意なので，$\Re \iparen{\symbf{y}, \symbf{a}} = 0$．
+    また，$\lambda \to \iu \lambda$として同様に考えると，$\Im \iparen{\symbf{y}, \symbf{a}} = 0$．
+    よって$\iparen{\symbf{y}, \symbf{a}} = 0$である．
+    $\symbf{a} \in \symcal{D}$は任意だったので，$\symbf{y} \in \symcal{D}$が示された．
+\end{proof}
+
+
+
+\subsection{ヒルベルト空間の基底}
+
+一般のベクトル空間には\cref{thm:basis-exist}より基底が存在する．
+また，有限次元の内積空間では，\cref{thm:Gram-Schmidt-process}によって正規直交基底を構成できる．
+
+それでは，無限次元の内積空間に正規直交基底が存在するのか？
+
+それを考えるためには，
+まずベクトルの無限級数というものを考えないといけない．
+
+\begin{definition}
+    ヒルベルト空間$\symcal{H}$に属する可算無限個のベクトルの列$\sequ{\symbf{u}_n}[n \in \symbb{N}]$と
+    スカラー列$\sequ{c_n}[n \in \symbb{N}]$をとる．
+    \begin{equation*}
+        \lim_{N \to \infty} \norm*{𝒗 - \sum_{n=1}^{N} c_n \symbf{u}_n} = 0
+    \end{equation*}
+    となるような$𝒗 \in \symcal{H}$が存在するとき，
+    級数$\sum_{n=1}^{\infty} c_n \symbf{u}_n$は$𝒗$に収束するといい，
+    \begin{equation*}
+        \sum_{n=1}^{\infty} c_n \symbf{u}_n = 𝒗
+    \end{equation*}
+    とかく\cite[\S 1.5]{arai-1997}．
+\end{definition}
+
+\begin{definition}
+    $\symcal{H}$をヒルベルト空間とする．
+    $\symcal{H}$に属する\refdfn[可算無限個]{dfn:countably-infinite}のベクトルの組$(\symbf{u}_n)_{n=1}^{\infty}$が，
+    任意のベクトル$𝒗 \in \symcal{H}$を
+    \begin{equation}
+        𝒗 = \sum_{n=1}^{\infty} c_n \symbf{u}_n,
+        \quad c_n \coloneq \iparen{𝒗, \symbf{u}_n}
+    \end{equation}
+    とあらわせるとき，
+    $\sequ{\symbf{u}_n}[n \in \symbb{N}]$を%
+    \word{完全正規直交系}(complete orthonormal system)%
+    \index{かんせんせいきちよつこうけい@完全正規直交系}%
+    という．
+\end{definition}
+
+$\sequ{\symbf{u}_\lambda}[\lambda \in \Lambda]$がベクトル空間$V$の\refdfn[基底]{dfn:basis}であるとは，
+任意の$𝒗 \in V$が\emph{有限個を除きゼロである}スカラーの組$\sequ{c_\lambda}[\lambda \in \Lambda]$（$c_\lambda \in \symbb{K}$）を用いて
+\[  𝒗 = \sum_{\lambda \in \Lambda} c_\lambda \symbf{u}_\lambda  \]
+と有限和でかけることだった．
+しかし，完全正規直交系の場合は無限和（高々加算個のベクトルの線形結合）も許される．
+
+なお，$\symcal{H}$が有限次元であるときは，
+正規直交基底を指して完全正規直交系という．
+
+
+\begin{theorem}
+    \label{thm:basis-of-Hilbert-space}
+    ヒルベルト空間$\symcal{H}$が\refdfn[可分]{dfn:separable}であれば，
+    $\symcal{H}$は正規直交基底をもつ．
+\end{theorem}
+
+
+
+\end{document}
