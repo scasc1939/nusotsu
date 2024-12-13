@@ -268,3 +268,27 @@ $ Gamma (A sect emptyset) + Gamma (A sect emptyset^(upright(c))) = Gamma (emptys
 + *劣加法性*
   $ mu ( union.big_(n=1)^oo A_n ) <= sum_(n=1)^oo mu (A_n) $
 
+
+
+#pagebreak()
+
+
+==== ルベーグ測度の例
+
+1点のルベーグ測度はゼロである．
+つまり，点$bold(x) = (x_1, ..., x_N) in RR^N$に対して，$mu ({bold(x)}) = 0$．
+
+*証明*　任意の$epsilon > 0$に対して，1個の集合$E := (x_1 - epsilon, thick x_1] times dots.h.c times (x_N - epsilon, thick x_N]$によって，${bold(x)} subset E$と覆うことができる．
+ゆえに
+$ Gamma ({bold(x)}) <= m (E) = epsilon^N $
+であるが，$epsilon -> 0$とすると，$Gamma ({bold(x)}) -> 0$である．よって$mu({bold(x)}) = 0$がいえる．#h(1fr)\u{220e}
+
+信じられないことに，$RR^1$では，有理数全体$QQ$の測度はゼロである．
+
+*証明*　有理数全体の集合$QQ$は可算#footnote[可算の定義については，集合論のテキストを参照．]であるから，有理数を$x_1, x_2, ...$と並べることができる．
+すると，$QQ subset union.big_(n=1)^oo {x_n}$であり，
+$Gamma$の劣加法性から
+$ Gamma (QQ) <= sum_(n=1)^oo Gamma ({x_n}) $
+一方，先ほど見たように，1点のルベーグ外測度はゼロなので，$Gamma ({x_n}) = 0$．よって$Gamma (QQ) = 0$．よって，$mu (QQ) = 0$．
+
+
