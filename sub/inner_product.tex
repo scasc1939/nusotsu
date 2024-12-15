@@ -47,12 +47,16 @@
     \begin{itemize}
         \item 任意の$𝒖, 𝒗, 𝒘 \in V, \  a, b \in ℂ$に対し，
         \begin{enumerate}
-            \item \label{innerp:linearity} （\word{線形性}(linearity)） $\iparen{ 𝒖, a𝒗 \tplus b𝒘 } = a \iparen{𝒖, 𝒗} + b \iparen{𝒖, 𝒘}$
-            \item \label{innerp:antilinearity} （\word{反線形性}(antilinearity)） $\iparen{ a𝒖 \tplus b𝒗, 𝒘} = \conj{a} \iparen{𝒖, 𝒘} + \conj{b} \iparen{𝒗, 𝒘}$
+            \item \label{innerp:linearity} （\word{線形性}(linearity)\index{せんけいせい@線形性}）
+                $\iparen{ 𝒖, a𝒗 \tplus b𝒘 } = a \iparen{𝒖, 𝒗} + b \iparen{𝒖, 𝒘}$
+            \item \label{innerp:antilinearity} （\word{反線形性}(antilinearity)\word{反線形性}(linearity)\index{はんせんけいせい@反線形性}）
+                $\iparen{ a𝒖 \tplus b𝒗, 𝒘} = \conj{a} \iparen{𝒖, 𝒘} + \conj{b} \iparen{𝒗, 𝒘}$
             \item $(𝒗, \symbf{0}) = (\symbf{0}, 𝒗) = 0$
         \end{enumerate}
 
-        \cref{innerp:linearity,innerp:antilinearity}をあわせて\word{半双線形}[][はんそうせんけい](sesqui-linear)であるという．
+        \cref{innerp:linearity,innerp:antilinearity}をあわせて%
+        \word{半双線形}[][はんそうせんけい](sesqui-linear)%
+        であるという．
     \end{itemize}
 \end{corollary}
 
@@ -60,11 +64,11 @@
 \begin{example}
     実ユークリッド空間$ℝ^n$において，
     \begin{equation*}
-        (\symbf{a}, \symbf{b}) ≔ \sum_{i=1}^{n} a_i b_i
+        \iparen{ \symbf{a}, \symbf{b} } ≔ \sum_{i=1}^{n} a_i b_i
     \end{equation*}
     は内積である．また，複素ユークリッド空間$ℂ^n$において，
     \begin{equation*}
-        (\symbf{a}, \symbf{b}) ≔ \sum_{i=1}^{n} \conj{a_i} b_i
+        \iparen{ \symbf{a}, \symbf{b} } ≔ \sum_{i=1}^{n} \conj{a_i} b_i
     \end{equation*}
     は内積である．これらを特に\word{標準内積}[][ひようしゆんないせき]という．
 \end{example}
@@ -127,7 +131,7 @@
 \end{proof}
 
 任意のベクトル$\symbf{v} \in V$は，
-ある部分空間$W$に属するベクトル$\symbf{x}$とその直交補空間に属するベクトル$\symbf{y}$戸を用いて，
+ある部分空間$W$に属するベクトル$\symbf{x}$とその直交補空間に属するベクトル$\symbf{y}$とを用いて，
 $\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
 有限次元の場合はたしかに$V = W \oplus W^\perp$と\refdfn[直和分解]{dfn:direct-sum-of-vector-space}できる．
 しかし，無限次元の場合これは正しくない．
@@ -146,32 +150,39 @@ $\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
 
 \begin{definition}[ノルム]
     \label{dfn:norm}
-    $V$をベクトル空間とする．
-    写像$\norm{\bigdot} \colon V \to ℝ$は以下を満たすとき，\word{ノルム}(norm)という．
+    $V$を\refdfn-[ベクトル空間]{dfn:vector-space}とする．
+    写像$\norm{\bigdot} \colon V \to ℝ$は以下を満たすとき，
+    \word{ノルム}(norm)%
+    \index{のるむ@ノルム}%
+    という．
     \begin{itemize}
         \item 任意の$𝒖, 𝒗 \in V$および$c \in ℂ$に対し，
         \begin{enumerate}
             \item \label{norm:positivity}$\norm{𝒗} \geq 0$である．
                 また，$\norm{𝒗} = 0$となるのは$𝒗 = \symbf{0}$のときに限る．
             \item \label{norm:absolute-homogeneity} $\norm{c𝒗} = \abs{c} \norm{𝒗}$である．
-            \item \label{norm:triangle-inequality} （\word{三角不等式}(triangle inequality)）
-                $\norm{𝒖 \tplus 𝒗} \leq \norm{𝒖} + \norm{𝒗}$である．
-                また，等号が成立するのは$𝒖$と$𝒗$が一次従属\refdfn{dfn:linearly-independent}のときに限る．
+            \item \label{norm:triangle-inequality} 
+                （\word{三角不等式}(triangle inequality)\index{さんかくふとうしき@三角不等式}）
+                $\norm{𝒖 \vecplus 𝒗} \leq \norm{𝒖} + \norm{𝒗}$である．
+                また，等号が成立するのは$𝒖$と$𝒗$が\refdfn-[一次従属]{dfn:linearly-independent}のときに限る．
         \end{enumerate}
     \end{itemize}
-    ノルムが定義されたベクトル空間のことを\word{ノルム空間}(normed space)という．
+    ノルムが定義されたベクトル空間のことを%
+    \word{ノルム空間}(normed space)%
+    \index{のるむ@ノルム!くうかん@\indexdash 空間}%
+    という．
 \end{definition}
 
 \begin{example}
-    実ユークリッド空間のベクトル$𝒗 = (v_1, \dots, v_n) \in ℝ^n$において，以下はいずれもノルムである．
+    実ユークリッド空間のベクトル$𝒗 = (v_1, \dots, v_N) \in ℝ^N$において，以下はいずれもノルムである．
     \begin{align}
-        \norm{𝒗}_1      &≔        \sum_{i=1}^{n}  \abs{v_i},      &
-        \norm{𝒗}_2      &≔ \sqrt{ \sum_{i=1}^{n}  \abs{v_i}^2 },  &
-        \norm{𝒗}_\infty &≔ \max_{1 \leq i \leq n} \abs{v_i}.      &
+        \norm{𝒗}_1      &≔        \sum_{i=1}^{N}  \abs{v_i},      &
+        \norm{𝒗}_2      &≔ \sqrt{ \sum_{i=1}^{N}  \abs{v_i}^2 },  &
+        \norm{𝒗}_\infty &≔ \max_{1 \leq i \leq N} \abs{v_i}.      &
     \end{align}
 \end{example}
 
-ノルムは距離とみなすことができる（\cref{thm:norm-is-distance}）．
+ノルムは\refdfn[距離]{dfn:distance}\index{きより@距離}とみなすことができる（\cref{thm:norm-is-distance}）．
 したがって，ノルム空間は距離空間であり，
 \cref{sec:metric-space}で導いたことがらが成り立つ．
 
@@ -199,7 +210,9 @@ $\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
     \cref{norm:positivity}は内積の定義（\cref{dfn:inner-product}）から明らかなので，\cref{norm:triangle-inequality}を示す．
     そのために，まず次の補題を示す．
 
-    \begin{lemma}[コーシー--シュワルツの不等式]
+    \begin{lemma}[\word{コーシー--シュワルツの不等式}(Cauchy--Schwarz inequality)]
+        \index{こおしいしゆわるつのふとうしき@コーシー--シュワルツの不等式}
+        \index{しゆわるつのふとうしき@シュワルツの不等式|see{コーシー--シュワルツの不等式}}
         \label{thm:Cauchy-Schwarz-inequality}
         $V$を内積空間，$\norm{\bigdot}$を内積から導かれるノルムとする．
         このとき，任意の$𝒙, 𝒚$について
@@ -207,7 +220,7 @@ $\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
             \label{eq:Cauchy-Schwarz-inequality}
             \abs{\iparen{𝒙, 𝒚}} \leq \norm{𝒙} \norm{𝒚}
         \end{equation}
-        が成り立つ（\word{コーシー--シュワルツの不等式}(Cauchy--Schwarz inequality)）．
+        が成り立つ．
     \end{lemma}
 
     \begin{proof}[\cref{thm:Cauchy-Schwarz-inequality}の証明]

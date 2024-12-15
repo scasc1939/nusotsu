@@ -14,15 +14,15 @@
 関数$\psi(x_1, x_2, \dotsc)$のようなものを考えよう．
 
 \begin{definition}
-    $\Omega \subset ℝ$を$n$次元ユークリッド空間$ℝ^n$の開集合\refdfn{dfn:open-set-and-closed-set}とする．
-    $\Omega$における連続関数全体の集合を$C^0 (\Omega)$でかく．
+    $𝛺 \subset ℝ$を$n$次元ユークリッド空間$ℝ^n$の\refdfn[開集合]{dfn:open-set-and-closed-set}とする．
+    $𝛺$における連続関数全体の集合を$C^0 (𝛺)$でかく．
 \end{definition}
 
 \begin{proposition}
     \label{thm:continuous-function-space-is-vector-space}
-    $C(\Omega)$は以下のように定義される和とスカラー倍に関して，ベクトル空間をなしている．
+    $C^0 (𝛺)$は以下のように定義される和とスカラー倍に関して，ベクトル空間をなしている．
     \begin{itemize}
-        \item $f, g \in C(\Omega)$，$c \in 𝕂$に対して，
+        \item $f, g \in C^0 (𝛺)$，$c \in 𝕂$に対して，
         \begin{enumerate}
             \item 関数の和$f \plushat g$は，
                 任意の$x \in ℂ$に対して$ ( f \plushat g )(𝒙) = f(x) \doubleplus g(x) $である関数と定める．
@@ -38,15 +38,15 @@
 
 
 \begin{definition}
-    ある関数$u \in C(\Omega)$に対し，$u(x) \neq 0$であるような$x \in \Omega$の集合の閉包\refdfn{dfn:closure}
+    ある関数$u \in C(𝛺)$に対し，$u(x) \neq 0$であるような$x \in 𝛺$の集合の\refdfn[閉包]{dfn:closure}
     \begin{equation}
-        \supp u  \coloneq  \cl{ \Set{  x \in \Omega  \given  u(x) \neq 0  } }
+        \supp u  \coloneq  \cl{ \Set{  x \in 𝛺  \given  u(x) \neq 0  } }
     \end{equation}
     を$u$の\word{台}[だい][だい](support)という．
 \end{definition}
 
-関数$u \in C(\Omega)$の中で，$\supp u$がコンパクト\refdfn{dfn:compact-set}であるもの全体の集合を$C_0 (\Omega)$とかく．
-$C_0 (\Omega)$もベクトル空間になっている．
+関数$u \in C(𝛺)$の中で，$\supp u$がコンパクト\refdfn{dfn:compact-set}であるもの全体の集合を$C_0 (𝛺)$とかく．
+$C_0 (𝛺)$もベクトル空間になっている．
 
 
 \begin{definition}
@@ -76,15 +76,72 @@ $C_0 (\Omega)$もベクトル空間になっている．
 
 関数空間においてもっとも一般的なノルムは``最大値ノルム''である．
 
+しかし，量子力学において重要なのは，以下の2乗可積分関数空間である．
+
 \begin{definition}
     \label{dfn:square-integrable-function-space}
-    $[a, b] \subset ℝ$から$ℂ$への\word{2乗可積分関数空間}(square integrable function space) $L^2$を
+    $𝛺 \subset ℝ^N$から$ℂ$への%
+    \word{2乗可積分関数空間}(square integrable function space)%
+    \index{2しようかせきふんくうかん@2乗可積分関数空間}%
+    $L^2$を
     \begin{equation*}
-        L^2 (a, b) \coloneq \Set*{ f \colon [a, b] \to ℂ  \given  \int_a^b \abs{f(x)} \dd{x} < \infty }
+        L^2 (𝛺) \coloneq \Set*{ f \colon 𝛺 \to ℂ  \given  \int_𝛺 \abs{f(x)}^2 \dd{x} < \infty }
     \end{equation*}
     で定義する．
+    ただし$\int_𝛺 \dd{x}$はルベーグ積分である．
 \end{definition}
 
+\begin{proposition}
+    \refdfn-[2乗可積分関数空間]{dfn:square-integrable-function-space}%
+    $L^2 (𝛺)$は，
+    以下で定義されるノルムに対して\refdfn[ノルム空間]{dfn:norm}になる．
+    \begin{equation}
+        \label{eq:L^2-norm}
+        \norm{f}_{L^2} \coloneq \sqrt{ \int_𝛺 \abs{f(x)}^2 \dd{x} }
+    \end{equation}
+\end{proposition}
+
+\begin{proof}
+    \cref{dfn:norm}の条件を確かめればよい．
+    \cref{norm:absolute-homogeneity}は，
+    スカラー倍$cf$の定義（$(cf)(𝒙) = c \cdotp f(𝒙)$）より，
+    \(
+        \int_𝛺 \abs{(cf)(𝒙)}^2 \dd{𝒙}
+            = \abs{c}^2 \int_𝛺 \abs{f(𝒙)}^2 \dd{𝒙}
+    \)だからいえる．
+    三角不等式\cref{norm:triangle-inequality}は，
+    和$f + g$の定義（$(f+g)(𝒙) = f(𝒙) + g(𝒙)$）より，
+    \begin{equation*}
+        \begin{split}
+            ∫_𝛺 \abs{(f+g)(𝒙)}² \dd{x}
+            &= \int_𝛺 \abs{f(𝒙) + g(𝒙)}² \dd{x}
+            \\
+            &= \int_𝛺 \abs{f(𝒙)}² 
+                + 2 \int_𝛺 \Re \ab( \conj{f}(𝒙) g(𝒙) ) \dd{x}
+                + \int_𝛺 \abs{g(𝒙)}² \dd{x}
+            \\
+            &\leq \int_𝛺 \abs{f(𝒙)}² \dd{x} 
+                + 2\sqrt{ \int_𝛺 \abs{f(𝒙)}² \dd{x}   \int_𝛺 \abs{g(𝒙)}² \dd{x} } 
+                + \int_𝛺 \abs{g(𝒙)}² \dd{x}
+            \\
+            &= \ab( \sqrt{  \int_𝛺 \abs{f(𝒙)}² \dd{x}  }  
+                  + \sqrt{  \int_𝛺 \abs{g(𝒙)}² \dd{x}  }  )²
+        \end{split}
+    \end{equation*}
+    だからいえる（途中コーシー・シュワルツの不等式より
+    \begin{equation*}
+        \int \abs{\conj{f}(𝒙) g(𝒙)} \dd{x}
+            \leq \abs*{ \int \conj{f}(𝒙) g(𝒙) \dd{x} }
+            \leq 2\sqrt{ \int_𝛺 \abs{f(𝒙)}² \dd{x}   \int_𝛺 \abs{g(𝒙)}² \dd{x} }
+    \end{equation*}
+    を用いた）．
+    \cref{norm:positivity}の$\norm{f}_{L^2} \geq 0$は定義より明らかである．
+    $\norm{f}_{L^2} = 0$ならば$f = 0$は，実はいえない．
+    $f$が$\Omega$上で恒等的にゼロでなくても，$\Omega$のほとんどいたるところゼロであれば，
+    $\int_\Omega f(\symbf{x}) \dd{x} = 0$となるからである．
+    そこで，関数としての$0$を，（ルベーグ測度ゼロの点を除いて）ほとんどいたるところゼロである関数と再定義する．
+    これにより$\norm{\bigdot}_{L^2}$はノルムの条件を満たす．
+\end{proof}
 
 
 
@@ -94,32 +151,69 @@ $C_0 (\Omega)$もベクトル空間になっている．
 関数空間に内積が定義できる場合．
 
 \begin{proposition}
-    2乗可積分関数空間$L^2 (a, b)$は，以下で定義される内積$(\bigdot, \bigdot)$に対して内積空間\refdfn{dfn:inner-product}になる．
+    2乗可積分関数空間$L^2 (𝛺)$は，以下で定義される内積$(\bigdot, \bigdot)$に対して\refdfn[内積空間]{dfn:inner-product}になる．
     \begin{align}
         \label{eq:L^2-inner-product}
-        (f, g)_{L^2} \coloneq \int_a^b \conj{f}(x) g(x) \dd{x}
-    \end{align}
-    当然ノルム\refdfn{dfn:norm,dfn:norm-by-inner-product}も以下のように定義できる．
-    \begin{align}
-        \norm{f}_{L^2}^2 \coloneq (f, f)_{L^2} = \int_a^b \abs{f(x)}^2 \dd{x}
+        \iparen{f, g}_{L^2} \coloneq \int_𝛺 \conj{f}(x) g(x) \dd{x}
     \end{align}
 \end{proposition}
 
 \begin{proof}
-    \cref{eq:L^2-inner-product}がノルムの内積を満たすのは明らかであるから，
-    $(f, g)_{L^2}$がwell-definedであることを示す．
+    \cref{eq:L^2-inner-product}が内積の公理を満たすのは明らかであるから，
+    $\iparen{f, g}_{L^2}$がwell-definedであることを示す．
     
 \end{proof}
 
 
-$u$を$\Omega \subset_{\text{open}} ℝ^n$で定義された関数とする．
-$u$が$\Omega$で局所可積分であるとは，
-任意の\refdfn[コンパクト集合]{dfn:compact-set}$K \subset \Omega$に対し
+\subsubsection*{同値類による\texorpdfstring{$L²$}{L²}-空間}
+
+「関数としての$0$を，
+（ルベーグ測度ゼロの点を除いて）ほとんどいたるところゼロである関数と再定義する」という行為は，
+同値類を用いて正当化される．
+
+$L^2$上の\refdfn[同値関係]{dfn:equivalence-relation}$\sim$を
+\begin{equation*}
+    f \sim g  \iff  f(\symbf{x}) = g(\symbf{x}) \quad (\text{a.e. } \symbf{x} \in \Omega)
+\end{equation*}
+と定義する．$\sim$が同値関係になるのは明らかである．
+\refdfn[商集合]{dfn:quotient-set}$L^2/{\sim}$上の和とスカラー倍を，
+代表元を用いて
+\begin{align}
+    \eqclass{f} + \eqclass{g} &\coloneq \eqclass{f + g}  &
+    c \cdotp \eqclass{f} &\coloneq \eqclass{c \cdotp f}
+\end{align}
+と定める\footnote{
+    $+$と$\cdotp$はwell-definedである（すなわち代表元のとりかたによらない）．
+    なぜなら，$f \sim f'$（$\mu(ℱ) = 0$である集合$ℱ$の点を除き一致），
+    $g \sim g'$（$\mu(𝒢) = 0$である集合$𝒢$の点を除き一致）に対し，
+    $f + g \sim f' + g'$（ルベーグ測度$0$の集合$ℱ \cup 𝒢$を除き一致）だからである．
+}と，$L^2/{\sim}$はベクトル空間をなす．
+また，$L^2/{\sim}$上の内積を，代表元の内積
+\begin{align}
+    \iparen{ \eqclass{f}, \eqclass{g} } \coloneq \int_\Omega \conj{f}(\symbf{x}) g(\symbf{x}) \dd{x}
+\end{align}
+で定めれば\footnote{
+    $\iparen{\bigdot, \bigdot}$はwell-definedである．
+    なぜなら，ルベーグ測度$0$の集合$ℱ \cup 𝒢$の点における$\conj{f}(\symbf{x}) g(\symbf{x})$の値は，
+    積分$\int_\Omega \conj{f}(\symbf{x}) g(\symbf{x}) \dd{x}$に寄与しないからである．
+}，$L^2/{\sim}$は内積空間になる．
+
+このように定義された内積空間$L^2/{\sim}$のことを，
+$L^2$と書いているのである．
+
+
+
+
+\subsection{局所可積分}
+
+$u$を$𝛺 \subset_{\text{open}} ℝ^n$で定義された関数とする．
+$u$が$𝛺$で局所可積分であるとは，
+任意の\refdfn[コンパクト集合]{dfn:compact-set}$K \subset 𝛺$に対し
 \begin{equation*}
     \int_K \abs{ u(x) } \dd{x} < \infty
 \end{equation*}
 であることをいう．
-連続関数$C(\Omega)$は局所可積分である．
+連続関数$C(𝛺)$は局所可積分である．
 
 
 

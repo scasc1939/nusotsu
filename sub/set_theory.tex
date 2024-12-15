@@ -210,7 +210,7 @@ $X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
     \[ y = f(x) = 3x \]
     で定めたとき，$f$は$\symbb{N}$から$\symbb{N}$への写像である．
     簡単のために
-    \[ X \ni x \mapsto 3x \in Y \]
+    \[ X \ni x \longmapsto 3x \in Y \]
     とかくこともある．
 \end{example}
 
@@ -632,6 +632,7 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
 \end{definition}
 
 \begin{definition}[商集合]
+    \label{dfn:quotient-set}
     $X$を集合，$\sim$を$X$上の同値関係とする．
     同値類全体の集合
     \begin{equation}
@@ -670,13 +671,13 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
     同値関係$\sim$が定義された集合$X$は，同値類によって互いに交わらない部分集合に分割される．
     すなわち適当な$x_1, x_2, \dotsc \in X$を用いて
     \begin{equation*}
-        X = \eqclass{x_1} \sqcup \eqclass{x_2} \sqcup \dotsb
-            \quad \text{（非交和\refdfn{dfn:disjoint-union}）}
+        X = \bigsqcup_{\lambda \in \Lambda} \eqclass{x_\lambda}
+            \quad \text{（\refdfn[非交和]{dfn:disjoint-union}）}
     \end{equation*}
 \end{theorem}
 
 \begin{proof}
-    $X = \eqclass{x_1} \cup \eqclass{x_2} \cup \dotsb$は明らかなので，非交和であることを示す．
+    $X = \bigcup_{\lambda \in \Lambda} \eqclass{x_\lambda}$は明らかなので，非交和であることを示す．
     $\eqclass{x} \cap \eqclass{y} \neq \emptyset$なら$\eqclass{x} = \eqclass{y}$を示せばよい．
 
     そこで$z \in \eqclass{x} \cap \eqclass{y}$とする．

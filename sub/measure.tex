@@ -70,10 +70,12 @@ $n$-次元ユークリッド空間における区間全体の集合を$\symfrak{
     \end{enumerate}
 \end{definition}
 
-面積・体積を考えられる領域の条件である．
-
 実は，\cref{field-of-sets:empty-or-X}は$X$か空集合$\emptyset$どちらか片方だけで十分であるし，
 \cref{field-of-sets:operation}の3条件はどれかひとつで十分である．
+
+\begin{example}
+    任意の空間$X$について，その冪集合$\pset(X)$は有限加法族である．
+\end{example}
 
 \begin{example}
     $n$-次元ユークリッド空間における区間塊全体の集合$\symfrak{F}_n$は有限加法族である\cite[\S 4]{ito-lebesgue-1963}．
@@ -92,7 +94,7 @@ $n$-次元ユークリッド空間における区間全体の集合を$\symfrak{
             $A, B \in \symfrak{F}$かつ$A \cap B = \emptyset$（交わらない）なら，
             $m(A \sqcup B) = m(A) + m(B)$である．
 
-            より一般に，$A_1, \dots, A_n \in \symfrak{F}$が$A_j \cup A_k = \emptyset$（$j \neq k$），
+            より一般に，$A_1, \dots, A_n \in \symfrak{F}$が$A_i \cup A_j = \emptyset$（$i \neq j$），
             つまり互いに交わらないなら，
             \begin{equation*}
                 m \ab( \bigsqcup_{i=1}^{n} A_i ) = \sum_{i=1}^{n} m(A_i)
@@ -103,11 +105,21 @@ $n$-次元ユークリッド空間における区間全体の集合を$\symfrak{
     \begin{enumerate}[resume]
         \item \label{content-measure:monotonicity}（\word{単調性}）
             $A \subset B$（$\in \symfrak{F}$）なら$m(A) \leq m(B)$である．
-        \item $m(A \setminus B) = m(A) - m(B)$である．
+        \item $A \subset B$（$\in \symfrak{F}$）なら$m(A \setminus B) = m(A) - m(B)$である．
         \item \label{content-measure:subadditivity}（\word{有限劣加法性}）
             $A_1, \dots, A_n \in \symfrak{F}$なら，
             \begin{equation*}
                 m \ab( \bigcup_{i=1}^{n} A_i ) \leq \sum_{i=1}^{n} m(A_i)
+            \end{equation*}
+    \end{enumerate}
+    これらに加えて，
+    さらに以下が成り立つとき（必ず成り立つとは限らない），
+    $m$は\word{完全加法的}\index{かんせんかほうてき@完全加法的}であるという．
+    \begin{enumerate}[resume]
+        \item \refdfn[高々可算個]{dfn:at-most-countable}の集合$A_1, A_2, \dotsc$が$A_i \cup A_j = \emptyset$（$i \neq j$）を満たし，
+            $A \coloneq \bigsqcup_{n=1}^{\infty} A_n \in \symfrak{F}$であるなら，
+            \begin{equation*}
+                m(A) = \sum_{n=1}^{\infty} m(A_n)
             \end{equation*}
     \end{enumerate}
 \end{definition}
@@ -144,6 +156,7 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
 \subsection{外測度}
 
 \begin{definition}[外測度]
+    \label{dfn:outer-measure}
     $X$を集合，$\Gamma$を$X$の部分集合から実数への関数とする．
     任意の部分集合$A, B$について，
     \begin{enumerate}
@@ -184,8 +197,12 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
     \begin{equation*}
         \Gamma(A)  \coloneq  \inf_{ \{ E_n \} } \sum_{n=1}^{\infty} m(E_n)
     \end{equation*}
-    と定めると，$\Gamma$は外測度である．
+    と定めると，$\Gamma$は\refdfn-[外測度]{dfn:outer-measure}である．
 \end{theorem}
+
+\begin{proof}
+    \cref{dfn:outer-measure}の条件を確認すればよい．
+\end{proof}
 
 
 \begin{definition}

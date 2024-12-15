@@ -117,4 +117,127 @@
 本稿で「体$𝕂$」と書いてある場合，実数$ℝ$もしくは複素数$ℂ$と読み替えて差支えない．
 
 
+
+\subsection{複素数}
+
+集合$\symbb{C}$を
+\begin{equation}
+    \symbb{C} \coloneq \Set{  (a, b)  \given  a, b \in \symbb{R}  }
+\end{equation}
+で定める．
+もちろん$\symbb{C} = \symbb{R}^2$である．
+$\symbb{C}$の元である順序対$(a, b) \in \symbb{R}$に対し，和と積を次のように定義する．
+\begin{align}
+    (a, b) \underset{\symbb{C}}{+} (c, d) &\coloneq (a+c, \  b+d)  \\
+    (a, b) \underset{\symbb{C}}{\times} (c, d) &\coloneq (ac-bd, \  ad+bc)
+\end{align}
+すると，$(\symbb{C}, \underset{\symbb{C}}{+}, \underset{\symbb{C}}{\times})$は\refdfn-[体]{dfn:field}になるので，
+これを\word{複素数体}と呼ぶ．
+$\symbb{C}$の元を\word{複素数}と呼び，
+$(a, b) \eqcolon a + b\iu$とかく．
+また，実数のときと同様に積の記号はよく省略する．
+
+\begin{proof}
+    $\symbb{C}$の元を$x = (a, b)$，$y = (c, d)$，$z = (e, f)$とする．
+
+    \textsf{和について}　和が可換かつ結合的であることは明らか．
+    零元は$0_{\symbb{C}} = (0, 0) = 0 + 0\iu$であり，
+    $x$に対する和の逆元は$-x = (-a, -b)$である．
+
+    \textsf{積について}　積が可換であることは明らか．
+    単位元は$1_{\symbb{C}} = (1, 0) = 1 + 0\iu$であり，
+    $x \neq 0_{\symbb{C}}$に対する積の逆元は$(a / \sqrt{a^2 + b^2}, \  -b / \sqrt{a^2 + b^2} )$である．
+    積が結合的であることは
+    \begin{equation*}
+        \begin{split}
+            (xy)z &= (ac-bd, \  bc+ad) \underset{\symbb{C}}{\times} (e, f)   \\
+                  &= \cdots  \\
+                  &= (a, b) \underset{\symbb{C}}{\times} (ce-df, \  de+cf)   \\
+                  &= x(yz)
+        \end{split}
+    \end{equation*}
+
+    \textsf{分配法則}　
+    \begin{equation*}
+        \begin{split}
+            (x \underset{\symbb{C}}{+} y) \underset{\symbb{C}}{\times} z
+            &= (a+c, \  b+d) \underset{\symbb{C}}{\times} (e, f)   \\ 
+            &= (ae+ce-bf-df, \  af+cf+be+de)   \\
+            &= (ae-bf, \  af+be) \underset{\symbb{C}}{+} (ce-df, \  cf+de)   \\
+            &= (x \underset{\symbb{C}}{\times} z) \underset{\symbb{C}}{+}
+               (y \underset{\symbb{C}}{\times} z)
+        \end{split}
+    \end{equation*}
+\end{proof}
+
+実数$a \in \symbb{R}$は，複素数$a = (a, 0)$とみなすことで，
+複素数に組み込むことができる（$\symbb{R} \subset \symbb{C}$）．
+
+複素数の\word{絶対値}[ぜっ|たい|ち](absolute value)\index{せつたいち@絶対値}を
+\begin{equation}
+    \label{eq:complex-number-abs}
+    \abs{z} 
+        = \abs{a + b\iu}
+        \coloneq \sqrt{a^2 + b^2}
+\end{equation}
+で定める．$0 \leq \abs{z} < \infty$であり，
+$\abs{z} = 0$となるのは$a = b = 0$，つまり$z = 0$のときに限る．
+
+
+\subsubsection*{複素数についての性質}
+
+\begin{proposition}
+    複素数$z_1, z_2$の絶対値について，
+    以下が成り立つ．
+    \begin{enumerate}
+        \item $\abs{z_1 z_2} = \abs{z_1} \abs{z_2}$
+        \item $\abs{z_1 + z_2} \leq \abs{z_1} + \abs{z_2}$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $z_1 = a_1 + b_1 \iu$，$z_2 = a_2 + b_2 \iu$とすると，
+            \begin{equation*}
+                \begin{split}
+                    \abs{z_1 z_2}^2 
+                        &= \abs{ a_1 a_2 + a_1 b_2 \iu + a_2 b_1 \iu - a_2 b_2 }^2   \\
+                        &= (a_1 a_2 - b_1 b_2)^2 + (a_1 b_2 + a_2 b_1)^2   \\
+                        &= (a_1^2 + b_1^2) (a_2^2 + b_2^2)
+                        \quad = \abs{z_1}^2 \abs{z_2}^2
+                \end{split}
+            \end{equation*}
+        \item 
+    \end{enumerate}
+\end{proof}
+
+
+\begin{proposition}
+    複素数$x, y$について，以下の不等式が成り立つ．
+    \begin{align}
+        \label{eq:complex-abs-squared}
+        \abs{x + y}^2 
+            &\leq \ab( \abs{x} + \abs{y} )^2 
+            \leq 2\ab( \abs{x}^2 + \abs{y}^2 )
+    \end{align}
+\end{proposition}
+
+\begin{proof}
+    まず，
+    \begin{equation*}
+        \begin{split}
+            \abs{x + y}^2
+                &= \abs{x}^2 + 2\Re (xy) + \abs{y}^2    \\
+                &\leq \abs{x}^2 + 2 \abs{x} \abs{y} + \abs{y}^2  \\
+                &= \ab( \abs{x} + \abs{y} )^2
+        \end{split}
+    \end{equation*}
+    より左側の不等号が示される．
+    右側の不等号は，
+    相加相乗平均の関係$2\sqrt{ab} \leq a + b$（$a, b > 0$）より明らかである．
+\end{proof}
+
+
+
+
 \end{document}
