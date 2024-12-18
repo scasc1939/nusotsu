@@ -1,58 +1,166 @@
-\ProvidesFile{bibtest1.bbx}[2024/12/01 for test]
+\ProvidesFile{sotsu.bbx}[2024/12/18]
 
 \RequireBibliographyStyle{numeric}
 
 \RequirePackage{ifthen}
 
 
-\DeclareNameFormat{jpname}{%
-    \ifthenelse{\value{listcount}<\value{listtotal}}{%
+% 毎 unit おわりのピリオドを削除
+\renewcommand{\newunitpunct}{}
+
+% title と subtitle の間に入れる文字
+\renewcommand{\subtitlepunct}{\addcolon\addspace}
+
+
+% 英語／日本語の名前
+\newbibmacro*{name:english/japanese}{%
+  \iflistundef{language}{%
+  % 日本語でない場合 → biblatex.def のマクロに丸投げ
+    \usebibmacro{name:given-family}%
+      {\namepartfamily}%
+      {\namepartgiven}%
+      {\namepartprefix}%
+      {\namepartsuffix}%
+  }{%
+  % 日本語の場合、自分で処理する。
+    \ifthenelse{\value{listcount}<\value{liststop}}{%
+      % 最後でないとき
+      \namepartfamily%
+      \namepartgiven%
+      \addcomma\addspace% カンマ＋スペースを追加
+    }{% 最後のとき
+      \ifthenelse{\value{liststop}<\value{listtotal}}{%
+        % まだ余っている場合
         \namepartfamily%
         \namepartgiven%
-        \addcomma\addspace% カンマ＋スペースを追加
-    }{%
+        \printtext{他}
+      }{% 余っていない場合
         \namepartfamily%
         \namepartgiven%
+      }%
     }%
+  }%
 }
 
-\DeclareFieldFormat{sans-title}{{\sffamily#1}}
+\DeclareNameFormat{author}{%
+  \usebibmacro{name:english/japanese}%
+}
+
+\DeclareNameFormat{editor}{%
+  \usebibmacro{name:english/japanese}%
+}
+
+
+
 
 % language は表示しない
 \DeclareListFormat{language}{}
 
 
-\renewbibmacro{author}{%
-    \iflistundef{language}{%
-        \printnames{author}%
-    }{%
-        \printnames[jpname]{author}%
-    }%
+
+% 編者が先頭に来た時の(編)
+\DeclareDelimFormat{editortypedelim}{}
+
+\renewbibmacro*{editor+othersstrg}{%
+  \printtext[editortype]{（編）}%
 }
 
 
+% タイトル
+\DeclareFieldFormat{title}{『\textsf{#1}』}
+\DeclareFieldFormat
+[article,inbook,incollection,inproceedings,patent,thesis,unpublished]
+  {title}{『\textsf{#1}』}
 
-% \thelist{language}
-% ↑ language = "english" だと空
-% language = "japanese" だと "japanese"
+% edition（版）
+\DeclareFieldFormat{edition}{（#1）}
 
 
-\renewbibmacro*{title}{%
-  \ifboolexpr{%
-    % タイトルとサブタイトルが両方とも存在しない？
-    test {\iffieldundef{title}}
+% 編者がタイトルのうしろに来たとき
+\renewbibmacro*{byeditor+others}{%
+  % editor が存在する？
+  \ifnameundef{editor}
+    {}% 存在しないなら、何もしない
+    {%  存在するなら・・・
+    \setunit{}%
+    \printnames[byeditor]{editor}%
+      \clearname{editor}%
+      \printtext{編}%
+      \newunit
+    }%
+  \usebibmacro{bytranslator+others}%
+}
+
+\DeclareNameFormat{byeditor}{%
+  \usebibmacro{name:english/japanese}%
+}
+
+
+% 巻
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareFieldFormat{volume}{第{#1}巻}
+
+\DeclareFieldFormat{volumes}{%
+  \printtext{（全}%
+  #1%
+  \setunit*{}%
+  \printtext{巻）}%
+}
+
+
+% シリーズ
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \renewbibmacro*{series+number}{%
+%   \printtext{〈}%
+%   \printfield{series}%
+%   \setunit*{・}%
+%   \printfield{number}%
+%   \printtext{〉}
+%   \newunit}
+\renewbibmacro*{series+number}{%
+  \ifboolexpr{
+    test { \iffieldundef{series} }
     and
-    test {\iffieldundef{subtitle}}
-  }%
-  {}% 存在しないなら、何もしない
-  {% 存在するのなら
-    \printtext[sans-title]{%
-      \printfield[titlecase]{title}%
-      \setunit{\subtitlepunct}%
-      \printfield[titlecase]{subtitle}%
+    test { \iffieldundef{number} }
+    }
+  {% 両方とも存在しなければ、何もしない
+  }{% 片方でも存在していれば、
+    \printtext{〈}%
+    \printfield{series}%
+    \iffieldundef{number}{%
+      \setunit*{}% number が存在しなければ、何もしない
+    }{% number が存在していて……
+      \setunit*{・}% series が存在すれば印字
     }%
-    \newunit%
+    \printfield{number}%
+    \printtext{〉}%
+    \newunit
   }%
-  \printfield{titleaddon}%
 }
+
+% 出版社＋出版年
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewbibmacro*{publisher+location+date}{%
+  \printlist{publisher}%
+  \setunit*{\addspace}% publisher が存在するときだけ（？）
+  \iffieldundef{year}
+    {}
+    {%
+      \printtext{(}%
+      \usebibmacro{date}%
+      \printtext{)}%
+    }%
+  \newunit
+}
+
+
+
+
+
+
+% 論文の in:
+\renewbibmacro*{in:}{}
+
+
 

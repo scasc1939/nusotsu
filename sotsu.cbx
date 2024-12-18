@@ -1,0 +1,122 @@
+\ProvidesFile{sotsu.cbx}[2024/12/18]
+
+\RequireCitationStyle{numeric}
+
+
+
+% \citetitle 関連
+% %%%%%%%%%%%%%%%
+
+\DeclareFieldFormat{citetitle}{#1}
+
+
+
+% 日本語氏名を出力
+% #1 で受け取った氏名（姓／姓名）をつなげるマクロ
+
+\newbibmacro*{name:japanese}[1]{%
+  \ifthenelse{\value{listcount}<\value{liststop}}{%
+    % 最後でないとき
+    \printtext{#1}%
+    \printtext{・}%
+  }{% 最後のとき
+    \ifthenelse{\value{liststop}<\value{listtotal}}{%
+      \printtext{{#1}他}%
+    }{%
+      \printtext{#1}%
+    }%
+  }%
+}
+
+
+
+% \citeauthor 関連
+% %%%%%%%%%%%%%%%
+
+\DeclareNameFormat{labelname}{%
+  \iflistundef{language}{%
+    % 英語人名
+    \ifcase\value{uniquename}
+        \usebibmacro{name:family}
+        {\namepartfamily}
+        {\namepartgiven}
+        {\namepartprefix}
+        {\namepartsuffix}%
+    \or
+        \ifuseprefix
+        {%
+            \usebibmacro{name:given-family}
+            {\namepartfamily}
+            {\namepartgiveni}
+            {\namepartprefix}
+            {\namepartsuffixi}%
+        }%
+        {%
+            \usebibmacro{name:given-family}
+            {\namepartfamily}
+            {\namepartgiveni}
+            {\namepartprefixi}
+            {\namepartsuffixi}
+        }%
+    \or
+        \usebibmacro{name:given-family}
+        {\namepartfamily}
+        {\namepartgiven}
+        {\namepartprefix}
+        {\namepartsuffix}%
+    \fi
+    \usebibmacro{name:andothers}%
+  }{% 日本語人名のとき
+    \usebibmacro{name:japanese}
+      {% マクロに投げる名前（姓）
+        \mkbibnamefamily{\namepartfamily}%
+      }%
+  }%
+}
+
+
+
+% \citefullauthor
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\DeclareCiteCommand{\citefullauthor}
+  % precode
+  {\boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  % loopcode
+  {\ifciteindex
+     {\indexnames{labelname}}
+     {}%
+  % フォーマットを fulllabelname にする
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   \printnames[fulllabelname]{labelname}}
+  % sepcode
+  {\multicitedelim}
+  % postcode
+  {\usebibmacro{postnote}}
+
+
+\DeclareNameFormat{fulllabelname}{%
+  \iflistundef{language}{%
+    % 英語人名
+    % フルネームでの出力なので、
+    % uniquename うんぬんの処理は不要。
+    \usebibmacro{name:given-family}
+    {\namepartfamily}
+    {\namepartgiven}
+    {\namepartprefix}
+    {\namepartsuffix}%
+    \usebibmacro{name:andothers}%
+  }{% 日本語人名のとき
+    % 新しいマクロ name:japanese 
+    % を呼び出す
+    \usebibmacro{name:japanese}
+      {% マクロに投げる名前（姓＋名）
+        \mkbibnamefamily{\namepartfamily}%
+        \mkbibnamegiven{\namepartgiven}%
+      }%
+  }%
+}
+

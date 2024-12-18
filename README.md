@@ -6,6 +6,13 @@
 
 ## History
 
+#### 2024/12/18
+
+- 参考文献関係
+  - `sotsu.bib`を修正。seriesとnumberを分けた。
+  - `sotsu.bbx`を更新。
+  - `sotsu.cbx`を追加。
+
 
 #### 2024/12/10
 
