@@ -149,7 +149,7 @@ $N$-次元ユークリッド空間内の立体$A, B subset RR^N$について，"
 ==== 完全加法性
 
 今までは有限個の立体を組み合わせた場合を考えていた．
-（互いに交わらない）加算無限個の立体$A_1, A_2, ...$を組み合わせた立体$A := union.sq.big_(n=1)^oo A_n$についても，
+（互いに交わらない）可算無限個の立体$A_1, A_2, ...$を組み合わせた立体$A := union.sq.big_(n=1)^oo A_n$についても，
 $
   m(A) = sum_(n=1)^oo m(A_n)
 $
@@ -164,7 +164,7 @@ $
 直方体や，それを組み合わせた立体については，@eq:volume-of-cuboid や@eq:volume-of-cuboids によって体積$m(A)$が定義できる．
 それ以外の立体については，どうやって体積を定義すればよいだろうか？
 
-手順は以下のとおり．まず立体$A$を加算無限個の直方体${E_n}$でおおってやる．つまり，$A subset union.big_(n=1)^oo E_n$となるように$E_n$を適当に決める#footnote[例えば，$A subset RR^N$．]．
+手順は以下のとおり．まず立体$A$を可算無限個の直方体${E_n}$でおおってやる．つまり，$A subset union.big_(n=1)^oo E_n$となるように$E_n$を適当に決める#footnote[例えば，$A subset RR^N$．]．
 それぞれの直方体の体積$m(E_n)$は@eq:volume-of-cuboid であるから，
 $ sum_(n=1)^oo m(E_n) $
 <eq:outer-measure-1>
