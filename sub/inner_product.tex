@@ -224,17 +224,17 @@ $\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
     \end{lemma}
 
     \begin{proof}[\cref{thm:Cauchy-Schwarz-inequality}の証明]
-        $𝒚 = 0$のときは，$\abs{\iparen{𝒙, 𝒚}} = \norm{𝒙} \norm{𝒚} = 0$なので成り立つ．
-        $𝒚 \neq 0$のときを考える．
-        任意の$\lambda, \mu \in ℂ$について内積の正値性から$\norm{\lambda 𝒙 \tplus \mu 𝒚 } \geq \symbf{0}$がいえる．
-        そこで$\lambda = -\conj{\iparen{𝒙, 𝒚}}$，$\mu = \norm{𝒙}^2$とおくと，
+        $𝒚 = \symbf{0}$のときは，$\abs{\iparen{𝒙, 𝒚}} = \norm{𝒙} \norm{𝒚} = 0$なので成り立つ．
+        $𝒚 \neq \symbf{0}$のときを考える．
+        任意の$𝜆, 𝜇 \in ℂ$について内積の正値性から$\norm{𝜆 𝒙 \tplus 𝜇 𝒚 } \geq 0$がいえる．
+        そこで$𝜆 = -\conj{\iparen{𝒙, 𝒚}}$，$𝜇 = \norm{𝒙}^2$とおくと，
         \begin{equation*}
             \begin{split}
-                0 &\leq \iparen{ \lambda 𝒙 \tplus \mu 𝒚, \  \lambda 𝒙 \tplus \mu 𝒚 }  \\
-                  &= \lambda \conj{\lambda} \iparen{ 𝒙, 𝒙 } 
-                    + \lambda \conj{\mu} \iparen{𝒙, 𝒚} 
-                    + \mu \conj{\lambda} \iparen{𝒚, 𝒙} 
-                    + \mu \conj{\mu} \iparen{𝒚, 𝒚}  \\
+                0 &\leq \iparen{ 𝜆 𝒙 \tplus 𝜇 𝒚, \  𝜆 𝒙 \tplus 𝜇 𝒚 }  \\
+                  &= 𝜆 \conj{𝜆} \iparen{ 𝒙, 𝒙 } 
+                    + 𝜆 \conj{𝜇} \iparen{𝒙, 𝒚} 
+                    + 𝜇 \conj{𝜆} \iparen{𝒚, 𝒙} 
+                    + 𝜇 \conj{𝜇} \iparen{𝒚, 𝒚}  \\
                   &= \abs{ \iparen{𝒙, 𝒚} }^2 \norm{𝒙}^2
                     - \conj{\iparen{𝒙, 𝒚}} \norm{𝒙}^2 \iparen{𝒙, 𝒚} 
                     - \norm{𝒙}^2 \iparen{𝒙, 𝒚} \iparen{𝒚, 𝒙} 
@@ -251,7 +251,7 @@ $\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
         \begin{split}
             \norm{𝒙 \vecplus 𝒚}^2
                 &= \iparen{𝒙 \vecplus 𝒚, \  𝒙 \vecplus 𝒚}  \\
-                &= \norm{𝒙}^2 + 2 \Re \iparen{𝒙, 𝒚} + \norm{𝒚}^2  \\
+                &= \norm{𝒙}^2 + 2 \Real \iparen{𝒙, 𝒚} + \norm{𝒚}^2  \\
                 &\leq \norm{𝒙}^2 + 2 \abs{ \iparen{𝒙, 𝒚} } + \norm{𝒚}^2  \\
                 &= \norm{𝒙}^2 + \norm{𝒚}^2
         \end{split}

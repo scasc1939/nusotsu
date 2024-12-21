@@ -108,7 +108,7 @@ $(X, d)$を距離空間，$A \subset X$を部分集合とする．
             $A$を\word{開集合}[かい|しゅう|ごう](open set)\index{かいしゆうこう@開集合}
             （あるいは\ruby{開}{かい}である）という．
         \item 
-            $A \subset X$の閉包$\cl{A}$が$A$自身と一致するとき，
+            $A \subset X$の閉包$\closure{A}$が$A$自身と一致するとき，
             $A$を\word{閉集合}[へい|しゅう|ごう](closed set)\index{へいしゆうこう@閉集合}
             （あるいは\ruby{閉}{へい}である） という．
     \end{enumerate}
@@ -131,7 +131,7 @@ $(X, d)$を距離空間，$A \subset X$を部分集合とする．
 完備性を定義するための準備として，ある値に収束する数列について議論する．
 
 これから$X$の点列といった場合，
-自然数で順序付けられた$X$の加算部分集合，つまり
+自然数で順序付けられた$X$の可算部分集合，つまり
 $\sequ{x_i}[i \in \symbb{N}] = (x_1, x_2, \dots, x_i, \dotsc)$であり，$i \in \symbb{N}$，$x_i \in X$であるものをいうことにする．
 
 集合$X$上の点列を，自然数全体から$X$への写像$f \colon \symbb{N} \to X$ととらえることもできる．
@@ -250,10 +250,10 @@ $\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
     \label{dfn:closure-by-sequence}
     $(X, d)$を距離空間，$\symcal{D} \subset X$を部分集合とする．
     $\symcal{D}$に属するすべての収束列の極限からなる集合を
-    $\symcal{D}$の\word{閉包}[へい|ほう](closure)といい，$\cl{\symcal{D}}$とかく．
+    $\symcal{D}$の\word{閉包}[へい|ほう](closure)といい，$\closure{\symcal{D}}$とかく．
     つまり
     \begin{equation}
-        \cl{\symcal{D}} \coloneq \Set{ x \in X  \given  \exists (x_i) \subset \symcal{D} \text{ s.t. } \lim_{n \to \infty} d(x_i, x) = 0 }
+        \closure{\symcal{D}} \coloneq \Set{ x \in X  \given  \exists (x_i) \subset \symcal{D} \text{ s.t. } \lim_{n \to \infty} d(x_i, x) = 0 }
     \end{equation}
 \end{definition}
 
@@ -261,16 +261,16 @@ $\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
 $A$の閉包というのは，$A$に適当な元を加えて\refdfn-[閉集合]{dfn:closed-set}にしたもの，
 あるいは$A$のコーシー列が収束するようにしたものと考えることができる．
 
-$x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，定義上は全く関係ない．
+$x \in \symcal{D}$であることと$x \in \closure{\symcal{D}}$であることは，定義上は全く関係ない．
 
 \begin{corollary}
-    任意の$\symcal{D} \subset X$の閉包$\cl{\symcal{D}}$について，
-    $\symcal{D} \subset \cl{\symcal{D}}$である．
+    任意の$\symcal{D} \subset X$の閉包$\closure{\symcal{D}}$について，
+    $\symcal{D} \subset \closure{\symcal{D}}$である．
 \end{corollary}
 
 \begin{proof}
     $x \in \symcal{D}$とする．
-    $\symcal{D}$の点列$(x, x, x, \dotsc)$は明らかに$x$に収束するので$x \in \cl{\symcal{D}}$である．
+    $\symcal{D}$の点列$(x, x, x, \dotsc)$は明らかに$x$に収束するので$x \in \closure{\symcal{D}}$である．
 \end{proof}
 
 次に稠密を定義する．
@@ -279,10 +279,10 @@ $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，
     \label{dfn:dense}
     $(X, d)$を距離空間とする．
     $A \subset B$をみたす$X$の2つの部分集合について，
-    $B \subset \cl{A}$であるとき，
+    $B \subset \closure{A}$であるとき，
     $A$は$B$において\word{稠密}[ちゅう|みつ][ちゆうみつ](dense)であるという\cite{iwanami-functional}．
 
-    特に$\cl{A} = X$であるとき，
+    特に$\closure{A} = X$であるとき，
     $A$は$X$において稠密である．
 \end{definition}
 
@@ -305,7 +305,7 @@ $x \in \symcal{D}$であることと$x \in \cl{\symcal{D}}$であることは，
     \textsf{十分性} \quad 
     任意の$x \in B$に対して，その$\varepsilon$-近傍$\neigh(x; \varepsilon)$を考えると，
     仮定より任意の$\varepsilon > 0$に対して$\neigh(x; \varepsilon) \cap A \neq 0$だから，
-    $x \in \cl{A}$．
+    $x \in \closure{A}$．
 \end{proof}
 
 

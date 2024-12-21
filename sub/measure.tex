@@ -46,55 +46,56 @@ $I$は，$n$-次元の直方体（長方形）領域である．
 いくつかの直方体が組み合わさっている領域が区間塊である．
 直和であるから，直方体同士はくっついていても離れていてもよいが，重なってはいけない．
 
-$n$-次元ユークリッド空間における区間全体の集合を$\symfrak{I}_n$，
-区間塊全体の集合を$\symfrak{F}_n$とかく\cite{ito-lebesgue-1963}．
+$N$-次元ユークリッド空間における区間全体の集合を$ℑ_N$，
+区間塊全体の集合を$𝔉_N$とかく\cite{ito-lebesgue-1963}．
 
 
 \subsection{有限加法族}
+\label{sec:finitely-additive-class}
 
 \begin{definition}
     \label{dfn:finitely-additive-class}
-    空間$X$の部分集合の\refdfn[族]{dfn:family-of-sets}（つまり$X$の部分集合からなる集合）$\symfrak{F}$が以下の3つを満たすとき，
-    $\symfrak{F}$を\word{有限加法族}という．
+    空間$X$の部分集合の\refdfn[族]{dfn:family-of-sets}（つまり$X$の部分集合からなる集合）$𝔉$が以下の3つを満たすとき，
+    $𝔉$を\word{有限加法族}という．
     \begin{enumerate}
         \item \label{field-of-sets:empty-or-X}
-            $X, \emptyset \in \symfrak{F}$である．
+            $X, \emptyset \in 𝔉$である．
         \item \label{field-of-sets:complementation}
-            $A \in \symfrak{F}$なら$A^{\mathrm{c}} \in \symfrak{F}$
-            （ただし補集合$A^{\mathrm{c}} = X \setminus A$）．
+            $A \in 𝔉$なら$A^{\complement} \in 𝔉$
+            （ただし補集合$A^{\complement} = X \setminus A$）．
         \item \label{field-of-sets:operation} 
-            $A, B \in \symfrak{F}$ならば，
-            $A \cup B \in \symfrak{F}$，
-            $A \cap B \in \symfrak{F}$，
-            $A \setminus B \in \symfrak{F}$が成り立つ．
+            $A, B \in 𝔉$ならば，
+            $A \cup B \in 𝔉$，
+            $A \cap B \in 𝔉$，
+            $A \setminus B \in 𝔉$が成り立つ．
     \end{enumerate}
 \end{definition}
 
 実は，\cref{field-of-sets:empty-or-X}は$X$か空集合$\emptyset$どちらか片方だけで十分であるし，
 \cref{field-of-sets:operation}の3条件はどれかひとつで十分である．
 
-\begin{example}
-    任意の空間$X$について，その冪集合$\pset(X)$は有限加法族である．
-\end{example}
+任意の空間$X$について，その\refdfn[部分集合全体の集合]{dfn:power-set}$𝔉_{\mathrm{max}} \coloneq \pset(X)$は最大の有限加法族である．
+また，$𝔉_{\mathrm{min}} \coloneq \{ X, \emptyset \}$は最小の有限加法族である．
+
 
 \begin{example}
-    $n$-次元ユークリッド空間における区間塊全体の集合$\symfrak{F}_n$は有限加法族である\cite[\S 4]{ito-lebesgue-1963}．
+    $n$-次元ユークリッド空間における区間塊全体の集合$𝔉_n$は有限加法族である\cite[\S 4]{ito-lebesgue-1963}．
 \end{example}
 
 \begin{definition}
     \label{dfn:content-measure}
-    $X$を空間，$\symfrak{F}$を有限加法族とする．
-    $\symfrak{F}$の元（つまり$X$の部分集合）$A$を実数にうつす関数$m$が以下の条件を満たすとき，
+    $X$を空間，$𝔉$を有限加法族とする．
+    $𝔉$の元（つまり$X$の部分集合）$A$を実数にうつす関数$m$が以下の条件を満たすとき，
     $m$を\word{有限加法的測度}という．
     \begin{enumerate}
         \item \label{content-measure:positivity}
-            任意の$A \in \symfrak{F}$に対し，$0 \leq m(A) \leq +\infty$である．
+            任意の$A \in 𝔉$に対し，$0 \leq m(A) \leq +\infty$である．
             特に，$m(\emptyset) = 0$である．
         \item \label{content-measure:additivity}（\word{有限加法性}）
-            $A, B \in \symfrak{F}$かつ$A \cap B = \emptyset$（交わらない）なら，
+            $A, B \in 𝔉$かつ$A \cap B = \emptyset$（交わらない）なら，
             $m(A \sqcup B) = m(A) + m(B)$である．
 
-            より一般に，$A_1, \dots, A_n \in \symfrak{F}$が$A_i \cup A_j = \emptyset$（$i \neq j$），
+            より一般に，$A_1, \dots, A_n \in 𝔉$が$A_i \cup A_j = \emptyset$（$i \neq j$），
             つまり互いに交わらないなら，
             \begin{equation*}
                 m \ab( \bigsqcup_{i=1}^{n} A_i ) = \sum_{i=1}^{n} m(A_i)
@@ -104,10 +105,10 @@ $n$-次元ユークリッド空間における区間全体の集合を$\symfrak{
     重要なので定義として加えておく．
     \begin{enumerate}[resume]
         \item \label{content-measure:monotonicity}（\word{単調性}）
-            $A \subset B$（$\in \symfrak{F}$）なら$m(A) \leq m(B)$である．
-        \item $A \subset B$（$\in \symfrak{F}$）なら$m(A \setminus B) = m(A) - m(B)$である．
+            $A \subset B$（$\in 𝔉$）なら$m(A) \leq m(B)$である．
+        \item $A \subset B$（$\in 𝔉$）なら$m(A \setminus B) = m(A) - m(B)$である．
         \item \label{content-measure:subadditivity}（\word{有限劣加法性}）
-            $A_1, \dots, A_n \in \symfrak{F}$なら，
+            $A_1, \dots, A_n \in 𝔉$なら，
             \begin{equation*}
                 m \ab( \bigcup_{i=1}^{n} A_i ) \leq \sum_{i=1}^{n} m(A_i)
             \end{equation*}
@@ -117,7 +118,7 @@ $n$-次元ユークリッド空間における区間全体の集合を$\symfrak{
     $m$は\word{完全加法的}\index{かんせんかほうてき@完全加法的}であるという．
     \begin{enumerate}[resume]
         \item \refdfn[高々可算個]{dfn:at-most-countable}の集合$A_1, A_2, \dotsc$が$A_i \cup A_j = \emptyset$（$i \neq j$）を満たし，
-            $A \coloneq \bigsqcup_{n=1}^{\infty} A_n \in \symfrak{F}$であるなら，
+            $A \coloneq \bigsqcup_{n=1}^{\infty} A_n \in 𝔉$であるなら，
             \begin{equation*}
                 m(A) = \sum_{n=1}^{\infty} m(A_n)
             \end{equation*}
@@ -139,7 +140,7 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
 \begin{proposition}
     \label{thm:Lebesgue-finitely-additive-measure}
     $N$-次元ユークリッド空間$ℝ^N$における区間塊$E = I_1 + \dots + I_n$
-    （$E \in \symfrak{F}_N$，$I_i \in \symfrak{I}$）に対し，
+    （$E \in 𝔉_N$，$I_i \in ℑ$）に対し，
     \begin{equation}
         \begin{split}
             m^* (E)  &\coloneq  \prod_\nu (b_\nu - a_\nu)  \\
@@ -147,46 +148,54 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
                      \quad \text{ただし} \quad I_\nu = (a_\nu, b_\nu]
         \end{split}
     \end{equation}
-    は$\symfrak{F}_N$上の有限加法的測度である（\cref{eq:interval-example}を参照）．
+    は$𝔉_N$上の有限加法的測度である（\cref{eq:interval-example}を参照）．
     さらに$m^*$は完全加法的である．
 \end{proposition}
 
 
 
-\subsection{外測度}
+\subsection{外測度と可測集合}
 
 \begin{definition}[外測度]
     \label{dfn:outer-measure}
-    $X$を集合，$\Gamma$を$X$の部分集合から実数への関数とする．
+    $X$を集合，$Γ$を$X$の部分集合から実数への関数とする．
     任意の部分集合$A, B$について，
     \begin{enumerate}
-        \item （非負性）$0 \leq \Gamma(A) \leq +\infty$であり，さらに$\Gamma(\emptyset) = 0$である．
-        \item （単調性）$A \subset B$なら$\Gamma(A) \leq \Gamma(B)$である．
-        \item （劣加法性）$\Gamma \ab( \bigcup_{n=1}^{\infty} A_n ) \leq \sum_{n=1}^{\infty} \Gamma(A_n)$
+        \item （非負性）$0 \leq Γ(A) \leq +\infty$であり，さらに$Γ(\emptyset) = 0$である．
+        \item （単調性）$A \subset B$なら$Γ(A) \leq Γ(B)$である．
+        \item （劣加法性）$Γ \ab( \bigcup_{n=1}^{\infty} A_n ) \leq \sum_{n=1}^{\infty} Γ(A_n)$
     \end{enumerate}
     の3つが満たされるとき，
-    $\Gamma$を\word{カラテオドリの外測度}(Carathéodory outer measure)%
-    \index{かいそくと@外測度!からておとりの@カラテオドリの⸺}%
+    $Γ$を\word{カラテオドリの外測度}(Carathéodory outer measure)%
+    \index{かいそくと@外測度!からておとりの@カラテオドリの\indexdash}%
     \index{からておとりのかいそくと@カラテオドリの外測度|see{外測度}}%
     \cite{rikagaku-eiwa}，
     あるいは単に\word{外測度}[がい|そく|ど][かいそくと](outer measure)という\cite{ito-lebesgue-1963}%
     \footnote{\person{Constantin Carathéodory}{1873}{1950}．ドイツの数学者．熱力学第二法則の定式化でも知られる．\cite{nipponica}}．
 \end{definition}
 
+
+\cref{sec:finitely-additive-class}で議論したように，
+ある空間$X$と有限加法族$𝔉$が与えられたとき，
+集合$A \in 𝔉$に対して\refdfn-[有限加法的測度]{dfn:finitely-additive-class}$m(A)$が定義できたのであった．
+次の\namecref{thm:finite-additive-to-outer-measure}を用いると，
+$X$の部分集合すべてに対して$m$が定義できるように拡張することができる．
+
+
 \begin{theorem}
     \label{thm:finite-additive-to-outer-measure}
-    空間$X$を考え，$\symfrak{F}$を有限加法族，$m$を$\symfrak{F}$上の有限加法的測度とする．
-    $\symfrak{F}$に属する集合$E$の測度は$m(E)$と定義できる．
-    これを$X$の任意の集合$A$（$A \in \symfrak{F}$とは限らない）に対して拡張しよう．
+    空間$X$を考え，$𝔉$を有限加法族，$m$を$𝔉$上の有限加法的測度とする．
+    $𝔉$に属する集合$E$の測度は$m(E)$と定義できる．
+    これを$X$の任意の集合$A$（$A \in 𝔉$とは限らない）に対して拡張しよう．
 
     $A \subset X$を集合とする．
-    高々加算個の$\symfrak{F}$の集合の組$\{ E_n \}$で$A$を覆う%
+    高々可算個の$𝔉$の集合の組$\{ E_n \}$で$A$を覆う%
     \footnote{
         つまり，
         $\displaystyle A \subset \bigcup_{n=1}^{\infty} E_n$となるような集合の組$ \{ E_n \} $
-        （ただし$E_k \in \symfrak{F}$）であり，
-        $E_1, E_2, \dotsc$と数えると加算無限個（ないしは有限個）である．
-        $E_k$は加算集合でなくてもよい．
+        （ただし$E_k \in 𝔉$）であり，
+        $E_1, E_2, \dotsc$と数えると可算無限個（ないしは有限個）である．
+        $E_k$は可算集合でなくてもよい．
     }．
     このような覆いかたは必ず存在し\footnote{たとえば1個の集合$X$で$A$を覆うことができる．}，
     またそれぞれの覆いかた$\{ E_n \}$について
@@ -195,15 +204,17 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
     このような$A$の覆いかたすべてを考え，
     そのうえで
     \begin{equation*}
-        \Gamma(A)  \coloneq  \inf_{ \{ E_n \} } \sum_{n=1}^{\infty} m(E_n)
+        Γ(A)  \coloneq  \inf_{ \{ E_n \} } \sum_{n=1}^{\infty} m(E_n)
     \end{equation*}
-    と定めると，$\Gamma$は\refdfn-[外測度]{dfn:outer-measure}である．
+    と定めると，$Γ$は\refdfn-[外測度]{dfn:outer-measure}である．
 \end{theorem}
 
 \begin{proof}
     \cref{dfn:outer-measure}の条件を確認すればよい．
 \end{proof}
 
+
+応用上重要なのは，次のルベーグ外測度である．
 
 \begin{definition}
     \label{dfn:Lebesgue-outer-measure}
@@ -218,10 +229,168 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
 \end{definition}
 
 
+定義より，\refdfn-[外測度]{dfn:outer-measure}$Γ$は空間$X$に含まれるすべての集合に対して定義できるが，
+すべての集合に対して$Γ$が良い``体積''になるとは限らない．
+例えば$𝔉 \coloneq \{ X, \emptyset \}$として，
+$m(X) = 1$，$m(\emptyset) = 0$となるように有限加法的測度$m$を定める%
+\footnote{もちろんこの定義がwell-definedであるのは$X \neq \emptyset$のときのみである．}．
+そうすれば外測度$Γ$は
+\begin{equation*}
+    Γ (A)  =  
+    \begin{cases}
+        1  &  \text{when} \;  A \neq \emptyset  \\
+        0  &  \text{when} \;  A   =  \emptyset
+    \end{cases}
+    , 
+    \quad 
+    A \subset X
+\end{equation*}
+である．
+したがって，任意の$A, B \subset X$（$A, B \neq \emptyset$）に対して，$Γ (A) = Γ (B) = Γ (A \cup B) = 1$であるが，
+これは直感的な体積の性質に反する．
+では，$Γ (E)$が``良い''体積になる，具体的には
+\begin{enumerate}
+    \item 任意の集合$E \subset X$に対し，$0 \leq Γ (E) \leq \infty$であり，
+    \item 高々可算個の集合$E_1, E_2, \dotsc$に対し，
+        $Γ (E_1 \sqcup E_2 \sqcup \dotsb) = Γ(E_1) + Γ(E_2) + \dotsb$が成り立つ
+\end{enumerate}
+ような集合$E$の条件とは何だろうか．
+
+\begin{definition}
+    \label{dfn:measurable-set}
+    $Γ$を空間$X$で定義された外測度とする．
+    集合$E \subset X$が\word{$Γ$-可測}，あるいは単に\word{可測}[か|そく](measurable)\index{かそく@可測}であるとは，
+    任意の集合$A \subset X$に対し，
+    \begin{equation}
+        \label{eq:measurable-set-1}
+        Γ (A) = Γ (A \cap E) + Γ (A \cap E^{\complement})
+    \end{equation}
+    が成り立つことをいう．
+    あるいは，任意の$B \subset E$，$C \subset E^{\complement}$に対し，
+    \begin{equation}
+        \label{eq:measurable-set-2}
+        Γ (B \sqcup C) = Γ (B) + Γ (C)
+    \end{equation}
+    が成り立つことをいう．
+\end{definition}
+
+\cref{eq:measurable-set-1}と\cref{eq:measurable-set-2}は，
+$B = A \cap E$，$C = A \cap E^{\complement}$と置きなおすことで移り変わる，
+同値な定義である．
+
+次に，どのような集合が可測になるかを見る．
+まず定理を列挙し，証明はあとでまとめて行う．
+
+\begin{proposition}
+    \label{thm:complement-of-measurable-set-is-measurable}
+    $Γ$-可測な集合$E$の補集合$E^{\complement}$は$Γ$-可測である．
+\end{proposition}
+
+
+\begin{proposition}
+    \label{thm:zero-set-is-measurable}
+    $Γ (E) = 0$なら$E$は可測である．
+\end{proposition}
+
+
+\begin{proposition}
+    \label{thm:disjoint-union-of-measurable-sets-is-measurable}
+    $Γ$-可測な集合系$E_n$（$n = 1, 2, \dots$）が互いに交わらない（つまり$i \neq j$なら$E_i \cap E_j = \emptyset$である）とき，
+    $S = \bigsqcup_{n=1}^{\infty} E_n$は$Γ$-可測であり，さらに$Γ(S) = \sum_{n=1}^{\infty} Γ(E_n)$である\cite[定理5.3]{ito-lebesgue-1963}．
+\end{proposition}
+
+
+\begin{proposition}
+    \label{thm:finite-union-and-intersection-of-measurable-sets-are-measurable}
+    $E_i$（$i = 1, 2, \dots$）が$Γ$-可測なら，
+    $\bigcap_{i=1}^{n} E_i$，$\bigcup_{i=1}^{n} E_i$は可測である．
+\end{proposition}
+
+
+\begin{corollary}
+    \label{thm:countable-set-minus-countable-set-is-countable}
+    $E, F$が$Γ$-可測なら，$E \setminus F$は$Γ$-可測である．
+\end{corollary}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ここから証明
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{proof}[\cref{thm:complement-of-measurable-set-is-measurable}の証明]
+    $Γ$-可測の定義（\cref{dfn:measurable-set}）より明らかである．
+\end{proof}
+
+\begin{proof}[\cref{thm:zero-set-is-measurable}の証明]
+    任意の$A \subset X$に対して，
+    $Γ$の単調性より$Γ (A \cap E) \leq Γ (E) = 0$であることに注意すると，
+    \[
+        Γ (A \cap E) + Γ (A \cap E^{\complement})
+        \leq Γ (A \cap E^{\complement})
+        \leq Γ (A)
+    \]
+    である．
+    $\geq$は$Γ$の劣加法性から明らかであるので，
+    $Γ (A \cap E) + Γ (A \cap E^{\complement}) = Γ (A)$．
+    よって$E$は可測である．
+\end{proof}
+
+\cref{thm:disjoint-union-of-measurable-sets-is-measurable}の証明は技術的に面倒なので省略する．
+
+\cref{thm:finite-union-and-intersection-of-measurable-sets-are-measurable}を示す前に，
+以下の\namecref{thm:intersection-of-measurable-sets-is-measurable}を示す．
+
+\begin{lemma}
+    \label{thm:intersection-of-measurable-sets-is-measurable}
+    集合$E, F \subset X$が$\Gamma$-可測なら，
+    $E \cap F$も$\Gamma$-可測である．
+\end{lemma}
+
+\begin{proof}[\cref{thm:intersection-of-measurable-sets-is-measurable}の証明]
+    $A \subset (E \cap F)$，
+    $B \subset (E \cap F)^{\complement} = E^{\complement} \cup F^{\complement}$を任意にとる．
+    $B = B_1 + B_2$，$B_1 = B \cap F$，$B_2 = B \cap F^{\complement}$と分割すると，
+    $\Gamma$の劣加法性より
+    \begin{equation*}
+        \begin{split}
+            \mkern100mu
+            \Gamma (A) + \Gamma (B)
+                &\leq \Gamma (A) + \Gamma (B_1) + \Gamma (B_2)
+            \shortintertext{$E$は可測で，$A \subset E$，$B_1 \subset E^{\complement}$であるから，}
+                &= \Gamma (A \sqcup B_1) + \Gamma (B_2)
+            \shortintertext{$F$は可測で，$A, B_1 \subset F$，$B_2 \subset F^{\complement}$だから，}
+                &= \Gamma (A \sqcup B_1 \sqcup B_2) \\
+                &= \Gamma (A \sqcup B)
+        \end{split}
+    \end{equation*}
+    逆向きの不等号$\geq$は$\Gamma$の劣加法性より明らかであるから，
+    $\Gamma (A) + \Gamma (B) = \Gamma (A \sqcup B)$．
+\end{proof}
+
+
+\begin{proof}[\cref{thm:finite-union-and-intersection-of-measurable-sets-are-measurable}の証明]
+    $\bigcap$については，
+    \cref{thm:intersection-of-measurable-sets-is-measurable}を繰り返し用いればよい．
+    $\bigcup$は，
+    \begin{equation*}
+        \bigcup_{i=1}^{n} E_i  =  \ab( \bigcap_{i=1}^{n} E_i^{\complement} )^{\complement}
+    \end{equation*}
+    および可測集合の補集合が可測である（\cref{thm:complement-of-measurable-set-is-measurable}）ことから従う．
+\end{proof}
+
+
+\begin{proof}[\cref{thm:countable-set-minus-countable-set-is-countable}の証明]
+    $E \setminus F = E \cap F^{\complement}$と書けるので，
+    \cref{thm:complement-of-measurable-set-is-measurable}と\cref{thm:intersection-of-measurable-sets-is-measurable}より示される．
+\end{proof}
+
+
 
 \subsection{測度}
 
 \begin{definition}
+    \label{dfn:sigma-additive-class}
     $X$を空間とする．
     集合族$\symfrak{B}$が以下の条件を満たすとき，
     $\sigma$-\word{加法族}という\footnote{
@@ -230,11 +399,11 @@ $A \cup B$の体積は単純な和よりもすこし小さくなるはずであ�
     }．
     \begin{enumerate}
         \item $X, \emptyset \in \symfrak{B}$である．
-        \item $A \in \symfrak{B}$なら$A^{\mathrm{c}} \in \symfrak{B}$である．
-        \item $\symfrak{B}$に属する加算個の集合$A_1, A_2, \dotsc \in \symfrak{B}$に対し，
+        \item $A \in \symfrak{B}$なら$A^{\complement} \in \symfrak{B}$である．
+        \item $\symfrak{B}$に属する可算個の集合$A_1, A_2, \dotsc \in \symfrak{B}$に対し，
             \(  \bigcup_{n=1}^{\infty} A_n  \in  \symfrak{B}  \)．
     \end{enumerate}
-    より一般に，$\symfrak{B}$に属する集合の和・差・重なりを加算無限回とってできた集合は$\symfrak{B}$に属する．
+    より一般に，$\symfrak{B}$に属する集合の和・差・重なりを可算無限回とってできた集合は$\symfrak{B}$に属する．
 \end{definition}
 
 $\sigma$-加法族は\refdfn-[有限加法族]{dfn:finitely-additive-class}である．
@@ -242,25 +411,95 @@ $\sigma$-加法族は\refdfn-[有限加法族]{dfn:finitely-additive-class}で�
 
 
 \begin{definition}
+    \label{dfn:measure}
     $\symfrak{B}$を$\sigma$-加法族とする．
     以下の条件を満たす$\mu$を\word{測度}[そく|ど](measure)\index{そくと@測度}という．
     \begin{enumerate}
         \item 任意の$A \in \symfrak{B}$に対し，$0 \leq \mu(A) \leq \infty$である．
-        \item 高々加算個の集合\footnote{$A_i$が加算集合といっているのではない．}%
+        \item \refdfn-[高々可算個]{dfn:at-most-countable}の集合\footnote{$A_i$が可算集合といっているのではない．}%
             $A_1, A_2, \dotsc \in \symfrak{B}$が互いに交わらないとき（$i \neq j$なら$A_i \cap A_j = \emptyset$），
-            \[  \bigsqcup_{n=1}^{\infty} A_n  \in  \symfrak{B}  \]
+            \begin{equation}
+                \mu \ab( \bigsqcup_{n=1}^{\infty} A_n ) 
+                    = \sum_{n=1}^{\infty} \mu (A_n)
+            \end{equation}
     \end{enumerate}
     これらより，
     \begin{enumerate}[resume]
-        \item \label{content-measure:monotonicity}（\word{単調性}）
+        \item \label{measure:monotonicity}（\word{単調性}）
             $A, B \in \symfrak{B}$が$A \subset B$であるなら$\mu(A) \leq \mu(B)$である．
-        \item $m(A \setminus B) = m(A) - m(B)$である．
-        \item \label{content-measure:subadditivity}（\word{劣加法性}）
-            $A_1, A_2, \dotsc \in \symfrak{F}$（高々加算個）なら，
+        \item $m(A \setminus B) = \mu (A) - \mu (B)$である．
+        \item \label{measure:subadditivity}（\word{劣加法性}）
+            $A_1, A_2, \dotsc \in 𝔉$（高々可算個）なら，
             \begin{equation*}
                 \mu \ab( \bigcup_{i=1}^{n} A_i ) \leq \sum_{i=1}^{n} \mu(A_i)
             \end{equation*}
     \end{enumerate}
+\end{definition}
+
+
+\begin{proposition}
+    空間$X$上の外測度$Γ$に対して，
+    \begin{enumerate}
+        \item $Γ$-可測である集合全体$𝔐_Γ$は$\sigma$-加法族をなす．
+        \item $Γ$は$𝔐_Γ$上の\refdfn-[測度]{dfn:measure}である．
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+    \item まず，任意の$A \subset X$に対して$Γ(A) = Γ(\emptyset) + Γ(A \cap X) = Γ(A \cap \emptyset) + Γ(A \cap \emptyset^{\complement})$であるから，
+        $\emptyset$は可測，つまり$\emptyset \in 𝔐_Γ$．
+        次に，$E \subset X$が可測なら$E^{\complement}$が可測であるのは\cref{eq:measurable-set-1}より明らかである．
+        最後に，$E_1, E_2, \dotsc \subset X$が可測であるとすると，
+        $E \coloneq \bigcup_{n} E_n \in \symfrak{M}_{\Gamma}$というのは，
+        \cref{thm:disjoint-union-of-measurable-sets-is-measurable}の主張そのもの%
+        \footnote{
+            より正確に言えば，
+            $F_1 \coloneq E_1$，
+            $F_2 \coloneq E_2 \setminus F_1$，
+            $F_3 \coloneq E_3 \setminus (F_1 \sqcup F_2)$，
+            ……と$F_n$を定義すると，
+            $F_n$は可測であり（なぜなら$A, B$が可測なら$A \setminus B$），
+            $E = \bigcup_{n=1}^{\infty} E_n = \bigsqcup_{n=1}^{\infty} F_n$であるから，
+            \cref{thm:disjoint-union-of-measurable-sets-is-measurable}より$E$は可測
+        }．
+    \item \refdfn-[外測度]{dfn:outer-measure}の公理および\cref{thm:disjoint-union-of-measurable-sets-is-measurable}よりいえる．
+    \end{enumerate}
+\end{proof}
+
+
+
+\begin{definition}
+    \label{dfn:Lebesgue-measure}
+    \refdfn-[ルベーグ外測度]{dfn:Lebesgue-outer-measure}%
+    $\mu^*$の定義域を$𝔐_{\mu^*}$に制限したもの$\mu$を，
+    \word{ルベーグ測度}(Lebesgue measure)
+    \index{るへえく@ルベーグ!\indexdash そくと@外測度|see{測度}}%
+    \index{そくと@測度!るへえく@ルベーグ\indexdash}%
+    という．
+\end{definition}
+
+
+ルベーグ測度がゼロである領域は考慮しなくてよい．
+
+\begin{definition}
+    \label{dfn:almost-everywhere}
+    $E \subset X$で
+    点$\symbf{x} \in E$を実数（または複素数）にうつす関数$f$が\word{ほとんどいたるところ}(almost everywhere)ゼロであるとは，
+    ルベーグ測度$0$の集合$E_0$を除いた各点でゼロになることをいう．
+    すなわち
+    \begin{equation*}
+        f(\symbf{x}) = 0  ,
+        \quad  \text{for}   \; \symbf{x} \in E \setminus E_0  
+        \quad  \text{where} \; \mu(E_0) = 0
+    \end{equation*}
+    このとき，
+    \begin{align*}
+        f(\symbf{x}) &= 0  \quad  \text{a.e.} \, \symbf{x} \in E
+        &
+        f(\symbf{x}) &= 0  \quad  \text{a.e.}
+    \end{align*}
+    などと書く．
 \end{definition}
 
 

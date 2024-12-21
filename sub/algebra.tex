@@ -16,7 +16,10 @@
         \item ある$e \in G$が存在して，任意の$a \in G$に対し，$a \dotprod e = e \dotprod a = a$である．
         \item 任意の$a \in G$に対し，ある$a^{-1} \in G$が存在して，$a \dotprod a^{-1} = a^{-1} \dotprod a = e$である．
     \end{enumerate}
-    さらに以下を満たすとき，$(G, \dotprod)$を\word{アーベル群}[][ああへるくん](Abelian group)であるという
+    さらに以下を満たすとき，$(G, \dotprod)$を\word{アーベル群}[][ああへるくん](Abelian group)であるという．
+    \begin{enumerate}[resume]
+        \item 任意の$a, b \in G$に対し，$a \dotprod b = b \dotprod a$である．
+    \end{enumerate}
     群$(G, \dotprod)$のことを単に$G$とかくこともある．
 \end{definition}
 
@@ -120,6 +123,20 @@
 
 \subsection{複素数}
 
+複素数は物理学を扱ううえで必須のツールである．
+この節では，まず複素数はどのようにして定義されるのかを見たのちに，
+複素数に関する用語を定義し，その性質を調べる．
+
+
+複素数は次のように構成される\footnote{
+    物理学を学ぶにあたっては，
+    具体的な複素数の計算に習熟しているほうが重要であり，
+    複素数の構成方法を理解する必要はない．
+    とはいえ，
+    複素数を実際に作れるようになっておけば，
+    巷に溢れる``虚数は存在しない''論に反駁できるかもしれない．
+    なお，複素数の構成自体は有理数を構成するのよりもはるかに簡単である．
+}．
 集合$\symbb{C}$を
 \begin{equation}
     \symbb{C} \coloneq \Set{  (a, b)  \given  a, b \in \symbb{R}  }
@@ -133,19 +150,19 @@ $\symbb{C}$の元である順序対$(a, b) \in \symbb{R}$に対し，和と積�
 \end{align}
 すると，$(\symbb{C}, \underset{\symbb{C}}{+}, \underset{\symbb{C}}{\times})$は\refdfn-[体]{dfn:field}になるので，
 これを\word{複素数体}と呼ぶ．
-$\symbb{C}$の元を\word{複素数}と呼び，
-$(a, b) \eqcolon a + b\iu$とかく．
-また，実数のときと同様に積の記号はよく省略する．
+$\symbb{C}$の元を\word{複素数}[ふく|そ|すう]と呼び，
+記号$\iu$を用いて$(a, b) \eqcolon a + b\iu$とかく．
 
 \begin{proof}
     $\symbb{C}$の元を$x = (a, b)$，$y = (c, d)$，$z = (e, f)$とする．
+    積の記号$\underset{\symbb{C}}{\times}$は一部省略する．
 
     \textsf{和について}　和が可換かつ結合的であることは明らか．
-    零元は$0_{\symbb{C}} = (0, 0) = 0 + 0\iu$であり，
+    零元は$0_{\symbb{C}} \coloneq (0, 0) = 0 + 0\iu$であり，
     $x$に対する和の逆元は$-x = (-a, -b)$である．
 
     \textsf{積について}　積が可換であることは明らか．
-    単位元は$1_{\symbb{C}} = (1, 0) = 1 + 0\iu$であり，
+    単位元は$1_{\symbb{C}} \coloneq (1, 0) = 1 + 0\iu$であり，
     $x \neq 0_{\symbb{C}}$に対する積の逆元は$(a / \sqrt{a^2 + b^2}, \  -b / \sqrt{a^2 + b^2} )$である．
     積が結合的であることは
     \begin{equation*}
@@ -170,8 +187,22 @@ $(a, b) \eqcolon a + b\iu$とかく．
     \end{equation*}
 \end{proof}
 
+複素数の積は，$(a + \iu b) (c + \iu d) = (ac - bd) + \iu (bc + ad)$と書くことができる．
+$\iu = \sqrt{-1}$と考えれば，
+形式的に$ac - \iu^2 bd + \iu (bc + ad)$と計算できる．
+
 実数$a \in \symbb{R}$は，複素数$a = (a, 0)$とみなすことで，
 複素数に組み込むことができる（$\symbb{R} \subset \symbb{C}$）．
+部分集合$\symbb{C} \setminus \symbb{R}$の元を\word{虚数}[きょ|すう]\index{きよすう@虚数}という%
+\footnote{
+    虚数とは$a + \iu b$（$a, b \in \symbb{R}$，$b \neq 0$）とあらわせる数のことである．
+    したがって，$3\iu$のみならず$1 + 3\iu$も虚数である．
+    $\iu b$（$b \in \symbb{R}$）とあらわされる数（たとえば$3\iu, -2\iu$）を指す用語は\word{純虚数}である．
+}．
+
+複素数$z = a + b\iu$（$a, b$は実数）に対し，
+$\Real z = a$を$z$の\word{実部}[じつ|ぶ]，
+$\Imaginary z = b$を$z$の\word{虚部}[きょ|ぶ]という．
 
 複素数の\word{絶対値}[ぜっ|たい|ち](absolute value)\index{せつたいち@絶対値}を
 \begin{equation}
@@ -184,7 +215,49 @@ $(a, b) \eqcolon a + b\iu$とかく．
 $\abs{z} = 0$となるのは$a = b = 0$，つまり$z = 0$のときに限る．
 
 
+
+\subsubsection*{複素共役}
+
+複素数$a + \iu b$に対する複素数$a - \iu b$のことを，
+\word{共役複素数}[きょう|やく|ふく|そ|すう]あるいは\word{複素共役}[ふく|そ|きょう|やく]という%
+\footnote{
+    \ruby[<->]{共役}{きょう|えき}は誤読．
+    もともとは\ruby[<->]{軛}{くびき}（\ruby{牛車}{ぎっ|しゃ}などを引く牛馬に取り付ける横向きの棒）という字を用いて\ruby[<->]{共軛}{きょう|やく}とかいていたが，
+    1946年に定められた当用漢字，1981年の常用漢字への書き換えに伴い\ruby[<->]{共役}{きょう|やく}と書かれるようになった．
+    同様の理由で，
+    \ruby{交叉}{こう|さ}は交\underline{差}，
+    \ruby{函数}{かん|すう}（函は「箱」の意）は\underline{関}数と書き換えられた．
+    \cite{ito-lebesgue-1963}のように古い書籍は「函数」表記を用いている．
+    
+    常用漢字表に含まれる漢字は意外に少なく，\underline{楕}円は表外字である．
+    \underline{汎}関数，\underline{勾}配は2010年の改訂でくわえられた．
+    常用漢字への書き換えについては，
+    Wikipedia日本語版の「\href{https://ja.wikipedia.org/wiki/同音の漢字による書きかえ}{同音の漢字による書きかえ}」に詳しい．
+}．
+複素数$z$の複素共役を，$\bar{z}$や$z^*$と書く．
+
+複素共役を用いると，
+$z$の絶対値は
+\begin{equation}
+    \abs{z}^2 = z \cdotp \conj{z}
+\end{equation}
+とかける．
+実際の計算でもよく使う，非常に有用な関係式である．
+
+
+
 \subsubsection*{複素数についての性質}
+
+\begin{proposition}
+    $\frac{1}{\iu} \equiv \iu^{-1} = -\iu$である．
+\end{proposition}
+
+\begin{proof}
+    $\iu^{-1}$とは$\iu$の積に関する逆元であるから，
+    $\iu^{-1} \cdotp \iu = 1$でなければならない．
+    ここで，$(-\iu) \cdotp \iu = 1$であること，
+    および逆元の一意性（\refdfn-[体]{dfn:field}の公理）から，$\iu^{-1} = -\iu$である．
+\end{proof}
 
 \begin{proposition}
     複素数$z_1, z_2$の絶対値について，
@@ -192,16 +265,17 @@ $\abs{z} = 0$となるのは$a = b = 0$，つまり$z = 0$のときに限る．
     \begin{enumerate}
         \item $\abs{z_1 z_2} = \abs{z_1} \abs{z_2}$
         \item $\abs{z_1 + z_2} \leq \abs{z_1} + \abs{z_2}$
+            （\word{三角不等式}\index{さんかくふとうしき@三角不等式}）
     \end{enumerate}
 \end{proposition}
 
 \begin{proof}
     \begin{enumerate}
-        \item $z_1 = a_1 + b_1 \iu$，$z_2 = a_2 + b_2 \iu$とすると，
+        \item $z_1 = a_1 + \iu b_1$，$z_2 = a_2 + \iu b_2$とすると，
             \begin{equation*}
                 \begin{split}
                     \abs{z_1 z_2}^2 
-                        &= \abs{ a_1 a_2 + a_1 b_2 \iu + a_2 b_1 \iu - a_2 b_2 }^2   \\
+                        &= \abs{ a_1 a_2 + \iu a_1 b_2 + \iu a_2 b_1 - a_2 b_2 }^2   \\
                         &= (a_1 a_2 - b_1 b_2)^2 + (a_1 b_2 + a_2 b_1)^2   \\
                         &= (a_1^2 + b_1^2) (a_2^2 + b_2^2)
                         \quad = \abs{z_1}^2 \abs{z_2}^2
@@ -227,7 +301,7 @@ $\abs{z} = 0$となるのは$a = b = 0$，つまり$z = 0$のときに限る．
     \begin{equation*}
         \begin{split}
             \abs{x + y}^2
-                &= \abs{x}^2 + 2\Re (xy) + \abs{y}^2    \\
+                &= \abs{x}^2 + 2\Real (xy) + \abs{y}^2    \\
                 &\leq \abs{x}^2 + 2 \abs{x} \abs{y} + \abs{y}^2  \\
                 &= \ab( \abs{x} + \abs{y} )^2
         \end{split}
@@ -236,6 +310,9 @@ $\abs{z} = 0$となるのは$a = b = 0$，つまり$z = 0$のときに限る．
     右側の不等号は，
     相加相乗平均の関係$2\sqrt{ab} \leq a + b$（$a, b > 0$）より明らかである．
 \end{proof}
+
+
+
 
 
 

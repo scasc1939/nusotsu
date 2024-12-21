@@ -5,6 +5,7 @@
 
 \RequirePackage{amsthm}
 
+\counterwithin{equation}{section}
 
 
 \usepackage{graphicx}
@@ -92,7 +93,12 @@
 \newcommand{\card}{\#}
 
 % 閉包（closure）
-\newcommand{\cl}[1]{\mathrm{Cl}(#1)}
+\AtBeginDocument{
+    \let\sotsu@umath@closure\closure
+    \let\closure\relax
+    \DeclareMathOperator{\closure}{cl}
+}
+
 
 % 点列
 \NewDocumentCommand{\sequ}{m O{}}{
@@ -187,12 +193,29 @@
 }
 
 
+% E(f>a) のかっこ
+
+\DeclarePairedDelimiter{\measet}{\lBrace}{\rBrace}
+
+
+
+\usepackage{physics2}
+\usephysicsmodule{ab}
+
+\usepackage{derivative}
+
+\DeclareDerivative{\dv}{\mathrm{d}}
+\DeclareDifferential{\dd}{\mathrm{d}}
+
+\newcommand{\ldd}[1]{\mathrm{d}\mu(#1)}
+
+
 
 \usepackage[
-    bold-style=ISO
+    bold-style=ISO,
+    warnings-off={mathtools-colon,mathtools-overbracket}
 ]{unicode-math}
 
-\usepackage[default]{fontsetup}
 \setmathfont{New Computer Modern Math}
 \setmathfont{Concrete Math}
     % [range={\symcal}]
@@ -203,13 +226,19 @@
 \setmathfont[range={\symbfup,\symbfit}]{XITS Math}
 
 
+\usepackage{fontspec}
+\setmathrm{New Computer Modern Math}
+
+
 \AtBeginDocument{
-    \let\mfrakR\Re
-    \let\mfrakI\Im
+    % \let\mfrakR\Re
+    % \let\mfrakI\Im
     \let\Re\relax
     \let\Im\relax
     \DeclareMathOperator{\Re}{Re}    
     \DeclareMathOperator{\Im}{Im}
+    \DeclareMathOperator{\Real}{Re}    
+    \DeclareMathOperator{\Imaginary}{Im}
 }
 
 
@@ -225,10 +254,14 @@
 ]{hyperref}
 \usepackage{cleveref}
 
-\newcommand{\crefrangeconjunction}{から}
+% \newcommand{\crefrangeconjunction}{から}
+\newcommand{\crefrangeconjunction}{--}
 \newcommand{\crefpairconjunction}{と}
 \newcommand{\crefmiddleconjunction}{，}
 \newcommand{\creflastconjunction}{および}
+
+\crefformat{section}{#2\S~#1#3}
+\crefformat{subsection}{#2\S\S~#1#3}
 
 \crefname{itemi}{}{}
 \crefname{itemii}{}{}
@@ -326,17 +359,6 @@
 
 \NewDocumentCommand{\person}{m m m}{#1~(#2--#3)\allowbreak}
 
-
-
-\usepackage{physics2}
-\usephysicsmodule{ab}
-
-
-
-\usepackage{derivative}
-
-\DeclareDerivative{\dv}{\mathrm{d}}
-\DeclareDifferential{\dd}{\mathrm{d}}
 
 
 

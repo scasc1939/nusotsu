@@ -117,13 +117,13 @@ $d(𝒙, 𝒚) = \norm{𝒙 - 𝒚} = \sqrt{\iparen{𝒙 - 𝒚, \  𝒙 - 𝒚}
                     \quad \text{（$\symbf{x} - \lambda \symbf{a} \in \symcal{D}$，
                                 $\norm{\symbf{z} - \symbf{x}}$の最小性）} \\
                 &= \norm{\symbf{y} + \lambda \symbf{a}}^2  \\
-                &= \norm{\symbf{y}}^2 + 2 \lambda \Re \iparen{\symbf{y}, \symbf{a}} + \lambda^2 \norm{\symbf{a}}^2  \\
+                &= \norm{\symbf{y}}^2 + 2 \lambda \Real \iparen{\symbf{y}, \symbf{a}} + \lambda^2 \norm{\symbf{a}}^2  \\
         \end{split}
     \end{equation*}
     したがって，
-    \(  2 \lambda \Re \iparen{\symbf{y}, \symbf{a}} + \lambda^2 \norm{\symbf{a}}^2  \geq  0  \)
-    であるが，$\lambda \in \symbb{R}$は任意なので，$\Re \iparen{\symbf{y}, \symbf{a}} = 0$．
-    また，$\lambda \to \iu \lambda$として同様に考えると，$\Im \iparen{\symbf{y}, \symbf{a}} = 0$．
+    \(  2 \lambda \Real \iparen{\symbf{y}, \symbf{a}} + \lambda^2 \norm{\symbf{a}}^2  \geq  0  \)
+    であるが，$\lambda \in \symbb{R}$は任意なので，$\Real \iparen{\symbf{y}, \symbf{a}} = 0$．
+    また，$\lambda \to \iu \lambda$として同様に考えると，$\Imaginary \iparen{\symbf{y}, \symbf{a}} = 0$．
     よって$\iparen{\symbf{y}, \symbf{a}} = 0$である．
     $\symbf{a} \in \symcal{D}$は任意だったので，$\symbf{y} \in \symcal{D}$が示された．
 \end{proof}
@@ -173,7 +173,7 @@ $\sequ{\symbf{u}_\lambda}[\lambda \in \Lambda]$がベクトル空間$V$の\refdf
 任意の$𝒗 \in V$が\emph{有限個を除きゼロである}スカラーの組$\sequ{c_\lambda}[\lambda \in \Lambda]$（$c_\lambda \in \symbb{K}$）を用いて
 \[  𝒗 = \sum_{\lambda \in \Lambda} c_\lambda \symbf{u}_\lambda  \]
 と有限和でかけることだった．
-しかし，完全正規直交系の場合は無限和（高々加算個のベクトルの線形結合）も許される．
+しかし，完全正規直交系の場合は無限和（高々可算個のベクトルの線形結合）も許される．
 
 なお，$\symcal{H}$が有限次元であるときは，
 正規直交基底を指して完全正規直交系という．
