@@ -43,7 +43,7 @@
 }
 
 \ModifyHeading{subsection}{
-    label_format={\S\S\thesubsection},
+    label_format={\thesubsection},
     lines=3,
     font={\Large\sffamily\gtfamily\bfseries},
     format={
