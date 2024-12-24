@@ -15,15 +15,22 @@
 \ExplSyntaxOn
 
 \ModifyHeading{section}{
+    lines=4,
     label_format={\S\thesection},
     format={
         \null
         \hfill
         % 見出しラベル（§123）部分
+        {
         \jlreqHeadingLabel{
             \rmfamily\mcfamily\bfseries % フォント
-            \S\thesection
-            \quad
+            \S
+            \raisebox{-1ex}{
+                \Huge
+                \thesection
+            }
+            \quad\quad
+        }
         }
         #2 % 見出し文字列（○○ニツイテ）部分
         \hfill
@@ -33,6 +40,41 @@
         \hrulefill
     },
     pagebreak=clearpage,
+}
+
+\ModifyHeading{subsection}{
+    label_format={\S\S\thesubsection},
+    lines=3,
+    font={\Large\sffamily\gtfamily\bfseries},
+    format={
+        % 見出しラベル（§123）部分
+        {
+        \jlreqHeadingLabel{
+            \rmfamily\mcfamily\bfseries % フォント
+            \thesubsection
+            \quad
+        }
+        }
+        #2 % 見出し文字列（○○ニツイテ）部分
+    },
+}
+
+\ModifyHeading{subsubsection}{
+    label_format={\S\thesection},
+    lines=2,
+    font={\Large\sffamily\gtfamily\bfseries},
+    format={
+        % 見出しラベル（§123）部分
+        % 現状ラベルは使わない
+        % {
+        % \jlreqHeadingLabel{
+        %     \rmfamily\mcfamily\bfseries % フォント
+        %     \thesubsection
+        %     \quad
+        % }
+        % }
+        #2 % 見出し文字列（○○ニツイテ）部分
+    },
 }
 
 \ExplSyntaxOff
