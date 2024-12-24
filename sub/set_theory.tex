@@ -8,7 +8,10 @@
 \section{集合・写像}
 
 \subsection{集合}
-\label{sec:set}
+\label{sec:set-intro}
+
+すべての数学の基礎となるのが「集合」である．
+この節では集合を扱ううえで必須である用語を素朴に導入する．
 
 「集合」をきちんと定義するのは難しいが，ここでは以下のように考える．
 
@@ -31,7 +34,7 @@
 $X$をある集合とする．$X$を構成するモノのことを，$X$の\word{元}[げん](element)あるいは\word{要素}[よう|そ]という．
 $a$が$X$の元であるとき，「$a$は$X$に属する」あるいは「$a$は$X$に含まれる」といい，$a \in X$とかく．
 $a$が$X$の元でなければ，$a \notin X$とかく．
-$X$と$a$の位置を入れ替えて$X \ni a$あるいは$a \nni X$とかいてもよい\cite{uchida-set-2020}．
+$X$と$a$の位置を入れ替えて$X \ni a$あるいは$X \nni a$とかいてもよい\cite{uchida-set-2020}．
 
 \begin{example}
     $X$を「\textgt{愛知県にある市の全体}」とすると，$X$は集合である．
@@ -76,46 +79,155 @@ $X$と$a$の位置を入れ替えて$X \ni a$あるいは$a \nni X$とかいて�
     \end{align}
 \end{subequations}
 
-\begin{example}
-    \textgt{正の実数全体の集合}は，$\Set{  x \in ℝ  \given  x > 0  }$とかける．
-\end{example}
+これに倣って，
+\textgt{正の実数全体の集合}は，$\Set{  x \in ℝ  \given  x > 0  }$とかける．
+
+元をひとつも含まない集合$\{ \; \}$を考えることもできる．
+このような集合を\ruby[<->]{空集合}{くう|しゅう|ごう}とよび，
+特別に記号$\emptyset$を使ってあらわす\footnote{ギリシャ文字の$\phi$を使う人もいる．}．
 
 
-\begin{definition}[集合の一致]
-    集合$X$と集合$Y$について，$X$のすべての元と$Y$のすべての元が一致するとき，$X$と$Y$は一致するといい，$X = Y$とかく．
-\end{definition}
+\subsubsection*{集合の関係}
 
-\begin{definition}[集合の包含]
-    集合$X$と集合$Y$について，$X$のすべての元が$Y$の元であるとき，$X$は$Y$に含まれる（あるいは$Y$は$X$を含む）といい，$X \subset Y$とかく．
+いままで1つの集合について扱ってきたが，
+ここで2つの集合の関係についてみてみよう．
+集合$X$と集合$Y$について，$X$のすべての元と$Y$のすべての元が一致するとき，
+$X$と$Y$は\word{一致する}といい，
+$X = Y$とかく．
+集合$X$と集合$Y$について，$Y$のすべての元が$X$の元であるとき，
+$Y$は$X$に\word{含まれる}（あるいは$X$は$Y$を含む）といい，
+$Y \subset X$とかく．
 
-    $X = Y$のときも$X \subset Y$が成り立つことに注意．
-\end{definition}
-
-集合$X$と$Y$が一致することを直接示すのは難しいことが多い．
+「含まれる」ということばと反するが，
+定義から$X = Y$のときも$X \subset Y$が成り立つ．
+集合$X$と$Y$が一致することを直接示すかわりに
 $X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
+
+たとえば，$X = $
+
+$X$の元であるか$Y$の元であるものすべてを集めた集合を，
+\word{和集合}[わ|しゅう|ごう]あるいは\word{合併}[がっ|ぺい]といい，
+$X \cup Y$とかく．
+$X$の元であり，かつ$Y$の元でもあるものすべてを集めた集合を，
+\word{共通部分}[きょう|つう|ぶ|ぶん]あるいは\word{交わり}といい，
+$X \cap Y$とかく．
+
+特に$X$と$Y$の元がかぶっていないとき，
+和集合$X \cup Y$のことを$X \sqcup Y$とかいて，
+\word{非交和}[ひ|こう|わ]あるいは\word{直和}[ちょく|わ]ということがある．
 
 
 
 \subsection{集合の演算}
 
-\begin{definition}[和集合]
+\cref{sec:set-intro}で素朴に導入した集合を，
+もう少し形式的なところに注目して調べてみよう．
+
+
+% 空集合
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}
+    \label{dfn:empty-set}
+    元をひとつも持たない集合$\{ \; \}$を\word{空集合}[くう|しゅう|ごう]\index{くうしゆうこう@空集合}といい，
+    記号$\emptyset$であらわす．
+\end{definition}
+
+数学において存在が保証されている唯一のものが空集合である．
+
+
+% 集合族
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}
+    \label{dfn:family-of-sets}
+    集合からなる集合を\word{集合族}[しゅう|ごう|ぞく][しゆうこうそく](family of sets)という．
+\end{definition}
+
+たとえば，
+$\ab\big\{ \{ \ \}, \  \{ 1 \}, \  \{ 1, 2 \}, \  \{ 1, 2, 3 \}  \}$は集合族である．
+
+元が集合である集合に対して名前がついているのは，
+単にそのような集合をよく扱うからである．
+
+
+\begin{definition}
+    \label{dfn:indicator-function}
+    集合$A$に対し，
+    \refdfn[写像]{dfn:map}$\chi_A \colon A \to \{ 0, 1 \}$を
+    \begin{equation}
+        \chi_A (x) \coloneq 
+        \begin{cases}
+            1  &  \text{if } x \in A  \\
+            0  &  \text{if } x \notin A  \\
+        \end{cases}
+    \end{equation}
+    で定める．
+    $\chi_A$を，集合$A$の\word{定義関数}，
+    \word{特性関数}(characteristic function)，
+    あるいは\word{指示関数}(indicator function)という．
+\end{definition}
+
+
+
+
+% 包含
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{集合の包含}
+
+集合$Y$が集合$X$を含むということは，
+次のように定式化される．
+
+\begin{definition}
+    2つの集合$X, Y$の\ruby{包含}{ほう|がん}関係を，
+    次のように定義する．
+    \begin{enumerate}
+        \item 任意の$x \in Y$に対し，$x \in X$が成り立つとき，
+            \word{$X$は$Y$を含む}\index{ふくむ@含む}，
+            あるいは\word{$Y$は$X$に含まれる}といい，
+            $X \supset Y$または$Y \subset X$とかく．
+        \item $X \subset Y$かつ$Y \subset X$のとき，
+            \word{$X$と$Y$は一致する}といい，
+            $X = Y$とかく．
+        \item $X \subset Y$かつ$X \neq Y$のとき，
+            特に$X \subsetneq Y$とかく．
+    \end{enumerate}
+    $Y$が$X$を含まないとき，$Y \not\subset X$または$Y \not\supset X$とかく．
+\end{definition}
+
+以下は明らかである．
+
+\begin{proposition}
+    集合$X, Y, Z$について，
+    $X \subset Y$かつ$Y \subset Z$なら，
+    $X \subset Z$が成り立つ．
+\end{proposition}
+
+
+
+
+\subsubsection*{集合の演算}
+
+\begin{definition}
     \label{dfn:union-of-set}
+    \label{dfn:intersection-of-set}
     $X, Y$を集合とする．
-    2つの集合の\word{和集合}[わ|しゅう|ごう][わしゆうこう](union)を，
+    2つの集合の$X \cup Y$を，
     \begin{equation}
         X \cup Y  \coloneq  \Set{  x  \given  x \in X \, \text{または} \, x \in Y  }
     \end{equation}
-    で定義する．
-\end{definition}
-
-\begin{definition}[共通部分]
-    \label{dfn:intersection-of-set}
-    $X, Y$を集合とする．
-    2つの集合の\word{共通部分}[きょう|つう|ぶ|ぶん][きようつうふふん](intersection)を
+    \word{和集合}[わ|しゅう|ごう](union)\index{わしゆうこう@和集合}，
+    あるいは\word{合併}[がっ|ぺい]\index{かつへい@合併}という．
+    2つの集合の$X \cap Y$を
     \begin{equation}
         X \cap Y  \coloneq  \Set{  x  \given  x \in X \, \text{かつ} \, x \in Y  }
     \end{equation}
-    で定義する．
+    を\word{共通部分}[きょう|つう|ぶ|ぶん](intersection)\index{きようつうふふん@共通部分}，
+    \word{交差}\footnote{
+        \ruby{交叉}{こう|さ}とも書く．
+        \cref{footnote:joyo-kanji}（\cpageref{footnote:joyo-kanji}）を参照．
+    }，あるいは\word{交わり}という．
 \end{definition}
 
 \begin{definition}[非交和]
@@ -123,7 +235,7 @@ $X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
     $X \cap Y = \emptyset$であるとき，
     和集合$X \cup Y$を特に\word{非交和}[ひ|こう|わ][ひこうわ](disjoint union)
     あるいは\word{直和}[ちょく|わ][ちよくわ](direct sum)といい，
-    $X \sqcup Y$とかく．
+    $X \sqcup Y$，$X \amalg Y$などとかく．
 \end{definition}
 
 
@@ -139,40 +251,41 @@ $X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
     $X$を集合とする．
     $X$の部分集合すべてを元として含む集合を，
     $X$の\word{冪集合}[べき|しゅう|ごう][へきしゆうこう](power set)といい%
-    \footnote{``略字で\ruby{巾}{べき}集合''とかくことも多い．}，
-    $\symcal{P}(X)$，$\symfrak{P}(X)$，$2^X$などとかく．
+    \footnote{略字で``\ruby{巾}{べき}集合''とかくことも多い．}，
+    $\symcal{P}(X)$，$\symfrak{P}(X)$，$2^X$などとかく%
+    \footnote{
+        $\symcal{P}$，$\symfrak{P}$はいずれもアルファベットのPである．
+    }．
 \end{definition}
 
-\begin{example}
-    $X = \{ a, b \}$とすると，
-    $\pset(X) = \bigl\{ \emptyset, \  \{ a \}, \  \{ b \}, \  \{ a, b \}  \bigr\}$である．
-\end{example}
+たとえば，
+$X = \{ a, b \}$とすると，
+$\pset(X) = \ab \big \{ \emptyset, \  \{ a \}, \  \{ b \}, \  \{ a, b \}  \}$である．
+
+部分集合$A \subset X$と\refdfn-[指示関数]{dfn:indicator-function}$\chi_A$が1対1に対応するので，
+$N$個の元をもつ集合$X$の冪集合は，$2^N$個の元をもつ．
+これが$2^X$という表記の理由である．
 
 
-% 集合族
-% %%%%%%%%%%%%%%%
-
-\begin{definition}
-    \label{dfn:family-of-sets}
-    集合からなる集合を\word{集合族}[しゅう|ごう|ぞく][しゆうこうそく](family of sets)という．
-\end{definition}
-
-\begin{example}
-    $\bigl\{ \{ \ \}, \  \{ 1 \}, \  \{ 1, 2 \}, \  \{ 1, 2, 3 \}  \bigr\}$は集合族である．
-\end{example}
-
-\begin{example}
-    任意の集合$X$に対し，その冪集合$\pset(X)$は（$X$の部分集合を元にもつ）集合族である．
-\end{example}
-
-元が集合である集合に対して名前がついているのは，
-単にそのような集合をよく扱うからである．
 
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 写像
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{写像}
 \label{sec:map}
 
+ある集合の\ruby{元}{げん}（要素）と別の集合の元を結びつける規則のことを写像という．
+数学の基礎を作る重要な概念である．
+特に\ruby{圏論}{けん|ろん}とよばれる数学の一分野では，
+集合ではなく写像（射）のほうが主役である．
+
+物理学において写像をあらわに意識することはあまりないが，
+例えば量子状態を記述する`関数'は写像の一種であるし，
+また，微分・積分というのは関数と関数を結びつける写像である．
+さらには\cref{sec:operator}で扱う\ruby{演算子}{えん|ざん|し}も，
+写像の一般化としてみることができる．
 
 \begin{definition}[写像]
     \label{dfn:map}
@@ -187,21 +300,24 @@ $X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
 \begin{example}
     $X = \{ 1, 2, 3 \}$，$Y = \{ a, b, c \}$とする．
     次のように定義された$f$は$X$から$Y$への写像である．
-    \begin{align*}
-          f(1) &= a, 
-        & f(2) &= b, 
-        & f(3) &= c.
-    \end{align*}
+    \begin{subequations}
+    \label{eq:3-to-3-map-example}
+    \begin{alignat}{3}
+               f(1) &= a, 
+        &\quad f(2) &= b, 
+        &\quad f(3) &= c.
+    \end{alignat}
     また，次のような$g$および$h$も$X$から$Y$への写像である．
-    \begin{align*}
-          g(1) &= c,
-        & g(2) &= c,
-        & g(3) &= a.
+    \begin{alignat}{3}
+              g(1) &= c,
+        &\quad g(2) &= c,
+        &\quad g(3) &= a.
         \\
-          h(1) &= a,
-        & h(2) &= a,
-        & h(3) &= a.
-    \end{align*}
+              h(1) &= a,
+        &     h(2) &= a,
+        &     h(3) &= a.
+    \end{alignat}
+    \end{subequations}
 \end{example}
 
 \begin{example}
@@ -384,6 +500,7 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 \subsection{集合の濃度}
 
 この節では``集合の大きさ''である「濃度」を定義する．
+
 
 \begin{definition}
     集合$X$の``元のかず''を\word{濃度}[のう|ど][のうと](cardinality)という．

@@ -138,16 +138,21 @@ $\cos \theta = 0$となるから，内積は$0$になる．
 
 \subsection{ベクトル空間の定義}
 
+ユークリッド空間における数ベクトルがもつ性質を抽出しよう．
+
 \begin{definition}[ベクトル空間]
     \label{dfn:vector-space}
-    $V$を集合，$(𝕂, +, \dotprod)$を体\refdfn{dfn:field}とする．
+    $V$を集合，$(𝕂, +, \dotprod)$を\refdfn[体]{dfn:field}とする．
     $V$上の\word{和}$\vecplus\colon V \times V \to V$，\word{スカラー倍}$\scaprod \colon 𝕂 \times V \to V$が定義され，
     以下が満たされるとき，$(V, \vecplus, \scaprod)$を（$𝕂$上の）\word{ベクトル空間}(vector space)あるいは\word{線形空間}[せん|けい|くう|かん](linear space)という．
-    このとき$V$の元を\word{ベクトル}(vector)，$𝕂$の元を\word{スカラー}(scalar)という．
+    このとき$V$の元を\word{ベクトル}(vector)，$𝕂$の元を\word{スカラー}(scalar)という\footnote{
+        \cref{vector:sum-opposite}の$-𝒗$が一意であることは定義から省いてもよい．
+        その場合も，$-𝒗, -𝒗'$を$𝒗$の逆元とすれば$-𝒗 = (-𝒗) \vecplus 𝒗 \vecplus (-𝒗') = -𝒗'$であるから$-𝒗$は一意である．
+    }．
     \begin{enumerate}
         \item \label{vector:sum-associative} 任意の$𝒖, 𝒗, 𝒘 ∈ V$に対して，$(𝒖 \vecplus 𝒗) \vecplus 𝒘 = 𝒖 \vecplus (𝒗 \vecplus 𝒘)$である．
-        \item \label{vector:sum-zero} ある$\symbf{0} ∈ V$がただひとつ存在し，任意の$𝒗 ∈ V$に対して，$𝒗 \vecplus \symbf{0} = \symbf{0} \vecplus 𝒗 = 𝒗$である．
-        \item \label{vector:sum-opposite} 任意の$𝒗 ∈ V$に対して，ある$-𝒗$がただひとつ存在して，$𝒗 \vecplus (-𝒗) = (-𝒗) \vecplus 𝒗 = \symbf{0}$である．
+        \item \label{vector:sum-zero} ある$𝟎 ∈ V$がただひとつ存在し，任意の$𝒗 ∈ V$に対して，$𝒗 \vecplus 𝟎 = 𝟎 \vecplus 𝒗 = 𝒗$である．
+        \item \label{vector:sum-opposite} 任意の$𝒗 ∈ V$に対して，ある$-𝒗$がただひとつ存在して，$𝒗 \vecplus (-𝒗) = (-𝒗) \vecplus 𝒗 = 𝟎$である．
         \item \label{vector:sum-commutative} 任意の$𝒖, 𝒗 ∈ V$に対して，$𝒖 \vecplus 𝒗 = 𝒗 \vecplus 𝒖$である．
         \item \label{vector:scalar-distributive} 任意の$𝒖, 𝒗 ∈ V$および任意の$c ∈ 𝕂$に対して，$c \scaprod (𝒖 \vecplus 𝒗) = (c \scaprod 𝒖) \vecplus (c \scaprod 𝒗)$である．
         \item \label{vector:scalar-sum} 任意の$𝒗 ∈ V$および任意の$a, b$に対して，$(a + b) \scaprod 𝒗 = (a \scaprod 𝒗) \vecplus (b \scaprod 𝒗)$である．
@@ -157,28 +162,28 @@ $\cos \theta = 0$となるから，内積は$0$になる．
     ベクトル空間$(V, \vecplus, \scaprod)$のことを単に$V$と書くこともある．
 \end{definition}
 
-\cref{dfn:vector-space}は，
-ユークリッド空間における数ベクトルがもつ性質を抽出したものである．
+定義に挙げなかった数ベクトルの性質の一部は，
+以下のように定義から直ちに導かれる．
 
-\begin{corollary}
+\begin{proposition}
     ベクトル空間$V$は以下を満たす．
     \begin{itemize}
         \item 任意の$𝒗 ∈ V$に対し，
         \begin{enumerate}[resume]
-            \item $ 0 \scaprod 𝒗 = \symbf{0} $である．
+            \item $ 0 \scaprod 𝒗 = 𝟎 $である．
             \item $ (-1) \scaprod 𝒗 = -𝒗 $である．
         \end{enumerate}
     \end{itemize}
-\end{corollary}
+\end{proposition}
 
 \begin{proof}
     \begin{enumerate}
         \item $ 0 \scaprod 𝒗 = (0 + 0) \scaprod 𝒗 = 0 \scaprod 𝒗 \vecplus 0 \scaprod 𝒗 $より従う．
-        \item $ 𝒗 \vecplus (-1) \scaprod 𝒗 = 1 \scaprod 𝒗 \vecplus (-1) \scaprod 𝒗 = (1 + (-1)) \scaprod 𝒗 = 0 \scaprod 𝒗 = \symbf{0} $より従う．
+        \item $ 𝒗 \vecplus (-1) \scaprod 𝒗 = 1 \scaprod 𝒗 \vecplus (-1) \scaprod 𝒗 = (1 + (-1)) \scaprod 𝒗 = 0 \scaprod 𝒗 = 𝟎 $より従う．
     \end{enumerate}
 \end{proof}
 
-$𝒗 \vecplus (-𝒖) \eqcolon 𝒗 \vecminus 𝒖$とかくことが多い．
+差$𝒗 \vecminus 𝒖 ≔ 𝒗 \vecplus (-𝒖)$と定義できる．
 
 
 
@@ -191,13 +196,10 @@ $𝒗 \vecplus (-𝒖) \eqcolon 𝒗 \vecminus 𝒖$とかくことが多い．
 \end{definition}
 
 部分空間と部分集合を取り違えないように注意が必要である．
-部分集合のうちベクトル空間になるものが部分空間（部分ベクトル空間）である．
+ベクトル空間の部分集合のうち，ベクトル空間になるものが部分空間（部分ベクトル空間）である．
 
-\begin{example}
-    $V$をベクトル空間とすると，
-    $V$自身は部分ベクトル空間である．
-    また，零ベクトルのみを含む空間$\{ \symbf{0} \}$も部分ベクトル空間である．
-\end{example}
+ベクトル空間の部分集合$W \subset V$が部分ベクトル空間であることを示すには，
+以下の\namecref{thm:vector-subspace-iff}を用いるのがよい．
 
 \begin{theorem}
     \label{thm:vector-subspace-iff}
@@ -205,12 +207,24 @@ $𝒗 \vecplus (-𝒖) \eqcolon 𝒗 \vecminus 𝒖$とかくことが多い．
     \begin{enumerate}
         \item \label{vector-subspace:sum-closed} 任意の$𝒖, 𝒗 ∈ U$に対し，$𝒖 \vecplus 𝒗 ∈ U$である（$U$は和で閉じている）．
         \item \label{vector-subspace:scalar-closed} 任意の$𝒗 ∈ U$および任意の$c ∈ 𝕂$に対し，$c \scaprod 𝒗 ∈ U$である（$U$はスカラー倍で閉じている）．
-        \item \label{vector-subspace:zero} $\symbf{0} ∈ U$である．
+        \item \label{vector-subspace:zero} $𝟎 ∈ U$である\footnote{
+                \cref{vector-subspace:zero}は\cref{vector-subspace:scalar-closed}で$c=0$とすれば自動的に満たされるように見える．
+                この条件をわざわざ加えるのは，$U \neq \emptyset$であることを保証するためである．
+            }．
     \end{enumerate}
-    \cref{vector-subspace:zero}は\cref{vector-subspace:scalar-closed}で$c=0$とすれば自動的に満たされるように見える．
-    この条件をわざわざ加えるのは，$U \neq \emptyset$であることを保証するためである．
 \end{theorem}
 
+$V$をベクトル空間とすると，
+$V$自身は部分ベクトル空間である．
+また，零ベクトルのみを含む空間$\{ 𝟎 \}$も部分ベクトル空間である．
+通常興味の対象となるのはこれらの%
+\word{自明な部分ベクトル空間}%
+\index{しめいな@自明な!ふふんへくとるくうかん@\indexdash 部分ベクトル空間}%
+ではなく，
+非自明なものである．
+
+部分ベクトル空間について，
+以下のことがらがなりたつ．
 
 \begin{proposition}
     \label{thm:intersection-of-vector-space}
@@ -222,22 +236,27 @@ $𝒗 \vecplus (-𝒖) \eqcolon 𝒗 \vecminus 𝒖$とかくことが多い．
     \cref{thm:vector-subspace-iff}を確かめればよい．
 \end{proof}
 
+一方で，
+\refdfn[和集合]{dfn:union-of-set}$W_1 \cup W_2$は一般に部分ベクトル空間にならない．
+部分ベクトル空間になるような``和''として，
+和空間というものを考える．
 
 \begin{definition}[和空間]
     \label{dfn:sum-of-vector-space}
     $V$をベクトル空間，$W_1, W_2 \subset V$を部分ベクトル空間とする．
     \begin{equation}
-        W_1 + W_2 \coloneq \Set{  𝒗_1 \vecplus 𝒗_2  \given  𝒗_1 ∈ W_1, \  𝒗_2 ∈ W_2  }
+        W_1 + W_2 ≔ \Set{  𝒗_1 \vecplus 𝒗_2  \given  𝒗_1 ∈ W_1, \  𝒗_2 ∈ W_2  }
     \end{equation}
     は$V$の部分ベクトル空間である．
 \end{definition}
-なお，和空間$W_1 + W_2$と和集合\refdfn{dfn:union-of-set}$W_1 \cup W_2$は異なる概念である．
-一般に$W_1 \cup W_2$は部分ベクトル空間にならない．
+
 
 \begin{definition}[直和空間]
     \label{dfn:direct-sum-of-vector-space}
-    和空間$W_1 + W_2$で，特に$W_1 \cap W_2 = \{ \symbf{0} \}$であるとき，
-    \word{直和}[ちょく|わ][ちよくわ](direct sum)といい，
+    和空間$W_1 + W_2$で，特に$W_1 \cap W_2 = \{ 𝟎 \}$であるとき，
+    \word{直和}[ちょく|わ](direct sum)%
+    \index{ちよくわ@直和!ふふんくうかんとしての@部分空間としての\indexdash}%
+    といい，
     $W_1 \oplus W_2$とかく．
 \end{definition}
 
@@ -259,10 +278,65 @@ $𝒗 \vecplus (-𝒖) \eqcolon 𝒗 \vecminus 𝒖$とかくことが多い．
     \[  𝒘_1 \vecminus 𝒘'_1 = 𝒘_2 \vecminus 𝒘'_2  \]
     であるが，
     左辺は$W_1$，右辺は$W_2$のベクトルである．
-    ところが，$W_1$と$W_2$は直和なので，$W_1 \cap W_2 = \{ \symbf{0} \}$．
-    よって$𝒘_1 \vecminus 𝒘'_1 = 𝒘_2 \vecminus 𝒘'_2 = \symbf{0}$より，
+    ところが，$W_1$と$W_2$は直和なので，$W_1 \cap W_2 = \{ 𝟎 \}$．
+    よって$𝒘_1 \vecminus 𝒘'_1 = 𝒘_2 \vecminus 𝒘'_2 = 𝟎$より，
     $𝒘_1 = 𝒘'_1$，$𝒘_2 = 𝒘'_2$である．
 \end{proof}
+
+
+\begin{definition}
+    $\sequ{V_𝜆}[𝜆 ∈ Λ]$を$𝕂$上のベクトル空間の\refdfn[族]{dfn:family-of-sets}とする．
+    以下で定義される$\prod_{𝜆 ∈ Λ} V_𝜆$を，
+    $\sequ{V_𝜆}[𝜆 ∈ Λ]$の\word{直積}(direct product)という\cite[\S 1.6]{saito-lin-2007}．
+    \begin{equation}
+        \prod_{𝜆 ∈ Λ} V_𝜆 ≔ \Set*{  \sequ{𝒗_𝜆}[𝜆 ∈ Λ]  \given  𝒗_𝜆 ∈ V_𝜆  }
+    \end{equation}
+\end{definition}
+
+\begin{proposition}
+    \label{thm:direct-sum-vector-space}
+    $V_𝜆$を$𝕂$上のベクトル空間の族とする．
+    直積$V = \prod_{𝜆 ∈ Λ} V_𝜆$は，以下で定義される和とスカラー倍について，$𝕂$上のベクトル空間になる\cite[\S 1.6]{saito-lin-2007}．
+    \begin{itemize}
+        \item $\symbf{x} = \sequ{\symbf{x}_𝜆}, \  \symbf{y} = \sequ{\symbf{y}_𝜆} \in V$，
+        $c \in 𝕂$について\footnote{
+            それぞれの右辺にある$\vecplus$と$\scaprod$は，
+            ベクトル空間$V_𝜆$上の和とスカラー倍であるから，
+            厳密には$\vecplus_𝜆$，$\scaprod_𝜆$と書くべきものであるが，
+            煩雑な上にかえってわかりづらいので添字$𝜆$を省略している．
+        }，
+        \begin{enumerate}
+            \item 和は$\symbf{x} \vecplus \symbf{y} ≔ \sequ{\symbf{x}_𝜆 \vecplus \symbf{y}_𝜆}[𝜆 \in Λ]$
+            \item スカラー倍は$c \scaprod \symbf{x} ≔ \sequ{c \scaprod_𝜆 \symbf{x}}[𝜆 \in Λ]$
+        \end{enumerate}
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}
+    \cref{dfn:vector-space}の公理を確認すればよい．
+\end{proof}
+
+
+
+\subsubsection*{抽象的な直和}
+
+直和には，
+\cref{dfn:direct-sum-of-vector-space}とは別の定義がある．
+
+\begin{definition}
+    $\sequ{V_𝜆}[𝜆 \in 𝛬]$をベクトル空間の\refdfn[族]{dfn:family-of-sets}とする．
+    直積$\prod_{𝜆 \in 𝛬} V_𝜆$の部分空間
+    \label{dfn:abstract-direct-sum}
+    \begin{equation}
+        \bigoplus_{𝜆 \in 𝛬} V_𝜆
+            ≔ \Set*{ \sequ{𝒗_𝜆}[𝜆 \in 𝛬] \in \prod_{𝜆 \in 𝛬} V_𝜆  
+                        \given  \text{有限個の$𝜆 \in 𝛬$を除いて$𝒗_𝜆 = 𝟎$}  }
+    \end{equation}
+    を，（抽象的な）\word{直和}\index{ちよくわ@直和!ちゆうしようてきな@抽象的な}という\cite[\S 1.6]{saito-lin-2007}．
+\end{definition}
+
+% $V_𝜆 \cap V_{\mu} = \emptyset$（$𝜆 \neq \mu$）のとき，
+% $\bigoplus_{𝜆 \in 𝛬} V_𝜆$は\cref{dfn:direct-sum-of-vector-space}の直和と同一視できる．
 
 
 
@@ -277,10 +351,15 @@ $c \scaprod 𝒗 \eqcolon c 𝒗$とかく．
 
 \begin{definition}[ベクトルの線形結合]
     \label{dfn:linear-combination}
-    $V$を$𝕂$上のベクトル空間，$\sequ{𝒗_𝜆}[𝜆 ∈ 𝜆] ∈ V$をベクトル，$\sequ{c_𝜆}[𝜆 ∈ 𝜆] ∈ 𝕂$を有限個を除いてゼロであるスカラーとする．
-    このとき，ベクトル$𝒗 = \sum_{𝜆 ∈ 𝜆} c_𝜆 𝒗_𝜆$のことを，
-    ベクトル$𝒗_1, 𝒗_2, \dotsc$の\word{線形結合}[せん|けい|けつ|ごう](linear combination)あるいは\word{一次結合}[いち|じ|けつ|ごう]という．
+    $V$を$𝕂$上のベクトル空間とする．
+    ベクトルの組$\sequ{𝒗_𝜆}[𝜆 ∈ 𝛬] ∈ V$に対して，
+    有限個を除いてゼロであるスカラー$\sequ{c_𝜆}[𝜆 ∈ 𝛬] ∈ 𝕂$を用いたベクトル$𝒗 = \sum_{𝜆 ∈ 𝛬} c_𝜆 𝒗_𝜆$のことを，
+    $\sequ{𝒗_𝜆}[𝜆 ∈ 𝛬]$の\word{線形結合}[せん|けい|けつ|ごう](linear combination)あるいは\word{一次結合}[いち|じ|けつ|ごう]という．
 \end{definition}
+
+たとえば，$V = \symbb{R}^3$，$𝒗_1 = (1, 0, 0)$，$𝒗_2 = (0, 1, 0)$とすれば，
+$𝒗 = (a, b, 0)$は$𝒗_1, 𝒗_2$の線形結合としてかける（$𝒗 = a 𝒗_1 \vecplus b 𝒗_2$）が，
+$𝒗' = (0, b, 1)$はかけない．
 
 \cref{dfn:linear-combination}において，
 $c_i$が有限個を除きゼロである，つまり$c_1 𝒗_1 \vecplus c_2 𝒗_2 \vecplus \dotsb$が有限和であるという条件は重要である．
@@ -306,13 +385,13 @@ $c_i$が有限個を除きゼロである，つまり$c_1 𝒗_1 \vecplus c_2 �
     ベクトルの組$\sequ{𝒗_𝜆}[𝜆 \in 𝛬]$（$𝒗_𝜆 ∈ V$）が$W$を\word{生成する}(generate)あるいは\word{張る}(span)とは，
     $\sequ{𝒗_𝜆}[𝜆 \in 𝛬]$から有限個のベクトル$𝒖_1, \dots, 𝒖_n$を任意にとったときの線形結合の全体が$W$に一致する，すなわち
     \begin{equation*}
-        W = \Set{ \sum_{𝜆 \in 𝛬} c_𝜆 𝒗_𝜆 \vecplus \dotsb ∈ V  \given  c_𝜆 ∈ 𝕂, \  \text{$c_𝜆$は有限個を除きゼロ}} \subset V
+        W = \Set*{ \sum_{𝜆 \in 𝛬} c_𝜆 𝒗_𝜆 ∈ V  \given  c_𝜆 ∈ 𝕂, \  \text{$c_𝜆$は有限個を除きゼロ}}
     \end{equation*}
     であることをいう．
-    また，$𝒗_1, 𝒗_2, \dotsc ∈ V$が生成する部分ベクトル空間を
+    また，$\sequ{𝒗_𝜆}[𝜆 \in 𝛬]$が生成する部分ベクトル空間を
     \begin{equation}
         \label{eq:spanning-set-notation}
-        W = \spanning{𝒗_1, 𝒗_2, \dotsc}
+        W = \spanning{\sequ{𝒗_𝜆}[𝜆 \in 𝛬]}
     \end{equation}
     とかく．
 \end{definition}
@@ -323,7 +402,7 @@ $c_i$が有限個を除きゼロである，つまり$c_1 𝒗_1 \vecplus c_2 �
     ベクトルの組$\sequ{𝒖_𝜆}[𝜆 ∈ 𝛬]$（$𝒖_𝜆 ∈ V$）が\word{一次独立}[いち|じ|どく|りつ](linearly independent)あるいは\word{線形独立}であるとは，
     有限個を除き$0$である$\sequ{c_𝜆}[𝜆 ∈ 𝛬]$（$c_𝜆 ∈ 𝕂$）に対し，
     \begin{equation*}
-        \sum_{𝜆 ∈ 𝛬} 𝒖_𝜆 = \symbf{0}
+        \sum_{𝜆 ∈ 𝛬} 𝒖_𝜆 = 𝟎
         \iff
         \text{任意の$𝜆 ∈ 𝛬$に対し} \, c_𝜆 = 0
     \end{equation*}
@@ -348,12 +427,11 @@ $c_i$が有限個を除きゼロである，つまり$c_1 𝒗_1 \vecplus c_2 �
     \end{enumerate}
 \end{definition}
 
-\begin{example}
-    $ \{ (1, 0, 0), \ (0, 1, 0), \ (0, 0, 1) \} $は$ℝ^3$の基底である．
-    また，$ \{ (1, 1, 0), \ (1, -1, 0), \ (0, 0, 1) \} $も$ℝ^3$の基底である．
-\end{example}
 
-例でみたように，一般にベクトル空間$V$が与えられたとき，その基底の取り方は一意ではない．
+例えば，$ \{ (1, 0, 0), \ (0, 1, 0), \ (0, 0, 1) \} $は$ℝ^3$の基底である．
+また，$ \{ (1, 1, 0), \ (1, -1, 0), \ (0, 0, 1) \} $も$ℝ^3$の基底である．
+
+このように，一般にベクトル空間$V$が与えられたとき，その基底の取り方は一意ではない．
 しかし，基底を構成するベクトルの数は，基底の取り方によらない．
 \begin{proof}
     なんかかく
@@ -385,10 +463,10 @@ $c_i$が有限個を除きゼロである，つまり$c_1 𝒗_1 \vecplus c_2 �
 \end{corollary}
 
 \begin{proof}
-    前半は基底の定義\refdfn{dfn:basis}より明らかなので，一意性を示す．
+    前半は\refdfn-[基底の定義]{dfn:basis}より明らかなので，一意性を示す．
     $𝒗 = a_1 𝒖_1 \vecplus \dots \vecplus a_n 𝒖_n = b_1 𝒖_1 \vecplus \dots \vecplus b_n 𝒖_n$と2通りにかけたとすると，
     \begin{equation*}
-        (a_1 \! - b_1) 𝒖_1 \vecplus \dots \vecplus (a_n \! - b_n) 𝒖_n = \symbf{0}
+        (a_1 \! - b_1) 𝒖_1 \vecplus \dots \vecplus (a_n \! - b_n) 𝒖_n = 𝟎
     \end{equation*}
     がいえるが，基底は一次独立なので$a_1 \! - b_1 = \dots = a_n \! - b_1 = 0$である．
 \end{proof}

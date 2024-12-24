@@ -3,21 +3,25 @@
 \begin{document}
 
 \section{内積空間とノルム空間}
-\label{sec:inner-product-space}
+\label{sec:inner-product-and-norm}
 
 \cref{sec:vector-space}では，
 数ベクトルを一般化した概念である\refdfn-[ベクトル空間]{dfn:vector-space}について扱った．
-そこではベクトルの和とスカラー倍が存在するのであった．
-しかし，ベクトルの「長さ」あるいは2つのベクトルの「角度」という概念は定義していなかった．
+ベクトルの和とスカラー倍を定義することで，
+数ベクトルに似た様々な性質が演繹的に導かれるのであった．
+しかし，数ベクトルがもつ「長さ」，
+あるいは2つのベクトルのなす「角度」という概念はまだ定義していない．
 
-これからベクトル空間の上に「\ruby{内積}{ない|せき}」および「ノルム」という演算を導入する．
-内積を用いることで，2つのベクトルが「直交」するということを代数的に表現できる．
-また，ノルムを用いれば2点間の距離を定義することができる．
+\cref{sec:inner-product-and-norm}では，
+ベクトル空間の上に「\ruby{内積}{ない|せき}」および「ノルム」という演算を導入する．
+2つのベクトルが「直交」することは，内積によって代数的に表現できる．
+また，ベクトル空間上にある2点間の「距離」は，
+ノルムを用いて定義することができる．
 
-これまでは一般の体$𝕂$上のベクトル空間を考えてきたが，
-内積を考える上では，体を$ℝ$もしくは$ℂ$に限る必要がある．
-そこでこれからは$𝕂$のかわりに$ℂ$と書くことにする．
-以降の$ℂ$を$ℝ$に置き換えることも容易である．
+なお，これまでの議論では一般の体$𝕂$上のベクトル空間を考えてきたが，
+内積やノルムを考える上では，体を$ℝ$もしくは$ℂ$に限る．
+したがって，これからは一般の体$𝕂$のかわりに複素数体$ℂ$を明示して書くことにする．
+以降の議論は$ℂ$上で行うが，これを$ℝ$に置き換えて議論することもできる．
 
 
 \subsection{内積空間}
@@ -27,16 +31,16 @@
 
 \begin{definition}[内積]
     \label{dfn:inner-product}
-    $V$をベクトル空間\refdfn{dfn:vector-space}とする．
+    $V$を\refdfn-[ベクトル空間]{dfn:vector-space}とする．
     写像$\iparen{{\bigdot}, {\bigdot}} \colon V \times V \to ℝ$は以下を満たすとき，\word{内積}[ない|せき][ないせき](inner product)であるという．
     \begin{itemize}
         \item 任意の$𝒖, 𝒗, 𝒘 \in V, \  c \in ℂ$に対し，
         \begin{enumerate}
-            \item \label{innerp:sum} $\iparen{𝒖, 𝒗 \tplus 𝒘} = \iparen{𝒖, 𝒗} + \iparen{𝒖, 𝒘}$である．
+            \item \label{innerp:sum} $\iparen{𝒖, \  𝒗 \vecplus 𝒘} = \iparen{𝒖, 𝒗} + \iparen{𝒖, 𝒘}$である．
             \item \label{innerp:scalar} $\iparen{𝒖, c𝒗} = c\iparen{𝒖, 𝒗}$である．
             \item \label{innerp:conjugate-symmetry} $\iparen{𝒖, 𝒗} = \conj{\iparen{𝒗, 𝒖}}$である．
             \item \label{innerp:positive-definiteness}$\iparen{𝒗, 𝒗} \geq 0$である．
-                また，$\iparen{𝒗, 𝒗} = 0$であるのは$𝒗 = \symbf{0}$であるときに限る．
+                また，$\iparen{𝒗, 𝒗} = 0$であるのは$𝒗 = 𝟎$であるときに限る．
         \end{enumerate}
     \end{itemize}
     内積をもつベクトル空間を\word{内積空間}[][ないせきくうかん](inner product space)という．
@@ -48,10 +52,10 @@
         \item 任意の$𝒖, 𝒗, 𝒘 \in V, \  a, b \in ℂ$に対し，
         \begin{enumerate}
             \item \label{innerp:linearity} （\word{線形性}(linearity)\index{せんけいせい@線形性}）
-                $\iparen{ 𝒖, a𝒗 \tplus b𝒘 } = a \iparen{𝒖, 𝒗} + b \iparen{𝒖, 𝒘}$
+                $\iparen{ 𝒖, a𝒗 \vecplus b𝒘 } = a \iparen{𝒖, 𝒗} + b \iparen{𝒖, 𝒘}$
             \item \label{innerp:antilinearity} （\word{反線形性}(antilinearity)\word{反線形性}(linearity)\index{はんせんけいせい@反線形性}）
-                $\iparen{ a𝒖 \tplus b𝒗, 𝒘} = \conj{a} \iparen{𝒖, 𝒘} + \conj{b} \iparen{𝒗, 𝒘}$
-            \item $(𝒗, \symbf{0}) = (\symbf{0}, 𝒗) = 0$
+                $\iparen{ a𝒖 \vecplus b𝒗, 𝒘} = \conj{a} \iparen{𝒖, 𝒘} + \conj{b} \iparen{𝒗, 𝒘}$
+            \item $(𝒗, 𝟎) = (𝟎, 𝒗) = 0$
         \end{enumerate}
 
         \cref{innerp:linearity,innerp:antilinearity}をあわせて%
@@ -61,29 +65,36 @@
 \end{corollary}
 
 
-\begin{example}
-    実ユークリッド空間$ℝ^n$において，
-    \begin{equation*}
-        \iparen{ \symbf{a}, \symbf{b} } ≔ \sum_{i=1}^{n} a_i b_i
-    \end{equation*}
-    は内積である．また，複素ユークリッド空間$ℂ^n$において，
-    \begin{equation*}
-        \iparen{ \symbf{a}, \symbf{b} } ≔ \sum_{i=1}^{n} \conj{a_i} b_i
-    \end{equation*}
-    は内積である．これらを特に\word{標準内積}[][ひようしゆんないせき]という．
-\end{example}
+実ユークリッド空間$ℝ^n$において，
+\begin{equation}
+    \label{eq:real-Euclidean-canonical-inner-product}
+    \iparen{ \symbf{a}, \symbf{b} }_{\symbb{R}} ≔ \sum_{i=1}^{n} a_i b_i
+\end{equation}
+は内積である．また，複素ユークリッド空間$ℂ^n$において，
+\begin{equation}
+    \label{eq:complex-Euclidean-canonical-inner-product}
+    \iparen{ \symbf{a}, \symbf{b} }_{\symbb{C}} ≔ \sum_{i=1}^{n} \conj{a_i} b_i
+\end{equation}
+は内積である．
+\cref{eq:real-Euclidean-canonical-inner-product,eq:complex-Euclidean-canonical-inner-product}を特に\word{標準内積}%
+\index{ないせき@内積!ひようしゆん@標準\indexdash}%
+\index{ひようしゆんないせき@標準内積|see{内積}}%
+という．
 
 
 \begin{definition}
     \label{dfn:orthogonal}
     \label{dfn:parallel}
     $V$を内積空間とする．
-    ベクトル$𝒗, 𝒖 \in V \setminus \{\symbf{0}\}$は，
+    ベクトル$𝒗, 𝒖 \in V \setminus \{𝟎\}$は，
     $\iparen{𝒗, 𝒖} = 0$であるとき，\word{直交する}(orthogonal)といい，$𝒗 \perp 𝒖$とかく．
     また，$c \in ℂ \setminus \{0\}$を用いて$𝒗 = c𝒖$とかけるとき，
     \word{平行である}(parallel)といい，$𝒗 \parallel 𝒖$とかく．
 \end{definition}
 
+
+
+\subsubsection*{直交補空間}
 
 \begin{definition}[直交補空間]
     \label{dfn:orthogonal-compliment}
@@ -98,46 +109,49 @@
     という．
 \end{definition}
 
-\begin{corollary}
+\begin{proposition}
     $V$をベクトル空間とする．
     $W \subset V$の直交補空間$W^\perp$は$V$の部分ベクトル空間である．
-\end{corollary}
+\end{proposition}
 
 \begin{proof}
-    \refthm[部分ベクトル空間の公理]{thm:vector-subspace-iff}を確かめればよい．
-    すなわち，任意の$\symbf{v} \in W$に対し，
+    \refthm[部分ベクトル空間の条件]{thm:vector-subspace-iff}を確かめればよい．
+    すなわち，任意の$𝒗 \in W$に対し，
     \begin{enumerate}
-        \item $\symbf{0} \in W^\perp$であることは，
-            $\iparen{\symbf{v}, \symbf{0}} = 0$から，
-        \item $\symbf{x}, \symbf{y} \in W^\perp$ならば$\symbf{x} + \symbf{y} \in W^\perp$であることは，
-            $\iparen{\symbf{x} + \symbf{y}, \  \symbf{v}} = \iparen{\symbf{x}, \symbf{v}} + \iparen{\symbf{y}, \symbf{v}}$から，
-        \item $\symbf{x} \in W^\perp$，$c \in \symbb{K}$ならば$c\symbf{x} \in W^\perp$であることは，
-            $\iparen{c\symbf{x}, \symbf{v}} = \conj{c} \iparen{\symbf{x}, \symbf{v}}$からいえる．
+        \item $𝟎 \in W^\perp$であることは，
+            $\iparen{𝒗, 𝟎} = 0$から，
+        \item $𝒙, 𝒚 \in W^\perp$ならば$𝒙 + 𝒚 \in W^\perp$であることは，
+            $\iparen{𝒙 + 𝒚, \  𝒗} = \iparen{𝒙, 𝒗} + \iparen{𝒚, 𝒗}$から，
+        \item $𝒙 \in W^\perp$，$c \in \symbb{K}$ならば$c𝒙 \in W^\perp$であることは，
+            $\iparen{c𝒙, 𝒗} = \conj{c} \iparen{𝒙, 𝒗}$からいえる．
     \end{enumerate}
 \end{proof}
 
 
-\begin{corollary}
+\begin{proposition}
     部分ベクトル空間$W \subset V$とその直交補空間$W^\perp \subset W$について，
-    \[  W \cap W^\perp = \{ \symbf{0} \}  \]
-\end{corollary}
+    \[  W \cap W^\perp = \{ 𝟎 \}  \]
+\end{proposition}
 
 \begin{proof}
-    $\symbf{x} \in W \cap W^\perp$をとる．
-    $\symbf{x} \in W^\perp$より，
-    任意の$\symbf{v} \in W$に対し$\iparen{\symbf{v}, \symbf{x}} = 0$である．
-    ここで，$\symbf{v} = \symbf{x} \in W$ととることができるので，
-    $\iparen{\symbf{x}, \symbf{x}} = 0$．したがって$\symbf{x} = \symbf{0}$である．
+    $𝒙 \in W \cap W^\perp$をとる．
+    $𝒙 \in W^\perp$より，
+    任意の$𝒗 \in W$に対し$\iparen{𝒗, 𝒙} = 0$である．
+    ここで，$𝒗 = 𝒙 \in W$ととることができるので，
+    $\iparen{𝒙, 𝒙} = 0$．したがって$𝒙 = 𝟎$である．
 \end{proof}
 
-任意のベクトル$\symbf{v} \in V$は，
-ある部分空間$W$に属するベクトル$\symbf{x}$とその直交補空間に属するベクトル$\symbf{y}$とを用いて，
-$\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
+任意のベクトル$𝒗 \in V$は，
+ある部分空間$W$に属するベクトル$𝒙$とその直交補空間に属するベクトル$𝒚$とを用いて，
+$𝒗 = 𝒙 + 𝒚$と一意にあらわせそうである．
 有限次元の場合はたしかに$V = W \oplus W^\perp$と\refdfn[直和分解]{dfn:direct-sum-of-vector-space}できる．
 しかし，無限次元の場合これは正しくない．
 
 無限次元ヒルベルト空間が直和分解できる条件については，
 \cref{thm:projection-theorem}で議論する．
+
+
+
 
 
 
@@ -159,7 +173,7 @@ $\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
         \item 任意の$𝒖, 𝒗 \in V$および$c \in ℂ$に対し，
         \begin{enumerate}
             \item \label{norm:positivity}$\norm{𝒗} \geq 0$である．
-                また，$\norm{𝒗} = 0$となるのは$𝒗 = \symbf{0}$のときに限る．
+                また，$\norm{𝒗} = 0$となるのは$𝒗 = 𝟎$のときに限る．
             \item \label{norm:absolute-homogeneity} $\norm{c𝒗} = \abs{c} \norm{𝒗}$である．
             \item \label{norm:triangle-inequality} 
                 （\word{三角不等式}(triangle inequality)\index{さんかくふとうしき@三角不等式}）
@@ -224,13 +238,13 @@ $\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
     \end{lemma}
 
     \begin{proof}[\cref{thm:Cauchy-Schwarz-inequality}の証明]
-        $𝒚 = \symbf{0}$のときは，$\abs{\iparen{𝒙, 𝒚}} = \norm{𝒙} \norm{𝒚} = 0$なので成り立つ．
-        $𝒚 \neq \symbf{0}$のときを考える．
-        任意の$𝜆, 𝜇 \in ℂ$について内積の正値性から$\norm{𝜆 𝒙 \tplus 𝜇 𝒚 } \geq 0$がいえる．
+        $𝒚 = 𝟎$のときは，$\abs{\iparen{𝒙, 𝒚}} = \norm{𝒙} \norm{𝒚} = 0$なので成り立つ．
+        $𝒚 \neq 𝟎$のときを考える．
+        任意の$𝜆, 𝜇 \in ℂ$について内積の正値性から$\norm{𝜆 𝒙 \vecplus 𝜇 𝒚 } \geq 0$がいえる．
         そこで$𝜆 = -\conj{\iparen{𝒙, 𝒚}}$，$𝜇 = \norm{𝒙}^2$とおくと，
         \begin{equation*}
             \begin{split}
-                0 &\leq \iparen{ 𝜆 𝒙 \tplus 𝜇 𝒚, \  𝜆 𝒙 \tplus 𝜇 𝒚 }  \\
+                0 &\leq \iparen{ 𝜆 𝒙 \vecplus 𝜇 𝒚, \  𝜆 𝒙 \vecplus 𝜇 𝒚 }  \\
                   &= 𝜆 \conj{𝜆} \iparen{ 𝒙, 𝒙 } 
                     + 𝜆 \conj{𝜇} \iparen{𝒙, 𝒚} 
                     + 𝜇 \conj{𝜆} \iparen{𝒚, 𝒙} 
@@ -258,6 +272,15 @@ $\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
     \end{equation*}
     と示される．
 \end{proof}
+
+\cref{thm:Cauchy-Schwarz-inequality}より，
+任意の$𝒙, 𝒚 \in V$に対し，
+$-1 \leq \frac{\iparen{𝒙, 𝒚}}{\norm{𝒙} \norm{𝒚}} \leq 1$であるから，
+\begin{equation*}
+    \cos \theta = \frac{\iparen{𝒙, 𝒚}}{\norm{𝒙} \norm{𝒚}}
+\end{equation*}
+を満たすような$0 \leq \theta < 2\pi$が存在する．
+$\theta$を$𝒙$と$𝒚$のなす\word{角度}(angle)\index{かくと@角度}という．
 
 
 一般のノルムについては成立しないが，
@@ -298,24 +321,24 @@ $\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
 \end{theorem}
 
 \begin{proof}
-    ノルムを内積に戻して，半双線形を用いて計算する．
-    \begin{alignat*}{2}
-        \norm{𝒙 \vecplus 𝒚}^2  
-            &= \iparen{𝒙 \vecplus 𝒚, \  𝒙 \tplus 𝒚}
-            &&= +\bigl[ \iparen{𝒙, 𝒙} + \iparen{𝒙, 𝒚} + \iparen{𝒚, 𝒙} + \iparen{𝒚, 𝒚} \bigr]
-            \\
-        -\norm{𝒙 \vecminus 𝒚}^2
-            &= -\iparen{𝒙 \vecminus 𝒚, \  𝒙 \vecminus 𝒚}
-            &&= -\bigl[ \iparen{𝒙, 𝒙} - \iparen{𝒙, 𝒚} - \iparen{𝒚, 𝒙} + \iparen{𝒚, 𝒚} \bigr]
-            \\
-        -\iu \norm{𝒙 \vecplus \iu 𝒚}^2
-            &= -\iu \iparen{𝒙 \vecplus \iu 𝒚, \  𝒙 \vecplus \iu 𝒚}
-            &&= -\iu \bigl[ \iparen{𝒙, 𝒙} + \iu \iparen{𝒙, 𝒚} - \iu \iparen{𝒚, 𝒙} + \iparen{𝒚, 𝒚} \bigr]
-            \\
-        +\iu \norm{𝒙 \vecminus \iu 𝒚} 
-            &= +\iu \iparen{𝒙 \vecminus \iu 𝒚, \  𝒙 \vecminus \iu 𝒚}
-            &&= +\iu \bigl[ \iparen{𝒙, 𝒙} - \iu \iparen{𝒙, 𝒚} + \iu \iparen{𝒚, 𝒙} + \iparen{𝒚, 𝒚} \bigr]
-    \end{alignat*}
+    ノルムを内積に戻して，半双線形を用いて計算すれば示される．
+    % \begin{alignat*}{2}
+    %     \norm{𝒙 \vecplus 𝒚}^2  
+    %         &= \iparen{𝒙 \vecplus 𝒚, \  𝒙 \vecplus 𝒚}
+    %         &&= +\bigl[ \iparen{𝒙, 𝒙} + \iparen{𝒙, 𝒚} + \iparen{𝒚, 𝒙} + \iparen{𝒚, 𝒚} \bigr]
+    %         \\
+    %     -\norm{𝒙 \vecminus 𝒚}^2
+    %         &= -\iparen{𝒙 \vecminus 𝒚, \  𝒙 \vecminus 𝒚}
+    %         &&= -\bigl[ \iparen{𝒙, 𝒙} - \iparen{𝒙, 𝒚} - \iparen{𝒚, 𝒙} + \iparen{𝒚, 𝒚} \bigr]
+    %         \\
+    %     -\iu \norm{𝒙 \vecplus \iu 𝒚}^2
+    %         &= -\iu \iparen{𝒙 \vecplus \iu 𝒚, \  𝒙 \vecplus \iu 𝒚}
+    %         &&= -\iu \bigl[ \iparen{𝒙, 𝒙} + \iu \iparen{𝒙, 𝒚} - \iu \iparen{𝒚, 𝒙} + \iparen{𝒚, 𝒚} \bigr]
+    %         \\
+    %     +\iu \norm{𝒙 \vecminus \iu 𝒚} 
+    %         &= +\iu \iparen{𝒙 \vecminus \iu 𝒚, \  𝒙 \vecminus \iu 𝒚}
+    %         &&= +\iu \bigl[ \iparen{𝒙, 𝒙} - \iu \iparen{𝒙, 𝒚} + \iu \iparen{𝒚, 𝒙} + \iparen{𝒚, 𝒚} \bigr]
+    % \end{alignat*}
 \end{proof}
 
 一般の内積空間においては，\cref{dfn:norm-by-inner-product}によるノルムが存在すること，
@@ -336,7 +359,7 @@ $\symbf{v} = \symbf{x} + \symbf{y}$と一意にあらわせそうである．
 
 \subsection{内積空間の基底}
 
-一般のベクトル空間において基底\refdfn{dfn:basis}が存在するのであった．
+一般のベクトル空間において\refdfn[基底]{dfn:basis}が存在するのであった．
 内積空間においては，よい性質をもつ基底をとることができる．
 
 \begin{definition}[正規直交基底]

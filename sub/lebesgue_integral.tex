@@ -8,13 +8,14 @@
 
 
 \subsection{可測関数}
+\label{sec:measurable-function}
 
 たとえば，以下のような関数だったらどうだろうか．
 
 \begin{definition}
     \label{dfn:simple-function}
-    $(X, 𝔅, \mu)$を可測空間とする．
-    $E \in 𝔅$をとり，
+    $(X, 𝚺, \mu)$を可測空間とする．
+    $E \in 𝚺$をとり，
     さらに$E = E_1 \sqcup \dots \sqcup E_n$と有限個の可測な\refdfn[直和]{dfn:disjoint-union}に分解できるとする．
     $E$上の点で定義された関数$f$が\word{単関数}(simple function)であるとは，
     \begin{equation}
@@ -59,12 +60,12 @@ $E\measet{f<a}$，$E\measet{f\leq a}$なども同様に定義する．
 
 \begin{definition}
     \label{dfn:measurable-function}
-    $X$を可測空間，$𝔅$を$\sigma$-加法族とする．
-    $f$が\word{$𝔅$-可測}，あるいは単に\word{可測}(measurable)であるとは，
+    $X$を可測空間，$𝚺$を$\sigma$-加法族とする．
+    $f$が\word{$𝚺$-可測}，あるいは単に\word{可測}(measurable)であるとは，
     任意の実数$a$に対して，
     \begin{equation}
         \label{eq:measurable-function-gt}
-        E\measet{ f > a } \in 𝔅
+        E\measet{ f > a } \in 𝚺
     \end{equation}
     であることをいう．
 \end{definition}
@@ -73,28 +74,28 @@ $E\measet{f<a}$，$E\measet{f\leq a}$なども同様に定義する．
 まず
 \begin{align}
     \label{eq:measurable-function-le}
-    E\measet{ f \leq a }  &=  E \setminus E\measet{ f > a }  \in  𝔅  \\
+    E\measet{ f \leq a }  &=  E \setminus E\measet{ f > a }  \in  𝚺  \\
     \label{eq:measurable-function-ge}
-    E\measet{ f \geq a }  &=  \bigcap_{n=1}^{\infty} E\measet[\Big]{ f > a - \frac{1}{n} }  \in  𝔅
+    E\measet{ f \geq a }  &=  \bigcap_{n=1}^{\infty} E\measet[\Big]{ f > a - \frac{1}{n} }  \in  𝚺
 \end{align}
 がいえる．
 これらを用いると，
 \begin{align}
     \label{eq:measurable-function-lt}
-    E\measet{ f < a }  &=  E \setminus E\measet{ f \geq a }  \in  𝔅  \\
+    E\measet{ f < a }  &=  E \setminus E\measet{ f \geq a }  \in  𝚺  \\
     \label{eq:measurable-function-eq}
-    E\measet{ f = a }  &=  E\measet{ f \leq a } \cap E\measet{ f \geq a }  \in  𝔅
+    E\measet{ f = a }  &=  E\measet{ f \leq a } \cap E\measet{ f \geq a }  \in  𝚺
 \end{align}
 がいえる．
 同様にして，
 \begin{align}
-    E\measet{ f > -\infty }  &=  \bigcup_{n=1}^{\infty} E\measet{ f > -n }  \in  𝔅  \\
-    E\measet{ f < +\infty }  &=  \bigcup_{n=1}^{\infty} E\measet{ f < +n }  \in  𝔅
+    E\measet{ f > -\infty }  &=  \bigcup_{n=1}^{\infty} E\measet{ f > -n }  \in  𝚺  \\
+    E\measet{ f < +\infty }  &=  \bigcup_{n=1}^{\infty} E\measet{ f < +n }  \in  𝚺
 \end{align}
 であり，ここから
 \begin{align}
-    E\measet{ f = +\infty }  &=  E \setminus E\measet{ f < +\infty }  \in  𝔅  \\
-    E\measet{ f = -\infty }  &=  E \setminus E\measet{ f > -\infty }  \in  𝔅
+    E\measet{ f = +\infty }  &=  E \setminus E\measet{ f < +\infty }  \in  𝚺  \\
+    E\measet{ f = -\infty }  &=  E \setminus E\measet{ f > -\infty }  \in  𝚺
 \end{align}
 もいえる．
 
@@ -104,7 +105,7 @@ $E\measet{f<a}$，$E\measet{f\leq a}$なども同様に定義する．
 残りの3つはそこから導き出せる．
 
 また，
-関数$f$が$𝔅$-可測であることを示すとき，
+関数$f$が$𝚺$-可測であることを示すとき，
 任意の実数$a$に対して$E\measet{f > a}$を示さなくても，
 任意の\emph{有理数}$p$に対して$E\measet{f > p}$であることを示せば十分である．
 実際，
@@ -120,7 +121,7 @@ $a$に収束する単調増加の有理数列$\sequ{p_n}$をとれば\footnote{
 \cref{eq:simple-function}のような単関数においては，
 $E_i = E\measet{ f = \alpha_i }$とかける．
 \cref{eq:measurable-function-eq}を使えば，
-すべての$i$に対し$E_i \in \symfrak{B}$であるとき，
+すべての$i$に対し$E_i \in 𝚺$であるとき，
 またその時に限り，\cref{eq:simple-function}は可測である．
 
 
@@ -134,9 +135,9 @@ $E_i = E\measet{ f = \alpha_i }$とかける．
 
 \begin{theorem}
     \label{thm:measurable-function-to-simple-function}
-    測度空間を$(X, 𝔅, \mu)$とする．
-    $E \subset X$上で$𝔅$-可測な関数$f$が非負ならば，
-    $E$上で$𝔅$-可測であり$f$に各点収束する単調増加の単関数列$\sequ{f_n}$が存在する\cite[定理10.1]{ito-lebesgue-1963}．
+    測度空間を$(X, 𝚺, \mu)$とする．
+    $E \subset X$上で$𝚺$-可測な関数$f$が非負ならば，
+    $E$上で$𝚺$-可測であり$f$に各点収束する単調増加の単関数列$\sequ{f_n}$が存在する\cite[定理10.1]{ito-lebesgue-1963}．
 \end{theorem}
 
 \begin{figure}[tbp]
@@ -164,7 +165,7 @@ $E_i = E\measet{ f = \alpha_i }$とかける．
     構成よりこれが単調増加であることは明らかである．
     また，$f$が可測であるから，$f_n$も可測である\footnote{
         $f$が可測だから，
-        すべての$k$に対し$E_k = E\measet{ f = (k-1)/2^n } \in \symfrak{B}$（\cref{eq:measurable-function-eq}）である．
+        すべての$k$に対し$E_k = E\measet{ f = (k-1)/2^n } \in 𝚺$（\cref{eq:measurable-function-eq}）である．
     }．
     最後に$f_n$が$f$に各点収束することを示す．
     まず$f(𝒙) = \infty$となる点$𝒙$については，任意の自然数$n$に対して$f_n (𝒙) = n$であるから，
@@ -179,10 +180,14 @@ $E_i = E\measet{ f = \alpha_i }$とかける．
 
 
 \subsection{ルベーグ積分の定義}
+\label{sec:definition-of-Lebesgue-integral}
+
+\cref{sec:measurable-function}で見た可測関数に関して，
+ルベーグ積分は次のように定義できる．
 
 \begin{definition}
     \label{dfn:Lebesgue-integral}
-    $(X, 𝔅, \mu)$を可測空間，$E \in 𝔅$を可測集合とする．
+    $(X, 𝚺, \mu)$を可測空間，$E \in 𝚺$を可測集合とする．
     \begin{enumerate}
         \item $E = \bigsqcup_{i=1}^{n} E_i$で定義された単関数$f = \sum_{i=1}^{n} \alpha_i \chi_{E_i}$の積分を，
             \begin{equation}
@@ -231,6 +236,71 @@ $E_i = E\measet{ f = \alpha_i }$とかける．
             \end{equation}
             と定義する．
     \end{enumerate}
+\end{definition}
+
+
+
+\subsection{ルベーグ積分の性質}
+
+リーマン積分の場合と同様に，
+次のような事柄が成り立つ．
+
+\begin{proposition}
+    $f, g$を$E$上で定義された関数とする．
+    $A, B \subset E$とし，
+    $\alpha, \beta \in \symbb{C}$とする．
+    このとき，
+    \begin{gather}
+        \label{eq:Lebesgue-integral-abs-inequality}
+        \int_E \abs{f} \ldd* \leq \abs*{ \int_E f \ldd* }
+        \\
+        \label{eq:Lebesgue-integral-linearity}
+        \int_E (\alpha f + \beta g) \ldd* = \alpha \int_E f \ldd* + \beta \int_E g \ldd*
+        \\
+        \label{eq:Lebesgue-integral-sqcup}
+        \int_{A \sqcup B} f \ldd* = \int_A f \ldd* + \int_B f \ldd*
+    \end{gather}
+    である．
+\end{proposition}
+
+リーマン積分と異なる性質として，
+次があげられる．
+
+\begin{proposition}
+    $f$を$E$上で可積分な関数とする．
+    $g$が$E$上で$f$と\refdfn-[ほとんど至るところ]{dfn:almost-everywhere}一致する関数であれば，
+    $g$も$E$上で可積分であり，
+    \begin{equation*}
+        \int_E f \ldd*  =  \int_E g \ldd*
+    \end{equation*}
+\end{proposition}
+
+このことは，
+$f \neq g$であるような領域$E_0 \subset E$のルベーグ測度がゼロであることから明らかである．
+
+
+\begin{proposition}[\word{ルベーグの優収束定理}(Lebesgue's dominated convergence theorem)]
+    $E$上で$𝚺$-可測な関数の列$\sequ{f_n}$に対して，
+    $E$上で可積分である関数$\varphi \geq 0$が存在して$\abs{f_n (𝒙)} \leq \varphi(𝒙)$であり，
+    さらに$\sequ{f_n}$が$f$に\refdfn[各点収束]{dfn:pointwise-convergence}するならば，
+    \begin{align}
+        \lim_{n \to \infty} \int_E f_n (𝒙) \ldd{𝒙} = \int_E f(𝒙) \ldd{𝒙}
+    \end{align}
+\end{proposition}
+
+\begin{proof}
+    \word{ファトゥーの補題}(Fatoe's lemma)を用いて証明する．
+\end{proof}
+
+
+
+\begin{definition}
+    \label{dfn:support}
+    ある関数$f \in C(𝛺)$に対し，$f(x) \neq 0$であるような$x \in 𝛺$の集合の\refdfn[閉包]{dfn:closure}
+    \begin{equation}
+        \supp f  \coloneq  \closureop{ \Set{  x \in 𝛺  \given  f(x) \neq 0  } }
+    \end{equation}
+    を$u$の\word{台}[だい][だい](support)という．
 \end{definition}
 
 

@@ -1,0 +1,169 @@
+\documentclass[../sotsu.tex]{subfiles}
+
+\begin{document}
+
+
+\section{商空間とテンソル積}
+
+\subsection{商空間}
+
+ベクトル空間の\refdfn[商集合]{dfn:quotient-set}に対応する．
+
+\begin{definition}
+    \label{dfn:quotient-space}
+    $V$を$\symbb{K}$上のベクトル空間，$W$を$V$の\refdfn[部分ベクトル空間]{dfn:vector-subspace}とする．
+    $V$上の\refdfn-[同値関係]{dfn:equivalence-relation}$\sim$を
+    \begin{equation}
+        𝒙 \sim 𝒚
+            \iff  𝒙 - 𝒚 \in W
+    \end{equation}
+    と定義し，
+    $\sim$による同値類を$\eqclass{𝒙}$とかくことにする．
+    商集合を$V/W$とかき，\word{商空間}とよぶ．
+\end{definition}
+
+\begin{proposition}
+    商空間$V/W$は次のような和とスカラー倍のもとでベクトル空間をなす．
+    \begin{subequations}
+    \begin{align}
+        \eqclass{𝒙} \mathbin{\bar{+}} \eqclass{𝒚} &\coloneq \eqclass{𝒙 + 𝒚}  \\
+        c \mathbin{\bar{\scaprod}} \eqclass{𝒙} &\coloneq \eqclass{c𝒙}
+    \end{align}
+    \end{subequations}
+\end{proposition}
+
+\begin{proof}
+    $\mathbin{\bar{+}}$と$\mathbin{\bar{\scaprod}}$がwell-definedであることを示せば十分だろう．
+    
+    まず$𝒙 \sim 𝒙'$，$𝒚 \sim 𝒚'$とする．
+    このとき$\symbf{w} \coloneq 𝒙 + 𝒚 \in W$，
+    $\symbf{w}' \coloneq 𝒙 + 𝒚 \in W$であるから，
+    $\symbf{w} - \symbf{w}' \in W$である．
+    つまり$(𝒙 + 𝒚) - (𝒙' + 𝒚') \in W$，
+    だから$𝒙 + 𝒚 \sim 𝒙' + 𝒚'$である．
+
+    次に，$𝒙 - 𝒙' \in W$だから，
+    $c𝒙 - c𝒙' = c(𝒙 - 𝒚) \in W$．
+    よって，$c𝒙 \sim c𝒙'$である．
+\end{proof}
+
+
+\subsection{テンソル積}
+\label{sec:tensor-product-of-vector}
+
+$V, W$を$\symbb{K}$上のベクトル空間とする．
+$𝒙, 𝒙' \in V$，$𝒚, 𝒚' \in W$，$c \in \symbb{K}$について，
+\begin{subequations}
+\label{eq:bilinear-map}
+\begin{align}
+    (𝒙 + 𝒙', \  𝒚) &= (𝒙, 𝒚) + (𝒙', 𝒚)
+    &
+    (c𝒙, 𝒚) &= c(𝒙, 𝒙)
+    \\
+    (𝒙, \  𝒚 + \symbf{y'}) &= (𝒙, 𝒚) + (𝒙, 𝒚')
+    &
+    (𝒙, c𝒚) &= c(𝒙, 𝒙)
+\end{align}
+\end{subequations}
+が成り立つような$(𝒙, 𝒚)$を，\word{テンソル積}\index{てんそるせき@テンソル積}という．
+$(𝒙, 𝒚)$の全体もまた，ベクトル空間をなすので，
+この空間を$V \otimes W$とかく．
+また$(𝒙, 𝒚) \eqcolon 𝒙 \otimes 𝒚$とかく．
+
+なお，\cref{eq:bilinear-map}のような条件を満たす写像$(\bigdot, \bigdot)$を\word{双線形写像}という．
+
+定義を見てもわかりづらいので，
+具体例でみてみよう．
+$V = V' = W = W' = \symbb{R}^2$とする．
+テンソル積は
+\begin{equation*}
+    \begin{pmatrix}
+        a \\ b
+    \end{pmatrix}
+    \otimes
+    \begin{pmatrix}
+        c \\ d
+    \end{pmatrix}
+    \coloneq
+    \begin{pmatrix}
+        a 
+        \begin{pmatrix}
+            c \\ d
+        \end{pmatrix}
+        \\
+        b
+        \begin{pmatrix}
+            c \\ d
+        \end{pmatrix}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        ac \\ ad \\ bc \\ bd
+    \end{pmatrix}
+\end{equation*}
+とかける．
+
+一方，\( V = V' = W = W' = \text{$2 \times 2$-行列全体の集合} \)とする．
+このとき，テンソル積は
+\begin{equation*}
+    \begin{pmatrix}
+        a  & b  \\ c  & d 
+    \end{pmatrix}
+    \otimes 
+    \begin{pmatrix}
+        \alpha & \beta \\ \gamma & \delta
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        a
+        \begin{pmatrix}
+            \alpha & \beta \\ \gamma & \delta
+        \end{pmatrix}
+        &
+        b
+        \begin{pmatrix}
+            \alpha & \beta \\ \gamma & \delta
+        \end{pmatrix}
+        \\
+        c
+        \begin{pmatrix}
+            \alpha & \beta \\ \gamma & \delta
+        \end{pmatrix}
+        &
+        d
+        \begin{pmatrix}
+            \alpha & \beta \\ \gamma & \delta
+        \end{pmatrix}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        a \alpha  &  a \beta   &  b \alpha  &  b \beta   \\
+        a \gamma  &  a \delta  &  b \gamma  &  b \delta  \\
+        c \alpha  &  c \beta   &  d \alpha  &  d \beta   \\
+        c \gamma  &  c \delta  &  d \gamma  &  d \delta  
+    \end{pmatrix}
+\end{equation*}
+とかける．
+
+
+
+\subsection{線形写像のテンソル積}
+\label{sec:tensor-product-of-linear-map}
+
+$V, V', W, W'$をベクトル空間，
+$f \colon V \to V'$，$g \colon W \to W'$を線形写像とする．
+線形写像$f \otimes g \colon V \otimes W \to V' \otimes W'$を
+\begin{equation}
+    \label{eq:tensor-product-of-linear-map}
+    (f \otimes g)(𝒙 \otimes 𝒚)
+        = f(𝒙) \otimes g(𝒚)
+\end{equation}
+で定めたものを，$f$と$g$の\word{テンソル積}\index{てんそるせき@テンソル積}という%
+\footnote{
+    \cref{eq:tensor-product-of-linear-map}にある3つの$\otimes$はそれぞれ別の演算である．
+    ひとつめは$\otimes \colon \hom(V, V') \times \hom(W, W') \to \hom ( V \otimes W, \  V' \otimes W' )$，
+    ふたつめは$\otimes \colon V \times W \to V \otimes W$，
+    みっつめは$\otimes \colon V' \times W' \to V' \otimes W'$である．
+}．
+
+\end{document}

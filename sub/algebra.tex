@@ -132,9 +132,6 @@
     物理学を学ぶにあたっては，
     具体的な複素数の計算に習熟しているほうが重要であり，
     複素数の構成方法を理解する必要はない．
-    とはいえ，
-    複素数を実際に作れるようになっておけば，
-    巷に溢れる``虚数は存在しない''論に反駁できるかもしれない．
     なお，複素数の構成自体は有理数を構成するのよりもはるかに簡単である．
 }．
 集合$\symbb{C}$を
@@ -189,7 +186,7 @@ $\symbb{C}$の元を\word{複素数}[ふく|そ|すう]と呼び，
 
 複素数の積は，$(a + \iu b) (c + \iu d) = (ac - bd) + \iu (bc + ad)$と書くことができる．
 $\iu = \sqrt{-1}$と考えれば，
-形式的に$ac - \iu^2 bd + \iu (bc + ad)$と計算できる．
+形式的な展開によって$ac + \iu^2 bd + \iu (bc + ad)$と計算できる．
 
 実数$a \in \symbb{R}$は，複素数$a = (a, 0)$とみなすことで，
 複素数に組み込むことができる（$\symbb{R} \subset \symbb{C}$）．
@@ -220,7 +217,7 @@ $\abs{z} = 0$となるのは$a = b = 0$，つまり$z = 0$のときに限る．
 
 複素数$a + \iu b$に対する複素数$a - \iu b$のことを，
 \word{共役複素数}[きょう|やく|ふく|そ|すう]あるいは\word{複素共役}[ふく|そ|きょう|やく]という%
-\footnote{
+\footnote{\label{footnote:joyo-kanji}
     \ruby[<->]{共役}{きょう|えき}は誤読．
     もともとは\ruby[<->]{軛}{くびき}（\ruby{牛車}{ぎっ|しゃ}などを引く牛馬に取り付ける横向きの棒）という字を用いて\ruby[<->]{共軛}{きょう|やく}とかいていたが，
     1946年に定められた当用漢字，1981年の常用漢字への書き換えに伴い\ruby[<->]{共役}{きょう|やく}と書かれるようになった．
@@ -287,9 +284,10 @@ $z$の絶対値は
 
 
 \begin{proposition}
+    \label{thm:complex-abs-squared-inequality}
     複素数$x, y$について，以下の不等式が成り立つ．
     \begin{align}
-        \label{eq:complex-abs-squared}
+        \label{eq:complex-abs-squared-inequality}
         \abs{x + y}^2 
             &\leq \ab( \abs{x} + \abs{y} )^2 
             \leq 2\ab( \abs{x}^2 + \abs{y}^2 )
@@ -312,7 +310,22 @@ $z$の絶対値は
 \end{proof}
 
 
+\begin{corollary}
+    \label{thm:complex-abs-product-inequality}
+    複素数$x, y$について，以下の不等式が成り立つ．
+    \begin{equation}
+        \label{eq:complex-abs-product-inequality}
+        2\abs{xy} = \abs{x}^2 + \abs{y}^2
+    \end{equation}
+\end{corollary}
 
+\begin{proof}
+    \begin{equation*}
+        \abs{x}^2 -2 \abs{x} \abs{y} + \abs{y}^2
+            = \ab( \abs{x} - \abs{y} )^2
+            \geq 0
+    \end{equation*}
+\end{proof}
 
 
 

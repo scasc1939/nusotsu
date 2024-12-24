@@ -25,9 +25,9 @@
         \item $f, g \in C^0 (𝛺)$，$c \in 𝕂$に対して，
         \begin{enumerate}
             \item 関数の和$f \plushat g$は，
-                任意の$𝒙 \in 𝛺$に対して$ ( f \plushat g )(𝒙) = f(𝒙) + g(𝒙) $である関数と定める．
+                任意の$𝒙 \in 𝛺$に対して$ ( f \plushat g ) = f + g $である関数と定める．
             \item 関数のスカラー倍$c \mathbin{\hat{\scaprod}} f$は，
-                任意の$𝒙 \in 𝛺$に対して$ ( c \mathbin{\hat{\scaprod}} g )(𝒙) = c \cdotp f(𝒙) $である関数と定める．
+                任意の$𝒙 \in 𝛺$に対して$ ( c \mathbin{\hat{\scaprod}} g ) = c \cdotp f $である関数と定める．
         \end{enumerate}
     \end{itemize}
 \end{proposition}
@@ -36,17 +36,6 @@
     
 \end{proof}
 
-
-\begin{definition}
-    ある関数$u \in C(𝛺)$に対し，$u(x) \neq 0$であるような$x \in 𝛺$の集合の\refdfn[閉包]{dfn:closure}
-    \begin{equation}
-        \supp u  \coloneq  \closure{ \Set{  x \in 𝛺  \given  u(x) \neq 0  } }
-    \end{equation}
-    を$u$の\word{台}[だい][だい](support)という．
-\end{definition}
-
-関数$u \in C(𝛺)$の中で，$\supp u$がコンパクト\refdfn{dfn:compact-set}であるもの全体の集合を$C_0 (𝛺)$とかく．
-$C_0 (𝛺)$もベクトル空間になっている．
 
 
 \begin{definition}
@@ -85,10 +74,10 @@ $C_0 (𝛺)$もベクトル空間になっている．
     \index{2しようかせきふんくうかん@2乗可積分関数空間}%
     $L²$を
     \begin{equation*}
-        L² (𝛺) \coloneq \Set*{ f \colon 𝛺 \to ℂ  \given  \int_𝛺 \abs{f(x)}^2 \dd{x} < \infty }
+        L² (𝛺) \coloneq \Set*{ f \colon 𝛺 \to ℂ  \given  \int_𝛺 \abs{f(x)}^2 \ldd{𝒙} < \infty }
     \end{equation*}
     で定義する．
-    ただし$\int_𝛺 \dd{x}$はルベーグ積分である．
+    ただし$\int_𝛺 \ldd{𝒙}$はルベーグ積分である．
 \end{definition}
 
 \begin{proposition}
@@ -97,48 +86,48 @@ $C_0 (𝛺)$もベクトル空間になっている．
     以下で定義されるノルムに対して\refdfn[ノルム空間]{dfn:norm}になる．
     \begin{equation}
         \label{eq:L^2-norm}
-        \norm{f}_{L²} \coloneq \sqrt{ \int_𝛺 \abs{f(𝒙)}^2 \dd{x} }
+        \norm{f}_{L²} \coloneq \sqrt{ \int_𝛺 \abs{f(𝒙)}^2 \ldd{𝒙} }
     \end{equation}
 \end{proposition}
 
 \begin{proof}
     \cref{dfn:norm}の条件を確かめればよい．
     \cref{norm:absolute-homogeneity}は，
-    スカラー倍$cf$の定義（$(cf)(𝒙) = c \cdotp f(𝒙)$）より，
+    スカラー倍$cf$の定義（$(cf) = c \cdotp f$）より，
     \(
-        \int_𝛺 \abs{(cf)(𝒙)}² \dd{𝒙}
-            = \abs{c}² \int_𝛺 \abs{f(𝒙)}^2 \dd{𝒙}
+        \int_𝛺 \abs{(cf)}² \dd{𝒙}
+            = \abs{c}² \int_𝛺 \abs{f}^2 \dd{𝒙}
     \)だからいえる．
     三角不等式\cref{norm:triangle-inequality}は，
-    和$f + g$の定義（$(f+g)(𝒙) = f(𝒙) + g(𝒙)$）より，
+    和$f + g$の定義（$(f+g) = f + g$）より，
     \begin{equation*}
         \begin{split}
-            ∫_𝛺 \abs{(f+g)(𝒙)}² \dd{x}
-            &= \int_𝛺 \abs{f(𝒙) + g(𝒙)}² \dd{x}
+            ∫_𝛺 \abs{(f+g)}² \ldd*
+            &= \int_𝛺 \abs{f + g}² \ldd*
             \\
-            &= \int_𝛺 \abs{f(𝒙)}² 
-                + 2 \int_𝛺 \Real \ab( \conj{f}(𝒙) g(𝒙) ) \dd{x}
-                + \int_𝛺 \abs{g(𝒙)}² \dd{x}
+            &= \int_𝛺 \abs{f}² 
+                + 2 \int_𝛺 \Real \ab( \conj{f} g ) \ldd*
+                + \int_𝛺 \abs{g}² \ldd*
             \\
-            &\leq \int_𝛺 \abs{f(𝒙)}² \dd{x} 
-                + 2\sqrt{ \int_𝛺 \abs{f(𝒙)}² \dd{x}   \int_𝛺 \abs{g(𝒙)}² \dd{x} } 
-                + \int_𝛺 \abs{g(𝒙)}² \dd{x}
+            &\leq \int_𝛺 \abs{f}² \ldd* 
+                + 2\sqrt{ \int_𝛺 \abs{f}² \ldd*   \int_𝛺 \abs{g}² \ldd* } 
+                + \int_𝛺 \abs{g}² \ldd*
             \\
-            &= \ab( \sqrt{  \int_𝛺 \abs{f(𝒙)}² \dd{x}  }  
-                  + \sqrt{  \int_𝛺 \abs{g(𝒙)}² \dd{x}  }  )²
+            &= \ab( \sqrt{  \int_𝛺 \abs{f}² \ldd*  }  
+                  + \sqrt{  \int_𝛺 \abs{g}² \ldd*  }  )²
         \end{split}
     \end{equation*}
     だからいえる（途中コーシー・シュワルツの不等式より
     \begin{equation*}
-        \int \abs{\conj{f}(𝒙) g(𝒙)} \dd{x}
-            \leq \abs*{ \int \conj{f}(𝒙) g(𝒙) \dd{x} }
-            \leq \sqrt{ \int_𝛺 \abs{f(𝒙)}² \dd{x}   \int_𝛺 \abs{g(𝒙)}² \dd{x} }
+        \int \abs{\conj{f} g} \ldd*
+            \leq \abs*{ \int \conj{f} g \ldd* }
+            \leq \sqrt{ \int_𝛺 \abs{f}² \ldd*   \int_𝛺 \abs{g}² \ldd* }
     \end{equation*}
     を用いた）．
     \cref{norm:positivity}の$\norm{f}_{L²} \geq 0$は定義より明らかである．
     しかし，$\norm{f}_{L²} = 0$ならば$f = 0$は，実はいえない．
     $f$が$\Omega$上で恒等的にゼロでなくても，$\Omega$の\refdfn[ほとんどいたるところ]{dfn:almost-everywhere}ゼロであれば，
-    $\int_\Omega f(\symbf{x}) \dd{x} = 0$となるからである．
+    $\int_\Omega f \ldd* = 0$となるからである．
     そこで，関数としての$0$を，（ルベーグ測度ゼロの点を除いて）ほとんどいたるところゼロである関数と再定義する．
     これにより$\norm{\bigdot}_{L²}$はノルムの条件を満たす．
 \end{proof}
@@ -154,7 +143,7 @@ $C_0 (𝛺)$もベクトル空間になっている．
     \refdfn-[2乗可積分関数空間]{dfn:square-integrable-function-space}$L² (𝛺)$は，以下で定義される内積$(\bigdot, \bigdot)$に対して\refdfn[内積空間]{dfn:inner-product}になる．
     \begin{align}
         \label{eq:L^2-inner-product}
-        \iparen{f, g}_{L²} \coloneq \int_𝛺 \conj{f}(x) g(x) \dd{x}
+        \iparen{f, g}_{L²} \coloneq \int_𝛺 \conj{f} g \ldd{𝒙}
     \end{align}
     この内積から導かれるノルムは\cref{eq:L^2-norm}である．
 \end{proposition}
@@ -165,8 +154,8 @@ $C_0 (𝛺)$もベクトル空間になっている．
     コーシー・シュワルツの不等式より
     \begin{equation*}
         \abs{ \iparen{f, g} }^2
-            \leq \abs*{ \int \conj{f}(𝒙) g(𝒙) \dd{x} }^2
-            \leq \int_𝛺 \abs{f(𝒙)}² \dd{x}   \int_𝛺 \abs{g(𝒙)}² \dd{x} 
+            = \abs*{ \int \conj{f} g \ldd{𝒙} }^2
+            \leq \int_𝛺 \abs{f}² \ldd{𝒙}   \int_𝛺 \abs{g}² \ldd{𝒙}
             \leq \norm{f}_{L²}^2 \norm{g}_{L²}^2
             < +\infty
     \end{equation*}
@@ -182,7 +171,7 @@ $C_0 (𝛺)$もベクトル空間になっている．
 
 $L²$上の\refdfn[同値関係]{dfn:equivalence-relation}$\sim$を
 \begin{equation*}
-    f \sim g  \iff  f(\symbf{x}) = g(\symbf{x}) \quad (\text{a.e. } \symbf{x} \in \Omega)
+    f \sim g  \iff  f = g \quad (\text{a.e. } 𝒙 \in \Omega)
 \end{equation*}
 と定義する．$\sim$が同値関係になるのは明らかである．
 \refdfn[商集合]{dfn:quotient-set}$L²/{\sim}$上の和とスカラー倍を，
@@ -199,17 +188,47 @@ $L²$上の\refdfn[同値関係]{dfn:equivalence-relation}$\sim$を
 }と，$L²/{\sim}$はベクトル空間をなす．
 また，$L²/{\sim}$上の内積を，代表元の内積
 \begin{align}
-    \iparen{ \eqclass{f}, \eqclass{g} }_{L²/{\sim}}  \coloneq \int_\Omega \conj{f}(\symbf{x}) g(\symbf{x}) \dd{x}
+    \iparen{ \eqclass{f}, \eqclass{g} }_{L²/{\sim}}  \coloneq \int_\Omega \conj{f} g \ldd{𝒙}
 \end{align}
 で定めれば\footnote{
     $\iparen{\bigdot, \bigdot}$はwell-definedである．
-    なぜなら，ルベーグ測度$0$の集合$ℱ \cup 𝒢$の点における$\conj{f}(\symbf{x}) g(\symbf{x})$の値は，
-    積分$\int_\Omega \conj{f}(\symbf{x}) g(\symbf{x}) \dd{x}$に寄与しないからである．
+    なぜなら，ルベーグ測度$0$の集合$ℱ \cup 𝒢$の点における$\conj{f} g$の値は，
+    積分$\int_\Omega \conj{f} g \ldd{𝒙}$に寄与しないからである．
 }，$L²/{\sim}$は内積空間になる．
 
 このように定義された内積空間$L²/{\sim}$のことを，
 $L²$と書いているのである．
 
+
+
+\subsection{\texorpdfstring{$L^2$}{𝐿²}-空間}
+
+内積空間である\refdfn-[2乗可積分関数空間]{dfn:square-integrable-function-space}$L² (𝛺)$について，
+詳しく見ていこう．
+
+連続関数全体の集合$C^0 (𝛺)$に属する関数が2乗可積分とは限らないので，
+$C^0 (\Omega) \not\subset L^2 (\Omega)$である．
+$C^0 (\Omega)$は内積空間（ノルム空間）にするには大きすぎるので，
+これに制限を加えて$L^2$ノルムを持つようにする．
+
+\begin{definition}
+    連続関数$f \in C^0 (𝛺)$の中で，
+    \refdfn[台]{dfn:support}$\supp f$が\refdfn[コンパクト]{dfn:compact-set}\footnote{
+        台の定義より$\supp f$は閉集合なので，
+        これは台が有界であることを要請している．
+    }であるもの全体の集合を$C^0_0 (𝛺)$とかく．
+    同様に，$k$回微分可能な関数$f \in C^k (\Omega)$の中で，
+    $\supp f$がコンパクトであるもの全体の集合を$C^m_0 (\Omega)$とかく．
+\end{definition}
+
+$C^m_0$は，$C^m$に属する関数のうち，
+ゼロにならない範囲が有界であるものである．
+
+\begin{proposition}
+    $C^m_0 (𝛺)$は$L^2 (\Omega)$のベクトル空間である．
+\end{proposition}
+
+したがって，$C^0_0 \subset C^1_0 \subset \dots \subset C^\infty_0 \subset L^2$という関係にある．
 
 
 
@@ -219,7 +238,7 @@ $u$を$𝛺 \subset_{\text{open}} ℝ^n$で定義された関数とする．
 $u$が$𝛺$で局所可積分であるとは，
 任意の\refdfn[コンパクト集合]{dfn:compact-set}$K \subset 𝛺$に対し
 \begin{equation*}
-    \int_K \abs{ u(x) } \dd{x} < \infty
+    \int_K \abs{ u(x) } \ldd{𝒙} < \infty
 \end{equation*}
 であることをいう．
 連続関数$C^0 (𝛺)$は局所可積分である．

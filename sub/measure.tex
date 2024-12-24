@@ -392,18 +392,21 @@ $B = A \cap E$，$C = A \cap E^{\complement}$と置きなおすことで移り�
 \begin{definition}
     \label{dfn:sigma-additive-class}
     $X$を空間とする．
-    集合族$\symfrak{B}$が以下の条件を満たすとき，
-    $\sigma$-\word{加法族}という\footnote{
+    集合族$𝚺$が以下の条件を満たすとき，
+    \word{$\sigma$-加法族}%
+    \index{sかほうそく@$\sigma$-加法族}%
+    という\footnote{
         \word{完全加法族}[][かんせんかほうそく]という場合や，
         単に\word{加法族}[][かほうそく]ということもある．
     }．
     \begin{enumerate}
-        \item $X, \emptyset \in \symfrak{B}$である．
-        \item $A \in \symfrak{B}$なら$A^{\complement} \in \symfrak{B}$である．
-        \item $\symfrak{B}$に属する可算個の集合$A_1, A_2, \dotsc \in \symfrak{B}$に対し，
-            \(  \bigcup_{n=1}^{\infty} A_n  \in  \symfrak{B}  \)．
+        \item $X, \emptyset \in 𝚺$である．
+        \item $A \in 𝚺$なら$A^{\complement} \in 𝚺$である．
+        \item $𝚺$に属する可算個の集合$A_1, A_2, \dotsc \in 𝚺$に対し，
+            \(  \bigcup_{n=1}^{\infty} A_n  \in  𝚺  \)．
     \end{enumerate}
-    より一般に，$\symfrak{B}$に属する集合の和・差・重なりを可算無限回とってできた集合は$\symfrak{B}$に属する．
+    より一般に，
+    $𝚺$に属する集合の\refdfn-[和]{dfn:union-of-set}・差・\refdfn[重なり]{dfn:intersection-of-set}を可算無限回とってできた集合は$𝚺$に属する．
 \end{definition}
 
 $\sigma$-加法族は\refdfn-[有限加法族]{dfn:finitely-additive-class}である．
@@ -412,12 +415,12 @@ $\sigma$-加法族は\refdfn-[有限加法族]{dfn:finitely-additive-class}で�
 
 \begin{definition}
     \label{dfn:measure}
-    $\symfrak{B}$を$\sigma$-加法族とする．
+    $𝚺$を$\sigma$-加法族とする．
     以下の条件を満たす$\mu$を\word{測度}[そく|ど](measure)\index{そくと@測度}という．
     \begin{enumerate}
-        \item 任意の$A \in \symfrak{B}$に対し，$0 \leq \mu(A) \leq \infty$である．
+        \item 任意の$A \in 𝚺$に対し，$0 \leq \mu(A) \leq \infty$である．
         \item \refdfn-[高々可算個]{dfn:at-most-countable}の集合\footnote{$A_i$が可算集合といっているのではない．}%
-            $A_1, A_2, \dotsc \in \symfrak{B}$が互いに交わらないとき（$i \neq j$なら$A_i \cap A_j = \emptyset$），
+            $A_1, A_2, \dotsc \in 𝚺$が互いに交わらないとき（$i \neq j$なら$A_i \cap A_j = \emptyset$），
             \begin{equation}
                 \mu \ab( \bigsqcup_{n=1}^{\infty} A_n ) 
                     = \sum_{n=1}^{\infty} \mu (A_n)
@@ -426,7 +429,7 @@ $\sigma$-加法族は\refdfn-[有限加法族]{dfn:finitely-additive-class}で�
     これらより，
     \begin{enumerate}[resume]
         \item \label{measure:monotonicity}（\word{単調性}）
-            $A, B \in \symfrak{B}$が$A \subset B$であるなら$\mu(A) \leq \mu(B)$である．
+            $A, B \in 𝚺$が$A \subset B$であるなら$\mu(A) \leq \mu(B)$である．
         \item $m(A \setminus B) = \mu (A) - \mu (B)$である．
         \item \label{measure:subadditivity}（\word{劣加法性}）
             $A_1, A_2, \dotsc \in 𝔉$（高々可算個）なら，
@@ -434,6 +437,7 @@ $\sigma$-加法族は\refdfn-[有限加法族]{dfn:finitely-additive-class}で�
                 \mu \ab( \bigcup_{i=1}^{n} A_i ) \leq \sum_{i=1}^{n} \mu(A_i)
             \end{equation*}
     \end{enumerate}
+    $(X, 𝚺, \mu)$を\word{測度空間}という．
 \end{definition}
 
 
@@ -461,7 +465,7 @@ $\sigma$-加法族は\refdfn-[有限加法族]{dfn:finitely-additive-class}で�
             ……と$F_n$を定義すると，
             $F_n$は可測であり（なぜなら$A, B$が可測なら$A \setminus B$），
             $E = \bigcup_{n=1}^{\infty} E_n = \bigsqcup_{n=1}^{\infty} F_n$であるから，
-            \cref{thm:disjoint-union-of-measurable-sets-is-measurable}より$E$は可測
+            \cref{thm:disjoint-union-of-measurable-sets-is-measurable}より$E$は可測．
         }．
     \item \refdfn-[外測度]{dfn:outer-measure}の公理および\cref{thm:disjoint-union-of-measurable-sets-is-measurable}よりいえる．
     \end{enumerate}
@@ -495,13 +499,44 @@ $\sigma$-加法族は\refdfn-[有限加法族]{dfn:finitely-additive-class}で�
     \end{equation*}
     このとき，
     \begin{align*}
-        f(\symbf{x}) &= 0  \quad  \text{a.e.} \, \symbf{x} \in E
+        f(\symbf{x}) &= 0  \quad  \text{a.e.} \  \symbf{x} \in E
         &
         f(\symbf{x}) &= 0  \quad  \text{a.e.}
     \end{align*}
     などと書く．
 \end{definition}
 
+
+
+位相的性質を入れる．
+
+\begin{proposition}
+    \label{thm:minimal-sigma-additive-class}
+    $(X, 𝚺, \mu)$を\refdfn-[測度空間]{dfn:measure}とする．
+    $X$の任意の部分集合$E$に対し，
+    $E$を含む最小の\refdfn[$\sigma$-加法族]{dfn:sigma-additive-class}$𝚺$が存在する．
+    % この$B$のことを$𝚺[E]$とかく．
+\end{proposition}
+
+\begin{proof}
+    $E$を含む$\sigma$-加法族は少なくともひとつ存在する（たとえば$\pset(X)$）．
+    そこで，$E$を含む$\sigma$-加法族の族$\sequ{𝚺_\lambda}[\lambda \in \Lambda]$をとって
+    \begin{equation*}
+        𝚺 \coloneq \bigcap_{\lambda \in \Lambda} 𝚺_\lambda
+    \end{equation*}
+    とすれば，これは$E$を含む最小の$\sigma$-加法族である．
+\end{proof}
+
+
+\begin{definition}
+    \label{dfn:Borel-set}
+    $N$-次元ユークリッド空間$\symbb{R}^N$に\cref{thm:minimal-sigma-additive-class}を適用すると，
+    $\symbb{R}^N$の\refdfn-[開集合]{dfn:open-set}$U \in \topology$すべてを含む\refdfn[$\sigma$-加法族]{dfn:sigma-additive-class}$𝔅$をとることができる．
+    この$𝔅$に属する集合を\word{ボレル集合}(Borel set)という．
+\end{definition}
+
+$\sigma$-加法族の定義から，
+\cref{dfn:Borel-set}の$𝚺$は$\symbb{R}^N$の\refdfn-[閉集合]{dfn:closed-set}（開集合の補集合）すべてを含む．
 
 
 

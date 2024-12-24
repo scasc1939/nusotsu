@@ -1,0 +1,52 @@
+\documentclass[../sotsu.tex]{subfiles}
+
+\begin{document}
+
+
+\section{級数}
+\label{sec:series}
+
+
+\subsection{関数の列}
+
+わかりやすくするために，
+実数から実数への関数を考える．
+
+\begin{definition}
+    \label{dfn:pointwise-convergence}
+    関数の列$\sequ{f_n}[n \in \symbb{N}]$が関数$f$に%
+    \word{各点収束}[かく|てん|しゅう|そく]%
+    \index{かくてんしゆうそく@各点収束}%
+    するとは，
+    任意の$x \in \symbb{R}$について，
+    任意の$\varepsilon > 0$に対し，
+    ある$N \in \symbb{N}$が存在して，
+    $n > N$なら$\abs{f(x) - f_n (x)} < \varepsilon$となることをいう．
+\end{definition}
+
+各点収束の定義は，
+「任意の$x \in \symbb{R}$に対し，
+$\lim_{n \to \infty} f_n (x) = f(x)$」とかける．
+
+\begin{definition}
+    \label{dfn:uniform-convergence}
+    関数の列$\sequ{f_n}[n \in \symbb{N}]$が関数$f$に%
+    \word{一様収束}[いち|よう|しゅう|そく]%
+    \index{いちようしゆうそく@一様収束}%
+    するとは，
+    任意の$\varepsilon > 0$に対し，
+    ある$N \in \symbb{N}$が存在して，
+    任意の$x \in \symbb{R}$に対し，
+    $n > N$なら$\abs{f(x) - f_n (x)} < \varepsilon$となることをいう．
+\end{definition}
+
+2つの定義はよく似ているが，
+「任意の$x \in \symbb{R}$」の位置が違う．
+$\varepsilon$を固定したとき，
+各点収束では$N$が$x$に依存する数$N_{\varepsilon, x}$でよい．
+しかし，一様収束では$N$が$x$に依存しない（$\varepsilon$のみに依存する）定数$N_\varepsilon$でなくてはならない．
+
+
+
+
+\end{document}
