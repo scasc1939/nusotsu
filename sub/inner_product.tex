@@ -94,6 +94,35 @@
 
 
 
+\subsubsection*{内積の連続性}
+
+\begin{proposition}
+    \label{thm:inner-product-continuity}
+    内積は連続である．
+    つまり，$𝒖_n \to 𝒖_*$，$𝒗_n \to 𝒗_*$であるベクトル列$\sequ{u_n}$，$\sequ{𝒗_n}$に対し，
+    \begin{equation*}
+        \iparen{𝒖_n, 𝒗_n} \xrightarrow{n \to \infty} \iparen{𝒖_*, 𝒗_*}
+    \end{equation*}
+\end{proposition}
+
+\begin{proof}
+    \refthm[コーシー--シュワルツの不等式]{thm:Cauchy-Schwarz-inequality}より，
+    \begin{equation*}
+        \begin{split}
+            \abs{ \iparen{𝒖_n, 𝒗_n} - \iparen{𝒖_*, 𝒗_*} }
+                &= \abs[\big]{ \iparen{𝒖_n, \  𝒗_n - 𝒗_*} + \iparen{𝒖_n - 𝒖_*, \  𝒗_*} }
+                \\
+                &\leq \abs[\big]{ \norm{𝒖_n} \norm{𝒗_n - 𝒗_*} + \norm{𝒖_n - 𝒖_*} \norm{𝒗_*} }
+                \\
+                &\xrightarrow{ n \to \infty }
+                    \abs[\big]{ \norm{𝒖_*} \cdotp 0 + 0 \cdotp \norm{𝒗_*} }
+                = 0
+        \end{split}
+    \end{equation*}
+\end{proof}
+
+
+
 \subsubsection*{直交補空間}
 
 \begin{definition}[直交補空間]
@@ -128,10 +157,11 @@
 \end{proof}
 
 
-\begin{proposition}
-    部分ベクトル空間$W \subset V$とその直交補空間$W^\perp \subset W$について，
+\begin{lemma}
+    \label{thm:intersection-of-and-orthogonal-complement}
+    部分ベクトル空間$W \subset V$とその直交補空間$W^\perp \subset V$について，
     \[  W \cap W^\perp = \{ 𝟎 \}  \]
-\end{proposition}
+\end{lemma}
 
 \begin{proof}
     $𝒙 \in W \cap W^\perp$をとる．
@@ -146,13 +176,52 @@
 $𝒗 = 𝒙 + 𝒚$と一意にあらわせそうである．
 有限次元の場合はたしかに$V = W \oplus W^\perp$と\refdfn[直和分解]{dfn:direct-sum-of-vector-space}できる．
 しかし，無限次元の場合これは正しくない．
+これについては\cref{sec:Hilbert-space}で議論するが，
+先に言葉を定義しておく．
 
-無限次元ヒルベルト空間が直和分解できる条件については，
-\cref{thm:projection-theorem}で議論する．
+\begin{definition}
+    \label{dfn:vector-projection}
+    $V$を\refdfn-[内積空間]{dfn:inner-product}，
+    $W \subset V$を\refdfn-[部分ベクトル空間]{dfn:vector-subspace}，
+    $W^\perp$をその\refdfn-[直交補空間]{dfn:orthogonal-compliment}とする．
+    $𝒙 \in V$が
+    \begin{equation}
+        \label{eq:vector-projection}
+        𝒙 = 𝒚 + \symbf{z}, 
+        \quad 
+        \text{where }
+        \symbf{y} \in W, 
+        \ 
+        \symbf{z} \in W^\perp
+    \end{equation}
+    とかけるとき，$\symbf{y}$を$\symbf{x}$の$W$上への正射影\index{せいしやえい@正射影}，
+    直交射影\index{ちよつこうしやえい@直交射影}，
+    あるいは単に\word{射影}\index{しやえい@射影}という．
+\end{definition}
 
+\begin{lemma}
+    \label{thm:proposition-is-unique}
+    $\symbf{x}$に射影が存在するとき，
+    つまり\cref{eq:vector-projection}のようにかけたとき，
+    $\symbf{y} \in W$，$\symbf{z} \in W^\perp$は一意に定まる．
+\end{lemma}
 
+\begin{proof}
+    $\symbf{x} = \symbf{y} + \symbf{z} = \symbf{y}' + \symbf{z}'$と2通りに分解されたとする．
+    すると
+    \begin{equation*}
+        \symbf{y} - \symbf{y}' = \symbf{z}' - \symbf{z}
+    \end{equation*}
+    となる．
+    右辺は$W$の元，左辺は$W^\perp$の元である．
+    よって\cref{thm:intersection-of-and-orthogonal-complement}より，
+    $\symbf{y} - \symbf{y}' = \symbf{z}' - \symbf{z} = \symbf{0}$．
+    したがって$\symbf{y} = \symbf{y}'$，$\symbf{z} = \symbf{z}'$．
+\end{proof}
 
-
+先に注意したとおり，
+内積空間の任意のベクトル$\symbf{x}$に対して射影が存在するとは限らない．
+上の証明はあくまで，$\symbf{x}$の射影が存在したと仮定した場合のものである．
 
 
 
@@ -199,13 +268,129 @@ $𝒗 = 𝒙 + 𝒚$と一意にあらわせそうである．
 ノルムは\refdfn[距離]{dfn:distance}\index{きより@距離}とみなすことができる（\cref{thm:norm-is-distance}）．
 したがって，ノルム空間は距離空間であり，
 \cref{sec:metric-space}で導いたことがらが成り立つ．
+特に，ノルムを用いると，ベクトルの点列の収束という概念が定義できる．
+
+\begin{definition}
+    \label{dfn:convergence-of-vector-sequence}
+    ノルム空間$V$のベクトル列$\sequ{𝒗_n}[n \in \symbb{N}]$が$𝒗_* \in V$に収束するとは，
+    \begin{equation*}
+        \norm{ 𝒗_n \vecminus 𝒗_* } \xrightarrow{n \to \infty} 0
+    \end{equation*}
+    であることをいう．
+\end{definition}
+
+
+いくつか便利な式を導いておこう．
+まず，三角不等式$\norm{𝒖 \vecplus 𝒗} \leq \norm{𝒖} + \norm{𝒗}$から次のような不等式が導かれる．
+\begin{lemma}
+    \label{thm:triangle-inequality-subtraction}
+    ノルム$\norm{\bigdot}$に対し，以下の不等式が成り立つ．
+    \begin{equation}
+        \label{eq:triangle-inequality-subtraction}
+        \abs[\big]{ \norm{𝒖} \vecminus \norm{𝒗} } \leq \norm{𝒖 - 𝒗}
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    三角不等式より
+    \begin{align*}
+        \norm{𝒖} \leq \norm{𝒖 \vecminus 𝒗} + \norm{𝒗},
+        \quad 
+        \norm{𝒗} \leq \norm{𝒗 \vecminus 𝒖} + \norm{𝒖}
+    \end{align*}
+    であるから，それぞれ右辺の$\norm{𝒗}, \norm{𝒖}$を左辺へ移せば
+    \begin{align*}
+        \norm{𝒖} - \norm{𝒗} \leq \norm{𝒖 \vecminus 𝒗},
+        \quad 
+        \norm{𝒗} - \norm{𝒖} \leq \norm{𝒗 \vecminus 𝒖} = \norm{𝒖 \vecminus 𝒗}
+    \end{align*}
+    である．この2式をあわせれば，\cref{eq:triangle-inequality-subtraction}が導かれる．
+\end{proof}
+
+
+\begin{lemma}
+    \label{thm:norm-sequence-continuity}
+    $\sequ{𝒖_n}$がノルム空間のベクトル列で，
+    $𝒖_n \to 𝒖_*$と収束するなら，
+    $\norm{𝒖_n} \to \norm{𝒖_*}$である\cite[補題1.2]{iwanami-functional}．
+\end{lemma}
+
+\begin{proof}
+    \cref{eq:triangle-inequality-subtraction}を使うと，
+    \begin{equation*}
+        \abs[\big]{ \norm{𝒖_n} - \norm{𝒖_*} }
+            \leq \norm{𝒖_n \vecminus 𝒖_*}
+            \xrightarrow{n \to \infty} 0
+    \end{equation*}
+    である．
+\end{proof}
+
+
+\subsubsection*{ノルムの連続性}
+
+\begin{proposition}
+    \label{thm:norm-continuity}
+    ノルムはベクトル空間から実数への写像$\norm{\bigdot} \colon V \to \symbb{R}$として連続である\cite[定理1.1]{iwanami-functional}．
+\end{proposition}
+
+\begin{proof}
+    $V$の点列$\sequ{𝒖_n}$，$\sequ{𝒗_n}$および$\symbb{C}$の点列（数列）$\sequ{c_n}$をとり，
+    $𝒖_n \to 𝒖_*$，$𝒗_n \to 𝒗_*$，$c_n \to c_*$（$n \to \infty$）とする．
+
+    \textsf{加法の連続性}\quad
+    \begin{equation*}
+        \norm{𝒖_n \vecplus 𝒗_n} \xrightarrow{n \to \infty} \norm{𝒖_* \vecplus 𝒗_*}
+    \end{equation*}
+    を示せばよい．三角不等式から
+    \begin{equation*}
+        \abs[\big]{ \norm{𝒖_n \vecplus 𝒗_n} - \norm{𝒖_* \vecplus 𝒗_*} }
+            \leq \norm{ (𝒖_n \vecplus 𝒗_n) - (𝒖_* \vecplus 𝒗_*) }
+            \xrightarrow{n \to \infty} 0
+    \end{equation*}
+
+    \textsf{スカラー倍の連続性}\quad
+    \begin{equation*}
+        \norm{c_n 𝒖_n} \xrightarrow{n \to \infty} \norm{c_* 𝒖_*}
+    \end{equation*}
+    を示せばよい．これは，三角不等式を使って
+    \begin{equation*}
+        \begin{split}
+            \abs[\big]{ \norm{c_n 𝒖_n} - \norm{c_* 𝒖_*} }
+                &\leq \norm{ c_n 𝒖_n \vecminus c_* 𝒖_* }
+                \\
+                &= \norm[\big]{ (c_n - c_*) 𝒖_n \vecplus c_* (𝒖_n \vecminus 𝒖_*) }
+                \\
+                &\leq \abs{c_n - c_*} \norm{𝒖_n} \vecplus \abs{c_*} \norm{𝒖_n \vecminus 𝒖_*}
+                \xrightarrow{n \to \infty} 0 \cdotp \norm{𝒖_*} + \abs{c_*} \cdotp 0
+                = 0
+        \end{split}
+    \end{equation*}
+    と示される\footnote{
+        最後の極限では\cref{eq:norm-sequence-continuity}を使った．
+    }．
+\end{proof}
+
+
+ノルム空間の部分ベクトル空間は，またノルム空間になる．
+より正確に述べると，以下の\namecref{thm:norm-subspace}が成り立つ．
+
+\begin{proposition}
+    \label{thm:norm-subspace}
+    $\norm{\bigdot}$をもつノルム空間$V$の部分ベクトル空間$W$は，
+    $\norm{\bigdot} \colon V \to \symbb{R}$の定義域を$W$に\refdfn[制限]{dfn:restriction}したもの$\norm{\bigdot} \big\vert_W \colon W \to \symbb{R}$をノルムとして，
+    ノルム空間になる．
+\end{proposition}
+
+
+
+
 
 
 \subsection{内積とノルムの関係}
 
 \cref{sec:inner-product-space}では内積を，
 \cref{sec:norm-space}ではノルムを導入した．
-これらはそれぞれ独立に定義される概念であるが，特殊なベクトル空間においてはこの2つを統一することが可能である．
+これらはそれぞれ独立に定義される概念であるが，
+実はノルム空間のうち特殊なものが内積空間であることがわかる．
 まずは内積からノルムを定義しよう．
 
 \begin{definition}[内積から導かれるノルム]
@@ -234,12 +419,12 @@ $𝒗 = 𝒙 + 𝒚$と一意にあらわせそうである．
             \label{eq:Cauchy-Schwarz-inequality}
             \abs{\iparen{𝒙, 𝒚}} \leq \norm{𝒙} \norm{𝒚}
         \end{equation}
-        が成り立つ．
+        が成り立つ\cite{miyake-lin-2008}．
     \end{lemma}
 
     \begin{proof}[\cref{thm:Cauchy-Schwarz-inequality}の証明]
-        $𝒚 = 𝟎$のときは，$\abs{\iparen{𝒙, 𝒚}} = \norm{𝒙} \norm{𝒚} = 0$なので成り立つ．
-        $𝒚 \neq 𝟎$のときを考える．
+        $𝒙 = 𝟎$のときは，$\abs{\iparen{𝒙, 𝒚}} = \norm{𝒙} \norm{𝒚} = 0$なので成り立つ．
+        $𝒙 \neq 𝟎$のときを考える．
         任意の$𝜆, 𝜇 \in ℂ$について内積の正値性から$\norm{𝜆 𝒙 \vecplus 𝜇 𝒚 } \geq 0$がいえる．
         そこで$𝜆 = -\conj{\iparen{𝒙, 𝒚}}$，$𝜇 = \norm{𝒙}^2$とおくと，
         \begin{equation*}
@@ -256,7 +441,7 @@ $𝒗 = 𝒙 + 𝒚$と一意にあらわせそうである．
                   &= \norm{𝒙}^2   \Bigl[  -\abs{ \iparen{𝒙, 𝒚} }^2 +  \norm{𝒙}^2 \norm{𝒚}^2 \Bigr]
             \end{split}
         \end{equation*}
-        である．$𝒚 \neq 0$なので，内積の正値性より$\norm{𝒙} > 0$．
+        である．$𝒙 \neq 0$なので，内積の正値性より$\norm{𝒙} > 0$．
         そこで両辺を$\norm{𝒙}^2$で割れば\cref{eq:Cauchy-Schwarz-inequality}が示される．
     \end{proof}
 
@@ -267,7 +452,7 @@ $𝒗 = 𝒙 + 𝒚$と一意にあらわせそうである．
                 &= \iparen{𝒙 \vecplus 𝒚, \  𝒙 \vecplus 𝒚}  \\
                 &= \norm{𝒙}^2 + 2 \Real \iparen{𝒙, 𝒚} + \norm{𝒚}^2  \\
                 &\leq \norm{𝒙}^2 + 2 \abs{ \iparen{𝒙, 𝒚} } + \norm{𝒚}^2  \\
-                &= \norm{𝒙}^2 + \norm{𝒚}^2
+                &= ( \norm{𝒙} + \norm{𝒚} )^2
         \end{split}
     \end{equation*}
     と示される．
@@ -352,6 +537,7 @@ $\theta$を$𝒙$と$𝒚$のなす\word{角度}(angle)\index{かくと@角度}�
     $V$上のノルムが\refthm-[中線定理]{thm:parallelogram-law}を満たすならば，$V$は内積空間である．
 \end{theorem}
 
+証明は，
 \cref{dfn:norm-by-inner-product}により``内積''$\iparen{𝒙, 𝒚}$を定義し，
 それが内積の公理を満たすことを示す．
 
@@ -402,8 +588,11 @@ $\theta$を$𝒙$と$𝒚$のなす\word{角度}(angle)\index{かくと@角度}�
 \end{proof}
 
 グラム--シュミットの方法が使えるのは基底が有限個，つまり有限次元の場合だけであり，
-無限次元の場合は一般に成り立たない．
-無限次元ヒルベルト空間の場合は\cite{thm:basis-of-Hilbert-space}で議論する．
+無限次元の場合は一般に成り立たない\footnote{
+    基底が\refdfn-[可算無限個]{dfn:countably-infinite}なら帰納的に示されるという考え方もあるだろうが，
+    非可算無限個の場合はやはり成り立たない．
+}．
+無限次元ヒルベルト空間の場合は\cref{thm:basis-of-Hilbert-space}で議論する．
 
 
 

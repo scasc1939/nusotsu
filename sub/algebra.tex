@@ -122,6 +122,7 @@
 
 
 \subsection{複素数}
+\label{sec:complex-number-field}
 
 複素数は物理学を扱ううえで必須のツールである．
 この節では，まず複素数はどのようにして定義されるのかを見たのちに，
@@ -132,7 +133,7 @@
     物理学を学ぶにあたっては，
     具体的な複素数の計算に習熟しているほうが重要であり，
     複素数の構成方法を理解する必要はない．
-    なお，複素数の構成自体は有理数を構成するのよりもはるかに簡単である．
+    ちなみに，複素数の構成自体は有理数を構成するのよりもはるかに簡単である．
 }．
 集合$\symbb{C}$を
 \begin{equation}
@@ -142,7 +143,9 @@
 もちろん$\symbb{C} = \symbb{R}^2$である．
 $\symbb{C}$の元である順序対$(a, b) \in \symbb{R}$に対し，和と積を次のように定義する．
 \begin{align}
+    \label{eq:definition-of-sum-of-complex-number}
     (a, b) \underset{\symbb{C}}{+} (c, d) &\coloneq (a+c, \  b+d)  \\
+    \label{eq:definition-of-product-of-complex-number}
     (a, b) \underset{\symbb{C}}{\times} (c, d) &\coloneq (ac-bd, \  ad+bc)
 \end{align}
 すると，$(\symbb{C}, \underset{\symbb{C}}{+}, \underset{\symbb{C}}{\times})$は\refdfn-[体]{dfn:field}になるので，
@@ -165,7 +168,7 @@ $\symbb{C}$の元を\word{複素数}[ふく|そ|すう]と呼び，
     \begin{equation*}
         \begin{split}
             (xy)z &= (ac-bd, \  bc+ad) \underset{\symbb{C}}{\times} (e, f)   \\
-                  &= \cdots  \\
+                %   &= \cdots  \\
                   &= (a, b) \underset{\symbb{C}}{\times} (ce-df, \  de+cf)   \\
                   &= x(yz)
         \end{split}
@@ -184,9 +187,11 @@ $\symbb{C}$の元を\word{複素数}[ふく|そ|すう]と呼び，
     \end{equation*}
 \end{proof}
 
-複素数の積は，$(a + \iu b) (c + \iu d) = (ac - bd) + \iu (bc + ad)$と書くことができる．
-$\iu = \sqrt{-1}$と考えれば，
-形式的な展開によって$ac + \iu^2 bd + \iu (bc + ad)$と計算できる．
+複素数の積を形式的に展開すると，
+$(ac + \iu^2 bd) + \iu (bc + ad)$となる．
+これと積の定義（\cref{eq:definition-of-product-of-complex-number}）を見比べると，
+$\iu^2 \equiv -1$と解釈できる．
+これが虚数単位$\iu$である．
 
 実数$a \in \symbb{R}$は，複素数$a = (a, 0)$とみなすことで，
 複素数に組み込むことができる（$\symbb{R} \subset \symbb{C}$）．
@@ -224,11 +229,11 @@ $\abs{z} = 0$となるのは$a = b = 0$，つまり$z = 0$のときに限る．
     同様の理由で，
     \ruby{交叉}{こう|さ}は交\underline{差}，
     \ruby{函数}{かん|すう}（函は「箱」の意）は\underline{関}数と書き換えられた．
-    \cite{ito-lebesgue-1963}のように古い書籍は「函数」表記を用いている．
+    \cite{ito-lebesgue-1963}（1963年）のように古い書籍は「函数」表記を用いている．
     
     常用漢字表に含まれる漢字は意外に少なく，\underline{楕}円は表外字である．
     \underline{汎}関数，\underline{勾}配は2010年の改訂でくわえられた．
-    常用漢字への書き換えについては，
+    常用漢字への書き換えの例については，
     Wikipedia日本語版の「\href{https://ja.wikipedia.org/wiki/同音の漢字による書きかえ}{同音の漢字による書きかえ}」に詳しい．
 }．
 複素数$z$の複素共役を，$\bar{z}$や$z^*$と書く．
@@ -240,6 +245,7 @@ $z$の絶対値は
 \end{equation}
 とかける．
 実際の計算でもよく使う，非常に有用な関係式である．
+
 
 
 
@@ -289,8 +295,8 @@ $z$の絶対値は
     \begin{align}
         \label{eq:complex-abs-squared-inequality}
         \abs{x + y}^2 
-            &\leq \ab( \abs{x} + \abs{y} )^2 
-            \leq 2\ab( \abs{x}^2 + \abs{y}^2 )
+            &\leq \ab\big( \abs{x} + \abs{y} )^2 
+            \leq 2\ab\big( \abs{x}^2 + \abs{y}^2 )
     \end{align}
 \end{proposition}
 
@@ -320,12 +326,96 @@ $z$の絶対値は
 \end{corollary}
 
 \begin{proof}
-    \begin{equation*}
+    \(
         \abs{x}^2 -2 \abs{x} \abs{y} + \abs{y}^2
             = \ab( \abs{x} - \abs{y} )^2
             \geq 0
-    \end{equation*}
+    \)より従う．
 \end{proof}
+
+
+\begin{theorem}[コーシー・シュワルツの不等式]
+    \label{thm:Euclidean-Cauchy-Schwarz}
+    $x_1, \dots, x_n, y_1, \dots, \  y_n \in \symbb{C}$に対し，
+    \begin{equation}
+        \label{eq:Euclidean-Cauchy-Schwarz}
+        \abs*{ \sum_{i=1}^{n} \conj{x_i} y_i }^2
+        \leq \ab( \sum_{i=1}^{n} \abs{x_i}^2 )
+             \ab( \sum_{i=1}^{n} \abs{y_i}^2 )
+    \end{equation}
+\end{theorem}
+
+\cref{thm:Euclidean-Cauchy-Schwarz}は\cref{thm:Cauchy-Schwarz-inequality}の特殊な場合%
+（\refdfn-[内積空間]{dfn:inner-product}$\symbb{C}^n$に対して適用したもの）であるので，
+証明はそちらで行う．
+
+
+
+\subsubsection*{極形式}
+
+複素数$z = a + b \iu$（$a, b \in \symbb{C}$）について，
+$r \colon \abs{z} = \sqrt{a^2 + b^2}$とおく．
+$r \neq 0$のとき（すなわち$z \neq 0$のとき），
+$\tilde{z} \coloneq z / r$とおけば，
+$\tilde{z} = \tilde{a} + \tilde{b} \iu$（$\tilde{a} = a / r$，$\tilde{b} = b / r$）であり，
+さらに$\tilde{a}^2 + \tilde{b}^2 = 1$である．
+そこで，
+\begin{equation*}
+    \tilde{a} = \cos \theta,
+    \quad
+    \tilde{b} = \sin \theta
+\end{equation*}
+となる$0 \leq \theta < 2\pi$がとれる．
+このとき$z = r (\cos \theta + \iu \sin \theta)$であるが，
+オイラーの公式をつかうと$z = r e^{\iu \theta}$とかける．
+そこで，次のような定義ができる．
+
+\begin{definition}
+    \label{dfn:complex-plane}
+    複素数$z \neq 0$について，
+    \begin{equation*}
+        z = r e^{\iu \theta}
+          = r ( \cos \theta + \iu \sin \theta ),
+        \quad 0 < r,
+        \quad 0 \leq \theta < 2\pi
+    \end{equation*}
+    とかいたとき，
+    $r$を$z$の\word{動径}[どう|けい](radius)，
+    $\theta$を$z$の\word{偏角}[へん|かく](argument)という%
+    \footnote{$z = 0$のとき偏角は定義できない．}．
+    また，$e^{\iu \theta}$のことを$z$の\word{位相}[い|そう](phase)ということがある．
+\end{definition}
+
+この表記方法の利点は，
+掛け算が容易になることである．
+次にあげる性質は，
+指数関数$e^x$の性質を使えば明らかである．
+
+\begin{proposition}
+    \label{thm:product-of-polar-complex-numbers}
+    $z_1 = r_1 e^{\iu \theta_1}$，$z_2 = r_2 e^{\iu \theta_2}$（$z_1, z_2 \neq 0$）に対し，
+    \begin{enumerate}
+        \item $z_1 z_2 = r_1 r_2 e^{\iu (\theta_1 + \theta_2)}$
+        \item $1 / z_1 = (1 / r_1) e^{-\iu \theta_1}$
+    \end{enumerate}
+\end{proposition}
+
+\begin{theorem}[ド・モアブルの定理]
+    複素数$z = e^{\iu \theta}$と整数$n$に対し，
+    \begin{equation*}
+        z^n = e^{\iu n \theta}
+            = \cos n\theta + \iu \sin n\theta
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    \cref{thm:product-of-polar-complex-numbers}を繰り返し適用すればよい%
+    \footnote{
+        なお，複素数$z, w$について$(e^z)^w = e^{zw}$は一般に成立しない．
+    }．
+\end{proof}
+
+
 
 
 

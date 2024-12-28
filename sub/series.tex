@@ -47,6 +47,51 @@ $\varepsilon$を固定したとき，
 しかし，一様収束では$N$が$x$に依存しない（$\varepsilon$のみに依存する）定数$N_\varepsilon$でなくてはならない．
 
 
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.4\linewidth]{uniform_convergence_not.pdf}
+    \caption{
+        $f_n (x) = x^n$のグラフ．
+        $n$が大きくなるほど右側のグラフになる．
+        $0 < x < 1$で$f_n (x) \to 0$なので，
+        グラフは$n \to \infty$で$f(x) < \varepsilon$の領域に収まるはず．
+        しかし，左から2番目のグラフだと$x \geq 1/2$でグラフが下側に収まらない．
+        $n$を大きくして3番目のグラフにしても，
+        $x \geq 4/5$ではグラフが収まらない．
+        さらに$n$を大きくして4番目のグラフにしても，
+        $x = 4/5$は収まるものの$x \geq 7/8$あたりでやはりグラフがはみ出る．
+    }
+    \label{fig:uniform-convergence-not}
+\end{figure}
+
+\begin{example}
+    自然数$n$に対し，関数$f_n$を$f_n (x) \coloneq x^n$（$0 \leq x \leq 1$）で定義する（\cref{fig:uniform-convergence-not}）．
+    $f_n$は$n \to \infty$で
+    \begin{equation*}
+        f (x) = 
+        \begin{cases}
+            0  &  (0 \leq x < 1)  \\
+            1  &  (x = 1)
+        \end{cases}
+    \end{equation*}
+    に各点収束する．
+    しかし，一様収束はしない．
+    実際，ある$0 < \varepsilon < 1$を定めたとき，
+    $N \in \symbb{N}$をどう取っても，
+    $x = \varepsilon^{1/N}$において$x^n > \varepsilon$（$n > N$）であるから，
+    一様収束の条件を満たさない．
+\end{example}
+
+
+定義から，以下が成り立つ．
+
+\begin{proposition}
+    一様収束する関数列は各点収束する．
+\end{proposition}
+
+
+
+
 
 
 \end{document}

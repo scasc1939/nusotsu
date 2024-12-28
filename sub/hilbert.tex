@@ -5,18 +5,26 @@
 
 \section{ヒルベルト空間}
 
-\subsection{ヒルベルト空間}
+ユークリッド空間$\symbb{R}^N, \symbb{C}^N$では，
+任意のベクトル列$\sequ{\symbf{v}_n}$が$\norm{\symbf{v}_m - \symbf{v}_n} \to 0$（$n, m \to \infty$）を満たすとき，
+この列はあるベクトル$\symbf{v}_* \in \symbb{R}^N \text{ or } \symbb{C}^N$に\refdfn[収束]{dfn:convergence-of-vector-sequence}する．
+自明のように思われるかもしれないが，
+一般のベクトル空間（ノルム空間，内積空間）ではこの事実が成り立たない．
 
-ベクトル空間における完備性について考えてみよう．
 
-$V$をノルム空間\refdfn{dfn:norm}とする．
-$𝒙, 𝒚 \in V$の距離\refdfn{dfn:distance}は，
-$d(𝒙, 𝒚) \coloneq \norm{𝒙 - 𝒚}$で定義できる（\cref{thm:norm-is-distance}）．
-すると，$V$の収束列\refdfn{dfn:convergent-sequence}とコーシー列\refdfn{dfn:Cauchy-sequence}は，以下のように定義できる．
+
+\subsection{ヒルベルト空間とは何か}
+
+この節では，ベクトル空間における完備性について考えてみよう．
+
+$V$を\refdfn-[ノルム空間]{dfn:norm}とする．
+$𝒙, 𝒚 \in V$の\refdfn[距離]{dfn:distance}は，
+$d(𝒙, 𝒚) \coloneq \norm{𝒙 - 𝒚}$で定義できるのであった（\cref{thm:norm-is-distance}）．
+距離空間で定義したように，$V$の\refdfn-[収束列]{dfn:convergent-sequence}と\refdfn-[コーシー列]{dfn:Cauchy-sequence}は，以下のように定義できる．
 \begin{itemize}
-    \item $V$の点列$\sequ{𝒗_i}$が収束列であるとは，$\sequ{𝒗_i}$がある$𝒗 \in V$に収束する，
-        つまり$\lim_{n \to \infty} x_n = x \in V$となることをいう．
-    \item $V$の点列$\sequ{𝒗_i}$がコーシー列であるとは，
+    \item $V$の点列$\sequ{𝒗_n}$が収束列であるとは，$\sequ{𝒗_n}$がある$𝒗_* \in V$に収束する，
+        つまり$\lim_{n \to \infty} 𝒗_n = 𝒗_* \in V$となることをいう．
+    \item $V$の点列$\sequ{𝒗_n}$がコーシー列であるとは，
         $\lim_{m, n \to \infty} \norm{𝒗_m - 𝒗_n} = 0$であることをいう．
 \end{itemize}
 これらを用いて，ノルム空間の完備性を定義することができる．
@@ -27,15 +35,30 @@ $d(𝒙, 𝒚) \coloneq \norm{𝒙 - 𝒚}$で定義できる（\cref{thm:norm-i
 
 \begin{definition}[バナッハ空間]
     \label{dfn:Banach-space}
-    完備なノルム空間を\word{バナッハ空間}(Banach space)という．
+    完備なノルム空間を%
+    \word{バナッハ空間}(Banach space)%
+    \index{はなつはくうかん@バナッハ空間}%
+    という\footnote{
+        \person{Stefan Banach}{1892}{1945}．
+        ポーランドの数学者．
+        関数解析学の創始者のひとり．
+        \cite{nipponica}
+    }．
 \end{definition}
 
-内積空間\refdfn{dfn:inner-product}では，内積から導かれるノルムが存在するのであった．
+\refdfn[内積空間]{dfn:inner-product}では，内積から導かれるノルムが存在するのであった．
 このノルムを用いれば，完備な内積空間というものを定義することができる．
 
 \begin{definition}[ヒルベルト空間]
     \label{dfn:Hilbert-space}
-    完備な内積空間を\word{ヒルベルト空間}(Hilbert space)という．
+    完備な内積空間を\word{ヒルベルト空間}(Hilbert space)という\footnote{
+        \person{David Hilbert}{1862}{1943}．
+        ドイツの数学者．
+        数学基礎論，代数学，幾何学，解析学，さらには理論物理学まで広い分野で功績を残し，
+        20世紀前半でもっとも偉大な数学者のひとりとされる．
+        ヒルベルト23の問題でも有名．
+        \cite{nipponica}\cite{iwanami-sugakujiten}
+    }．
 \end{definition}
 
 \begin{proposition}
@@ -44,77 +67,146 @@ $d(𝒙, 𝒚) \coloneq \norm{𝒙 - 𝒚}$で定義できる（\cref{thm:norm-i
 
 
 
+
+
+\begin{theorem}
+    \label{thm:subspace-of-norm-space-is-complete}
+    ノルム空間の有限次元部分空間は完備である\cite[定理1.2の系]{iwanami-functional}．
+\end{theorem}
+
+\begin{proof}
+    概略だけ述べる．
+    $\symbb{C}$上のノルム空間$V$の部分空間を$W$とし，
+    次元$n \coloneq \dim W$とおく．
+    
+    $W$のコーシー列を$\sequ{\symbf{v}^{(k)}}[k \in \symbb{N}]$とおくと，
+    任意の$k$に対して$\symbf{v}^{(k)} \in W$であるから，
+    $W$の基底$\symbf{u}_1, \dots, \symbf{u}_n$を用いて
+    \[  \symbf{v}^{(k)} = c^{(k)}_1 \symbf{u}^{(k)}_1 + \dots + c^{(k)}_n \symbf{u}^{(k)}_n  \]
+    とかける．
+    $\sequ{\symbf{v}^{(k)}}[k]$がコーシー列であることを使うと，
+    各$i$に対して$\sequ{c^{(k)}_i}[k]$がコーシー列であることを示すことができる%
+    \footnote{
+        ここでは，$W$がノルム空間の有限次元部分空間であるときに，
+        $W$上のノルムがすべて同値であることを使う\cite[定理1.2]{iwanami-functional}．
+    }．
+    すると，$\symbb{C}$の完備性\refthm{thm:completeness-of-copmlex-numbers}からこれは，
+    $c^{(k)}_i \to c^*_i \in \symbb{C}$に収束する．
+    そこで$\symbf{v}_* \coloneq c^*_1 \symbf{u}_1 + \dots + c^*_1 \symbf{u}_n \in W$とおくと，
+    \begin{equation*}
+        \begin{split}
+            \norm{ \symbf{v}^{(k)} - \symbf{v}^* }
+                = \norm*{ \sum_{i = 1}^{n} \ab\big(c^{(k)}_i - c^*_i) \symbf{u}_i }
+                \leq \sum_{i=1}^{n} \, \abs[\big]{ c^{(k)}_i - c^*_i } \, \norm{ \symbf{u}_i }
+                \xrightarrow{k \to \infty} 0
+        \end{split}
+    \end{equation*}
+    より，$\symbf{v}^{(k)} \to \symbf{v}^* \in W$である．
+\end{proof}
+
+
+
+\subsection{バナッハ空間論}
+
+\begin{proposition}
+    \label{thm:Banach-subspace}
+    バナッハ空間の閉部分ベクトル空間は，またバナッハ空間である．
+\end{proposition}
+
+\begin{proof}
+    ノルム空間の部分ベクトル空間がノルム空間であることは\cref{thm:norm-subspace}からいえる．
+    完備性は，部分ベクトル空間が閉であることの定義（\cref{dfn:closure-by-sequence}）から明らかである．
+\end{proof}
+
+
+
+\subsection{ヒルベルト空間論}
+
+バナッハ空間のときの\cref{thm:Banach-subspace}と同様に，
+以下が示される．
+
+\begin{corollary}
+    \label{thm:Hilbert-subspace}
+    ヒルベルト空間の閉部分ベクトル空間は，またヒルベルト空間である．
+\end{corollary}
+
+
+
+
 \subsection{射影定理}
+
+
+
 
 \refdfn[距離]{dfn:distance}%
 $d(𝒙, 𝒚) = \norm{𝒙 - 𝒚} = \sqrt{\iparen{𝒙 - 𝒚, \  𝒙 - 𝒚}}$である．
 
 \begin{lemma}
     \label{thm:lemma-of-projection-theorem}
-    ヒルベルト空間$\symcal{H}$とその\refdfn-[閉]{dfn:closed-set}部分ベクトル空間$\symcal{D}$について，
-    ベクトル$𝒗 \in \symcal{H}$と$\symcal{D}$の距離を
+    ヒルベルト空間$\symcal{H}$とその\refdfn-[閉]{dfn:closed-set}部分ベクトル空間$\symcal{L}$について，
+    ベクトル$𝒗 \in \symcal{H}$と$\symcal{L}$の距離を
     \begin{equation*}
-        \symcal{d}(𝒗, \symcal{D}) 
-            \coloneq \inf_{𝒘 \in \symcal{D}} d(𝒗, 𝒘)
-            = \inf_{𝒘 \in \symcal{D}} \norm{𝒗 - 𝒘}
+        \symcal{d}(𝒗, \symcal{L}) 
+            \coloneq \inf_{𝒘 \in \symcal{L}} d(𝒗, 𝒘)
+            = \inf_{𝒘 \in \symcal{L}} \norm{𝒗 - 𝒘}
     \end{equation*}
     で定める．
     このとき，
-    $\symcal{d}(𝒗, \symcal{D}) = d(𝒗, 𝒘)$となるような$𝒘 \in \symcal{D}$がただひとつ存在する．
+    $\symcal{d}(𝒗, \symcal{L}) = d(𝒗, 𝒘)$となるような$𝒘 \in \symcal{L}$がただひとつ存在する．
 \end{lemma}
 
 \begin{proof}
-    $\symcal{d}(𝒗, \symcal{D})$の定義より，
-    $d(𝒗 - 𝒘_n) \xrightarrow{n \to \infty} \symcal{d}(𝒗, \symcal{D})$となるような$\symcal{D}$の点列$\sequ{𝒘_n}[n \in \symbb{N}]$がとれる．
+    $\symcal{d}(𝒗, \symcal{L})$の定義より，
+    $d(𝒗 - 𝒘_n) \xrightarrow{n \to \infty} \symcal{d}(𝒗, \symcal{L})$となるような$\symcal{L}$の点列$\sequ{𝒘_n}[n \in \symbb{N}]$がとれる．
     すると，
     \begin{equation*}
         \begin{split}
             d^2 (𝒘_m, 𝒘_n)
-                &= \norm{(𝒘_m + 𝒗) + (𝒗 - 𝒘_n)}^2  \\
-                &= 2 \ab( \norm{𝒘_m + 𝒗}^2 + \norm{𝒗 + 𝒘_n}^2 ) 
+                &= \norm{(𝒘_m - 𝒗) + (𝒗 - 𝒘_n)}^2  \\
+                &= 2 \ab( \norm{𝒘_m - 𝒗}^2 + \norm{𝒗 + 𝒘_n}^2 ) 
                     - \norm{(𝒘_m - 𝒗) - (𝒗 - 𝒘_n)}^2
                     \qquad \text{（\refthm[中線定理]{thm:parallelogram-law}）}  \\
                 &= 2 \ab( \norm{𝒗 - 𝒘_m}^2 + \norm{𝒗 - 𝒘_n}^2 )
                     - 4 \norm*{ \frac{𝒘_m + 𝒘_n}{2} - 𝒗 }^2  \\
                 &\leq 2 \ab( \norm{𝒗 - 𝒘_m}^2 + \norm{𝒗 - 𝒘_n}^2 )
-                    - 4 \symcal{d}(𝒗, \symcal{D})  \\
+                    - 4 \symcal{d}(𝒗, \symcal{L})  \\
                 &\xrightarrow{m, n \to \infty}
-                    2 \ab\big( \symcal{d}(𝒗, \symcal{D}) + \symcal{d}(𝒗, \symcal{D}) )
-                    - 4 \symcal{d}(𝒗, \symcal{D})
+                    2 \ab\big( \symcal{d}(𝒗, \symcal{L}) + \symcal{d}(𝒗, \symcal{L}) )
+                    - 4 \symcal{d}(𝒗, \symcal{L})
                 = 0
         \end{split}
     \end{equation*}
-    最後の不等号では，$(𝒘_m + 𝒘_n)/2 \in \symcal{D}$であること，
-    および$\symcal{d}(𝒗, \symcal{D})$の最小性を使った．
+    最後の不等号では，$(𝒘_m + 𝒘_n)/2 \in \symcal{L}$であること，
+    および$\symcal{d}(𝒗, \symcal{L})$の最小性を使った．
 
     これにより，$\sequ{𝒘_n}[n \in \symbb{N}]$は\refdfn[コーシー列]{dfn:Cauchy-sequence}であり，
-    ヒルベルト空間の完備性からこれはある$𝒘 \in \symcal{D}$に収束する．
+    ヒルベルト空間の完備性からこれはある$𝒘 \in \symcal{L}$に収束する．
 
-    一意性を示す．$𝒘, 𝒘' \in W$がともに$\symcal{d}(𝒗, \symcal{D}) = d(𝒗, 𝒘^{(\prime)})$を満たすとして，
+    一意性を示す．$𝒘, 𝒘' \in W$がともに$\symcal{d}(𝒗, \symcal{L}) = d(𝒗, 𝒘^{(\prime)})$を満たすとして，
     $d^2 (𝒘, 𝒘')$を上の方法で計算すると，これは$0$になるので，$𝒘 = 𝒘'$である．
 \end{proof}
 
 
 \begin{theorem}[射影定理]
-    \label{thm:projection-theorem}
-    ヒルベルト空間$\symcal{H}$に対し，閉部分ベクトル空間$\symcal{D} \subset \symcal{H}$とその\refdfn[直交補空間]{dfn:orthogonal-compliment}$\symcal{D}^\perp$をとる．
+    \label{thm:Hilbert-projection-theorem}
+    ヒルベルト空間$\symcal{H}$に対し，閉部分ベクトル空間$\symcal{L} \subset \symcal{H}$とその\refdfn[直交補空間]{dfn:orthogonal-compliment}$\symcal{L}^\perp$をとる．
     このとき，任意のベクトル$\symbf{z}$に対し，
-    $\symbf{x} \in \symcal{D}$と$\symbf{y} \in \symcal{D}^\perp$がそれぞれただひとつ存在し，
-    $\symcal{z} = \symcal{x} + \symcal{y}$とかける．
-    すなわち$\symcal{H} = \symcal{D} \oplus \symcal{D}^\perp$と\refdfn[直和分解]{dfn:direct-sum-of-vector-space}できる．
+    $\symbf{x} \in \symcal{L}$と$\symbf{y} \in \symcal{L}^\perp$がそれぞれただひとつ存在し，
+    $\symbf{z} = \symbf{x} + \symbf{y}$とかける．
+    すなわち$\symcal{H} = \symcal{L} \oplus \symcal{L}^\perp$と\refdfn[直和分解]{dfn:direct-sum-of-vector-space}できる．
 \end{theorem}
 
 \begin{proof}
     $\symbf{z} \in \symcal{H}$とする．
-    \cref{thm:lemma-of-projection-theorem}の方法で$\symbf{x} \in \symcal{D}$をとる．
-    このとき$\symbf{y} \coloneq \symbf{z} - \symbf{x} \in \symcal{D}^\perp$を示せばよい．
-    任意の$\lambda \in \symbb{R}$および$\symbf{a} \in \symcal{D}$に対し，
+    \cref{thm:lemma-of-projection-theorem}の方法で$\symbf{x} \in \symcal{L}$をとる．
+    このとき$\symbf{y} \coloneq \symbf{z} - \symbf{x} \in \symcal{L}^\perp$を示せばよい．
+    任意の$\lambda \in \symbb{R}$および$\symbf{a} \in \symcal{L}$に対し，
     \begin{equation*}
         \begin{split}
             0 \leq \norm{\symbf{y}}^2
                 &= \norm{\symbf{z} - \symbf{x}}^2  \\
                 &\leq \norm{\symbf{z} - (\symbf{x} - \lambda \symbf{a})}^2
-                    \quad \text{（$\symbf{x} - \lambda \symbf{a} \in \symcal{D}$，
+                    \quad \text{（$\symbf{x} - \lambda \symbf{a} \in \symcal{L}$，
                                 $\norm{\symbf{z} - \symbf{x}}$の最小性）} \\
                 &= \norm{\symbf{y} + \lambda \symbf{a}}^2  \\
                 &= \norm{\symbf{y}}^2 + 2 \lambda \Real \iparen{\symbf{y}, \symbf{a}} + \lambda^2 \norm{\symbf{a}}^2  \\
@@ -125,7 +217,7 @@ $d(𝒙, 𝒚) = \norm{𝒙 - 𝒚} = \sqrt{\iparen{𝒙 - 𝒚, \  𝒙 - 𝒚}
     であるが，$\lambda \in \symbb{R}$は任意なので，$\Real \iparen{\symbf{y}, \symbf{a}} = 0$．
     また，$\lambda \to \iu \lambda$として同様に考えると，$\Imaginary \iparen{\symbf{y}, \symbf{a}} = 0$．
     よって$\iparen{\symbf{y}, \symbf{a}} = 0$である．
-    $\symbf{a} \in \symcal{D}$は任意だったので，$\symbf{y} \in \symcal{D}$が示された．
+    $\symbf{a} \in \symcal{L}$は任意だったので，$\symbf{y} \in \symcal{L}$が示された．
 \end{proof}
 
 
