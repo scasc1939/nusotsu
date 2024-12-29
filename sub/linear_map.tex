@@ -29,6 +29,52 @@
 \end{definition}
 
 
+線形写像全体の集合$\mathrm{Hom}_{𝕂}(V, W)$は，適切な和とスカラー倍の下でベクトル空間\refdfn{dfn:vector-space}をなす．
+
+\begin{proposition}
+    \label{thm:linear-map-space}
+    $\mathrm{Hom}_{𝕂}(V, W)$は，以下で定義される和$\plushat$とスカラー倍$\hat{\scaprod}$のもとで，体$𝕂$上のベクトル空間になる\cite[\S 4.4]{saito-lin-2007}．
+    \begin{itemize}
+        \item $f, g \in \mathrm{Hom}_{𝕂}(V, W)$，$c \in 𝕂$に対し，
+        \begin{enumerate}
+            \item 和$f \plushat g \in \mathrm{Hom}_{𝕂}(V, W)$を，
+                任意の$𝒗 \in V$に対して$ ( f \plushat g )(𝒗) = f(𝒗) \doubleplus g(𝒗) $である写像と定める．
+            \item スカラー倍$c \mathbin{\hat{\scaprod}} f \in \mathrm{Hom}_{𝕂}(V, W)$を，
+                任意の$𝒗 \in V$に対して$ ( c \mathbin{\hat{\scaprod}} f )(𝒗) = c \scaprodvar f(𝒗) $である写像と定める．
+        \end{enumerate}
+    \end{itemize}
+\end{proposition}
+
+ベクトル空間のときと同様，
+通常は和の記号として$+$を使い，スカラー倍の記号は省略する．
+
+
+
+\begin{proposition}
+    \label{thm:linear-map-composition}
+    $U, V, W$を$\symbb{K}$上のベクトル空間，
+    $f, f' \colon U \to V$，
+    $g, g' \colon V \to W$を線形写像，
+    $c \in \symbb{K}$をスカラーとする．
+    線形写像の\refdfn[合成]{dfn:map-composition}について，
+    以下が成り立つ．
+    \begin{enumerate}
+        \item $(f + f') \circ g = f \circ g + f' \circ g$
+        \item $f \circ (g + g') = f \circ g + f \circ g'$
+        \item $(c f) \circ g = f \circ (c g) = c (f \circ g)$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \cref{dfn:map-composition}に従って計算すればよい．
+\end{proof}
+
+
+
+
+\subsection{同型写像}
+
+
 \begin{definition}[同型写像]
     \label{dfn:isomorphism}
     $V, W$を体$𝕂$上のベクトル空間とする．
@@ -49,25 +95,10 @@
     同型写像$f \colon V \similarrightarrow W$が存在するとき，$V$と$W$は（$𝕂$上に）\word{同型}[どう|けい][とうけい](isomorphic)であるといい，$V \cong W$とかく．
 \end{definition}
 
-線形写像全体の集合$\mathrm{Hom}_{𝕂}(V, W)$は，適切な和とスカラー倍の下でベクトル空間\refdfn{dfn:vector-space}をなす．
-
-\begin{proposition}
-    \label{thm:linear-map-space}
-    $\mathrm{Hom}_{𝕂}(V, W)$は，以下で定義される和$\plushat$とスカラー倍$\hat{\scaprod}$のもとで，体$𝕂$上のベクトル空間になる\cite[\S 4.4]{saito-lin-2007}．
-    \begin{itemize}
-        \item $f, g \in \mathrm{Hom}_{𝕂}(V, W)$，$c \in 𝕂$とする．
-        \begin{enumerate}
-            \item 和$f \plushat g \in \mathrm{Hom}_{𝕂}(V, W)$は，
-                任意の$𝒗 \in V$に対して$ ( f \plushat g )(𝒗) = f(𝒗) \doubleplus g(𝒗) $である写像と定める．
-            \item スカラー倍$c \mathbin{\hat{\scaprod}} f \in \mathrm{Hom}_{𝕂}(V, W)$は，
-                任意の$𝒗 \in V$に対して$ ( c \mathbin{\hat{\scaprod}} f )(𝒗) = c \scaprodvar f(𝒗) $である写像と定める．
-        \end{enumerate}
-    \end{itemize}
-\end{proposition}
-
 
 
 \begin{proposition}
+    \label{thm:finite-dimensional-space-isomorphic}
     $𝕂$上の$n$-次元ベクトル空間と$𝕂^n$は同型である\cite{saito-lin-2007}．
 \end{proposition}
 
@@ -79,8 +110,10 @@
             \longmapsto
             c_1 𝒖_1 + \dots + c_n 𝒖_n \in V
     \end{equation*}
-    と定めると，これは同型写像である．
-    実際，$\{𝒖_1, \dots, 𝒖_n\}$は$V$を生成する\refdfn{dfn:spanning-set}から$f$は全射であり，
+    と定めると，これは同型写像である\footnote{
+        この$f$を，基底$\{𝒖_1, \dots, 𝒖_n\}$が定める同型という\cite[\S 2.2]{saito-lin-2007}．
+    }．
+    実際，$\{𝒖_1, \dots, 𝒖_n\}$は$V$を\refdfn[生成する]{dfn:spanning-set}から$f$は全射であり，
     基底による展開係数は一意であるから$f$は単射である．
     $f$が線形であることも明らかである．
 \end{proof}
@@ -92,6 +125,8 @@
 \begin{proof}
     同型$f \colon V \similarrightarrow 𝕂$と同型$g \colon 𝕂 \similarrightarrow U$の合成$g \circ f \colon V \similarrightarrow U$が同型であることから従う．
 \end{proof}
+
+
 
 
 \subsection{像と核}
@@ -156,7 +191,7 @@
 
     まず，\textgt{$𝒙_1, \dots, 𝒙_{n+m}$は一次独立である}ことを示す．
     \begin{equation*}
-        c_1 𝒙_1 + \dots + a_n 𝒙_n
+        c_1 𝒙_1 + \dots + c_n 𝒙_n
             + c_{n+1} 𝒙_{n+1} + \dots + c_{n+m} 𝒙_{n+m}
                 = \symbf{0}
     \end{equation*}
@@ -197,7 +232,8 @@
     線形写像$f$について，以下は同値．
     \begin{enumerate}
         \item $f$は単射．
-        \item \refdfn-[核]{dfn:kernel-of-linear-map}$\ker f = \{ \symbf{0} \}$
+        \item $f$の\refdfn-[核]{dfn:kernel-of-linear-map}はゼロベクトルのみ，
+            つまり$\ker f = \{ \symbf{0} \}$
     \end{enumerate}
 \end{proposition}
 
@@ -219,6 +255,184 @@
 
 \subsection{表現行列}
 \label{representation-matrix}
+
+$V$を$\symbb{K}$上の$n$-次元ベクトル空間，
+$W$を$\symbb{K}$上の$m$-次元ベクトル空間とする．
+任意のベクトル$\symbf{v} \in V$と$\symbf{w} \in W$は，
+\begin{equation*}
+    \begin{aligned}
+        \symbf{v} &= x_1 \symbf{v}_1 + \dots + x_n \symbf{v}_n  \\
+        \symbf{w} &= y_1 \symbf{w}_1 + \dots + y_n \symbf{w}_m
+    \end{aligned}
+\end{equation*}
+とかける．
+ここで，$\symbf{v}_1, \dots, \symbf{v}_n$は$V$の基底，
+$\symbf{w}_1, \dots, \symbf{w}_m$は$W$の基底である．
+いま，線形写像$f \colon V \to W$により，
+\begin{equation*}
+    \symbf{w} = f(\symbf{v})
+\end{equation*}
+という関係を定める．
+
+
+ところで，\cref{thm:finite-dimensional-space-isomorphic}より，
+$V$と$\symbb{K}^n$，$W$と$\symbb{K}^m$はそれぞれ\refdfn-[同型]{dfn:isomorphic}であるから，
+よって，全単射な線形写像$\varphi \colon \symbb{K}^n \to V$，$\varphi' \colon \symbb{K}^m \to W$が存在して，
+\begin{alignat*}{3}
+    \varphi  &\colon 
+        \tp{ (x_1 \  \cdots \  x_n) }
+        = x_1 \symbf{e}_1  + \dots + x_n \symbf{e}_n
+        &&\longmapsto x_1 \symbf{v}_1 + \dots + x_n \symbf{v}_n,
+    \\
+    \varphi' &\colon \tp{ (y_1 \  \cdots \  y_m) }
+        = y_1 \symbf{e}'_1 + \dots + y_m \symbf{e}'_m
+        &&\longmapsto y_1 \symbf{w}_1 + \dots + y_m \symbf{w}_m
+\end{alignat*}
+したがって，線形写像$f \colon V \to W$を考える代わりに，
+線形写像$\hat{A} \colon \symbb{K}^n \to \symbb{K}^m$を考えることができそうである．
+ここで，$\hat{A}$は左から$m \times n$-行列$A$をかける写像とできる．
+なぜなら，$\symbb{K}^n$の\refdfn[標準基底]{dfn:canonical-basis-of-coordinate-space}$\symbf{e}_1, \dots, \symbf{e}_n$に対する変換
+\begin{equation*}
+    \hat{A} (\symbf{e}_j) = a_{1j} \symbf{e}'_1 + \dots + a_{mj} \symbf{e}'_m
+    \quad 
+    (j = 1, \dots, n)
+\end{equation*}
+（$\symbf{e}'_i$は$\symbb{K}^m$の標準基底）を調べて，
+行列$A$を
+\begin{equation*}
+    A \coloneq 
+    \begin{pmatrix}
+        a_{11}  &  \cdots  &  a_{1n}  \\
+        \vdots  &  \ddots  &  \vdots  \\
+        a_{m1}  &  \cdots  &  a_{mn}
+    \end{pmatrix}
+\end{equation*}
+と定義すれば，
+一般の$\symbf{x} = x_1 \symbf{e}_1 + \dots + x_n \symbf{e}_n$に対し，
+\begin{equation*}
+    \begin{split}
+        \symbf{y} 
+            = A \symbf{x}
+            &= x_1 A \symbf{e}_1 + \dots + x_n A \symbf{e}_n
+            \\
+            &= x_1 \hat{A} (\symbf{e}_1) + \dots + x_n \hat{A} (\symbf{e}_n)
+            = \hat{A} (\symbf{x})
+    \end{split}
+\end{equation*}
+$\symbf{y} = A \symbf{x}$をあらわにかくと，
+\begin{equation*}
+    \begin{pmatrix}
+        y_1  \\  \vdots  \\  y_m
+    \end{pmatrix}
+    =
+    A 
+    \begin{pmatrix}
+        x_1  \\  \vdots  \\  x_n
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        a_{11} & \cdots & a_{1n}  \\
+        \vdots & \ddots & \vdots  \\
+        a_{m1} & \cdots & a_{mn}
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1  \\  \vdots  \\  x_n
+    \end{pmatrix}
+\end{equation*}
+
+形式的には，以下のように定義する．
+
+\begin{definition}
+    $V, W$を$\symbb{K}$上の有限次元\refdfn-[ベクトル空間]{dfn:vector-space}，
+    $\symbf{v}_1, \dots, \symbf{v}_n, \  \symbf{w}_1, \dots, \symbf{w}_m$をそれぞれ$V, W$の基底とする．
+    $\varphi  \colon \symbb{K}^n \to V$，
+    $\varphi' \colon \symbb{K}^m \to W$を基底が定める同型，
+    つまり
+    \begin{gather*}
+        \varphi (\symbf{e}_j ) = \symbf{v}_j ,
+        \quad 
+        \varphi'(\symbf{e}'_i) = \symbf{w}_i
+        \\
+        \text{where } 
+        \symbf{e}_j  = \tp{( 0 \  \dotsm \  \overset{j}{\breve{1}} \  \dotsm \overset{n}{\breve{0}} )} \in \symbb{K}^n ,
+        \quad
+        \symbf{e}'_i = \tp{( 0 \  \dotsm \  \overset{i}{\breve{1}} \  \dotsm \overset{m}{\breve{0}} )} \in \symbb{K}^m
+    \end{gather*}
+    \refdfn-[線形写像]{dfn:linear-map}$f \colon V \to W$に対し，
+    $\varphi'^{-1} \circ f \circ \varphi \colon \symbb{R}^n \to \symbb{R}^m$は$m \times n$-行列$A$を用いて
+    \begin{equation}
+        \label{eq:representation-matrix-definition}
+        \varphi'^{-1} \circ f \circ \varphi (\symbf{v})
+            = A \symbf{v}
+    \end{equation}
+    とかける．
+    $A$を\word{表現行列}(representation matrix)\index{ひようけんきようれつ@表現行列}，
+    あるいは行列表示\index{きようれつひようし@行列表示}という．
+\end{definition}
+
+よって，
+線形写像$f$の性質を調べるには，
+$\symbf{w} = f(\symbf{x})$を直接扱う代わりに，
+行列のかけ算$\symbf{y} = A \symbf{x}$について考察すればよい．
+
+なお，表現行列の形は$V$の基底と$W$の基底をどう取るか\footnote{
+    つまり，同型写像$\varphi, \varphi'$の取り方．
+}に依存する．
+したがって，表現行列を扱うときは，
+それがどの基底に対するものなのかを常に意識しなければならない．
+特に，基底の順序を変えただけでも表現行列が変わるので，
+注意が必要である．
+
+\begin{proposition}
+    $f, g$を$\symbb{K}$上の有限次元ベクトル空間$V$から$W$への線形写像とし，
+    $c \in \symbb{K}$をスカラーとする．
+    $V$の基底と$W$の基底を固定し，
+    その基底に対する$f$の表現行列を$A$，$g$の表現行列を$B$とする．
+    このとき，
+    \begin{enumerate}
+        \item $f + g$の表現行列は$A + B$である．
+        \item $cf$の表現行列は$cA$である．
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \cref{eq:representation-matrix-definition}と\cref{thm:linear-map-composition}を使えば容易に示される．
+\end{proof}
+
+
+\begin{theorem}
+    $U, V, W$をそれぞれ$\symbb{K}$上のベクトル空間とし，
+    $f \colon U \to V$，$g \colon V \to W$を線形写像とする．
+    $U, V, W$の基底$B_U, B_V, B_W$を固定し，
+    $B_U, B_V$に対する$f$の表現行列を$A$，
+    $B_V, B_W$に対する$g$の表現行列を$B$とする．
+    このとき，基底$B_U, B_W$に対する$g \circ f$の表現行列は$BA$である．
+\end{theorem}
+
+\begin{proof}
+    $\varphi   \colon \symbb{K}^n \to U$，
+    $\varphi'  \colon \symbb{K}^m \to V$，
+    $\varphi'' \colon \symbb{K}^l \to W$をそれぞれ，
+    基底$B_U, B_V, B_W$が定める同型とする．
+    線形写像$g \circ f$の基底$B_U, B_W$に対する表現行列は，
+    \cref{eq:representation-matrix-definition}より
+    \begin{equation*}
+        \begin{split}
+            \varphi''^{-1} \circ (g \circ f) \circ \varphi (\symbf{u})
+            &= \varphi''^{-1} \circ (g \circ \varphi' \circ \varphi'^{-1} \circ f) \circ \varphi (\symbf{u})
+            \\
+            &= (\varphi''^{-1} \circ g \circ \varphi') \circ (\varphi'^{-1} \circ f \circ \varphi) (\symbf{u})
+            \\
+            &= (B A) \symbf{u}
+        \end{split}
+    \end{equation*}
+\end{proof}
+
+
+扱うベクトル空間を有限次元に限ってしまえば，
+線形写像はすべて単なる行列に化けてしまうのである．
+これが線形代数学が強力たるゆえんである．
+
 
 
 \subsection{固有値と固有ベクトル}
