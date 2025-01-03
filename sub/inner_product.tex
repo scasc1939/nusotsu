@@ -596,5 +596,86 @@ $\theta$を$𝒙$と$𝒚$のなす\word{角度}(angle)\index{かくと@角度}�
 
 
 
+\subsection{内積空間の直和}
+
+\cref{dfn:abstract-direct-sum}ではベクトル空間の直和を定義した．
+内積空間の直和も定義できる．
+
+\begin{definition}
+    \label{dfn:abstract-direct-sum-of-inner-product-space}
+    $\sequ{V_𝜆}[𝜆 \in 𝛬]$を内積空間の\refdfn-[族]{dfn:family-of-sets}とする．
+    直積$\prod_{𝜆 \in 𝛬} V_𝜆$の部分ベクトル空間を
+    \begin{equation}
+        \tag{\ref*{eq:abstract-direct-sum}$'$}
+        \bigoplus_{𝜆 \in 𝛬} V_𝜆
+            ≔ \Set*{ \sequ{𝒗_𝜆}[𝜆 \in 𝛬] \in \prod_{𝜆 \in 𝛬} V_𝜆  
+                        \given  
+                        \begin{array}{c}
+                            \text{有限個の$𝜆 \in 𝛬$を除いて$𝒗_𝜆 = 𝟎$}
+                            \\
+                            \text{かつ$\sum_{𝜆 \in 𝛬} \iparen{\symbf{x}_𝜆, \symbf{y}_𝜆} < \infty$}
+                        \end{array}
+                    }
+    \end{equation}
+    で定める．
+    $\bigoplus_{𝜆 \in 𝛬} V_𝜆$の元$\sequ{𝒗_𝜆}[𝜆 \in 𝛬]$について，
+    和とスカラー倍を，各成分の和とスカラー倍
+    \begin{align*}
+        \tag{\ref*{eq:operation-on-abstract-direct-sum}}
+        \sequ{\symbf{x}_𝜆}[𝜆 \in 𝛬] + \sequ{\symbf{y}_𝜆}[𝜆 \in 𝛬]
+            \coloneq \sequ{\symbf{x}_𝜆 + \symbf{y}_𝜆}[𝜆 \in 𝛬],
+        \quad
+        c \scaprod \sequ{\symbf{x}_𝜆}[𝜆 \in 𝛬]
+            \coloneq \sequ{c \scaprod \symbf{x}_𝜆}[𝜆 \in 𝛬]
+    \end{align*}
+    で定めると，$\bigoplus_{𝜆 \in 𝛬} V_𝜆$はベクトル空間をなす．
+    さらに$\sequ{\symbf{x}_𝜆}[𝜆 \in 𝛬], \sequ{\symbf{y}_𝜆}[𝜆 \in 𝛬] \in \bigoplus_{𝜆 \in 𝛬} V_𝜆$の内積を
+    \begin{equation}
+        \label{eq:inner-product-on-abstract-direct-sum}
+        \iparen{\sequ{\symbf{x}_𝜆}[𝜆 \in 𝛬], \sequ{\symbf{y}_𝜆}[𝜆 \in 𝛬]}
+            \coloneq \sum_{𝜆 \in 𝛬} \iparen{\symbf{x}_𝜆, \symbf{y}_𝜆}
+    \end{equation}
+    で定めれば，$\bigoplus_{𝜆 \in 𝛬} V_𝜆$は内積空間になる．
+    これを，（抽象的な）\word{直和}\index{ちよくわ@直和!ちゆうしようてきな@抽象的な}という．
+\end{definition}
+
+直和の直観的理解については\cref{dfn:abstract-direct-sum}で議論した．
+ここでは直和の内積について考えてみよう．
+$\symbf{x}, \symbf{x}' \in V$，$\symbf{y}, \symbf{y}' \in W$として，
+$\symbf{v} = \symbf{x} + \symbf{y}$，$\symbf{v}' = \symbf{x}' + \symbf{y}' \in V \oplus W$という``和''を考える．
+形式的に内積を計算すると，
+\begin{equation*}
+    \iparen{ \symbf{v}, \symbf{v}' }
+        = \iparen{ \symbf{x}, \symbf{x}' }
+        + \iparen{ \symbf{x}, \symbf{y}' }
+        + \iparen{ \symbf{y}, \symbf{x}' }
+        + \iparen{ \symbf{y}, \symbf{y}' }
+\end{equation*}
+である．
+異なるベクトル空間に属するベクトルは\refdfn[直交]{dfn:orthogonal}する\emph{だろう}から，
+$\iparen{\symbf{x}, \symbf{y}'} = \iparen{\symbf{y}, \symbf{x}'} = 0$である．
+したがって
+\begin{equation*}
+    \iparen{ \symbf{v}, \symbf{v}' }
+        = \iparen{ \symbf{x}, \symbf{x}' }
+        + \iparen{ \symbf{y}, \symbf{y}' }
+\end{equation*}
+という\cref{eq:inner-product-on-abstract-direct-sum}が得られる．
+
+内積空間の直和として有名なものがフォック空間である．
+これは，\refdfn[ヒルベルト空間]{dfn:Hilbert-space}の$n$-階\refdfn[テンソル積]{dfn:tensor-product}$\symcal{H}^{\otimes n}$の無限直和
+\begin{equation*}
+    F_{+,-} = \bigoplus_{n = 0}^{\infty} S_{+,-} \symcal{H}^{\otimes n}
+\end{equation*}
+で定義される．
+$S_{+,-}$はボソン・フェルミオンに対応する対称化・反対称化の演算子$S_+, S_-$であるが，
+ここでは重要でない．
+$\symcal{H}^{\otimes n}$は，$n$個の粒子がある状態$\ket{1, \dots, n}$が属する空間である．
+本来$n$-粒子状態$\ket{1, \dots, n}$と$m$-粒子状態$\ket{1', \dots, m'}$（$m \neq n$）は，
+住んでいる空間が違うので，足すことはできない．
+これを直和によって足すことで，
+異なる粒子数をもつ状態間の遷移を扱うことができる．
+
+
 
 \end{document}

@@ -324,19 +324,48 @@ $V$自身は部分ベクトル空間である．
 \cref{dfn:direct-sum-of-vector-space}とは別の定義がある．
 
 \begin{definition}
-    $\sequ{V_𝜆}[𝜆 \in 𝛬]$をベクトル空間の\refdfn[族]{dfn:family-of-sets}とする．
-    直積$\prod_{𝜆 \in 𝛬} V_𝜆$の部分空間
     \label{dfn:abstract-direct-sum}
+    $\sequ{V_𝜆}[𝜆 \in 𝛬]$をベクトル空間の\refdfn[族]{dfn:family-of-sets}とする．
+    直積$\prod_{𝜆 \in 𝛬} V_𝜆$の部分ベクトル空間を
     \begin{equation}
+        \label{eq:abstract-direct-sum}
         \bigoplus_{𝜆 \in 𝛬} V_𝜆
             ≔ \Set*{ \sequ{𝒗_𝜆}[𝜆 \in 𝛬] \in \prod_{𝜆 \in 𝛬} V_𝜆  
                         \given  \text{有限個の$𝜆 \in 𝛬$を除いて$𝒗_𝜆 = 𝟎$}  }
     \end{equation}
-    を，（抽象的な）\word{直和}\index{ちよくわ@直和!ちゆうしようてきな@抽象的な}という\cite[\S 1.6]{saito-lin-2007}．
+    で定める．
+    $\bigoplus_{𝜆 \in 𝛬} V_𝜆$の元$\sequ{𝒗_𝜆}[𝜆 \in 𝛬]$について，
+    和とスカラー倍を，各成分の和とスカラー倍
+    \begin{align*}
+        \label{eq:operation-on-abstract-direct-sum}
+        \sequ{\symbf{x}_𝜆}[𝜆 \in 𝛬] + \sequ{\symbf{y}_𝜆}[𝜆 \in 𝛬]
+            \coloneq \sequ{\symbf{x}_𝜆 + \symbf{y}_𝜆}[𝜆 \in 𝛬],
+        \quad
+        c \scaprod \sequ{\symbf{x}_𝜆}[𝜆 \in 𝛬]
+            \coloneq \sequ{c \scaprod \symbf{x}_𝜆}[𝜆 \in 𝛬]
+    \end{align*}
+    で定めると，$\bigoplus_{𝜆 \in 𝛬} V_𝜆$はベクトル空間をなす．
+    このベクトル空間を，（抽象的な）\word{直和}\index{ちよくわ@直和!ちゆうしようてきな@抽象的な}という\cite[\S 1.6]{saito-lin-2007}．
 \end{definition}
 
 % $V_𝜆 \cap V_{\mu} = \emptyset$（$𝜆 \neq \mu$）のとき，
 % $\bigoplus_{𝜆 \in 𝛬} V_𝜆$は\cref{dfn:direct-sum-of-vector-space}の直和と同一視できる．
+
+直和というのはつまり，
+足せないベクトルの和を扱うための手段である．
+たとえば，$V_1 = \symbb{R}^2$，$V_2 = \symbb{R}^3$とする．
+当然$\symbf{x} \in \symbb{R}^2$と$\symbf{y} \in \symbb{R}^3$の和$\symbf{x} + \symbf{y}$をとることはできない．
+しかしこれを\emph{記号的に}$\symbf{v} = \symbf{x} + \symbf{y} \in \symbb{R}^2 \oplus \symbb{R}^3$と書いたとしよう．
+$\symbf{v}$と$\symbf{v}' = \symbf{x}' + \symbf{y}'$（$\symbf{x}' \in \symbb{R}^2$，$\symbf{y}' \in \symbb{R}^3$）の和は，
+記号$+$が結合的\emph{であってほしい}ので，
+$\symbf{v} + \symbf{v}' = (\symbf{x} + \symbf{x}') + (\symbf{y} + \symbf{y}')$となるのが自然である．
+ここで，第1項は$\symbb{R}^2$に，第2項は$\symbb{R}^3$に属するから，
+$\symbf{v} + \symbf{v}' \in \symbb{R}^2 \oplus \symbb{R}^3$である．
+またスカラー倍は，``和''に対して分配的\emph{であってほしい}ので，
+$c \symbf{v} = c \symbf{x} + c \symbf{y}$となるのが自然である．
+記号$\symbf{x}^{(\prime)}, \symbf{y}^{(\prime)}$だけに注目して式を眺めれば，
+あたかも$\symbf{x} \in \symbb{R}^2$と$\symbf{y} \in \symbb{R}^3$の和$\symbf{x} + \symbf{y}$がきちんと定義できているかのようにふるまっている．
+これが直和である．
 
 
 
