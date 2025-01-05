@@ -489,11 +489,17 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
     略．
 \end{proof}
 
+
+写像の合成について，以下は基本的である．
+
 \begin{proposition}
     \label{thm:map-is-associative}
     $X, Y, Z, W$を集合，$f \colon Z \to W$，$g \colon Y \to Z$，$h \colon X \to Y$を写像とする．
     このとき$f \circ (g \circ h) = (f \circ g) \circ h$である．
 \end{proposition}
+
+したがって，$f \circ g \circ h$と書いてよい．
+
 
 \begin{proof}
     任意の元$x \in X$に対して，
@@ -507,6 +513,32 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
             = f(g(h(x)))
     \end{gather*}
     より$[f \circ (g \circ h)] \, (x) = [(f \circ g) \circ h] \, (x)$であることから従う．
+\end{proof}
+
+
+\begin{proposition}
+    \label{thm:f-composition-g-is-identity}
+    写像$f \colon X \to Y$，$g \colon Y \to X$について，
+    $g \circ f = \mathrm{id}_X$とする．
+    このとき，
+    \begin{enumerate}
+        \item $f$は\refdfn-[単射]{dfn:injection}．
+        \item $g$は\refdfn-[全射]{dfn:surjection}．
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $x, y \in X$に対し，
+            \[
+                f(x) = f(y)
+                \implies
+                g \circ f(x) = g \circ f(y)
+                \implies
+                x = y
+            \]
+        \item 任意の$x \in X$に対し，$x = g(f(x))$となる$f(x) \in Y$が存在する．
+    \end{enumerate}
 \end{proof}
 
 

@@ -118,6 +118,27 @@
 
 
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% 数式まわり
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 参考・・・ latex.ltx のデフォルト
+% \abovedisplayskip=12pt plus 3pt minus 9pt
+% \abovedisplayshortskip=0pt plus 3pt
+% \belowdisplayskip=12pt plus 3pt minus 9pt
+% \belowdisplayshortskip=7pt plus 3pt minus 4pt
+
+\AtBeginDocument{
+    \abovedisplayskip=6pt plus 3pt minus 0pt
+    \abovedisplayshortskip=0pt plus 3pt
+    \belowdisplayskip=6pt plus 3pt minus 0pt
+    \belowdisplayshortskip=3pt plus 3pt
+}
+
+
+
 % 索引
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % jlreq クラス（ https://github.com/abenori/jlreq/blob/master/jlreq.cls ）に定義

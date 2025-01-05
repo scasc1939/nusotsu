@@ -115,6 +115,7 @@
 
 % 単位行列
 \newcommand{\umat}{\symup{I}}
+\newcommand{\zmat}{\symup{O}}
 % 転置（transpose）
 \newcommand{\tp}[1]{{}^{\mathrm{t}}#1}
 
@@ -280,10 +281,10 @@
 \crefname{figure}{図}{図}
 
 % \newtheorem{definition}{定義}[section]
-\newtheorem{theorem}{定理}[section]
-\newtheorem{proposition}[theorem]{命題}
-\newtheorem{corollary}[theorem]{系}
-\newtheorem{lemma}[theorem]{補題}
+% \newtheorem{theorem}{定理}[section]
+% % \newtheorem{proposition}[theorem]{命題}
+% \newtheorem{corollary}[theorem]{系}
+% \newtheorem{lemma}[theorem]{補題}
 
 \ExplSyntaxOn
 
@@ -311,6 +312,76 @@
     ╱
     \par\medbreak
 }
+
+
+\makeatletter
+
+\NewDocumentCommand{\sotsu@newtheorem}{m o m o}{
+    % #2 (カウンターの共用) が指定されていなければ，
+    % 自前のカウンターを用意する．
+    \IfValueF{#2}{
+        \newcounter{#1}
+        \setcounter{#1}{0}
+    }
+    % 親カウンター（例：section）が指定されていれば，
+    % その設定をする．
+    \IfValueT{#4}{
+        \counterwithin{#1}{#4}
+    }
+    % 環境（例：theorem）を定義する
+    \NewDocumentEnvironment{#1}{!o}{
+        % 自前カウンター(#1)または共用カウンター(#2)を進める
+        \IfValueTF{#2}{
+            \refstepcounter{#2}
+        }{
+            \refstepcounter{#1}
+        }
+        \bigbreak
+        \noindent
+        % \colorbox{darkgray}{
+            % \textcolor{white}{
+                { \bfseries\rmfamily\gtfamily #3\,
+                % カウンター #2 が指定されていれば #2 を出力
+                % そうでなければカウンター #1 (自身の環境名) を出力
+                %     例 \newtheorem{thm}{定理} の場合，
+                %         #2 が指定されていないので，環境名 \thethm を出力
+                %     例 \newtheorem{lem}[prop]{補題} の場合，
+                %         #2=thm が指定されているので \theprop を出力
+                  \IfValueTF{#2}{
+                    \csname the#2\endcsname
+                  }{
+                    \csname the#1\endcsname
+                  }
+                }
+            % }
+        % }
+        \IfValueT{##1}{
+            \IfBlankF{##1}{
+                \hspace{0.5em}
+                ({##1})
+            }    
+        }
+        \hspace{0.5em}
+        % 後ろを強制的に漢字扱いにする
+        % （luatexja-ja.pdf を参照）
+        % これがないと，命題1.1 ○………… 
+        %     の一文字目の ○ が，数式か日本語かによって
+        %     スペースが変わってしまう．
+        % まだ若干ずれているような気がするが・・・
+        \ltjghostbeforejachar
+    }{
+        ╱
+        \par\medbreak
+    }
+}
+
+\sotsu@newtheorem{theorem}{定理}[section]
+\sotsu@newtheorem{proposition}[theorem]{命題}
+\sotsu@newtheorem{corollary}[theorem]{系}
+\sotsu@newtheorem{lemma}[theorem]{補題}
+
+\makeatother
+
 
 \ExplSyntaxOff
 
@@ -347,6 +418,7 @@
 \setlist[enumerate,1]{
     label={(\arabic*)},
     labelsep=0.5em,
+    nosep
 }
 
 

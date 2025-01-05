@@ -1,10 +1,6 @@
 % \documentclass[draft]{sotsu}
 \documentclass{sotsu}
 
-\newif\ifdraft
-\drafttrue
-\draftfalse % これをコメントアウト（先頭に % ）すると draft モードになる
-
 \usepackage{sotsu}
 
 \usepackage[
@@ -14,19 +10,14 @@
     ]{biblatex}
 \addbibresource{sotsu.bib}
 
+
 \usepackage{subfiles}
 
 
 \graphicspath{{./fig/}}
 
 
-% 索引
-\ifdraft
-    \DeclareDocumentCommand{\index}{O{} m}{}
-\else
-    \makeindex
-\fi
-
+\makeindex
 
 
 
@@ -173,10 +164,7 @@
 
 
 
-\ifdraft
-\else
-    \printindex
-\fi
+\printindex
 
 
 \end{document}

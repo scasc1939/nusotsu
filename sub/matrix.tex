@@ -10,8 +10,6 @@
 
 \subsection{行列の定義}
 
-用語の定義にとどめる．
-
 \begin{definition}[行列]
     $𝕂$を\refdfn[体]{dfn:field}とする．
     $𝕂$の元（すなわち数字）を縦横に$m \times n$個ならべたものを\word{行列}[ぎょう|れつ][きようれつ](matrix)という．
@@ -31,7 +29,7 @@
 
     \cref{eq:matrix-example}において，
     上から$i$番目，左から$j$番目にある数字$a_{ij}$のことを，
-    $A$の$ij$-成分という．
+    $A$の$(i, j)$-成分という．
     これを$(A)_{ij}$とかくこともある．
 \end{definition}
 
@@ -44,15 +42,30 @@
 
 名前がついている特別な行列がいくつかある．
 
+\begin{definition}
+    すべての成分が$0$\footnote{
+        $0$とは\refdfn-[体]{dfn:field}$\symbb{K}$上で定義された加法に関する単位元のこと．
+    }である行列を\word{零行列}という．
+    \begin{equation}
+        \zmat \coloneq 
+        \begin{pmatrix}
+            0      & 0      & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & 0
+        \end{pmatrix}
+    \end{equation}
+\end{definition}
+
 \begin{definition}[正方行列]
     行と列の数が同じ行列，すなわち$n \times n$-行列を\word{正方行列}[せい|ほう|ぎょう|れつ]という．
     特に大きさを明示する場合，$n$-\ruby{次}{じ}正方行列という．
 \end{definition}
 
+
 \begin{definition}
-    正方行列のなかで，$ii$-成分が$1$，それ以外が$0$である行列
+    正方行列のなかで，$(i, i)$-成分が$1$，それ以外が$0$である行列
     \begin{equation}
-        I \coloneq 
+        \umat \coloneq 
         \begin{pmatrix}
             1  &  0  &  \cdots  &  0  \\
             0  &  1  &  \cdots  &  0  \\
@@ -63,15 +76,26 @@
     を\word{単位行列}[たん|い|ぎょう|れつ]という．
 \end{definition}
 
+
 \begin{definition}
     \label{dfn:inverse-of-matrix}
     $A$を$n$-次正方行列とする．
     \begin{equation}
-        A A^{-1} = A^{-1} A = I
+        A A^{-1} = A^{-1} A = \umat
     \end{equation}
     となるような$n$-次正方行列$A^{-1}$が存在するとき，
     $A^{-1}$を$A$の\word{逆行列}という．
 \end{definition}
+
+
+\begin{theorem}
+    $n \times n$-正方行列$A, B$について，
+    $AB = \umat$ならば$BA = \umat$である．
+    したがって，$A^{-1}$が$A$の逆行列であることを確かめるには，
+    $A A^{-1} = \umat$または$A^{-1} A = \umat$のどちらか片方を確認すればよい．
+\end{theorem}
+
+
 
 
 \begin{definition}
@@ -94,35 +118,45 @@
 
 
 \begin{proposition}
+    \label{thm:matrix-operation}
     行列の演算についての性質を挙げる．
-    $p \times q$行列$A$，$q \times r$行列$B$，$r \times s$行列$C$とする．
+    $m \times n$-行列$\zmat$を零行列，
+    $p \times p$-行列$\umat$，$q \times q$-行列$\umat'$を単位行列とする．
     \begin{itemize}
-        \item $M_{mn}(𝕂)$は和について\refdfn[アーベル群]{dfn:group}をなす．すなわち
+        \item $M_{mn}(𝕂)$は和について\refdfn[アーベル群]{dfn:group}をなす．
+            すなわち，$m \times n$行列-$A, B, C$に対し，
         \begin{enumerate}
             \item （結合律）$(A + B) + C = A + (B + C)$であり，
-            \item （単位元）$A + O = O + A = A$であり，
+            \item （単位元）$A + \zmat = \zmat + A = A$であり，
             \item （逆元）$A + (-A) = (-A) + A$となる$-A$が存在し，
             \item （交換律）$A + B = B + A$である．
         \end{enumerate}
-        \item $M_{mn}(𝕂)$は積について結合的であり，また単位元をもつ．
-            すなわち，
-        \begin{enumerate}
-            \item （結合律）$(AB)C = A(BC)$であり，
-            \item （単位元）$AI = IA = A$である．
+        \item 行列は積について結合的であり，また単位元をもつ．
+            すなわち，$p \times q$-行列$A$，$q \times r$-行列$B$，$r \times s$-行列$C$に対し，
+        \begin{enumerate}[resume]
+            \item \label{matrix:product-associative}（結合律）
+                $(AB)C = A(BC)$であり，
+            \item （単位元）$A \umat = \umat A = A$である．
         \end{enumerate}
-        \item 
+        \item さらに，$p \times q$-行列$A, B$，$q \times r$-行列$C, D$に対し，
+        \begin{enumerate}[resume]
+            \item （分配律）$(A + B)C = AB + AC$，$A(C + D) = AC + AD$
+        \end{enumerate}
     \end{itemize}
 \end{proposition}
 
 
 \subsection{数ベクトル}
+\label{sec:coordinate-space}
 
 $m \times 1$-行列のことを数ベクトルという．
+数ベクトルの幾何的な意味については\cref{sec:Euclidean-vector-intro}で扱うが，
+ここでは代数的な性質に重点をおく．
 
 \begin{definition}
     \label{dfn:canonical-basis-of-coordinate-space}
     $\symbb{K}^m$の元のなかで，
-    第$i$列の成分のみが$1$，
+    第$i$行の成分のみが$1$，
     ほかの成分が$0$であるもの
     \begin{equation*}
         \symbf{e}_i
@@ -137,6 +171,24 @@ $m \times 1$-行列のことを数ベクトルという．
     \end{equation*}
     を，$\symbb{K}^m$の\word{標準基底}(canonical basis)という．
 \end{definition}
+
+$l \times m$-行列$A$と数ベクトル$\symbf{x} \in \symbb{K}^l$の行列としての積を計算すると，
+$A\symbf{x} \in \symbb{K}^l$である．
+したがって，$l \times m$-行列は$\symbb{K}^m$から$\symbb{K}^l$への\refdfn-[写像]{dfn:map}と見ることができる．
+これが\cref{sec:linear-map}で扱う線形写像の第一歩である．
+
+合成写像のようなものを考えることもできる．
+
+\begin{corollary}
+    \label{thm:composition-of-transformation-of-Euclidean-vector}
+    $\symbf{x} \in \symbb{K}^m$とする．
+    $k \times l$-行列$A$，$l \times m$-行列$B$に対し，
+    $A(B\symbf{x}) = (AB)\symbf{x}$である．
+\end{corollary}
+
+\begin{proof}
+    \cref{thm:matrix-operation}の\cref{matrix:product-associative}の特別な場合である．
+\end{proof}
 
 
 
@@ -177,7 +229,7 @@ $m \times 1$-行列のことを数ベクトルという．
     2つの置換の積$\sigma\tau$を，写像の合成$\sigma \circ \tau$として定める．
 \end{definition}
 
-なお，一般に$\sigma \tau \neq \tau \sigma$である．
+なお，一般に置換の積は交換しない（$\sigma \tau \neq \tau \sigma$）．
 
 この記法を用いると，
 任意の置換$\sigma \in \symfrak{S}_n$とその逆置換$\sigma^{-1}$について，
@@ -206,6 +258,7 @@ $\sigma \sigma^{-1} = \sigma^{-1} \sigma = \text{恒等置換}$である．
 \end{proposition}
 
 置換に対し，互換の積によるあらわしかたは一意ではない．
+しかし，次のような事実が成立する．
 
 \begin{proposition}
     \label{thm:parity-of-permutation}

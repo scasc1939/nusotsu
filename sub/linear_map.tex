@@ -5,6 +5,9 @@
 \section{線形写像}
 \label{sec:linear-map}
 
+\cref{sec:coordinate-space}では，行列による数ベクトルの変換を扱った．
+これを一般化したものが線形写像という概念である．
+
 \subsection{線形写像}
 
 ふたたびしばらく$𝕂$を一般の\refdfn[体]{dfn:field}とする．
@@ -372,7 +375,7 @@ $\symbf{y} = A \symbf{x}$をあらわにかくと，
 
 よって，
 線形写像$f$の性質を調べるには，
-$\symbf{w} = f(\symbf{x})$を直接扱う代わりに，
+$\symbf{w} = f(\symbf{v})$を直接扱う代わりに，
 行列のかけ算$\symbf{y} = A \symbf{x}$について考察すればよい．
 
 なお，表現行列の形は$V$の基底と$W$の基底をどう取るか\footnote{
@@ -423,9 +426,11 @@ $\symbf{w} = f(\symbf{x})$を直接扱う代わりに，
             \\
             &= (\varphi''^{-1} \circ g \circ \varphi') \circ (\varphi'^{-1} \circ f \circ \varphi) (\symbf{u})
             \\
-            &= (B A) \symbf{u}
+            &= B (A \symbf{u})
+            = (BA)\symbf{u}
         \end{split}
     \end{equation*}
+    最後の等号では\cref{thm:composition-of-transformation-of-Euclidean-vector}を使った．
 \end{proof}
 
 
