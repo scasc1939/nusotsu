@@ -486,7 +486,12 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 \end{theorem}
 
 \begin{proof}
-    略．
+    \textsf{必要}　$g \circ f = \mathrm{id}_X$，$f \circ g = \mathrm{id}_Y$にそれぞれ\cref{thm:f-composition-g-is-identity}を適用すればただちに従う．
+
+    \textsf{十分}　$f$が全単射とする．
+    $f$は全射なので，任意の$y \in Y$に対して$f(x) = y$である$x_y \in X$が存在する．
+    さらに，$f$は単射なので，$f(x_y) = y$をみたす$x_y \in X$はただひとつである．
+    そこで，対応$f^{-1} \colon y \mapsto x_y$を定めれば，これが$f$の逆写像になっている．
 \end{proof}
 
 
@@ -538,8 +543,31 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
                 x = y
             \]
         \item 任意の$x \in X$に対し，$x = g(f(x))$となる$f(x) \in Y$が存在する．
+        \qedhere
     \end{enumerate}
 \end{proof}
+
+
+\begin{proposition}
+    \label{thm:inverse-map-of-composition}
+    写像$f \colon X \to Y$，$g \colon Y \to Z$がともに\refdfn-[全単射]{dfn:bijection}であれば，
+    合成写像$g \circ f \colon X \to Z$も全単射であり，
+    その\refdfn-[逆写像]{dfn:inverse-map}は
+    \[  (g \circ f)^{-1} = f^{-1} \circ g^{-1}  \]
+\end{proposition}
+
+\begin{proof}
+    実際，\cref{thm:map-is-associative}を使えば
+    \begin{gather*}
+        (f^{-1} \circ g^{-1}) \circ (g \circ f)
+            = f^{-1} \circ (g^{-1} \circ g) \circ f
+            = f^{-1} \circ f
+            = \mathrm{id}_X
+    \end{gather*}
+    であり，同様に$(g \circ f) \circ (f^{-1} \circ g^{-1}) = \mathrm{id}_Z$も示せる．
+\end{proof}
+
+
 
 
 \begin{definition}[写像の制限]

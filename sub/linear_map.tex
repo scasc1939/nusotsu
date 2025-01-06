@@ -73,6 +73,13 @@
 \end{proof}
 
 
+\begin{definition}[零写像]
+    \label{dfn:zero-linear-map}
+    ベクトル空間$V$から$W$への写像で，
+    すべての$\symbf{v} \in V$を零ベクトル$\symbf{0} \in W$にうつす写像を\word{零写像}(zero map)\index{れい!零@しやそう@\indexdash 写像}という．
+\end{definition}
+
+
 
 
 \subsection{同型写像}
@@ -82,13 +89,19 @@
     \label{dfn:isomorphism}
     $V, W$を体$𝕂$上のベクトル空間とする．
     線形写像$f \colon V \to W$が可逆である，
-    つまり$f \circ f^{-1} = \mathrm{id}_W$かつ$f^{-1} \circ f = \mathrm{id}_V$（恒等写像\refdfn{dfn:identity-map}）となるような$f^{-1} \colon W \to V$が存在するとき，
-    $f$を（$𝕂$上の）\word{同型写像}[どう|けい|しゃ|ぞう][とうけいしやそう](isomorphism)という．
+    つまり$f \circ f^{-1} = \mathrm{id}_W$かつ$f^{-1} \circ f = \mathrm{id}_V$（\refdfn-[恒等写像]{dfn:identity-map}）となるような$f^{-1} \colon W \to V$が存在するとき，
+    $f$を（$𝕂$上の）%
+    \word{同型写像}[どう|けい|しゃ|ぞう](isomorphism)%
+    \index{とうけい@同型!しやそう@\indexdash 写像}
+    という．
 
-    とくに，同型写像$f \colon V \similarrightarrow V$を\word{自己同型写像}[][しことうけいしやそう](automorphism)という\cite[\S 2.1]{saito-lin-2007}．
+    とくに，同型写像$f \colon V \similarrightarrow V$を%
+    \word{自己同型写像}(automorphism)%
+    \word{しことうけいしやそう@自己同型写像}%
+    という\cite[\S 2.1]{saito-lin-2007}．
 \end{definition}
 
-同型写像とは要するに，\refdfn[全単射]{dfn:bijection}である線形写像のことである．
+同型写像とは要するに，\refdfn-[全単射]{dfn:bijection}である線形写像のことである．
 
 ベクトル空間$U, V$の間に同型写像が存在するとき，$U$と$V$を同一のベクトル空間と見做すことができる．
 
@@ -142,9 +155,12 @@
     \begin{equation}
         \image f  \coloneq  \Set{  f(𝒗) \in W  \given  𝒗 \in V  }
     \end{equation}
-    を$f$の\word{像}[ぞう][そう](image)という．
+    を$f$の\word{像}[ぞう](image)%
+    \index{そう@像}という．
 
-    $\image f$の次元$\rank f \coloneq \dim \image f$を，$f$の\word{階数}[かい|すう][かいすう](rank)という\cite{miyake-lin-2008}．
+    $\image f$の次元$\rank f \coloneq \dim \image f$を，
+    $f$の\word{階数}[かい|すう](rank)%
+    \index{かいすう@階数}という\cite{miyake-lin-2008}．
 \end{definition}
 
 \begin{definition}[核]
@@ -155,9 +171,12 @@
     \begin{equation}
         \ker f  \coloneq  \Set{  𝒗 \in V  \given  f(𝒗) = \symbf{0}_W  }
     \end{equation}
-    を$f$の\word{核}[かく][かく](kernel)という．
+    を$f$の\word{核}[かく](kernel)%
+    \index{かく@核}という．
 
-    $\ker f$の次元$\dimker f \coloneq \dim \ker f$を，$f$の\word{退化次数}[たい|か|じ|すう][たいかしすう](nullity)という\cite{miyake-lin-2008}．
+    $\ker f$の次元$\dimker f \coloneq \dim \ker f$を，
+    $f$の\word{退化次数}[たい|か|じ|すう](nullity)%
+    \index{たいかしすう@退化次数}という\cite{miyake-lin-2008}．
 \end{definition}
 
 像$\image f$は一般の写像についても定義できた\refdfn{dfn:image}が，
@@ -168,8 +187,8 @@
 \begin{proposition}
     $f \colon V \to W$を線形写像とする．
     \begin{enumerate}
-        \item $f$の像$\image f$は，$W$の部分ベクトル空間である．
-        \item $f$の核$\ker f$は，$V$の部分ベクトル空間である．
+        \item $f$の\refdfn-[像]{dfn:image-of-linear-map}$\image f$は，$W$の部分ベクトル空間である．
+        \item $f$の\refdfn-[核]{dfn:kernel-of-linear-map}$\ker f$は，$V$の部分ベクトル空間である．
     \end{enumerate}
 \end{proposition}
 
