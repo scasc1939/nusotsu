@@ -178,6 +178,9 @@
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 
+\DeclarePairedDelimiter{\opnorm}{\lVert}{\rVert}
+
+
 % 同値類（equivalence class）
 \DeclarePairedDelimiter{\eqclass}{\lbrack}{\rbrack}
 
@@ -294,7 +297,7 @@
 
 \NewDocumentEnvironment{definition}{!o}{
     \refstepcounter{definition}
-    \medbreak
+    \bigbreak
     \noindent
     \colorbox{darkgray}{
         \textcolor{white}{
@@ -370,7 +373,6 @@
         % まだ若干ずれているような気がするが・・・
         \ltjghostbeforejachar
     }{
-        ╱
         \par\medbreak
     }
 }
