@@ -44,7 +44,6 @@
 
 \RequirePackage{mathtools}
 
-\newtheorem*{example}{例}
 
 \usepackage{pxrubrica}
 \rubyfontsetup{\mcfamily\mdseries}
@@ -95,6 +94,9 @@
 % 虚数単位
 \newcommand{\iu}{\symup{i}}
 
+% クロネッカーデルタ
+\newcommand{\kdelta}{\delta}
+
 % 濃度（cardinality）
 \newcommand{\card}{\#}
 
@@ -104,8 +106,8 @@
     \let\closure\relax
     \DeclareMathOperator{\closure}{cl}
 }
-\DeclareMathOperator{\interiorop}{int}
-\DeclareMathOperator{\closureop}{cl}
+\DeclareMathOperator{\interr}{int}
+\DeclareMathOperator{\clsr}{cl}
 
 
 % 点列
@@ -121,6 +123,8 @@
 
 % 双対空間（dual space）
 \newcommand{\dual}[1]{{#1}^*}
+\newcommand{\ddual}[1]{{#1}^{**}}
+\newcommand{\adjoint}[1]{{#1}^\dagger}
 
 % 恒等演算子（identity operator），ゼロ演算子（zero operator）
 \newcommand{\idop}{\hat{1}}
@@ -319,10 +323,16 @@
 
 \makeatletter
 
+\usepackage{aliascnt}
+
 \NewDocumentCommand{\sotsu@newtheorem}{m o m o}{
+    % #2 (カウンターの共用) が指定されていれば，
+    % カウンターの別名を作成する．
     % #2 (カウンターの共用) が指定されていなければ，
     % 自前のカウンターを用意する．
-    \IfValueF{#2}{
+    \IfValueTF{#2}{
+        \newaliascnt{#1}{#2}
+    }{
         \newcounter{#1}
         \setcounter{#1}{0}
     }
@@ -333,12 +343,8 @@
     }
     % 環境（例：theorem）を定義する
     \NewDocumentEnvironment{#1}{!o}{
-        % 自前カウンター(#1)または共用カウンター(#2)を進める
-        \IfValueTF{#2}{
-            \refstepcounter{#2}
-        }{
-            \refstepcounter{#1}
-        }
+        % カウンター(#1)を進める
+        \refstepcounter{#1}
         \bigbreak
         \noindent
         % \colorbox{darkgray}{
@@ -350,11 +356,7 @@
                 %         #2 が指定されていないので，環境名 \thethm を出力
                 %     例 \newtheorem{lem}[prop]{補題} の場合，
                 %         #2=thm が指定されているので \theprop を出力
-                  \IfValueTF{#2}{
-                    \csname the#2\endcsname
-                  }{
                     \csname the#1\endcsname
-                  }
                 }
             % }
         % }
@@ -382,6 +384,8 @@
 \sotsu@newtheorem{corollary}[theorem]{系}
 \sotsu@newtheorem{lemma}[theorem]{補題}
 
+\sotsu@newtheorem{example}[theorem]{例}
+
 \makeatother
 
 
@@ -390,9 +394,11 @@
 
 \crefname{definition}{定義}{定義}
 \crefname{theorem}{定理}{定理}
-\crefname{proposition}{命題}{定理}
+\crefname{proposition}{命題}{命題}
 \crefname{corollary}{系}{系}
 \crefname{lemma}{補題}{補題}
+
+\crefname{example}{例}{例}
 
 
 
@@ -411,6 +417,11 @@
 % とりあえず \refthm はコピー
 \NewCommandCopy\refthm\refdfn
 
+
+\definecolor{myred}{HTML}{ff6600}
+\definecolor{myblue}{HTML}{4488ff}
+
+\NewDocumentCommand{\bluehead}{m}{\textcolor{myblue}{\textsf{#1}}}
 
 
 
