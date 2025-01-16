@@ -1,0 +1,19 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\usepackage[bold-style=ISO]{unicode-math}
+
+\begin{document}
+    \begin{tikzpicture}
+        \node (A) at (0, 0)  {$V \times W$};
+        \node (B) at (0, -2) {$V \otimes W$};
+        \node (C) at (3, -2) {$V'$};
+
+        \node at (1, -1.2) {\Large $\acwopencirclearrow$};
+
+        \draw [-Stealth] (A) -- node[left]  {$\otimes$} (B);
+        \draw [-Stealth] (B) -- node[below] {$f$} (C);
+        \draw [-Stealth] (A) -- node[above right] {$b_f$} (C);
+    \end{tikzpicture}
+\end{document}
