@@ -238,6 +238,13 @@ $\symbb{R}^2 \otimes \symbb{R}^2 = \symbb{R}^4$と考えられる．
     \end{pmatrix}
 \end{equation}
 とかける．
+このような定義の下で，
+行列$A, B$とベクトル$\symbf{x}, \symbf{y}$について
+\begin{equation*}
+    (A \otimes B) (\symbf{x} \otimes \symbf{y}) 
+        = (A \symbf{x}) \otimes (B \symbf{y})
+\end{equation*}
+が成り立つことも容易に示される（\cref{sec:tensor-product-of-linear-map}も参照）．
 
 3つ以上のテンソル積についても，帰納的に定義される．
 すなわち，$\symbf{x}, \symbf{y}, \symbf{z} \in \symbb{R}^2$のテンソル積は，
@@ -284,7 +291,13 @@ $\symbb{R}^2 \otimes \symbb{R}^2 \otimes \symbb{R}^2 = \symbb{R}^8$であり，
         \end{cases}
     \end{equation*}
     となるものを考えよう．
-    $\sequ{e_{\symbf{x}, \symbf{y}}}[\symbf{x} \in V, \, \symbf{y} \in W]$は$L$の基底になっている．
+    $\sequ{e_{\symbf{x}, \symbf{y}}}[\symbf{x} \in V, \, \symbf{y} \in W]$は$L$の基底になっている\footnote{
+        $L$の定義から$h(\symbf{x}, \symbf{y}) \neq 0$となる$(\symbf{x}, \symbf{y})$を列挙できるので，
+        これらの行き先を$h(\symbf{x}_1, \symbf{y}_1) = c_1, \  \dots, \  h(\symbf{x}_n, \symbf{y}_n) = c_n$とすれば，
+        $h = c_1 e_{\symbf{x}_1, \symbf{y}_1} + \dots + c_n e_{\symbf{x}_n, \symbf{y}_n}$とかける．
+        したがって$\sequ{e_{\symbf{x}, \symbf{y}}}[\symbf{x} \in V, \, \symbf{y} \in W]$は$L$を生成する．
+        一次独立性は明らかである．
+    }．
     $L$の部分ベクトル空間を
     \begin{align*}
         R_1 &\coloneq \spanning{ e_{\symbf{x} + \symbf{x}^{\mathrlap{\prime}}, \, \symbf{y}} - e_{\symbf{x}, \symbf{y}} - e_{\symbf{x}', \symbf{y}} \mid \symbf{x}, \symbf{x}' \in V, \  \symbf{y} \in W }  \\
@@ -299,6 +312,41 @@ $\symbb{R}^2 \otimes \symbb{R}^2 \otimes \symbb{R}^2 = \symbb{R}^8$であり，
     同値類$\eqclass{e_{\symbf{x}, \symbf{y}}}$のことを$\symbf{x} \otimes \symbf{y}$と書き，
     やはりテンソル積という．
 \end{definition}
+
+
+$(\symbf{x}, \symbf{y})$をテンソル積$\symbf{x} \otimes \symbf{y}$へうつす写像$\otimes \colon V \times W \to V \otimes W$を，
+\word{普遍双線形写像}(universal bilinear map)\index{ふへんそうせんけいしやそう@普遍双線形写像}という．
+定義からはわかりづらいが，\emph{普遍双線形写像は全射でない}．
+つまり，$V \times W$の元が$\symbf{x} \otimes \symbf{y}$という形で書けるとは限らない．
+
+
+\begin{theorem}
+    \label{thm:tensor-bijection}
+    $V, W$を$\symbb{K}$上のベクトル空間，
+    $V \otimes W$をテンソル積とする．
+    任意の$\symbb{K}$上ベクトル空間$V'$について，
+    $V \otimes W$から$V'$への線形写像$f$を，
+    $V \times W$から$V'$への双線形写像$b_f$にうつす写像は全単射である．
+    \begin{equation*}
+        \{ \text{線形写像} \colon  V \otimes W  \to  V' \}
+        \to
+        \{ \text{双線形写像} \colon  V \times W  \to  V' \}
+    \end{equation*}
+\end{theorem}
+
+つまり，$f(\symbf{x} \otimes \symbf{y}) = b_f (\symbf{x}, \symbf{y})$が成り立つ．
+図式で示すと以下のようになる．
+
+\bigbreak
+\begin{minipage}{1.0\linewidth}
+    \centering
+    \includegraphics[width=0.3\linewidth]{tensor_product_diagram.pdf}
+\end{minipage}
+\bigbreak
+
+\cref{thm:tensor-bijection}の証明には多くの予備知識が必要であるので省略する．
+
+
 
 
 \subsection{線形写像のテンソル積}

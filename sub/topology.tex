@@ -10,7 +10,7 @@
 \begin{definition}[距離]
     \label{dfn:distance}
     $X$を集合とする．写像$d \colon X \times X \to ℝ$が以下を満たすとき，
-    \word{距離}(distance)あるいは\word{計量}(metric)という．
+    これを\word{距離}(distance)あるいは\word{計量}(metric)という．
     \begin{itemize}
         \item 任意の$x, y, z \in X$に対し，
         \begin{enumerate}
@@ -19,7 +19,7 @@
             \item \label{dist:triangle-inequality}$d(x, z) \leq d(x, y) + d(y, z)$である．
         \end{enumerate}
     \end{itemize}
-    $(X, d)$を\word{距離空間}[][きよりくうかん](metric space)という．
+    $(X, d)$を\word{距離空間}(metric space)\index{きより@距離!くうかん@\indexdash 空間}という．
 \end{definition}
 
 
@@ -89,7 +89,7 @@ $(X, d)$を距離空間，$A \subset X$を部分集合とする．
     $\neigh(a; \varepsilon) \subset A$となることをいう．
 
     $A$の内点全体の集合を，$A$の\word{内部}(interior)\index{ないふ@内部}といい，
-    $\interiorop{A}$，$A^i$などとあらわす．
+    $A^\circ$，$\interr{A}$，$A^i$などとあらわす．
 \end{definition}
 
 \begin{definition}
@@ -103,23 +103,218 @@ $(X, d)$を距離空間，$A \subset X$を部分集合とする．
 \end{definition}
 
 平たく言えば，
-$A$から境界をのぞいたものが内部$\interiorop{A}$，
-$A$に境界を入れたものが閉包$\closureop{A}$である．
+$A$から境界をのぞいたものが内部$\interr{A}$，
+$A$に境界を入れたものが閉包$\clsr{A}$である．
 
 例えば，$X = \symbb{R}$，
 $A = (a, b] = \Set{ x \in \symbb{R} \given a < x \leq b }$
-（$-\infty < a < b < \infty$）とする．
-このとき，$\interiorop{A} = (a, b)$，
-$\closureop{A} = [a, b]$である．
+（ただし$-\infty < a < b < \infty$）とする．
+このとき，$\interr{A} = (a, b)$，
+$\clsr{A} = [a, b]$である．
+
+
+\begin{example}
+    \label{thm:interior-and-closure-of-emptyset}
+    $(X, d)$を距離空間とすると，
+    $\interr{X} = X$，$\interr{\emptyset} = \emptyset$，
+    $\clsr{X} = X$，$\clsr{\emptyset} = \emptyset$である．
+\end{example}
+
 
 \begin{proposition}
+    \label{thm:interior-closure-inclusion}
     距離空間$(X, d)$の部分集合$A \subset X$に対し，
-    つねに$\interiorop{A} \subset A \subset \closureop{A}$である．
+    つねに$\interr{A} \subset A \subset \clsr{A}$である．
 \end{proposition}
 
 \begin{proof}
-    
+    \begin{enumerate}
+        \item まず$\interr{A} \subset A$を示す．
+            $a \in \interr{A}$をとると，
+            内部の定義より，ある$\varepsilon$-近傍$\neigh(a; \varepsilon)$が存在して，
+            \[  \neigh(a; \varepsilon) \subset A  \]
+            である．ここで$a \in \neigh(a; \varepsilon)$であるから，
+            $a \in A$が示される．
+        \item 次に$A \subset \clsr{A}$を示す．
+            $a \in A$を任意にとる．
+            このとき，任意の$\varepsilon > 0$に対して$a \in \neigh(a; \varepsilon)$だから，
+            \[ \neigh(a; \varepsilon) \cap A \neq \emptyset \]
+            である．
+            よって$a \in \clsr{A}$．\qedhere
+    \end{enumerate}
 \end{proof}
+
+
+\begin{proposition}
+    \label{thm:inclusion-for-int-and-cl}
+    距離空間の部分集合$A, B$について，
+    $A \subset B$であるとき，
+    以下が成り立つ．
+    \begin{enumerate}
+        \item $\interr{A} \subset \interr{B}$
+        \item $\clsr{A} \subset \clsr{B}$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $a \in \interr{A}$とする．
+            定義より，ある$\varepsilon > 0$が存在して，
+            \[  \neigh(a; \varepsilon) \subset A \subset B  \]
+            すなわち$a \in \interr{B}$である．
+        \item $a \in \clsr{A}$とする．
+            定義より，任意の$\varepsilon > 0$に対し，
+            \[  \emptyset
+                \neq \neigh(a; \varepsilon) \cap A 
+                \quad \subset \quad 
+                \neigh(a; \varepsilon) \cap B
+                  \]
+            だから$\neigh(a; \varepsilon) \cap B  \neq  \emptyset$．
+            よって$a \in \clsr{B}$である．\qedhere
+    \end{enumerate}
+\end{proof}
+
+
+内部と閉包は，次のような関係で結ばれる．
+
+\begin{lemma}
+    \label{thm:int-comp-equal-comp-cl}
+    距離空間の部分集合$A$について，
+    $(\interr{A})^\complement = \clsr{(A^\complement)}$である．
+\end{lemma}
+
+\begin{proof}
+    次のような同値変形によって示される．
+    \begin{equation*}
+        \begin{split}
+            &\qquad 
+            \text{$x \in (\interr{A})^\complement$}
+            \\ & \iff
+            \text{$x \notin \interr{A}$}
+            \\ & \iff
+            \text{任意の$\varepsilon > 0$に対し，$\neigh(x; \varepsilon) \not\subset A$}
+            \\ & \iff
+            \text{任意の$\varepsilon > 0$に対し，$\neigh(x; \varepsilon) \cap A^\complement \neq \emptyset$}
+            \\ & \iff
+            \text{$x \in \clsr{(A^\complement)}$}
+            \qedhere
+        \end{split}
+    \end{equation*}
+\end{proof}
+
+\cref{thm:int-comp-equal-comp-cl}より，
+内部に関して成立する性質は，
+その補集合をとることで閉包に対する性質として書き換えられる．
+
+
+
+\begin{theorem}
+    \label{thm:int-of-int-and-cl-of-cl}
+    内部と閉包について，次の\ruby{冪等性}{べき|とう|せい}\index{へきとう@冪等}が成り立つ．
+    \begin{enumerate}
+        \item $\interr{(\interr{A})} = \interr{A}$
+        \item $\clsr{(\clsr{A})} = \clsr{A}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \cref{thm:interior-closure-inclusion}より，
+    $\interr{(\interr{A})} \supset \interr{A}$および$\clsr{(\clsr{A})} \subset \clsr{A}$を示せば十分である．
+    \begin{enumerate}
+        \item すべての$a \in \interr{A}$について，
+            $x \in \interr{(\interr{A})}$となること，
+            つまり，ある$\varepsilon > 0$が存在して，
+            $\neigh(a; \varepsilon) \subset \interr{A}$となることを示せばよい．
+            そこで$a \in \interr{A}$とすれば，
+            内部の定義より，ある$\varepsilon > 0$が存在して，$\neigh(a; \varepsilon) \subset A$である．
+            内部をとる操作は包含を保ち\refthm{thm:inclusion-for-int-and-cl}，
+            また$\interr{\neigh(a; \varepsilon)} = \neigh(a; \varepsilon)$なので，
+            \[  A \supset \interr{\neigh(a; \varepsilon)} = \neigh(a; \varepsilon)  \]
+        \item \cref{thm:int-of-int-and-cl-of-cl}を使うと，
+            \[
+                \clsr{(\clsr{A})} 
+                = (\interr{((\clsr{A})^\complement)})^\complement  
+                = (
+                    \interr{(
+                        (
+                            (\interr{A^\complement})^\complement
+                        )^\complement
+                    )}
+                  )^\complement  
+                = (\interr{(\interr{A^\complement})})^\complement  
+            \]
+            である．
+            ここで$\interr{(\interr{(A^\complement)})} = \interr{(A^\complement)}$だったから，
+            \[
+                \clsr{(\clsr{A})} 
+                = (\interr{(\interr{A^\complement})})^\complement  
+                = (\interr{(A^\complement)})^\complement
+                = \clsr{A}
+                \qedhere
+            \]
+    \end{enumerate}
+\end{proof}
+
+
+\begin{proposition}
+    \label{thm:int-of-intersection-and-cl-of-union}
+    $A, B$を距離空間の部分集合とする．
+    \begin{enumerate}
+        \item $\interr{(A \cap B)} = \interr{A} \cap \interr{B}$
+        \item $\clsr{(A \cup B)} = \clsr{A} \cup \clsr{B}$
+    \end{enumerate}
+\end{proposition}
+
+なお，$\interr{(A \cup B)} = \interr{A} \cup \interr{B}$や，
+$\clsr{(A \cap B)} = \clsr{A} \cap \clsr{B}$は，
+一般には成立しない．
+例えば距離空間$\symbb{R}$の部分集合$A = [a, b]$，$B = [b, c]$とすれば，
+$A \cup B = [a, c]$である．
+ところが，
+\[  \interr{(A \cup B)} = (a, c)
+    \neq
+    (a, b) \cup (b, c) 
+    = \interr{A} \cup \interr{B}  \]
+である．
+左辺は$b \in \symbb{R}$を含むが，右辺は含まない．
+
+\begin{proof}
+    \begin{enumerate}
+        \item 
+            \bluehead{$\interr{(A \cap B)} \subset \interr{A} \cap \interr{B}$について}\quad
+            $A \cap B \subset A$なので，$\interr{(A \cap B)} \subset \interr{A}$．
+            $A \cap B \subset B$なので，$\interr{(A \cap B)} \subset \interr{B}$．
+            よって，$\interr{(A \cap B)} \subset \interr{A} \cap \interr{B}$である．
+
+            \bluehead{$\interr{(A \cap B)} \supset \interr{A} \cap \interr{B}$について}\quad
+            $x \in \interr{A} \cap \interr{B}$とする．
+            $x \in \interr{A}$だから，
+            ある$\varepsilon > 0$が存在し，$\neigh(x; \varepsilon) \subset A$．
+            また，$x \in \interr{B}$だから，
+            ある$\varepsilon' > 0$が存在し，$\neigh(x; \varepsilon') \subset B$．
+            そこで，$\varepsilon$と$\varepsilon'$のうち小さいほうを$\bar{\varepsilon}$とすれば，
+            $\neigh(x; \bar{\varepsilon}) \subset A \cap B$である．
+            よって$x \in \interr{(A \cap B)}$が示された．
+        \item 
+            \cref{thm:int-comp-equal-comp-cl}を使えば，
+            $\interr$に帰着される．
+            \begin{equation*}
+                \begin{split}
+                    \clsr{(A \cup B)}
+                    = ( \interr{(A \cup B)^\complement} )^\complement
+                    &= ( \interr{( A^\complement \cap B^\complement )} )^\complement
+                    \\
+                    &= \clsr{ ( ( A^\complement \cap B^\complement )^\complement ) }
+                    = \clsr{ ( A \cup B ) }
+                \qedhere
+                \end{split}
+            \end{equation*}
+    \end{enumerate}
+\end{proof}
+
+
+
+
 
 
 \begin{definition}[開集合と閉集合]
@@ -129,26 +324,151 @@ $\closureop{A} = [a, b]$である．
     $(X, d)$を距離空間とする．
     \begin{enumerate}
         \item 
-            $A \subset X$の内部$\interiorop{A}$が$A$自身と一致するとき，
+            $A \subset X$の内部$\interr{A}$が$A$自身と一致するとき，
             $A$を\word{開集合}[かい|しゅう|ごう](open set)\index{かいしゆうこう@開集合}
             （あるいは\ruby{開}{かい}である）という．
         \item 
-            $A \subset X$の閉包$\closureop{A}$が$A$自身と一致するとき，
+            $A \subset X$の閉包$\clsr{A}$が$A$自身と一致するとき，
             $A$を\word{閉集合}[へい|しゅう|ごう](closed set)\index{へいしゆうこう@閉集合}
             （あるいは\ruby{閉}{へい}である） という．
     \end{enumerate}
 \end{definition}
 
-$(X, d)$を距離空間とすると．
-$X$は開集合かつ閉集合である．
-また$\emptyset$も開集合かつ閉集合である．
+\begin{example}[自明な開集合・閉集合]
+    \label{thm:emptyset-is-open-and-closed}
+    $(X, d)$を距離空間とすると．
+    \cref{thm:interior-and-closure-of-emptyset}より，
+    $X$と$\emptyset$はいずれも開集合かつ閉集合である．
+\end{example}
 
-\begin{proposition}
+\begin{corollary}
+    距離空間の任意の部分集合$A$について，
+    その内部$\interr{A}$は開集合であり，
+    閉包$\clsr{A}$は閉集合である．
+\end{corollary}
+
+\begin{proof}
+    \cref{thm:int-of-int-and-cl-of-cl}（冪等性）から直ちに従う．
+\end{proof}
+
+
+
+
+\begin{theorem}
+    \label{thm:complement-of-open-set-is-closed}
     開集合の補集合は閉集合である．
     逆に，閉集合の補集合は開集合である．
+\end{theorem}
+
+\begin{proof}
+    \cref{thm:int-comp-equal-comp-cl}を使うと，
+    \begin{equation*}
+        \begin{split}
+            \quad \text{$A$が開集合}
+            & \iff
+            \interr{A} = A
+            \\ & \iff
+            (\interr{A})^\complement = A^\complement
+            \\ & \iff
+            \clsr{(A^\complement)} = A^\complement
+            \iff
+            \text{$A^\complement$は閉集合}
+            \qedhere
+        \end{split}
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}
+    \label{thm:union-and-intersection-of-open-sets}
+    開集合について，以下が成り立つ．
+    \begin{enumerate}
+        \item $U_1, \dots, U_n$が開集合であれば，
+            $U_1 \cap \dots \cap U_n$も開集合である．
+        \item $U_\lambda$（$\lambda \in \Lambda$：添字）が開集合であれば，
+            $\bigcup_{\lambda \in \Lambda} U_\lambda$は開集合である．
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{corollary}
+    \label{thm:union-and-intersection-of-closed-sets}
+    閉集合について，以下が成り立つ．
+    \begin{enumerate}
+    \item $A_1, \dots, A_n$が閉集合であれば，
+        $A_1 \cup \dots \cup A_n$も閉集合である．
+    \item $A_\lambda$（$\lambda \in \Lambda$：添字）が開集合であれば，
+        $\bigcap_{\lambda \in \Lambda} A_\lambda$は開集合である．
+    \end{enumerate}
+\end{corollary}
+
+
+\begin{proof}[\cref{thm:union-and-intersection-of-open-sets}の証明]
+    \begin{enumerate}
+        \item $n = 2$の場合に示せば十分である．
+            $U_1, U_2$を開集合，
+            $U \coloneq U_1 \cap U_2$とすれば，
+            \cref{thm:int-of-intersection-and-cl-of-union}より，
+            \begin{equation*}
+                \interr{U} = \interr{U_1} \cap \interr{U_2}
+                    = U_1 \cap U_2
+                    = U
+            \end{equation*}
+            だから，$U$は開集合である．
+        \item $U \coloneq \bigcup_{\lambda \in \Lambda} U_\lambda$とする．
+            $U \subset \interr{U}$を示せばよい．
+            そこで$x \in U$とすると，定義より，
+            ある$\lambda_0 \in \Lambda$が存在して，
+            $x \in U_{\lambda_0}$となる．
+            $U_{\lambda_0}$は開集合なので，$x \in \interr{U_{\lambda_0}}$．
+            よってある$\varepsilon > 0$が存在し，
+            $\neigh(x; \varepsilon) \subset U_{\lambda_0}$となる．
+            したがって$\neigh(x; \varepsilon) \subset U$であるから，
+            $x \in \interr{U}$である．
+            \qedhere
+    \end{enumerate}
+\end{proof}
+
+
+\begin{proof}[\cref{thm:union-and-intersection-of-closed-sets}の証明]
+    $U$が開集合であれば$U^\complement$が閉集合であることに加えて
+    \begin{enumerate}
+        \item $(U_1 \cap \dots \cap U_n)^\complement = U_1^\complement \cup \dots \cup U_n^\complement$
+        \item $\ab( \bigcup_{\lambda \in \Lambda} U_\lambda )^\complement = \bigcap_{\lambda \in \Lambda} U_\lambda^\complement $
+    \end{enumerate}
+    を使えば\cref{thm:union-and-intersection-of-open-sets}に帰着される．
+\end{proof}
+
+
+\begin{proposition}
+    \label{thm:interior-and-closure-by-all-open-and-closed-sets}
+    距離空間の部分集合$A$について，
+    \begin{enumerate}
+        \item $A$の\refdfn-[内部]{dfn:interior}$\interr{A}$は，
+            $A$に含まれる\emph{開}集合すべての和集合に一致する．
+        \item $A$の\refdfn-[閉包]{dfn:closure}$\clsr{A}$は，
+            $A$を含む\emph{閉}集合すべての共通部分に一致する．
+    \end{enumerate}
 \end{proposition}
 
+\begin{proof}
+    
+\end{proof}
 
+
+\begin{corollary}
+    \label{thm:interior-or-closure-is-max-or-min}
+    距離空間の部分集合$A$について，
+    \begin{enumerate}
+        \item $A$の\refdfn-[内部]{dfn:interior}$\interr{A}$は，
+            $A$に含まれる\emph{開}集合のうち最大である．
+        \item $A$の\refdfn-[閉包]{dfn:closure}$\clsr{A}$は，
+            $A$を含む\emph{閉}集合のうち最小である．
+    \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+    \cref{thm:interior-and-closure-by-all-open-and-closed-sets}より明らかである．
+\end{proof}
 
 
 
@@ -156,11 +476,11 @@ $X$は開集合かつ閉集合である．
     \label{dfn:dense}
     $(X, d)$を距離空間とする．
     $A \subset B$をみたす$X$の2つの部分集合について，
-    $B \subset \closureop{A}$であるとき，
+    $B \subset \clsr{A}$であるとき，
     $A$は$B$において\word{稠密}[ちゅう|みつ](dense)\index{ちゆうみつ@稠密}であるという\cite{iwanami-functional}．
 
-    特に$\closureop{A} = X$であるとき，
-    $A$は$X$において稠密である．
+    特に$\clsr{A} = X$であるとき，
+    単に$A$は稠密であるということがある．
 \end{definition}
 
 \begin{proposition}
@@ -169,7 +489,7 @@ $X$は開集合かつ閉集合である．
 \end{proposition}
 
 \begin{proof}
-    \textsf{必要性} \quad 
+    \bluehead{必要性}\quad 
     $x \in B$の近傍を$N$とおく．
     $x$は$N$の内点であるから，
     $\neigh(x; \varepsilon) \subset N$となる$\varepsilon > 0$が存在する．
@@ -179,10 +499,10 @@ $X$は開集合かつ閉集合である．
     $\neigh(x; \varepsilon) \cap A \neq \emptyset$である．
     したがって，$N \cap A \neq \emptyset$がいえる．
 
-    \textsf{十分性} \quad 
+    \bluehead{十分性}\quad 
     任意の$x \in B$に対して，その$\varepsilon$-近傍$\neigh(x; \varepsilon)$を考えると，
     仮定より任意の$\varepsilon > 0$に対して$\neigh(x; \varepsilon) \cap A \neq 0$だから，
-    $x \in \closureop{A}$．
+    $x \in \clsr{A}$．
 \end{proof}
 
 
@@ -326,10 +646,10 @@ $\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
     \label{dfn:closure-by-sequence}
     $(X, d)$を距離空間，$A \subset X$を部分集合とする．
     $A$に属するすべての収束列の極限からなる集合を
-    $A$の\word{閉包}[へい|ほう](closure)といい，$\closureop{A}$とかく．
+    $A$の\word{閉包}[へい|ほう](closure)といい，$\clsr{A}$とかく．
     つまり
     \begin{equation}
-        \closureop{A} \coloneq \Set{ x \in X  \given  \exists (x_i) \subset A \text{ s.t. } \lim_{n \to \infty} d(x_i, x) = 0 }
+        \clsr{A} \coloneq \Set{ x \in X  \given  \exists (x_i) \subset A \text{ s.t. } \lim_{n \to \infty} d(x_i, x) = 0 }
     \end{equation}
 \end{definition}
 
@@ -342,41 +662,92 @@ $A$の閉包が$A$を含むことを，
 点列のことばで証明しよう．
 
 \begin{corollary}
-    任意の$A \subset X$の閉包$\closureop{A}$について，
-    $A \subset \closureop{A}$である．
+    任意の$A \subset X$の閉包$\clsr{A}$について，
+    $A \subset \clsr{A}$である．
 \end{corollary}
 
 \begin{proof}
     $x \in A$とすると，
-    $A$の点列$(x, x, x, \dotsc)$は明らかに$x$に収束するので$x \in \closureop{A}$である．
+    $A$の点列$(x, x, x, \dotsc)$は明らかに$x$に収束するので$x \in \clsr{A}$である．
 \end{proof}
 
 
 
 \subsection{位相空間}
 
-\begin{definition}
-    \label{dfn:topology}
+この節では，距離空間を一般化した概念である位相空間（topological space）について述べる．
+集合に「位相を入れる」ことで，
+距離空間（特に$\varepsilon$-近傍）で定義した開集合・閉集合といったものを，
+距離を使わずに定義できるようになる．
+
+なお，ここで扱う位相空間（topological space）は，
+物理学でよく扱う位相空間（phase space）とは関係のない概念である．
+
+まずは距離空間における位相について定義しておこう．
+位相の定義には同値なものがいくつかある．
+例えば，はじめに``\refdfn-[開集合]{dfn:open-set}''を定義するか，
+あるいはその代わりに``\refdfn-[閉集合]{dfn:closed-set}''を定義することがよくある．
+ほかに``\refdfn-[内部]{dfn:interior}''，
+``\refdfn-[閉包]{dfn:closure}''，
+もしくは``近傍系''のいずれかを定義することによっても，
+まったく同じ位相が得られる．
+ここでは開集合を使って位相を定義することにする．
+
+\begin{definition}[距離位相]
+    \label{dfn:topology-by-distance}
     距離空間$(X, d)$において，すべての開集合$A \in \pset(X)$
     （つまり$A \subset_{\text{open}} X$）
-    を集めた集合族を\word{位相}[い|そう][いそう](topology)といい，
+    を集めた集合族を，
+    （距離$d$から導かれる）\word{位相}[い|そう](topology)\index{いそう@位相}といい，
     $\topology_d$であらわす．
 \end{definition}
 
-定義より$\topology_d \subset \pset(X)$である．
+ここでの定義では，「位相＝開集合系」である．
+一般の位相は，
+距離空間の場合に調べた開集合の性質（\cref{thm:emptyset-is-open-and-closed}，
+\cref{thm:union-and-intersection-of-open-sets}）を抽象化することで定義される．
 
-\begin{definition}
-    \label{dfn:topological-space}
-    距離空間$(X, d)$において位相$\topology_d$が定められているとき，
-    $(X, \topology_d)$を\word{位相空間}[い|そう|くう|かん][いそうくうかん]という．
+\begin{definition}[位相]
+    \label{dfn:topology}
+    $X$を集合とする．
+    冪集合$\pset(X)$の部分集合であって，
+    以下の条件を満たす$\topology \subset \pset(X)$を\word{位相}(topology)という．
+    \begin{enumerate}
+        \item $X, \emptyset \in \topology$
+        \item $U_1, \dots, U_n \in \topology$なら，$U_1 \cap \dots \cap U_n \in \topology$
+        \item すべての添字$\lambda$について$U_\lambda \in \topology$なら，$\bigcup_{\lambda} U_\lambda \in \topology$
+    \end{enumerate}
+    このとき，$(X, \topology)$を\word{位相空間}[い|そう|くう|かん](topological space)という．
 \end{definition}
 
-実は位相空間というのは，距離空間よりも広い概念である．
-しかし，ここでは距離空間の別の見方が位相空間であるとしておく．
 
-位相空間では，$A$の内部を「$A$に含まれる開集合の中で最大のもの」，
-$A$の閉包を「$A$を含む閉集合の中で最小のもの」と定義する．
+\begin{itemize}
+    \item \cref{dfn:topology}より，
+    \begin{enumerate}
+        \item $A$が開集合であるとは，$A \in \topology$であることと定める．
+    \end{enumerate}
 
+    \item \cref{thm:complement-of-open-set-is-closed}より，
+    \begin{enumerate}[resume]
+        \item $A$が閉集合であるとは，$A^\complement \in \topology$であることと定める．
+    \end{enumerate}
+
+    \item \cref{thm:interior-and-closure-by-all-open-and-closed-sets}より，
+    \begin{enumerate}[resume]
+        \item $A$の内部$\interr{A}$を「$A$に含まれる開集合すべての和集合」，
+        \item $A$の閉包$\clsr{A}$を「$A$を含む閉集合すべての共通部分」と定める．
+    \end{enumerate}
+\end{itemize}
+
+
+
+
+\subsection{位相空間の連続写像}
+
+\begin{definition}
+    位相空間とする．
+    点$x \in X$
+\end{definition}
 
 
 

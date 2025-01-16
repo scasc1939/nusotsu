@@ -486,9 +486,9 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 \end{theorem}
 
 \begin{proof}
-    \textsf{必要}　$g \circ f = \mathrm{id}_X$，$f \circ g = \mathrm{id}_Y$にそれぞれ\cref{thm:f-composition-g-is-identity}を適用すればただちに従う．
+    \bluehead{必要}　$g \circ f = \mathrm{id}_X$，$f \circ g = \mathrm{id}_Y$にそれぞれ\cref{thm:f-composition-g-is-identity}を適用すればただちに従う．
 
-    \textsf{十分}　$f$が全単射とする．
+    \bluehead{十分}　$f$が全単射とする．
     $f$は全射なので，任意の$y \in Y$に対して$f(x) = y$である$x_y \in X$が存在する．
     さらに，$f$は単射なので，$f(x_y) = y$をみたす$x_y \in X$はただひとつである．
     そこで，対応$f^{-1} \colon y \mapsto x_y$を定めれば，これが$f$の逆写像になっている．
@@ -896,9 +896,9 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
 
 \begin{definition}[クロネッカーのデルタ]
     \label{dfn:Kronecker-delta}
-    次で定義される$\delta_{i, j}$を\word{クロネッカーのデルタ}という：
+    次で定義される$\kdelta_{i, j}$を\word{クロネッカーのデルタ}という：
     \begin{equation}
-        \delta_{i, j} = 
+        \kdelta_{i, j} = 
             \begin{cases}
                 1  &  \text{if } i  =   j ,  \\
                 0  &  \text{if } i \neq j .

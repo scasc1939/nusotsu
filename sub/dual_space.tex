@@ -47,7 +47,7 @@
     各$i = 1, \dots, n$に対し
     \begin{equation}
         \label{eq:dual-basis}
-        f_i (𝒙_j) = \delta_{i, j} \quad \text{\refdfn{dfn:Kronecker-delta}}
+        f_i (𝒙_j) = \kdelta_{i, j} \quad \text{\refdfn{dfn:Kronecker-delta}}
     \end{equation}
     を満たす線形汎関数$f_i \colon V \to 𝕂$がただひとつ存在する．
     このとき，$f_1, \dots, f_n$は$\dual{V}$の基底になる．
@@ -162,14 +162,25 @@
 \end{proof}
 
 
+内積には連続性があった．
+連続な線形汎関数というものを定義しよう．
+
+
+\begin{proposition}
+    ノルム空間$V$上の線形汎関数$f$について，
+    $f$が有界であることと連続であることは同値である\cite[\S 3.4]{iwanami-functional}．
+\end{proposition}
+
+
 内積が線形汎関数であることはほぼ明らかである．
-真に驚くべきことは，すべての線形汎関数が内積の形でかけることである．
+真に驚くべきことは，すべての有界な線形汎関数が内積の形でかけることである．
 
 
 \begin{theorem}[\word{リースの表現定理}(Riesz representation theorem)]
-    $\symcal{V}$を内積空間とする．
-    任意の線形汎関数$F \colon V \to 𝕂$は，
-    あるベクトル$\symbf{a} \in \symcal{V}$を用いて
+    \label{thm:Riesz-representation-theorem}
+    $V$を内積空間とする．
+    任意の有界線形汎関数$F \colon V \to 𝕂$は，
+    あるベクトル$\symbf{a} \in V$を用いて
     \begin{equation}
         F(\symbf{v}) \coloneq \iparen{ \symbf{a}, \symbf{v} }
     \end{equation}

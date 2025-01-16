@@ -135,11 +135,6 @@ $\zeroop(𝒙) = \symbf{0}$．
 
 
 
-\subsection{エルミート演算子}
-\label{sec:Hermitian-operator}
-
-
-
 \subsection{ユニタリ演算子}
 \label{sec:unitary-operator}
 
@@ -256,6 +251,47 @@ $\zeroop(𝒙) = \symbf{0}$．
     \end{equation*}
     であることから従う．
 \end{proof}
+
+
+
+\subsection{エルミート演算子}
+\label{sec:Hermitian-operator}
+
+\begin{definition}[エルミート共役]
+    $\symcal{H}, \symcal{K}$をヒルベルト空間，
+    $\hat{T}$を$\symcal{H}$から$\symcal{K}$への線形演算子とする．
+    任意の$\symbf{x} \in \symcal{H}$, 
+    $\symbf{y} \in \symcal{K}$に対し，
+    \begin{equation}
+        \iparen{ \symbf{y}, \, \hat{T} \symbf{x} }_{\symcal{K}}
+            = \iparen{ \adjoint{\hat{T}} \symbf{y}, \, \symbf{x} }_{\symcal{H}}
+    \end{equation}
+    となるような演算子$\adjoint{\hat{T}} \colon \symcal{K} \to \symcal{H}$が存在するとき，
+    この$\adjoint{\hat{T}}$を，$\hat{T}$の\word{エルミート共役}(Hermitian adjoint)\index{えるみいと@エルミート!きようやく@共役}という．
+\end{definition}
+
+エルミート共役$\adjoint{\hat{T}}$が存在する条件について考えてみよう．
+$\hat{T}$が\refdfn-[有界]{dfn:bounded-operator}な演算子であるとすれば，
+$\symbf{y}$を固定した時の関数
+\[  
+    f_{\symbf{y}} (\symbf{x}) \coloneq \iparen{ \symbf{y}, \, \hat{T} \symbf{x} }_{\symcal{K}} 
+\]
+は$\symcal{K}$から$\symbb{K}$への線形汎関数であるから，
+\refdfn[リースの表現定理]{thm:Riesz-representation-theorem}より，
+あるベクトル$\symbf{h} \in \symcal{K}$が存在して，
+\[
+    \iparen{\symbf{y}, \, \hat{T} \symbf{x}}_{\symcal{K}}
+    = f_{\symbf{y}} (\symbf{x})
+    = \iparen{\symbf{h}, \symbf{x}}_{\symcal{H}}
+\]
+が成り立つ．
+したがって，
+任意の$\symbf{y} \in \symcal{K}$に対し，
+$\adjoint{\hat{T}} \symbf{y} = \symbf{h}$となるよう演算子$\adjoint{\hat{T}}$を定めればよい．
+$\adjoint{\hat{T}}$が線形であることは容易に示される．
+
+
+
 
 
 

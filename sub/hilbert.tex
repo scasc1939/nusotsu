@@ -6,8 +6,8 @@
 \section{ヒルベルト空間}
 
 ユークリッド空間$\symbb{R}^N, \symbb{C}^N$では，
-任意のベクトル列$\sequ{\symbf{v}_n}$が$\norm{\symbf{v}_m - \symbf{v}_n} \to 0$（$n, m \to \infty$）を満たすとき，
-この列はあるベクトル$\symbf{v}_* \in \symbb{R}^N \text{ or } \symbb{C}^N$に\refdfn[収束]{dfn:convergence-of-vector-sequence}する．
+任意のベクトル列$\sequ{𝒗_n}$が$\norm{𝒗_m - 𝒗_n} \to 0$（$n, m \to \infty$）を満たすとき，
+この列はあるベクトル$𝒗_* \in \symbb{R}^N \text{ or } \symbb{C}^N$に\refdfn[収束]{dfn:convergence-of-vector-sequence}する．
 自明のように思われるかもしれないが，
 一般のベクトル空間（ノルム空間，内積空間）ではこの事実が成り立たない．
 
@@ -80,12 +80,12 @@ $d(𝒙, 𝒚) \coloneq \norm{𝒙 - 𝒚}$で定義できるのであった（\
     $\symbb{C}$上のノルム空間$V$の部分空間を$W$とし，
     次元$n \coloneq \dim W$とおく．
     
-    $W$のコーシー列を$\sequ{\symbf{v}^{(k)}}[k \in \symbb{N}]$とおくと，
-    任意の$k$に対して$\symbf{v}^{(k)} \in W$であるから，
+    $W$のコーシー列を$\sequ{𝒗^{(k)}}[k \in \symbb{N}]$とおくと，
+    任意の$k$に対して$𝒗^{(k)} \in W$であるから，
     $W$の基底$\symbf{u}_1, \dots, \symbf{u}_n$を用いて
-    \[  \symbf{v}^{(k)} = c^{(k)}_1 \symbf{u}^{(k)}_1 + \dots + c^{(k)}_n \symbf{u}^{(k)}_n  \]
+    \[  𝒗^{(k)} = c^{(k)}_1 \symbf{u}^{(k)}_1 + \dots + c^{(k)}_n \symbf{u}^{(k)}_n  \]
     とかける．
-    $\sequ{\symbf{v}^{(k)}}[k]$がコーシー列であることを使うと，
+    $\sequ{𝒗^{(k)}}[k]$がコーシー列であることを使うと，
     各$i$に対して$\sequ{c^{(k)}_i}[k]$がコーシー列であることを示すことができる%
     \footnote{
         ここでは，$W$がノルム空間の有限次元部分空間であるときに，
@@ -93,16 +93,16 @@ $d(𝒙, 𝒚) \coloneq \norm{𝒙 - 𝒚}$で定義できるのであった（\
     }．
     すると，$\symbb{C}$の完備性\refthm{thm:completeness-of-copmlex-numbers}からこれは，
     $c^{(k)}_i \xrightarrow{k \to \infty} c^*_i \in \symbb{C}$に収束する．
-    そこで$\symbf{v}_* \coloneq c^*_1 \symbf{u}_1 + \dots + c^*_1 \symbf{u}_n \in W$とおくと，
+    そこで$𝒗_* \coloneq c^*_1 \symbf{u}_1 + \dots + c^*_1 \symbf{u}_n \in W$とおくと，
     \begin{equation*}
         \begin{split}
-            \norm{ \symbf{v}^{(k)} - \symbf{v}^* }
+            \norm{ 𝒗^{(k)} - 𝒗^* }
                 = \norm*{ \sum_{i = 1}^{n} \ab\big(c^{(k)}_i - c^*_i) \symbf{u}_i }
                 \leq \sum_{i=1}^{n} \, \abs[\big]{ c^{(k)}_i - c^*_i } \, \norm{ \symbf{u}_i }
                 \xrightarrow{k \to \infty} 0
         \end{split}
     \end{equation*}
-    より，$\symbf{v}^{(k)} \to \symbf{v}^* \in W$である．
+    より，$𝒗^{(k)} \to 𝒗^* \in W$である．
 \end{proof}
 
 したがって，
@@ -135,6 +135,31 @@ $d(𝒙, 𝒚) \coloneq \norm{𝒙 - 𝒚}$で定義できるのであった（\
 \end{corollary}
 
 
+内積の連続性から，以下がいえる．
+
+\begin{lemma}
+    \label{thm:lemma-of-inner-product-continuity}
+    $\symcal{F}$をヒルベルト空間$\symcal{H}$の部分集合とする．
+    $\symcal{H}$のベクトル$𝒗$が，
+    任意のベクトル$𝒙 \in \symcal{F}$に対して$\iparen{𝒗, 𝒙} = 0$を満たすなら，
+    任意のベクトル$𝒙_* \in \clsr{\symcal{F}}$に対しても$\iparen{𝒗, 𝒙_*} = 0$が成り立つ．
+\end{lemma}
+
+\begin{proof}
+    $𝒙_*$は$\symcal{F}$の閉包に属するベクトルだから，
+    $\symcal{F}$の点列$\sequ{𝒙_n}[n \in \symbb{N}]$が存在して，
+    $𝒙_n \xrightarrow{n \to \infty} 𝒙_*$となる．
+    このことと\refdfn[内積の連続性]{thm:inner-product-continuity}から，
+    \[
+        \iparen{𝒗, 𝒙_*}
+        = \iparen{𝒗, \   \lim_{n \to \infty} 𝒙_n}
+        = \lim_{n \to \infty} \iparen{𝒗, 𝒙_n}
+        = 0
+    \]
+    である．
+\end{proof}
+
+
 \begin{proposition}
     \label{thm:Hilbert-subspace-orthogonal-compliment}
     ヒルベルト空間$\symcal{H}$の部分集合\footnote{
@@ -144,39 +169,39 @@ $d(𝒙, 𝒚) \coloneq \norm{𝒙 - 𝒚}$で定義できるのであった（\
 \end{proposition}
 
 \begin{proof}
-    \textsf{$\symcal{F}$が部分ベクトル空間になること}　%
+    \bluehead{$\symcal{F}$が部分ベクトル空間になること}　%
     \cref{thm:vector-subspace-iff}の条件を満たすことは，
     内積の線形性から示される．
-    実際，$\symbf{v} \in \symcal{F}$を任意のベクトルとし，
-    これは，$\symbf{x}, \symbf{y} \in \symcal{F}^\perp$，
+    実際，$𝒗 \in \symcal{F}$を任意のベクトルとし，
+    これは，$𝒙, 𝒚 \in \symcal{F}^\perp$，
     $c \in \symbb{C}$をとると，
     \begin{gather*}
-        \iparen{\symbf{v}, \symbf{0}} = 0
+        \iparen{𝒗, \symbf{0}} = 0
         \\
-        \iparen{\symbf{v}, \  \symbf{x} + \symbf{y}}
-        = \iparen{\symbf{v}, \symbf{x}} + \iparen{\symbf{v}, \symbf{y}}
+        \iparen{𝒗, \  𝒙 + 𝒚}
+        = \iparen{𝒗, 𝒙} + \iparen{𝒗, 𝒚}
         = 0
         \\
-        \iparen{\symbf{v}, c \symbf{x}}
-        = c \iparen{\symbf{v}, \symbf{x}}
+        \iparen{𝒗, c 𝒙}
+        = c \iparen{𝒗, 𝒙}
         = 0
     \end{gather*}
     であるから，
     $\symbf{0} \in \symcal{F}^\perp$，
-    $\symbf{x} + \symbf{y} \in \symcal{F}^\perp$，
-    かつ$c \symbf{x} \in \symcal{F}^\perp$である．
+    $𝒙 + 𝒚 \in \symcal{F}^\perp$，
+    かつ$c 𝒙 \in \symcal{F}^\perp$である．
 
-    \textsf{$\symcal{F}$が閉集合であること}　%
-    $\symcal{F}$の点列$\sequ{x_n}[n \in \symbb{N}]$が$\symbf{x}_* \in \symcal{F}$に収束することは，
+    \bluehead{$\symcal{F}$が閉集合であること}　%
+    $\symcal{F}$の点列$\sequ{𝒙_n}[n \in \symbb{N}]$が$𝒙_* \in \symcal{F}$に収束することは，
     \refdfn[内積の連続性]{thm:inner-product-continuity}からわかる．
-    つまり，任意の$\symbf{v} \in \symcal{F}$に対して
+    つまり，任意の$𝒗 \in \symcal{F}$に対して
     \begin{equation*}
-        \iparen{\symbf{v}, \symbf{x}_*}
-        = \iparen{\symbf{v}, \lim_{n \to \infty} \symbf{x}_n}
-        = \lim_{n \to \infty} \iparen{\symbf{v}, \symbf{x}_n}
+        \iparen{𝒗, 𝒙_*}
+        = \iparen{𝒗, \lim_{n \to \infty} 𝒙_n}
+        = \lim_{n \to \infty} \iparen{𝒗, 𝒙_n}
         = 0
     \end{equation*}
-    だから，$\symbf{x}_* = \lim_{n \to \infty} \symbf{x}_n \in \symcal{F}^\perp$である．
+    だから，$𝒙_* = \lim_{n \to \infty} 𝒙_n \in \symcal{F}^\perp$である．
 \end{proof}
 
 
@@ -188,78 +213,102 @@ $d(𝒙, 𝒚) \coloneq \norm{𝒙 - 𝒚}$で定義できるのであった（\
 
 \begin{proof}
     \refdfn-[直交補空間]{dfn:orthogonal-compliment}の定義から，
-    $\symbf{x} \in \symcal{G}^\perp$ならば$\symbf{x} \in \symcal{F}^\perp$が示される．
+    $𝒙 \in \symcal{G}^\perp$ならば$𝒙 \in \symcal{F}^\perp$が示される．
 \end{proof}
 
 
 \begin{corollary}
     \label{thm:Hilbert-subset-orthogonal-complement-of-closure}
     ヒルベルト空間の部分集合$\symcal{F}$について，
-    $(\closureop{\symcal{F}})^\perp = \symcal{F}^\perp$．
+    $(\clsr{\symcal{F}})^\perp = \symcal{F}^\perp$．
 \end{corollary}
 
 \begin{proof}
-    閉包の性質から$\symcal{F} \subset \closureop{\symcal{F}}$なので，
-    \cref{thm:Hilbert-subset-inclusion-orthogonal-compliment}より$(\closureop{\symcal{F}})^\perp \subset \symcal{F}^\perp$がいえる．
+    閉包の性質から$\symcal{F} \subset \clsr{\symcal{F}}$なので，
+    \cref{thm:Hilbert-subset-inclusion-orthogonal-compliment}より$(\clsr{\symcal{F}})^\perp \subset \symcal{F}^\perp$がいえる．
     逆の包含を示す．
-    $\symbf{x} \in \symcal{F}^\perp$とすると，
-    任意の$\symbf{v} \in \symcal{F}$に対し，$\iparen{\symbf{v}, \symbf{x}} = 0$である．
-    ここから任意の$\symbf{v}_* \in \closureop{\symcal{F}}$に対して$\iparen{\symbf{v}_*, \symbf{x}} = 0$を示せば，
-    $\symbf{x} \in (\closureop{\symcal{F}})^\perp$がいえる．
-    これは内積の連続性から示される．
+    $𝒙 \in \symcal{F}^\perp$とすると，
+    任意の$𝒗 \in \symcal{F}$に対し，$\iparen{𝒗, 𝒙} = 0$である．
+    よって，\cref{thm:lemma-of-inner-product-continuity}より，
+    $𝒗_* \in \clsr{\symcal{F}}$に対しても$\iparen{𝒗_*, 𝒙} = 0$であるから，
+    $𝒙 \in (\clsr{\symcal{F}})^\perp$がいえる．
 \end{proof}
 
 
 \begin{proposition}
+    \label{thm:Hilbert-subspace-double-orthogonal-compliment}
     ヒルベルト空間$\symcal{H}$の部分ベクトル空間$\symcal{F}$について，
-    $(\symcal{F}^\perp)^\perp = \closureop{\symcal{F}}$である．
+    $(\symcal{F}^\perp)^\perp = \clsr{\symcal{F}}$である．
 \end{proposition}
 
 \begin{proof}
-    $\symbf{v} \in (\symcal{F}^\perp)^\perp$をとる．
-    $\closureop{\symcal{F}}$は閉部分ベクトル空間であるから，
-    \refdfn[正射影定理]{thm:Hilbert-projection-theorem}より，
+    
+    $\clsr{\symcal{F}}$は閉部分ベクトル空間であるから，
+    任意の$𝒛 \in \symcal{H}$は\refdfn[正射影定理]{thm:Hilbert-projection-theorem}より，
     \[
-        \symbf{z} \in \symbf{x} + \symbf{y},
+        𝒛 = 𝒙 + 𝒚,
         \quad 
         \text{where } 
-        \symbf{x} \in \closureop{\symcal{F}}, \  
-        \symbf{y} \in (\closureop{\symcal{F}})^\perp = \symcal{F}^\perp
+        𝒙 \in \clsr{\symcal{F}}, \  
+        𝒚 \in (\clsr{\symcal{F}})^\perp = \symcal{F}^\perp
     \]
-    
+    と一意に書ける（途中，\cref{thm:Hilbert-subset-orthogonal-complement-of-closure}を使った．）．
+    そこで$𝒛 = 𝒗 \in (\symcal{F}^\perp)^\perp$とすれば，
+    $𝒚 = \symbf{0}$でなければならないので，
+    \[  𝒗 = 𝒙  \in \clsr{\symcal{F}}  \]
+    である．したがって$(\symcal{F}^\perp)^\perp \subset \clsr{\symcal{F}}$がいえる．
+    一方，閉包$\clsr{\symcal{F}}$は$\symcal{F}$を含む閉集合のうち最小のものであるから，
+    $\clsr{\symcal{F}} \subset (\symcal{F}^\perp)^\perp$である．
 \end{proof}
 
+
+
+稠密であることを判定するために有用な命題を挙げる．
 
 \begin{proposition}
     ヒルベルト空間$\symcal{H}$の部分ベクトル空間$\symcal{F}$が\refdfn[稠密]{dfn:dense}である必要十分条件は，
-    $\symcal{F}^\perp = \{ \symbf{0} \}$となることである．
+    $\symcal{F}^\perp = \{ \symbf{0} \}$となることである\cite[命題1.24]{arai-1997}．
 \end{proposition}
 
 \begin{proof}
-    \textsf{必要}　$\symcal{F}$が稠密であるとする．
-    任意の$\symbf{x} \in \symcal{H}$に対し，
-    $\symcal{F}$の点列$\sequ{\symbf{x}_n}$が存在して，
-    $\symbf{x}_n \xrightarrow{n \to \infty} \symbf{x}$となる．
-    そこで，$\symbf{v} \in \symcal{F}^\perp$を任意にとると，
-    直交補空間の定義から，すべての$\symbf{x}_n \in \symcal{F}$に対して$\iparen{\symbf{v}, \symbf{x}} = 0$である．
-    ここで，\refdfn[内積の連続性]{thm:inner-product-continuity}より，
-    \begin{equation*}
-        \iparen{\symbf{v}, \symbf{x}}
-        = \iparen{\symbf{v}, \  \lim_{n \to \infty} \symbf{x}_n}
-        = \lim_{n \to \infty} \iparen{\symbf{v}, \symbf{x}_n}
-        = 0
-    \end{equation*}
-    $\symbf{x} \in \symcal{H}$は任意であったので，$\symbf{v} = \symbf{0}$．
+    \bluehead{必要}\quad $\symcal{F}$が稠密であるとする．
+    つまり$\clsr{\symcal{F}} = \symcal{H}$である．
+    このとき，$𝒗 \in \symcal{F}^\perp$を任意にとると，
+    すべての$𝒙 \in \symcal{F}$に対して$\iparen{𝒗, 𝒙} = 0$である．
+    ここで\cref{thm:lemma-of-inner-product-continuity}を使うと，
+    任意の$𝒙_* \in \symcal{H} = \clsr{\symcal{F}}$に対して$\iparen{𝒙_*, 𝒗}$とわかる．
+    したがって$𝒗 = \symbf{0}$がいえた．
 
-    \textsf{十分}　$\symcal{F}^\perp$は閉部分ベクトル空間である\refdfn{thm:Hilbert-subspace-orthogonal-compliment}から，
-    \refdfn[正射影定理]{thm:lemma-of-projection-theorem}より，
-    任意の$\symbf{z} \in \symcal{F}^\perp$は
+    \bluehead{十分}\quad $\symcal{F}^\perp$は閉部分ベクトル空間である\refdfn{thm:Hilbert-subspace-orthogonal-compliment}から，
+    \refdfn[正射影定理]{thm:Hilbert-projection-theorem}より，
+    任意の$𝒛 \in \symcal{H}$は
     \[  
-        \symbf{z} = \symbf{x} + \symbf{y}, 
+        𝒛 = 𝒙 + 𝒚, 
         \quad \text{where }
-        \symbf{x} \in \symcal{F}^\perp, \  \symbf{y} \in (\symcal{F}^\perp)^\perp
+        𝒙 \in \symcal{F}^\perp, \  
+        𝒚 \in (\symcal{F}^\perp)^\perp
     \]
+    とかける．
+    仮定より$𝒙 = \symbf{0}$であり，
+    また\cref{thm:Hilbert-subspace-double-orthogonal-compliment}より$(\symcal{F}^\perp)^\perp = \clsr{\symcal{F}}$であるので，
+    \[  
+        𝒛 = \phantom{𝒙 \mathbin{}+}\mathbin{} 𝒚, 
+        \quad \text{where }
+        \phantom{𝒙 \in \symcal{F}^\perp,\mathpunct{}} \ 
+        \mathrlap{𝒚 \in \clsr{\symcal{F}}}
+        \phantom{𝒚 \in (\symcal{F}^\perp)^\perp}
+    \]
+    すなわち$𝒛 \in \clsr{\symcal{F}}$だから，$\symcal{H} \subset \clsr{\symcal{F}}$である．
 \end{proof}
+
+
+\begin{proposition}
+    ヒルベルト空間$\symcal{H}$の部分集合$\symcal{F}, \symcal{G}$について，
+    $\symcal{F} \subset \symcal{G}$であり，
+    $\symcal{F}$が$\symcal{G}$で稠密，
+    $\symcal{G}$が$\symcal{H}$で稠密なら，
+    $\symcal{F}$は$\symcal{H}$で稠密である．
+\end{proposition}
 
 
 
@@ -320,34 +369,34 @@ $d(𝒙, 𝒚) = \norm{𝒙 - 𝒚} = \sqrt{\iparen{𝒙 - 𝒚, \  𝒙 - 𝒚}
 \begin{theorem}[射影定理]
     \label{thm:Hilbert-projection-theorem}
     ヒルベルト空間$\symcal{H}$に対し，閉部分ベクトル空間$\symcal{L} \subset \symcal{H}$とその\refdfn[直交補空間]{dfn:orthogonal-compliment}$\symcal{L}^\perp$をとる．
-    このとき，任意のベクトル$\symbf{z}$に対し，
-    $\symbf{x} \in \symcal{L}$と$\symbf{y} \in \symcal{L}^\perp$がそれぞれただひとつ存在し，
-    $\symbf{z} = \symbf{x} + \symbf{y}$とかける．
+    このとき，任意のベクトル$𝒛 \in \symcal{H}$に対し，
+    $𝒙 \in \symcal{L}$と$𝒚 \in \symcal{L}^\perp$がそれぞれただひとつ存在し，
+    $𝒛 = 𝒙 + 𝒚$とかける．
     すなわち$\symcal{H} = \symcal{L} \oplus \symcal{L}^\perp$と\refdfn[直和分解]{dfn:direct-sum-of-vector-space}できる．
 \end{theorem}
 
 \begin{proof}
-    $\symbf{z} \in \symcal{H}$とする．
-    \cref{thm:lemma-of-projection-theorem}の方法で$\symbf{x} \in \symcal{L}$をとる．
-    このとき$\symbf{y} \coloneq \symbf{z} - \symbf{x} \in \symcal{L}^\perp$を示せばよい．
+    $𝒛 \in \symcal{H}$とする．
+    \cref{thm:lemma-of-projection-theorem}の方法で$𝒙 \in \symcal{L}$をとる．
+    このとき$𝒚 \coloneq 𝒛 - 𝒙 \in \symcal{L}^\perp$を示せばよい．
     任意の$\lambda \in \symbb{R}$および$\symbf{a} \in \symcal{L}$に対し，
     \begin{equation*}
         \begin{split}
-            0 \leq \norm{\symbf{y}}^2
-                &= \norm{\symbf{z} - \symbf{x}}^2  \\
-                &\leq \norm{\symbf{z} - (\symbf{x} - \lambda \symbf{a})}^2
-                    \quad \text{（$\symbf{x} - \lambda \symbf{a} \in \symcal{L}$，
-                                $\norm{\symbf{z} - \symbf{x}}$の最小性）} \\
-                &= \norm{\symbf{y} + \lambda \symbf{a}}^2  \\
-                &= \norm{\symbf{y}}^2 + 2 \lambda \Real \iparen{\symbf{y}, \symbf{a}} + \lambda^2 \norm{\symbf{a}}^2  \\
+            0 \leq \norm{𝒚}^2
+                &= \norm{𝒛 - 𝒙}^2  \\
+                &\leq \norm{𝒛 - (𝒙 - \lambda \symbf{a})}^2
+                    \quad \text{（$𝒙 - \lambda \symbf{a} \in \symcal{L}$，
+                                $\norm{𝒛 - 𝒙}$の最小性）} \\
+                &= \norm{𝒚 + \lambda \symbf{a}}^2  \\
+                &= \norm{𝒚}^2 + 2 \lambda \Real \iparen{𝒚, \symbf{a}} + \lambda^2 \norm{\symbf{a}}^2  \\
         \end{split}
     \end{equation*}
     したがって，
-    \(  2 \lambda \Real \iparen{\symbf{y}, \symbf{a}} + \lambda^2 \norm{\symbf{a}}^2  \geq  0  \)
-    であるが，$\lambda \in \symbb{R}$は任意なので，$\Real \iparen{\symbf{y}, \symbf{a}} = 0$．
-    また，$\lambda \to \iu \lambda$として同様に考えると，$\Imaginary \iparen{\symbf{y}, \symbf{a}} = 0$．
-    よって$\iparen{\symbf{y}, \symbf{a}} = 0$である．
-    $\symbf{a} \in \symcal{L}$は任意だったので，$\symbf{y} \in \symcal{L}$が示された．
+    \(  2 \lambda \Real \iparen{𝒚, \symbf{a}} + \lambda^2 \norm{\symbf{a}}^2  \geq  0  \)
+    であるが，$\lambda \in \symbb{R}$は任意なので，$\Real \iparen{𝒚, \symbf{a}} = 0$．
+    また，$\lambda \to \iu \lambda$として同様に考えると，$\Imaginary \iparen{𝒚, \symbf{a}} = 0$．
+    よって$\iparen{𝒚, \symbf{a}} = 0$である．
+    $\symbf{a} \in \symcal{L}$は任意だったので，$𝒚 \in \symcal{L}$が示された．
 \end{proof}
 
 
@@ -355,9 +404,10 @@ $d(𝒙, 𝒚) = \norm{𝒙 - 𝒚} = \sqrt{\iparen{𝒙 - 𝒚, \  𝒙 - 𝒚}
 \subsection{ヒルベルト空間の基底}
 
 一般のベクトル空間には\cref{thm:basis-exist}より基底が存在する．
-また，有限次元の内積空間では，\cref{thm:Gram-Schmidt-process}によって正規直交基底を構成できる．
+また，有限次元の内積空間では，\cref{thm:Gram-Schmidt-process}によって\refdfn[正規直交基底]{dfn:orthonormal-basis}を構成できる．
 
-それでは，無限次元の内積空間に正規直交基底が存在するのか？
+無限次元のヒルベルト空間においては，
+正規直交基底の概念を拡張した``完全正規直交系''を考える．
 
 それを考えるためには，
 まずベクトルの無限級数を定義しよう．
@@ -379,41 +429,51 @@ $d(𝒙, 𝒚) = \norm{𝒙 - 𝒚} = \sqrt{\iparen{𝒙 - 𝒚, \  𝒙 - 𝒚}
 \end{definition}
 
 
-ベクトルの無限級数が収束する十分条件は，
+\begin{definition}[正規直交系]
+    \refdfn[高々可算個]{dfn:at-most-countable}のベクトルの組$\sequ{\symbf{\varphi}_n}[n]$が
+    \begin{equation}
+        \iparen{\symbf{\varphi}_m, \symbf{\varphi}_n}
+            = \kdelta_{mn}
+    \end{equation}
+    を満たすとき，これを\word{正規直交系}という．
+\end{definition}
+
+
+正規直交系の無限級数が収束する十分条件は，
 その係数の和が絶対収束することである．
 
 \begin{lemma}
-    ヒルベルト空間$\symcal{H}$の正規直交系$\sequ{\symbf{u}_n}[n \in \symbb{N}]$について，
+    ヒルベルト空間$\symcal{H}$の正規直交系$\sequ{\symbf{\varphi}_n}[n \in \symbb{N}]$について，
     $\sum_{n=1}^{\infty} \abs{c_n} < \infty$であれば，
     無限級数
     \begin{equation*}
-        \sum_{n=1}^{\infty} c_n \symbf{u}_n
+        \sum_{n=1}^{\infty} c_n \symbf{\varphi}_n
     \end{equation*}
-    はあるベクトル$\symbf{v} \in \symcal{H}$に収束する．
+    はあるベクトル$𝒗 \in \symcal{H}$に収束する．
     さらにこのとき，
     \begin{equation*}
-        \norm{\symbf{v}} = \sum_{n=1}^{\infty} \abs{c_n}
+        \norm{𝒗} = \sum_{n=1}^{\infty} \abs{c_n}
     \end{equation*}
 \end{lemma}
 
 \begin{proof}
-    部分和$\symbf{v}_N \coloneq \sum_{n=1}^{N} c_n \symbf{u}_n$について，
+    部分和$𝒗_N \coloneq \sum_{n=1}^{N} c_n \symbf{\varphi}_n$について，
     三角不等式より
     \begin{equation*}
-        \norm{\symbf{v}_M - \symbf{v}_N}^2
-        = \norm*{ \sum_{n=N+1}^{M} c_n \symbf{u}_n }^2
-        \leq \sum_{n=N+1}^{M} \abs{c_n}^2 \norm{\symbf{u}_n}^2
+        \norm{𝒗_M - 𝒗_N}^2
+        = \norm*{ \sum_{n=N+1}^{M} c_n \symbf{\varphi}_n }^2
+        \leq \sum_{n=N+1}^{M} \abs{c_n}^2 \norm{\symbf{\varphi}_n}^2
         = \sum_{n=N+1}^{M} \abs{c_n}^2
         \xrightarrow{M, N \to \infty} 0
     \end{equation*}
-    （ただし$M > N$）であるから，点列$\sequ{\symbf{v}_N}$はコーシー列をなす．
+    （ただし$M > N$）であるから，点列$\sequ{𝒗_N}$はコーシー列をなす．
     したがって$\symcal{H}$の完備性から，
-    これは$\symbf{v}_N \to \symbf{v} \in \symcal{H}$と収束する．
-    一方，\refthm[内積の連続性]{thm:inner-product-continuity}および$\sequ{\symbf{u}_n}$が正規直交系であることから，
+    これは$𝒗_N \to 𝒗 \in \symcal{H}$と収束する．
+    一方，\refthm[内積の連続性]{thm:inner-product-continuity}および$\sequ{\symbf{\varphi}_n}$が正規直交系であることから，
     \begin{equation*}
-        \norm{\symbf{v}} 
-        = \lim_{N \to \infty} \norm{\symbf{v}_N}
-        = \lim_{N \to \infty} \norm*{ \sum_{n=1}^{N} c_n \symbf{u}_n }
+        \norm{𝒗} 
+        = \lim_{N \to \infty} \norm{𝒗_N}
+        = \lim_{N \to \infty} \norm*{ \sum_{n=1}^{N} c_n \symbf{\varphi}_n }
         = \lim_{N \to \infty} \sum_{n=1}^{N} \abs{c_n}
     \end{equation*}
     がいえる．
@@ -422,20 +482,20 @@ $d(𝒙, 𝒚) = \norm{𝒙 - 𝒚} = \sqrt{\iparen{𝒙 - 𝒚, \  𝒙 - 𝒚}
 
 \begin{definition}
     $\symcal{H}$をヒルベルト空間とする．
-    $\symcal{H}$に属する\refdfn[可算無限個]{dfn:countably-infinite}のベクトルの組$(\symbf{u}_n)_{n=1}^{\infty}$が，
+    $\symcal{H}$に属する\refdfn[可算無限個]{dfn:countably-infinite}のベクトルの組$(\symbf{\varphi}_n)_{n=1}^{\infty}$が，
     任意のベクトル$𝒗 \in \symcal{H}$を
     \begin{equation}
-        𝒗 = \sum_{n=1}^{\infty} c_n \symbf{u}_n,
-        \quad c_n \coloneq \iparen{𝒗, \symbf{u}_n}
+        𝒗 = \sum_{n=1}^{\infty} c_n \symbf{\varphi}_n,
+        \quad c_n \in \symbb{C}
     \end{equation}
     とあらわせるとき，
-    $\sequ{\symbf{u}_n}[n \in \symbb{N}]$を%
+    $\sequ{\symbf{\varphi}_n}[n \in \symbb{N}]$を%
     \word{完全正規直交系}(complete orthonormal system)%
     \index{かんせんせいきちよつこうけい@完全正規直交系}%
     という．
 \end{definition}
 
-$\sequ{\symbf{u}_\lambda}[\lambda \in \Lambda]$がベクトル空間$V$の\refdfn[基底]{dfn:basis}であるとは，
+$\sequ{\symbf{u}_\lambda}[\lambda \in \Lambda]$がベクトル空間$V$の\refdfn-[基底]{dfn:basis}であるとは，
 任意の$𝒗 \in V$が\emph{有限個を除きゼロである}スカラーの組$\sequ{c_\lambda}[\lambda \in \Lambda]$（$c_\lambda \in \symbb{K}$）を用いて
 \[  𝒗 = \sum_{\lambda \in \Lambda} c_\lambda \symbf{u}_\lambda  \]
 と有限和でかけることだった．
@@ -445,10 +505,56 @@ $\sequ{\symbf{u}_\lambda}[\lambda \in \Lambda]$がベクトル空間$V$の\refdf
 正規直交基底を指して完全正規直交系という．
 
 
+\begin{proposition}
+    \label{thm:complete-orthonormal-system-iff}
+    ヒルベルト空間$\symcal{H}$の正規直交系を$\{ \symbf{\varphi}_n \}$とする．
+    以下は同値\cite[\S 3.5 c)]{iwanami-functional}．
+    \begin{subequations}
+    \begin{enumerate}
+        \item \label{thm:complete-orthonormal-system-iff:definition}
+            $\{ \symbf{\varphi}_n \}$は完全正規直交系である．
+        \item \label{thm:complete-orthonormal-system-iff:expansion}
+            任意のベクトル$\symbf{v} \in \symcal{H}$に対し，
+            \begin{equation*}
+                𝒗 = \sum_n \iparen{𝒗, \symbf{\varphi}_n} \symbf{\varphi}_n
+            \end{equation*}
+        \item \label{thm:complete-orthonormal-system-iff:norm}
+            任意のベクトル$\symbf{v} \in \symcal{H}$に対し，
+            \begin{equation}
+                \label{eq:Parseval-identity-norm}
+                \norm{𝒗}^2 = \sum_n \abs{\iparen{𝒗, \symbf{\varphi}_n}}^2
+            \end{equation}
+        \item \label{thm:complete-orthonormal-system-iff:inner-product}
+            任意のベクトル$\symbf{u}, \symbf{v} \in \symcal{H}$に対し，
+            \begin{equation}
+                \label{eq:Parseval-identity-inner-product}
+                \iparen{\symbf{u}, 𝒗} = \sum_n \conj{\iparen{\symbf{u}, \symbf{\varphi}_n}} \iparen{\symbf{v}, \symbf{\varphi}_n}
+            \end{equation}
+        \item \label{thm:complete-orthonormal-system-iff:sequence}
+            任意の$n$に対し，$\iparen{\symbf{u}, \symbf{\varphi}_n} = 0$なら$\symbf{u} = \symbf{0}$である．
+    \end{enumerate}
+    \end{subequations}
+    なお，\cref{eq:Parseval-identity-norm}または\cref{eq:Parseval-identity-inner-product}を，
+    \word{パーセヴァルの等式}(Parseval's identity)\index{はあせうあるのとうしき@パーセヴァルの等式}という．
+\end{proposition}
+
+
+\begin{proof}
+    \bluehead{\cref*{thm:complete-orthonormal-system-iff:definition}$\implies$\cref*{thm:complete-orthonormal-system-iff:expansion}}\quad
+
+    \bluehead{\cref*{thm:complete-orthonormal-system-iff:expansion}$\implies$\cref*{thm:complete-orthonormal-system-iff:inner-product}}\quad
+
+    \bluehead{\cref*{thm:complete-orthonormal-system-iff:inner-product}$\implies$\cref*{thm:complete-orthonormal-system-iff:norm}$\implies$\cref*{thm:complete-orthonormal-system-iff:sequence}}\quad
+    これは明らかである．
+
+    \bluehead{\cref*{thm:complete-orthonormal-system-iff:sequence}$\implies$\cref*{thm:complete-orthonormal-system-iff:definition}}
+
+\end{proof}
+
+
 \begin{theorem}
     \label{thm:basis-of-Hilbert-space}
-    ヒルベルト空間$\symcal{H}$が\refdfn[可分]{dfn:separable}であれば，
-    $\symcal{H}$は正規直交基底をもつ．
+    \refdfn[可分]{dfn:separable}なヒルベルト空間は完全正規直交系をもつ．
 \end{theorem}
 
 

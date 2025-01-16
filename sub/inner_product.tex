@@ -336,7 +336,7 @@ $𝒗 = 𝒙 + 𝒚$と一意にあらわせそうである．
     $V$の点列$\sequ{𝒖_n}$，$\sequ{𝒗_n}$および$\symbb{C}$の点列（数列）$\sequ{c_n}$をとり，
     $𝒖_n \to 𝒖_*$，$𝒗_n \to 𝒗_*$，$c_n \to c_*$（$n \to \infty$）とする．
 
-    \textsf{加法の連続性}\quad
+    \bluehead{加法の連続性}\quad
     \begin{equation*}
         \norm{𝒖_n \vecplus 𝒗_n} \xrightarrow{n \to \infty} \norm{𝒖_* \vecplus 𝒗_*}
     \end{equation*}
@@ -347,7 +347,7 @@ $𝒗 = 𝒙 + 𝒚$と一意にあらわせそうである．
             \xrightarrow{n \to \infty} 0
     \end{equation*}
 
-    \textsf{スカラー倍の連続性}\quad
+    \bluehead{スカラー倍の連続性}\quad
     \begin{equation*}
         \norm{c_n 𝒖_n} \xrightarrow{n \to \infty} \norm{c_* 𝒖_*}
     \end{equation*}
@@ -549,12 +549,15 @@ $\theta$を$𝒙$と$𝒚$のなす\word{角度}(angle)\index{かくと@角度}�
 内積空間においては，よい性質をもつ基底をとることができる．
 
 \begin{definition}[正規直交基底]
+    \label{dfn:orthonormal-basis}
     $V$を有限次元の内積空間とする．
     $V$の基底$ \{ 𝒗_1, \dots, 𝒗_n \} \subset V$が次の性質を満たすとき，
-    \word{正規直交基底}[せい|き|ちょっ|こう|き|てい](orthonormal basis)という．
+    \word{正規直交基底}[せい|き|ちょっ|こう|き|てい](orthonormal basis)%
+    \index{せいきちよつこうきてい@正規直交基底}%
+    という．
     \begin{equation}
         \label{eq:orthonormal-basis}
-        \iparen{𝒗_i, 𝒗_j} = \delta_{i,j} 
+        \iparen{𝒗_i, 𝒗_j} = \kdelta_{i,j} 
             \quad \text{Kronecker delta\refdfn{dfn:Kronecker-delta}}
     \end{equation}
 \end{definition}
