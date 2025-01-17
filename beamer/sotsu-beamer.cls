@@ -1,7 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{sotsu-beamer}
 
-\LoadClass[unicode,10pt]{beamer}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
+\ProcessOptions\relax
+\LoadClass[unicode]{beamer}
 
 % 日本語フォント
 \RequirePackage[deluxe]{luatexja-preset}
@@ -16,21 +18,25 @@
 \definecolor{nualert}{RGB}{255, 145, 0}
 
 
-% 数式フォント
-\RequirePackage{unicode-math}
+\renewcommand{\theequation}{*\arabic{equation}}
 
-\setmainfont{STIX Two Text}[
-    Extension=.otf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-BoldItalic]
-\setmathfont{STIX Two Math}
-\setmathfont{XCharterMath}[range=\symscr]
+
+% 数式フォント
+% \RequirePackage{unicode-math}
+
+% \setmainfont{STIX Two Text}[
+%     Extension=.otf,
+%     UprightFont=*-Regular,
+%     BoldFont=*-Bold,
+%     ItalicFont=*-Italic,
+%     BoldItalicFont=*-BoldItalic]
+% \setmathfont{STIX Two Math}
+% \setmathfont{XCharterMath}[range=\symscr]
 
 
 % 画像
 \RequirePackage{graphicx}
+
 
 
 % beamer
@@ -97,7 +103,10 @@
         {use = structure, 
          fg = nualert, 
          bg = structure.bg}
-
+\setbeamerfont 
+    {alerted text}
+        {size=\normalsize, series=\bfseries}
+     
 \setbeamercolor
     {block title alerted}
         {use={alerted text},

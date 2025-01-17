@@ -1,4 +1,15 @@
-\documentclass{sotsu-beamer}
+\documentclass[
+    10pt,
+    % handout
+    ]{sotsu-beamer}
+
+\usepackage{../sotsu-symb}
+
+\usepackage{multicol}
+
+\setmathfont{STIX Two Math}
+\setmathfont{XCharterMath}[range=\symscr]
+
 
 \begin{document}
 
@@ -14,16 +25,336 @@
 \end{frame}
 
 
-\section{セクション}
-
-\subsection{サブセクション}
+\section{なぜ線形代数？}
 
 
-\begin{frame}{テスト}
+\begin{frame}{量子力学の基本方程式}
 
-    テスト
+    \structure{量子力学の基本方程式}といえば？
+
+    \pause
+
+    \begin{block}{シュレーディンガー方程式}
+        \begin{equation}
+            \label{eq:time-undependent-Schroedinger-equation}
+            \ab[ \frac{\hbar^2}{2m} \ab( \pdv[2]{}{x} + \pdv[2]{}{y} + \pdv[2]{}{z} ) + V(\symbf{r})] \psi(\symbf{r}) = E \psi(\symbf{r})
+        \end{equation}
+    \end{block}
+
+    \pause
+    
+    \eqref{eq:time-undependent-Schroedinger-equation}の解を$\psi(\symbf{r}), \varphi(\symbf{r})$とすると，
+    任意の複素数$a, b$に対して，
+    \[  \xi(\symbf{r}) \coloneq a \psi(\symbf{r}) + b \varphi(\symbf{r}) 
+        \quad \text{（$a, b$は複素数）}  \]
+    は\eqref{eq:time-undependent-Schroedinger-equation}の解になっている．
+
+    \pause
+
+    $\implies$\alert{\eqref{eq:time-undependent-Schroedinger-equation}は線型方程式}．
 
 \end{frame}
+
+
+
+\begin{frame}
+    \label{frame:psi-is-vector}
+    \frametitle{数学的には・・・}
+
+    \begin{center}
+        方程式\eqref{eq:time-undependent-Schroedinger-equation}の解$\psi(\symbf{r})$全体は，
+        \structure{ベクトル空間}をなす．
+    \end{center}
+
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{ベクトル空間とは}
+
+    数ベクトル
+    \begin{equation*}
+        \symbf{x} = 
+        \begin{pmatrix}
+            x_1 \\ x_2  \\ x_3
+        \end{pmatrix}
+        \quad
+        \text{（$x_1, x_2, x_3$は複素数）}
+    \end{equation*}
+    とする．
+
+    このとき，
+    \begin{equation*}
+        a \symbf{x} + b \symbf{y}
+        = \begin{pmatrix}
+            a x_1 + b y_1  \\
+            a x_2 + b y_2  \\
+            a x_3 + b y_3
+        \end{pmatrix}
+    \end{equation*}
+    もベクトル．
+
+    \pause
+
+    $\symbf{x}$はある意味\alert{シュレーディンガー方程式の解$\symbf{\psi}$に似ている}．
+
+
+
+    \framebreak
+
+    ふつうの縦ベクトルについて考えれば当たり前のこと：
+    \begin{block}{ベクトル空間の公理}
+        $\symbf{\psi}, \symbf{\varphi}, \symbf{\xi}$を\structure{ベクトル}，
+        $a, b, c$を\structure{スカラー}（複素数）とする．
+        \begin{enumerate}
+            \begin{multicols}{2}
+                \item $(\symbf{\psi} + \symbf{\varphi}) + \symbf{\xi} = \symbf{\psi} + (\symbf{\varphi} + \symbf{\xi})$
+                \item $\symbf{\psi} + \symbf{0} = \symbf{0} + \symbf{\psi} = \symbf{\psi}$
+                \item $\symbf{\psi} + (-\symbf{\psi}) = \symbf{0}$
+                \item $\symbf{\psi} + \symbf{\varphi} = \symbf{\varphi} + \symbf{\psi}$
+                \item $c (\symbf{\psi} + \symbf{\varphi}) = c \symbf{\psi} + c \symbf{\varphi}$
+                \item $(a + b) \symbf{\psi} = a \symbf{\psi} + b \symbf{\psi}$
+                \item $(ab) \symbf{\psi} = a(b\symbf{\psi})$
+                \item $1 \symbf{\psi} = \symbf{\psi}$
+            \end{multicols}
+        \end{enumerate}
+    \end{block}
+
+    \pause
+
+    \alert{逆に，1--8を満たすすものは，ぜんぶ「\structure{ベクトル}」ということにする}．
+    ベクトル全体がつくる集合を\structure{ベクトル空間}という．
+    
+    $\implies$\ref{frame:psi-is-vector}ページで考えた$\symbf{\psi}$もベクトル．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{ベクトルの例}
+
+    \begin{itemize}
+        \item $N$次の縦ベクトル：$(a_1 \,\, a_2 \,\, \cdots \,\, a_N)$
+        \item $N$次多項式：$p(x) = a_N x^N + a_{N-1} x^{N-1} + \dots + a_1 x + a_0$
+        \item 線形方程式の解：$\varphi(x_1, \dots, x_N)$
+    \end{itemize}
+
+    
+
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{内積}
+
+    縦ベクトルがもっている重要な性質：\structure{内積}の復習．
+
+    \begin{block}{縦ベクトルの内積}
+        $\symbf{x}, \symbf{y}$：$N$次元ベクトル
+        \begin{equation}
+            \label{eq:Euclid-inner-product}
+            \iparen{\symbf{x}, \symbf{y}}
+                \coloneq \sum_{i=1}^{N} x_i^* y_i
+        \end{equation}
+        を\structure{内積}という．
+    \end{block}
+
+    ベクトルの\structure{長さ}は，
+    \begin{equation}
+        \label{eq:Euclid-norm}
+        \norm{\symbf{x}} \coloneq \sqrt{\iparen{\symbf{x}, \symbf{x}}}
+    \end{equation}
+
+    \begin{alertblock}{注意}
+        \eqref{eq:Euclid-norm}の右辺の$\sqrt{\quad}$の中身$\geq 0$になるように，
+        \eqref{eq:Euclid-inner-product}の$x_i$を複素共役にしてある．
+    \end{alertblock}
+
+    \framebreak
+
+    \eqref{eq:Euclid-inner-product}は次の性質を満たす．
+
+    \begin{block}{内積の公理}
+        ベクトル$\symbf{\psi}, \symbf{\varphi}, \symbf{\xi}$と
+        スカラー（複素数）$a, b$について
+        \begin{enumerate}
+            \item $\iparen{\symbf{\psi}, \  a\symbf{\varphi} + b\symbf{\xi}} = a\iparen{\symbf{\psi}, \symbf{\xi}} + b\iparen{\symbf{\psi}, \symbf{\varphi}}$（\structure{線形性}）
+            \item $\iparen{\symbf{\psi}, \symbf{\varphi}} = \conj{\iparen{\symbf{\varphi}, \symbf{\psi}}}$
+            \item $\iparen{\symbf{\psi}, \symbf{\psi}} \geq 0$であり，
+                $\iparen{\symbf{\psi}, \symbf{\psi}} = 0 \iff \symbf{\psi} = \symbf{0}$（\structure{正定値性}）
+        \end{enumerate}
+    \end{block}
+
+    上の条件を満たすものを改めて「\structure{内積}」と呼ぶことにする．
+
+    \begin{alertblock}{注意}
+        1と2をあわせると，
+        $\iparen{a\symbf{\psi} + b\symbf{\varphi}, \  \symbf{\xi}} = \conj{a}\iparen{\symbf{\psi}, \symbf{\xi}} + \conj{b}\iparen{\symbf{\varphi}, \symbf{\xi}}$（\structure{反線形性}）である．
+    \end{alertblock}
+
+
+    \framebreak
+
+
+    関数$\psi(\symbf{r}), \varphi(\symbf{r})$の内積は？
+
+    \pause
+
+    \begin{equation}
+        \iparen{\psi, \varphi}
+            \coloneq \iiint \conj{\psi}(\symbf{r}) \varphi(\symbf{r}) \dd{x} \dd{y} \dd{z}
+    \end{equation}
+    とすれば，前のページの性質を満たす．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{基底}
+
+    すべての縦ベクトル$\symbf{x} = (x_1 \,\, x_2 \,\, x_3)$は，
+    \begin{equation}
+        \label{eq:Euclidean-basis}
+        \symbf{e}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \quad 
+        \symbf{e}_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \quad 
+        \symbf{e}_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+    \end{equation}
+    を使って，$\symbf{x} = x_1 \symbf{e}_1 + x_2 \symbf{e}_2 + x_3 \symbf{e}_3$と書ける．
+
+    さらに，
+    \begin{math}
+        x_1 \symbf{e}_1 + x_2 \symbf{e}_2 + x_3 \symbf{e}_3 = \symbf{0}
+        \iff
+        x_1 = x_2 = x_3 = 0
+    \end{math}（\structure{一次独立}）．
+
+    \pause
+
+    同じように，\alert{すべてのベクトル}$\symbf{\psi}$は，
+    \structure{一次独立}なベクトル$\symbf{\chi}_1, \symbf{\chi}_2, \dotsc$を使って
+    \begin{equation}
+        \label{eq:basis}
+        \symbf{\chi} = \sum_i c_i \symbf{\chi}_i
+        \quad \text{（$c_i$は複素数）}
+    \end{equation}
+    と書ける．
+    \pause
+    $\symbf{\chi}_i$：\alert{基底}という．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{ベクトル空間の次元}
+
+    \eqref{eq:basis}を満たす一次独立なベクトルの組$\symbf{\chi}_i$は，
+    いくつも存在している．
+
+    例えば，\eqref{eq:Euclidean-basis}のかわりに
+    \begin{equation*}
+        \symbf{e}'_1 = (1 \,\, 1 \,\, 0), \quad 
+        \symbf{e}'_2 = (1 \,\, {-1} \,\, 0), \quad
+        \symbf{e}'_3 = (0 \,\, 0 \,\, \sqrt{2})
+    \end{equation*}
+    としてもよい．
+
+    しかし，$\symbf{\chi}_1, \symbf{\chi}_2, \dotsc$の数は同じ（上の例だと，必ず3つ）．
+
+    ベクトル空間がもつ基底の数を\alert{次元}という．
+
+
+\end{frame}
+
+
+\section{同型}
+
+
+\begin{frame}
+    \frametitle{同型とは}
+
+    \begin{itemize}
+        \item ベクトルの\structure{数}が同じ
+        \item \structure{線形構造}（和とスカラー倍）が同じ
+    \end{itemize}
+    である2つのベクトル空間は，同じものと見なしてもよい．
+    
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{同型の例}
+
+    2次多項式$a_2 x^2 + a_1 x + a_0$のベクトル空間$\symbb{R}[x]_2$は，
+    3次元縦ベクトルの空間$\symbb{R}^3$と同型．
+
+    対応
+    \begin{align*}
+        p(x) = a_2 x^2 + a_1 x + a_0
+        &\leftrightarrow \text{縦ベクトル} \, (a_2 \,\, a_1 \,\, a_0) = \symbf{a}
+        \\
+        q(x) = b_2 x^2 + b_1 x + b_0
+        &\leftrightarrow \text{縦ベクトル} \, (b_2 \,\, b_1 \,\, b_0) = \symbf{b}
+    \end{align*}
+    とすれば，
+    \begin{align*}
+        p(x) + q(x) \leftrightarrow \symbf{a} + \symbf{b},
+        \quad
+        c \cdotp p(x) \leftrightarrow c \symbf{a} \, \text{（$c$：複素数）}
+    \end{align*}
+    線形演算がまったく同じ．
+
+
+    \framebreak
+
+    実は，基底の対応
+    \begin{equation*}
+        x^2 \leftrightarrow \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix},
+        \quad 
+        x \leftrightarrow \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix},
+        \quad 
+        1 \leftrightarrow \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix},
+    \end{equation*}
+    を定めるだけで，対応$a_2 x^2 + a_1 x + a_0 \leftrightarrow (a_2 \,\, a_1 \,\, a_0)$が決まる．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{$N$次元ベクトル空間どうしは同型}
+
+    
+
+\end{frame}
+
+
+
+\section{複合量子系}
+
+\begin{frame}
+    \frametitle{テンソル積}
+
+    $\ket{\psi} = (a \,\, b)$, $\ket{\varphi} = (c \,\, d)$とする．
+
+    2状態をあわせた$\ket{\psi}\ket{\varphi}$はどう表現する？
+
+    \pause
+
+    答え：\alert{テンソル積}
+    \begin{equation}
+        \ket{\psi} \otimes \ket{\varphi}
+            \coloneq \begin{pmatrix}
+                a \ket{\varphi}  \\  b \ket{\varphi}
+            \end{pmatrix}
+            = \begin{pmatrix}
+                ac \\ ad \\ bc \\ bd
+            \end{pmatrix}
+    \end{equation}
+
+\end{frame}
+
+
 
 
 \end{document}
