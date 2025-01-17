@@ -10,6 +10,12 @@
 \setmathfont{STIX Two Math}
 \setmathfont{XCharterMath}[range=\symscr]
 
+\definecolor{red}{RGB}{255,120,30}
+\definecolor{blue}{RGB}{30,120,255}
+
+\newcommand{\upspin}{\mathcolor{red}{\ket{\uparrow}}}
+\newcommand{\dwspin}{\mathcolor{blue}{\ket{\downarrow}}}
+
 
 \begin{document}
 
@@ -69,11 +75,13 @@
 \end{frame}
 
 
+\section{ベクトル空間って？}
 
-\begin{frame}[allowframebreaks]
-    \frametitle{ベクトル空間とは}
 
-    数ベクトル
+\begin{frame}
+    \frametitle{ユークリッド空間の例}
+
+    3次元ユークリッド空間$\symbb{R}^3$の縦ベクトル
     \begin{equation*}
         \symbf{x} = 
         \begin{pmatrix}
@@ -99,9 +107,11 @@
 
     $\symbf{x}$はある意味\alert{シュレーディンガー方程式の解$\symbf{\psi}$に似ている}．
 
+\end{frame}
 
 
-    \framebreak
+
+\begin{frame}{ベクトル空間の定義}
 
     ふつうの縦ベクトルについて考えれば当たり前のこと：
     \begin{block}{ベクトル空間の公理}
@@ -146,8 +156,8 @@
 
 
 
-\begin{frame}[allowframebreaks]
-    \frametitle{内積}
+\begin{frame}
+    \frametitle{ユークリッド内積}
 
     縦ベクトルがもっている重要な性質：\structure{内積}の復習．
 
@@ -172,7 +182,10 @@
         \eqref{eq:Euclid-inner-product}の$x_i$を複素共役にしてある．
     \end{alertblock}
 
-    \framebreak
+\end{frame}
+
+\begin{frame}
+    \frametitle{内積の定義}
 
     \eqref{eq:Euclid-inner-product}は次の性質を満たす．
 
@@ -195,10 +208,12 @@
     \end{alertblock}
 
 
-    \framebreak
+\end{frame}
 
+\begin{frame}
+    \frametitle{関数の内積}
 
-    関数$\psi(\symbf{r}), \varphi(\symbf{r})$の内積は？
+    では，関数$\psi(\symbf{r}), \varphi(\symbf{r})$の内積は？
 
     \pause
 
@@ -268,14 +283,14 @@
 \end{frame}
 
 
-\section{同型}
+\subsection{同型}
 
 
 \begin{frame}
     \frametitle{同型とは}
 
     \begin{itemize}
-        \item ベクトルの\structure{数}が同じ
+        \item ベクトルの\structure{かず}が同じ
         \item \structure{線形構造}（和とスカラー倍）が同じ
     \end{itemize}
     である2つのベクトル空間は，同じものと見なしてもよい．
@@ -299,9 +314,9 @@
     \end{align*}
     とすれば，
     \begin{align*}
-        p(x) + q(x) \leftrightarrow \symbf{a} + \symbf{b},
+        p + q \leftrightarrow \symbf{a} + \symbf{b},
         \quad
-        c \cdotp p(x) \leftrightarrow c \symbf{a} \, \text{（$c$：複素数）}
+        c \cdotp p \leftrightarrow c \symbf{a} \, \text{（$c$：複素数）}
     \end{align*}
     線形演算がまったく同じ．
 
@@ -324,16 +339,192 @@
 \begin{frame}
     \frametitle{$N$次元ベクトル空間どうしは同型}
 
+    \begin{block}{定理}
+        2つの$N$次元ベクトル空間は同型である．
+    \end{block}
+
+    2つのベクトル空間の基底$\{\symbf{\chi}_i\}, \{\symbf{\chi}'_i\}$をそれぞれ
+    \begin{align*}
+        \symbf{\chi}_1 &\leftrightarrow \symbf{\chi}'_1, 
+        \quad
+        \cdots, 
+        \quad
+        \symbf{\chi}_N \leftrightarrow \symbf{\chi}'_N
+    \end{align*}
+    のように対応させれば簡単に証明できる．
+
+\end{frame}
+
+
+\subsection{表現行列}
+
+
+\begin{frame}
+    \frametitle{表現行列}
+
+    多項式関数$f(x) = a_2 x^2 + a_1 x + a_0$を微分する：$\hat{D} \coloneq \dv{}{x}$．
+
+    \pause
+
+    もちろん，
+    \begin{equation*}
+        (\hat{D} f) (x) = \dv{f}{x} = 2 a_2 x + a_1
+    \end{equation*}
+
+    \pause
+
+    ところで，対応$f \leftrightarrow (a_2 \,\, a_1 \,\, a_0)$を考えると，
+    これは
+    \begin{equation*}
+        (\hat{D} f)
+        \leftrightarrow
+        \begin{pmatrix}
+            0  \\  2 a_2  \\  a_1
+        \end{pmatrix}
+        =
+        \underbrace{
+        \begin{pmatrix}
+            0  &  0  &  0  \\
+            2  &  0  &  0  \\
+            0  &  1  &  0
+        \end{pmatrix}
+        }_{\text{\normalsize$\symsf{D}$}}
+        \begin{pmatrix}
+            a_2  \\  a_1  \\  a_0
+        \end{pmatrix}
+        \leftrightarrow
+        f
+    \end{equation*}
+    と行列の計算としてかける．
+
+    \pause
+
+    $\symsf{D}$を\alert{表現行列}という．
+
+\end{frame}
+
+
+
+\section{スピン系}
+
+\begin{frame}
+    \frametitle{スピン}
+
+    1粒子のスピンは，
+    $\upspin$：アップスピン，
+    $\dwspin$：ダウンスピンの2次元．
+
+    \pause
+
+    よって，$\symbb{R}^2$と同型，
+    具体的には
+    \begin{equation*}
+        \upspin \leftrightarrow (1 \,\, 0),
+        \quad 
+        \dwspin \leftrightarrow (0 \,\, 1)
+    \end{equation*}
+    と対応させられる．
+
+    \pause
+
+    スピンの重ね合わせ：
+    \[  a \upspin + b \dwspin \leftrightarrow 
+    \begin{pmatrix}
+        a  \\  b
+    \end{pmatrix}  \]
+    と簡潔に表現できる．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{スピンに作用する演算子}
+
+    スピンに作用する演算子：
+    \begin{itemize}
+        \item $\hat{S}_+$……$\hat{S}_+ \upspin = \symbf{0}$，$\hat{S}_+ \dwspin = \upspin$
+        \item $\hat{S}_-$……$\hat{S}_- \upspin = \dwspin$，$\hat{S}_+ \dwspin = \symbf{0}$
+        \item $\hat{S}_z$……$\hat{S}_z \upspin = \frac{1}{2} \upspin$，$\hat{S}_z \dwspin = \frac{1}{2} \dwspin$
+    \end{itemize}
+
+    \pause
+
+    行列を使えば，
+    \begin{alignat*}{3}
+        % S_+
+        \hat{S}_+ &\colon 
+        &
+        \begin{pmatrix}
+            0 & 1 \\
+            0 & 0
+        \end{pmatrix}
+        \mathcolor{red}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
+        &= 
+        \mathcolor{black}{ \begin{pmatrix} 0 \\ 0 \end{pmatrix} }
+        , \quad
+        &
+        \begin{pmatrix}
+            0 & 1 \\
+            0 & 0
+        \end{pmatrix}
+        \mathcolor{blue}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
+        &= 
+        \mathcolor{red}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
+        \\
+        %
+        % S_-
+        % 
+        \hat{S}_- &\colon 
+        &
+        \begin{pmatrix}
+            0 & 0 \\
+            1 & 0
+        \end{pmatrix}
+        \mathcolor{red}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
+        &= 
+        \mathcolor{blue}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
+        , \quad
+        &
+        \begin{pmatrix}
+            0 & 0 \\
+            1 & 0
+        \end{pmatrix}
+        \mathcolor{blue}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
+        &= 
+        \mathcolor{black}{ \begin{pmatrix} 0 \\ 0 \end{pmatrix} }
+        \\
+        %
+        % S_z
+        %
+        \hat{S}_z &\colon 
+        &
+        \begin{pmatrix}
+            \frac{1}{2} & 0 \\
+            0 & \frac{1}{2}
+        \end{pmatrix}
+        \mathcolor{red}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
+        &= 
+        \frac{1}{2}
+        \mathcolor{red}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
+        , \quad
+        &
+        \begin{pmatrix}
+            \frac{1}{2} & 0 \\
+            0 & \frac{1}{2}
+        \end{pmatrix}
+        \mathcolor{blue}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
+        &= 
+        \frac{1}{2}
+        \mathcolor{blue}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
+    \end{alignat*}
     
 
 \end{frame}
 
 
 
-\section{複合量子系}
-
 \begin{frame}
-    \frametitle{テンソル積}
+    \frametitle{多粒子系の扱い方：テンソル積}
 
     $\ket{\psi} = (a \,\, b)$, $\ket{\varphi} = (c \,\, d)$とする．
 
@@ -351,6 +542,52 @@
                 ac \\ ad \\ bc \\ bd
             \end{pmatrix}
     \end{equation}
+
+    \pause
+
+    3つ以上のテンソル積も，
+    $\ket{\psi} \otimes \bigl( \ket{\varphi} \otimes \ket{\xi} \bigr)$のようにして定義できる．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{行列のテンソル積}
+
+    行列のテンソル積も，
+    \begin{equation*}
+        \begin{pmatrix}
+            a & b \\ c & d
+        \end{pmatrix}
+        \otimes 
+        \underbrace{
+        \begin{pmatrix}
+            \alpha & \beta \\ \gamma & \delta
+        \end{pmatrix}
+        }_{\text{\normalsize$\symsf{B}$}}
+        = 
+        \begin{pmatrix}
+            a \symsf{B} & b \symsf{B} \\
+            c \symsf{B} & d \symsf{B}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            a\alpha & a\beta & b\alpha & b\beta \\
+            a\gamma & a\delta & b\gamma & b\delta \\
+            c\alpha & c\beta & d\alpha & d\beta \\
+            c\gamma & c\delta & d\gamma & d\delta
+        \end{pmatrix}
+    \end{equation*}
+
+    さらに，2スピン系$\ket{\psi} \otimes \ket{\varphi}$に作用する演算子は，
+    それぞれのスピンに作用する演算子$\symcal{O}_1, \symcal{O}_2$を使うと
+    \begin{equation*}
+        \ab(\hat{\symcal{O}}_1 \otimes \hat{\symcal{O}}_2)
+        \ab(\ket{\psi} \otimes \ket{\varphi})
+        = \hat{\symcal{O}}_1 \ket{\psi}
+          \otimes
+          \hat{\symcal{O}}_2 \ket{\varphi}
+    \end{equation*}
 
 \end{frame}
 
