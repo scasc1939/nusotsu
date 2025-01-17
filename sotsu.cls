@@ -1,18 +1,53 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{sotsu}
 
+
+
+
+% jlreq クラスを土台にする．
+% 詳しくは https://github.com/abenori/jlreq/blob/master/README-ja.md を参照
 \LoadClass[
-    % book,
-    % twoside,
+    % book, % 
+    % twoside, % 柱（書籍のページの上部分にあるセクションタイトルなど) を，
+    % %        % 左右で別々にする．
+    % %        % book を指定したときのみ有効．
     report,
-    paper=a4,
-    fontsize=11pt,
-    baselineskip=20pt,
-    number_of_lines=34,
+    paper=a4,  % サイズを b4 (など) にしたいときは，
+    %          % b4 ではなく b4j とする．
+    fontsize=11pt, % 文字のサイズ
+    baselineskip=20pt, % 行間
+    number_of_lines=34, % 1ページあたりの行数
     ]{jlreq}
 
 
+% 日本語環境，フォント
+\usepackage[deluxe]{luatexja-preset}
+
+
+% \emph{...} の書体を設定
+\DeclareEmphSequence{%
+    % \emph{...}
+    \rmfamily\mcfamily\bfseries,%
+    % \emph{\emph{...}}
+    \rmfamily\gtfamily\bfseries\itshape%
+}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (chapter, section, subsection など) の設定
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% いまのところ \ExplSyntaxOn は，
+% コード中の改行を無視するためだけにつけてある．
+% スペース文字を挿入したいときは，
+% ~ (半角チルダ) を入力する．
+
 \ExplSyntaxOn
+
+
+% section 番号を chapter と独立にする
+\counterwithout{section}{chapter}
+
 
 \ModifyHeading{section}{
     lines=4,
@@ -79,10 +114,12 @@
 
 \ExplSyntaxOff
 
-\counterwithout{section}{chapter}
 
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
 % 目次
+% 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{tocloft}
@@ -124,6 +161,8 @@
 % 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% 数式の上下スペース
+
 % 参考・・・ latex.ltx のデフォルト
 % \abovedisplayskip=12pt plus 3pt minus 9pt
 % \abovedisplayshortskip=0pt plus 3pt
@@ -138,10 +177,16 @@
 }
 
 
-
-% 索引
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% jlreq クラス（ https://github.com/abenori/jlreq/blob/master/jlreq.cls ）に定義
+% 
+% 索引
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% theindex 環境は，
+% jlreq クラス（ https://github.com/abenori/jlreq/blob/master/jlreq.cls ）に定義されているが，
+% なぜか section で決め打ちされているので，
+% chapter として再定義する．
 % \indexname = `索引'
 
 \renewenvironment{theindex}{%
@@ -165,9 +210,8 @@
     \jlreq@oldfontcommand@disable % ？
 }
 
+
+% 索引の縦スペース？
 \renewcommand{\indexspace}{\par\vspace{-2.0ex}}
 
-
-
-\usepackage[deluxe]{luatexja-preset}
 

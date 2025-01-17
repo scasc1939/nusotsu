@@ -3,21 +3,19 @@
 
 \RequirePackage{amsmath}
 
-\RequirePackage{amsthm}
-
+% 式番号に section 番号を入れる
+% 例：§4の2番目の式は (4.2)
 \counterwithin{equation}{section}
 
 
-\usepackage{graphicx}
 
+% グラフィック（図・色など）関連
+
+\usepackage{graphicx}
 \usepackage{xcolor}
 
 
 
-\DeclareEmphSequence{%
-    \rmfamily\mcfamily\bfseries,%
-    \rmfamily\gtfamily\bfseries\itshape%
-}
 
 
 
@@ -89,174 +87,6 @@
 \newcommand{\indexdash}{――}
 
 
-\newcommand{\bigdot}{\mdblkcircle}
-
-% 虚数単位
-\newcommand{\iu}{\symup{i}}
-
-% クロネッカーデルタ
-\newcommand{\kdelta}{\delta}
-
-% 濃度（cardinality）
-\newcommand{\card}{\#}
-
-% 閉包（closure）
-\AtBeginDocument{
-    \let\sotsu@umath@closure\closure
-    \let\closure\relax
-    \DeclareMathOperator{\closure}{cl}
-}
-\DeclareMathOperator{\interr}{int}
-\DeclareMathOperator{\clsr}{cl}
-
-
-% 点列
-\NewDocumentCommand{\sequ}{m O{}}{
-    (#1)_{#2}
-}
-
-% 単位行列
-\newcommand{\umat}{\symup{I}}
-\newcommand{\zmat}{\symup{O}}
-% 転置（transpose）
-\newcommand{\tp}[1]{{}^{\mathrm{t}}#1}
-
-% 双対空間（dual space）
-\newcommand{\dual}[1]{{#1}^*}
-\newcommand{\ddual}[1]{{#1}^{**}}
-\newcommand{\adjoint}[1]{{#1}^\dagger}
-
-% 恒等演算子（identity operator），ゼロ演算子（zero operator）
-\newcommand{\idop}{\hat{1}}
-\newcommand{\zeroop}{\hat{0}}
-
-% 冪集合（power set）
-\newcommand{\pset}{\symcal{P}}
-
-% 位相（topology）
-\newcommand{\topology}{\symcal{O}}
-
-% 近傍（neighborhood）
-\newcommand{\neigh}{N}
-
-
-% 群論・環論
-% %%%%%%%%%%
-% 積の記号
-\newcommand{\dotprod}{\mathbin{\ast}}
-
-
-% ベクトル空間
-% %%%%%%%%%%
-
-% 置換
-\DeclareMathOperator{\sgn}{sgn}
-
-% スカラー倍の記号
-\newcommand{\scaprod}{\mathbin{\star}}
-\newcommand{\scaprodvar}{\mathbin{\varstar}}
-
-% ベクトルの和の記号
-\newcommand{\vecplus}{\tplus}
-\newcommand{\vecminus}{\tminus}
-
-% 像（image），定義域（domain），値域（range）
-\DeclareMathOperator{\image}{Im}
-\DeclareMathOperator{\domain}{Dom}
-\DeclareMathOperator{\range}{Ran}
-% 核（kernel）
-\let\ker\relax
-\DeclareMathOperator{\ker}{Ker}
-
-% 階数（rank），退化次数（nullity）
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\dimker}{null}
-
-\newcommand{\iparen}[1]{\langle #1 \rangle}
-
-
-% 台（support）
-\DeclareMathOperator{\supp}{supp}
-
-% 絶対値，ノルム
-\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
-\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
-
-\DeclarePairedDelimiter{\opnorm}{\lVert}{\rVert}
-
-
-% 同値類（equivalence class）
-\DeclarePairedDelimiter{\eqclass}{\lbrack}{\rbrack}
-
-% ベクトルの組が生成する（span）ベクトル空間
-\DeclarePairedDelimiter{\spanning}{\lAngle}{\rAngle}
-
-% ブラ（bra），ケット（ket）
-\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
-\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
-\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{%
-    #1\,\delimsize\vert\,\mathopen{}#2%
-}
-\DeclarePairedDelimiterX\mel[3]{\langle}{\rangle}{%
-    #1\,\delimsize\vert\,\mathopen{}#2\,\delimsize\vert\,\mathopen{}#3%
-}
-
-% 複素共役（complex conjugate）
-\NewDocumentCommand{\conj}{s m}{
-    \IfBooleanTF{#1}
-        {(#2)^*}
-        {#2^*}
-}
-
-
-% E(f>a) のかっこ
-
-\DeclarePairedDelimiter{\measet}{\lBrace}{\rBrace}
-
-
-
-\usepackage{physics2}
-\usephysicsmodule{ab}
-
-\usepackage{derivative}
-
-\DeclareDerivative{\dv}{\mathrm{d}}
-\DeclareDifferential{\dd}{\mathrm{d}}
-
-\newcommand{\ldd}{\@ifstar\sotsu@ldd\sotsu@lddx}
-\newcommand{\sotsu@ldd}{\mathop{}\!\mathrm{d}\mu}
-\newcommand{\sotsu@lddx}[1]{\mathop{}\!\mathrm{d}\mu(#1)}
-
-
-\usepackage[
-    bold-style=ISO,
-    warnings-off={mathtools-colon,mathtools-overbracket}
-]{unicode-math}
-
-\setmathfont{New Computer Modern Math}
-\setmathfont{Concrete Math}
-    % [range={\symcal}]
-    [range={\mscrA,\mscrB,\mscrC,\mscrD,\mscrE,\mscrF,\mscrG,
-            \mscrH,\mscrI,\mscrJ,\mscrK,\mscrL,\mscrM,\mscrN,
-            \mscrO,\mscrP,\mscrQ,\mscrR,\mscrS,\mscrT,\mscrU,
-            \mscrV,\mscrW,\mscrX,\mscrY,\mscrZ}]
-\setmathfont[range={\symbfup,\symbfit}]{XITS Math}
-
-
-\usepackage{fontspec}
-\setmathrm{New Computer Modern Math}
-
-
-\AtBeginDocument{
-    % \let\mfrakR\Re
-    % \let\mfrakI\Im
-    \let\Re\relax
-    \let\Im\relax
-    \DeclareMathOperator{\Re}{Re}    
-    \DeclareMathOperator{\Im}{Im}
-    \DeclareMathOperator{\Real}{Re}    
-    \DeclareMathOperator{\Imaginary}{Im}
-}
 
 
 
@@ -264,7 +94,7 @@
 % 相互参照
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage[
+\RequirePackage[
     bookmarksnumbered,
     colorlinks=true,
     citecolor=teal,
@@ -287,118 +117,6 @@
 
 \crefname{figure}{図}{図}
 
-% \newtheorem{definition}{定義}[section]
-% \newtheorem{theorem}{定理}[section]
-% % \newtheorem{proposition}[theorem]{命題}
-% \newtheorem{corollary}[theorem]{系}
-% \newtheorem{lemma}[theorem]{補題}
-
-\ExplSyntaxOn
-
-\newcounter{definition}
-\counterwithin{definition}{section}
-\setcounter{definition}{0}
-
-\NewDocumentEnvironment{definition}{!o}{
-    \refstepcounter{definition}
-    \bigbreak
-    \noindent
-    \colorbox{darkgray}{
-        \textcolor{white}{
-            { \bfseries\rmfamily\gtfamily 定義\,\thedefinition}
-        }
-    }
-    \IfValueT{#1}{
-        \IfBlankF{#1}{
-            \hspace{0.5em}
-            ({#1})
-        }    
-    }
-    \hspace{0.2em}
-}{
-    ╱
-    \par\medbreak
-}
-
-
-\makeatletter
-
-\usepackage{aliascnt}
-
-\NewDocumentCommand{\sotsu@newtheorem}{m o m o}{
-    % #2 (カウンターの共用) が指定されていれば，
-    % カウンターの別名を作成する．
-    % #2 (カウンターの共用) が指定されていなければ，
-    % 自前のカウンターを用意する．
-    \IfValueTF{#2}{
-        \newaliascnt{#1}{#2}
-    }{
-        \newcounter{#1}
-        \setcounter{#1}{0}
-    }
-    % 親カウンター（例：section）が指定されていれば，
-    % その設定をする．
-    \IfValueT{#4}{
-        \counterwithin{#1}{#4}
-    }
-    % 環境（例：theorem）を定義する
-    \NewDocumentEnvironment{#1}{!o}{
-        % カウンター(#1)を進める
-        \refstepcounter{#1}
-        \bigbreak
-        \noindent
-        % \colorbox{darkgray}{
-            % \textcolor{white}{
-                { \bfseries\rmfamily\gtfamily #3\,
-                % カウンター #2 が指定されていれば #2 を出力
-                % そうでなければカウンター #1 (自身の環境名) を出力
-                %     例 \newtheorem{thm}{定理} の場合，
-                %         #2 が指定されていないので，環境名 \thethm を出力
-                %     例 \newtheorem{lem}[prop]{補題} の場合，
-                %         #2=thm が指定されているので \theprop を出力
-                    \csname the#1\endcsname
-                }
-            % }
-        % }
-        \IfValueT{##1}{
-            \IfBlankF{##1}{
-                \hspace{0.5em}
-                ({##1})
-            }    
-        }
-        \hspace{0.5em}
-        % 後ろを強制的に漢字扱いにする
-        % （luatexja-ja.pdf を参照）
-        % これがないと，命題1.1 ○………… 
-        %     の一文字目の ○ が，数式か日本語かによって
-        %     スペースが変わってしまう．
-        % まだ若干ずれているような気がするが・・・
-        \ltjghostbeforejachar
-    }{
-        \par\medbreak
-    }
-}
-
-\sotsu@newtheorem{theorem}{定理}[section]
-\sotsu@newtheorem{proposition}[theorem]{命題}
-\sotsu@newtheorem{corollary}[theorem]{系}
-\sotsu@newtheorem{lemma}[theorem]{補題}
-
-\sotsu@newtheorem{example}[theorem]{例}
-
-\makeatother
-
-
-\ExplSyntaxOff
-
-
-\crefname{definition}{定義}{定義}
-\crefname{theorem}{定理}{定理}
-\crefname{proposition}{命題}{命題}
-\crefname{corollary}{系}{系}
-\crefname{lemma}{補題}{補題}
-
-\crefname{example}{例}{例}
 
 
 

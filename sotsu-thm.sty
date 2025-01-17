@@ -1,0 +1,131 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sotsu-thm}
+
+
+\RequirePackage{amsthm}
+
+
+% \newtheorem{definition}{定義}[section]
+% \newtheorem{theorem}{定理}[section]
+% % \newtheorem{proposition}[theorem]{命題}
+% \newtheorem{corollary}[theorem]{系}
+% \newtheorem{lemma}[theorem]{補題}
+
+\ExplSyntaxOn
+
+\newcounter{definition}
+\counterwithin{definition}{section}
+\setcounter{definition}{0}
+
+\NewDocumentEnvironment{definition}{!o}{
+    \refstepcounter{definition}
+    \bigbreak
+    \noindent
+    \colorbox{darkgray}{
+        \textcolor{white}{
+            { \bfseries\rmfamily\gtfamily 定義\,\thedefinition}
+        }
+    }
+    \IfValueT{#1}{
+        \IfBlankF{#1}{
+            \hspace{0.5em}
+            ({#1})
+        }    
+    }
+    \hspace{0.2em}
+}{
+    ╱
+    \par\medbreak
+}
+
+
+\makeatletter
+
+\usepackage{aliascnt}
+
+\NewDocumentCommand{\sotsu@newtheorem}{m o m o}{
+    % #2 (カウンターの共用) が指定されていれば，
+    % カウンターの別名を作成する．
+    % #2 (カウンターの共用) が指定されていなければ，
+    % 自前のカウンターを用意する．
+    \IfValueTF{#2}{
+        \newaliascnt{#1}{#2}
+    }{
+        \newcounter{#1}
+        \setcounter{#1}{0}
+    }
+    % 親カウンター（例：section）が指定されていれば，
+    % その設定をする．
+    \IfValueT{#4}{
+        \counterwithin{#1}{#4}
+    }
+    % 環境（例：theorem）を定義する
+    \NewDocumentEnvironment{#1}{!o}{
+        % カウンター(#1)を進める
+        \refstepcounter{#1}
+        \bigbreak
+        \noindent
+        % \colorbox{darkgray}{
+            % \textcolor{white}{
+                { \bfseries\rmfamily\gtfamily #3\,
+                % カウンター #2 が指定されていれば #2 を出力
+                % そうでなければカウンター #1 (自身の環境名) を出力
+                %     例 \newtheorem{thm}{定理} の場合，
+                %         #2 が指定されていないので，環境名 \thethm を出力
+                %     例 \newtheorem{lem}[prop]{補題} の場合，
+                %         #2=thm が指定されているので \theprop を出力
+                    \csname the#1\endcsname
+                }
+            % }
+        % }
+        \IfValueT{##1}{
+            \IfBlankF{##1}{
+                \hspace{0.5em}
+                ({##1})
+            }    
+        }
+        \hspace{0.5em}
+        % 後ろを強制的に漢字扱いにする
+        % （luatexja-ja.pdf を参照）
+        % これがないと，命題1.1 ○………… 
+        %     の一文字目の ○ が，数式か日本語かによって
+        %     スペースが変わってしまう．
+        % まだ若干ずれているような気がするが・・・
+        \ltjghostbeforejachar
+    }{
+        \par\medbreak
+    }
+}
+
+\sotsu@newtheorem{theorem}{定理}[section]
+\sotsu@newtheorem{proposition}[theorem]{命題}
+\sotsu@newtheorem{corollary}[theorem]{系}
+\sotsu@newtheorem{lemma}[theorem]{補題}
+
+\sotsu@newtheorem{example}[theorem]{例}
+
+\makeatother
+
+
+\ExplSyntaxOff
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 相互参照
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\IfPackageLoadedTF{cleveref}{
+    % cleveref パッケージが読み込まれていれば
+    % https://tex.stackexchange.com/questions/16199/ とか
+    % http://mirrors.ctan.org/macros/latex/base/clsguide.pdf の
+    % 4.6 Useful status tests
+    \crefname{definition}{定義}{定義}
+    \crefname{theorem}{定理}{定理}
+    \crefname{proposition}{命題}{命題}
+    \crefname{corollary}{系}{系}
+    \crefname{lemma}{補題}{補題}
+    \crefname{example}{例}{例}
+}{
+    % cleveref パッケージが読み込まれていなければ
+}

@@ -1,0 +1,213 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sotsu-symb}
+
+
+\usepackage{physics2}
+% 伸縮するカッコ．
+% \ab(...), \ab[...], \ab\{...\} のように使う．
+\usephysicsmodule{ab}
+
+
+% 数式フォント
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage[
+    bold-style=ISO,
+    % ↓ コンパイル時の warning を消すだけ
+    warnings-off={mathtools-colon,mathtools-overbracket}
+]{unicode-math}
+
+\setmathfont{New Computer Modern Math}
+\setmathfont{Concrete Math}
+    % スクリプト書体の大文字だけに適用
+    [range={\mscrA,\mscrB,\mscrC,\mscrD,\mscrE,\mscrF,\mscrG,
+            \mscrH,\mscrI,\mscrJ,\mscrK,\mscrL,\mscrM,\mscrN,
+            \mscrO,\mscrP,\mscrQ,\mscrR,\mscrS,\mscrT,\mscrU,
+            \mscrV,\mscrW,\mscrX,\mscrY,\mscrZ}]
+\setmathfont{XITS Math}
+    % 太字だけに適用
+    [range={\symbfup,\symbfit}]
+
+
+
+
+\RequirePackage{fontspec}
+\setmathrm{New Computer Modern Math}
+
+
+
+% 一般
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\bigdot}{\mdblkcircle}
+
+
+% 絶対値 (absolute value)
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+
+% 虚数単位
+\newcommand{\iu}{\symup{i}}
+
+\AtBeginDocument{
+    % \let\mfrakR\Re
+    % \let\mfrakI\Im
+    \let\Re\relax
+    \let\Im\relax
+    \DeclareMathOperator{\Re}{Re}    
+    \DeclareMathOperator{\Im}{Im}
+    \DeclareMathOperator{\Real}{Re}    
+    \DeclareMathOperator{\Imaginary}{Im}
+}
+
+% 複素共役（complex conjugate）
+\NewDocumentCommand{\conj}{s m}{
+    \IfBooleanTF{#1}
+        {(#2)^*}
+        {#2^*}
+}
+
+
+% クロネッカーデルタ
+\newcommand{\kdelta}{\delta}
+
+
+
+% 集合と位相
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 冪集合（power set）
+\newcommand{\pset}{\symcal{P}}
+
+% 点列
+\NewDocumentCommand{\sequ}{m O{}}{
+    (#1)_{#2}
+}
+
+% 濃度（cardinality）
+\newcommand{\card}{\#}
+
+% 同値類（equivalence class）
+\DeclarePairedDelimiter{\eqclass}{\lbrack}{\rbrack}
+
+
+
+% 位相（topology）
+\newcommand{\topology}{\symcal{O}}
+
+% 内部 (interior)・閉包 (closure)
+\AtBeginDocument{
+    \let\sotsu@umath@closure\closure
+    \let\closure\relax
+    \DeclareMathOperator{\closure}{cl}
+}
+\DeclareMathOperator{\interr}{int}
+\DeclareMathOperator{\clsr}{cl}
+
+% 近傍（neighborhood）
+\newcommand{\neigh}{N}
+
+
+
+
+% 群論・環論
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 積の記号
+\newcommand{\dotprod}{\mathbin{\ast}}
+
+
+
+% 線形代数・ベクトル空間
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 単位行列・零行列
+\newcommand{\umat}{\symup{I}}
+\newcommand{\zmat}{\symup{O}}
+% 転置（transpose）
+\newcommand{\tp}[1]{{}^{\mathrm{t}}#1}
+
+% 置換
+\DeclareMathOperator{\sgn}{sgn}
+
+% 恒等演算子（identity operator），ゼロ演算子（zero operator）
+\newcommand{\idop}{\hat{1}}
+\newcommand{\zeroop}{\hat{0}}
+
+
+% スカラー倍の記号
+\newcommand{\scaprod}{\mathbin{\star}}
+\newcommand{\scaprodvar}{\mathbin{\varstar}}
+
+% ベクトルの和の記号
+\newcommand{\vecplus}{\tplus}
+\newcommand{\vecminus}{\tminus}
+
+% ベクトルの組が生成する (span) ベクトル空間
+\DeclarePairedDelimiter{\spanning}{\lAngle}{\rAngle}
+
+
+% 像（image），定義域（domain），値域（range）
+\DeclareMathOperator{\image}{Im}
+\DeclareMathOperator{\domain}{Dom}
+\DeclareMathOperator{\range}{Ran}
+% 核（kernel）
+\let\ker\relax
+\DeclareMathOperator{\ker}{Ker}
+
+% 階数（rank），退化次数（nullity）
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\dimker}{null}
+
+
+% 双対空間（dual space）
+\newcommand{\dual}[1]{{#1}^*}
+\newcommand{\ddual}[1]{{#1}^{**}}
+\newcommand{\adjoint}[1]{{#1}^\dagger}
+
+
+% 内積 (inner product)
+\newcommand{\iparen}[1]{\langle #1 \rangle}
+
+% ノルム (norm)
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+% 演算子ノルム (operator norm)
+\DeclarePairedDelimiter{\opnorm}{\lVert}{\rVert}
+
+
+% ブラ (bra)，ケット (ket)
+\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
+\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{%
+    #1\,\delimsize\vert\,\mathopen{}#2%
+}
+\DeclarePairedDelimiterX\mel[3]{\langle}{\rangle}{%
+    #1\,\delimsize\vert\,\mathopen{}#2\,\delimsize\vert\,\mathopen{}#3%
+}
+
+
+
+% 解析学
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 台 (support)
+\DeclareMathOperator{\supp}{supp}
+
+% 微分・積分
+\usepackage{derivative}
+
+\DeclareDerivative{\dv}{\mathrm{d}}
+\DeclareDifferential{\dd}{\mathrm{d}}
+
+\newcommand{\ldd}{\@ifstar\sotsu@ldd\sotsu@lddx}
+\newcommand{\sotsu@ldd}{\mathop{}\!\mathrm{d}\mu}
+\newcommand{\sotsu@lddx}[1]{\mathop{}\!\mathrm{d}\mu(#1)}
+
+
+
+% 可測関数の定義で使う，
+% E(f>a) のかっこ
+\DeclarePairedDelimiter{\measet}{\lBrace}{\rBrace}
+
+
+
+
+
