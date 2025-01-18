@@ -11,28 +11,31 @@
     $V$を$𝕂$上のベクトル空間\refdfn{dfn:vector-space}とする．
     線形写像\refdfn{dfn:linear-map}$f \colon V \to 𝕂$を
     \word{線形形式}[][せんけいけいしき](linear form)
-    あるいは\word{線形汎関数}[せん|けい|はん|かん|すう][せんけいはんかんすう](linear functional)という．
+    あるいは\word{線形汎関数}[せん|けい|はん|かん|すう](linear functional)%
+    \index{せんけい@線形!はんかんすう@\indexdash 汎関数|see{汎関数}}%
+    \index{はんかんすう@汎関数!せんけい@線形\indexdash }という．
 \end{definition}
 
-\begin{example}
-    $V = ℝ^3$（3次元ユークリッド空間）とする．
-    $ℝ^3$のベクトルをその第1成分にうつす写像
-    $f \colon 𝒗 \longmapsto v_1 \in ℝ$は$V$の線形汎関数である．
-\end{example}
+
+たとえば，$V = ℝ^3$（3次元ユークリッド空間）とする．
+$ℝ^3$のベクトルをその第1成分にうつす写像
+$f \colon 𝒗 \longmapsto v_1$は$V$の線形汎関数である．
 
 
-\begin{definition}[双対空間]
+
+\begin{definition}[代数的な双対空間]
     \label{dfn:dual-space}
-    $V$上の線形汎関数全体の集合
+    $V$における線形汎関数全体の集合
     \begin{equation}
-        \dual{V}  \coloneq  \Set{  f \colon V \to 𝕂  \given  \text{$f$は線形汎関数}  }
+        \dual{V}  \coloneq  \Set{  f \colon V \to 𝕂  \given  \text{$f$は線形}  }
     \end{equation}
-    を$V$の\word{双対空間}[そう|つい|くう|かん][そうついくうかん](dual space)という\cite[\S 4.1]{saito-lin-2007}．
+    を$V$の（代数的）\word{双対空間}[そう|つい|くう|かん](dual space)\index{そうつい@双対!くうかん@\indexdash 空間}という\cite[\S 4.1]{saito-lin-2007}．
 \end{definition}
 
 
 \begin{proposition}
-    ベクトル空間$V$の双対空間$\dual{V}$は，ベクトル空間をなす\cite[\S 4.1]{saito-lin-2007}．
+    ベクトル空間$V$に対し，
+    その双対空間$\dual{V}$は，ベクトル空間をなす\cite[\S 4.1]{saito-lin-2007}．
 \end{proposition}
 
 \begin{proof}
@@ -52,7 +55,7 @@
     を満たす線形汎関数$f_i \colon V \to 𝕂$がただひとつ存在する．
     このとき，$f_1, \dots, f_n$は$\dual{V}$の基底になる．
 
-    \cref{eq:dual-basis}で定義される$f_1, \dots, f_n$を$𝒙_1, \dots, 𝒙_n$の\word{双対基底}[そう|つい|き|てい][そうついきてい](dual basis)という．
+    \cref{eq:dual-basis}で定義される$f_1, \dots, f_n$を$𝒙_1, \dots, 𝒙_n$の\word{双対基底}[そう|つい|き|てい](dual basis)\index{そうつい@双対!きてい@\indexdash 基底}という．
 \end{definition}
 
 このような定義が可能であることについては証明を要するが，ここでは省略する．
@@ -69,31 +72,32 @@
 
 
 
-\subsection{零化空間}
+% \subsection{零化空間}
 
 
-\begin{definition}[零化空間]
-    $V$をベクトル空間，$\dual{V}$をその双対空間とする．
-    $V$の部分ベクトル空間$W$に対し，
-    \begin{equation}
-        W^\perp  \coloneq  \Set{  f \in \dual{V}  \given  f(W) = \{ 0 \}  }
-    \end{equation}
-を$W$の\word{零化空間}[れい|か|くう|かん][れいかくうかん](annihilator)という\cite[\S 4.2]{saito-lin-2007}．
-\end{definition}
+% \begin{definition}[零化空間]
+%     $V$をベクトル空間，$\dual{V}$をその双対空間とする．
+%     $V$の部分ベクトル空間$W$に対し，
+%     \begin{equation}
+%         W^\perp  \coloneq  \Set{  f \in \dual{V}  \given  f(W) = \{ 0 \}  }
+%     \end{equation}
+% を$W$の\word{零化空間}[れい|か|くう|かん][れいかくうかん](annihilator)という\cite[\S 4.2]{saito-lin-2007}．
+% \end{definition}
 
-\begin{proposition}
-    部分ベクトル空間$W \subset V$の零化空間$W^\perp$は，$\dual{V}$の部分ベクトル空間である．
-\end{proposition}
+% \begin{proposition}
+%     部分ベクトル空間$W \subset V$の零化空間$W^\perp$は，$\dual{V}$の部分ベクトル空間である．
+% \end{proposition}
 
-\begin{proof}
-    写像$\dual{i}$を，線形汎関数$f \colon V \to 𝕂$を$W$に制限する写像と定める：
-    \[  \dual{i} \colon \dual{V} \ni f \longmapsto f \vert_W \in \dual{W}  \]
-    このとき，任意の$f, g \in \dual{V}$および$c \in 𝕂$について
-    $\dual{i}(f + g) = \dual{i}(f) + \dual{i}(g)$かつ$\dual{i}(cf) = c \cdotp \dual{i}(f)$であるので，
-    $\dual{i}$は線形写像である．
-    すると$W^\perp = \ker( \dual{i} \colon \dual{V} \to \dual{W} )$\refdfn{dfn:kernel-of-linear-map}とかけるので，
-    $W^\perp$は$\dual{V}$の部分ベクトル空間である．
-\end{proof}
+% \begin{proof}
+%     写像$\dual{i}$を，線形汎関数$f \colon V \to 𝕂$を$W$に制限する写像と定める：
+%     \[  \dual{i} \colon \dual{V} \ni f \longmapsto f \vert_W \in \dual{W}  \]
+%     このとき，任意の$f, g \in \dual{V}$および$c \in 𝕂$について
+%     $\dual{i}(f + g) = \dual{i}(f) + \dual{i}(g)$かつ$\dual{i}(cf) = c \cdotp \dual{i}(f)$であるので，
+%     $\dual{i}$は線形写像である．
+%     すると$W^\perp = \ker( \dual{i} \colon \dual{V} \to \dual{W} )$\refdfn{dfn:kernel-of-linear-map}とかけるので，
+%     $W^\perp$は$\dual{V}$の部分ベクトル空間である．
+% \end{proof}
+
 
 
 \subsection{双対写像}
@@ -106,7 +110,7 @@
     $f \colon V \to W$を線形写像とする．
     $W$の双対空間の元$g \in \dual{W}$を$V$の線形形式$g \circ f \colon V \to 𝕂$にうつす写像
     $\dual{f} \colon \dual{W} \to \dual{V}$を，
-    $f$の\word{双対写像}[][そうついしやそう]という\cite[\S 4.3]{saito-lin-2007}．
+    $f$の\word{双対写像}\index{そうつい@双対!しやそう@\indexdash 写像}という\cite[\S 4.3]{saito-lin-2007}．
 \end{definition}
 
 双対写像$\dual{f}$は線形写像である\cite[\S 4.3]{saito-lin-2007}．
@@ -143,27 +147,40 @@
 
 
 
-\subsection{内積空間における線形汎関数}
+\subsection{位相ベクトル空間における線形汎関数}
+
+ベクトル空間に位相を導入した空間------たとえば，内積空間------を扱う上では，
+線形汎関数を連続なものに限るのが都合がよい．
+そこで，\refdfn[双対空間]{dfn:dual-space}を次のように定義しなおそう．
+
+\begin{definition}[連続的な双対空間]
+    \label{dfn:continuous-dual-space}
+    $\symbb{K}$上のベクトル空間$V$における\emph{連続な}線形汎関数全体の集合
+    \begin{equation}
+        \cdual{V}  \coloneq  \Set{  f \colon V \to 𝕂  \given  \text{$f$は連続かつ線形}  }
+    \end{equation}
+    を，$V$の（連続的）\word{双対空間}(dual space)\index{そうつい@双対!くうかん@\indexdash 空間}という．
+\end{definition}
+
+
 
 \cref{sec:inner-product-space}で扱った内積は，
 実は線形汎関数の一種である．
 
 \begin{proposition}
-    $\symcal{V}$を内積空間\refdfn{dfn:inner-product}，$𝒖 \in V$をあるベクトルとする．
+    $V$を内積空間\refdfn{dfn:inner-product}，$𝒖 \in V$をあるベクトルとする．
     任意のベクトル$𝒗 \in V$に対して内積$\iparen{𝒖, 𝒗}$を与える写像
     \begin{equation}
         \iparen{𝒖, \bigdot} \colon V \ni 𝒗 \longmapsto \iparen{𝒖, 𝒗} \in ℝ
     \end{equation}
-    は線形汎関数である．
+    は連続な線形汎関数である．
 \end{proposition}
 
 \begin{proof}
     内積の線形性より$\iparen{𝒖, \bigdot}$が線形なのは明らかである．
+    連続性は\cref{thm:inner-product-continuity}よりいえる．
 \end{proof}
 
-
-内積には連続性があった．
-連続な線形汎関数というものを定義しよう．
 
 
 \begin{proposition}
