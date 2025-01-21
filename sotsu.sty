@@ -43,8 +43,15 @@
 \RequirePackage{mathtools}
 
 
+% ルビ（ふりがな）
 \usepackage{pxrubrica}
 \rubyfontsetup{\mcfamily\mdseries}
+
+\usepackage{luatexja-ruby}
+\ltjsetruby{
+    % fontcmd=\mcfamily\mdseries,
+}
+
 
 \usepackage{makeidx}
 
@@ -84,6 +91,36 @@
 }
 \ExplSyntaxOff
 
+
+\ExplSyntaxOn
+\NewDocumentCommand{\ltword}{m o !d()}{
+    \bgroup
+
+    \mdseries
+    \upshape
+
+    \IfValueTF{#2}{
+        % ひとつめの[]が存在するとき
+        \IfBlankTF{#2}{
+            % ひとつめの[]が空のとき（ルビなし）
+            {\boldmath\gtfamily\bfseries#1}
+        }{
+            % ひとつめの[]が空でないとき（ルビあり）
+            {\boldmath\gtfamily\bfseries\ltjruby[fontcmd=\mcfamily\mdseries]{#1}{#2}}
+        }
+    }{
+        % ひとつめの[]が存在しないとき（ルビなし）
+        {\boldmath\gtfamily\bfseries#1}
+    }
+
+    \IfValueT{#3}
+        {~({\boldmath\rmfamily\bfseries#3})}
+
+    \egroup
+}
+\ExplSyntaxOff
+
+
 \newcommand{\indexdash}{――}
 
 
@@ -117,6 +154,7 @@
 
 \crefname{figure}{図}{図}
 
+\crefname{footnote}{脚注}{脚注}
 
 
 

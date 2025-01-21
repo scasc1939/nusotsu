@@ -3,6 +3,7 @@
 \begin{document}
 
 \section{距離空間と位相空間}
+\label{sec:topological-space}
 
 \subsection{距離空間}
 \label{sec:metric-space}
@@ -19,20 +20,46 @@
             \item \label{dist:triangle-inequality}$d(x, z) \leq d(x, y) + d(y, z)$である．
         \end{enumerate}
     \end{itemize}
-    $(X, d)$を\word{距離空間}(metric space)\index{きより@距離!くうかん@\indexdash 空間}という．
+    このとき，$(X, d)$を\word{距離空間}(metric space)\index{きより@距離!くうかん@\indexdash 空間}という．
 \end{definition}
 
 
 \begin{example}
+    \label{eg:distance-in-Euclidean-space}
     $X = ℝ^n$（実ユークリッド空間）とする．
     $𝒙, 𝒚 \in ℝ^n$に対して，
-    $d_2 (𝒙, 𝒚) = \sqrt{ \sum_{i = 1}^{n} \abs{x_i - y_i}^2 }$と定めると，これは距離である．
-
-    特に，実数全体の集合$ℝ$は，距離$d(x, y) \coloneq \abs{x - y}$に対して距離空間になる．
+    \begin{align*}
+        d_1      (𝒙, 𝒚) =        \sum_{i = 1}^{n} \abs{x_i - y_i},
+        \quad
+        d_2      (𝒙, 𝒚) = \sqrt{ \sum_{i = 1}^{n} \abs{x_i - y_i}^2 },
+        \quad
+        d_\infty (𝒙, 𝒚) = \max_{1 \leq i \leq n}  \abs{x_i - y_i}^2
+    \end{align*}
+    と定めると，$d_1, d_2, d_\infty$はいずれも距離である．
+    $d_1$を\ltword{タクシー距離}(taxicab distance)または\ltword{マンハッタン距離}(Manhattan distance)\footnote{
+        マンハッタンとはアメリカ・ニューヨークの中心地区．
+        道路が整然と格子状に並んだマンハッタンを歩くときの移動距離ということで，この名がついたという．
+        だとしたら名古屋距離でもよさそうだが，
+        あまり用語を気にしてはいけない．
+    }，
+    $d_2$を\ltword{ユークリッド距離}(Euclidean distance)\index{ゆうくりつと@ユークリッド!きより@\indexdash 距離}，
+    $d_\infty$を\ltword{チェビシェフ距離}(Chebyshev distance)という．
+    ふつう距離といったらユークリッド距離$d_2$を指す．
 \end{example}
 
-ベクトル空間$V$においてノルムが定義されているとする．
-以下に示すように，ノルムは距離の一種である．
+
+\begin{example}
+    $X = C([a, b])$（閉区間$[a, b]$上の実数値関数．ただし$-\infty < a < b < \infty$）とする．
+    関数$f, g$の距離を
+    \begin{equation*}
+        d(f, g) \coloneq \max_{a < x < b} \abs{ f(x) - g(x) }
+    \end{equation*}
+    で定めれば，これは距離になっている．
+\end{example}
+
+
+\cref{sec:norm-space}で扱うノルムは，
+ベクトル空間上の距離である．
 
 \begin{proposition}
     \label{thm:norm-is-distance}
@@ -45,18 +72,6 @@
     ノルムの公理（\cref{dfn:norm}）から距離の公理が導かれることを示せばよい．
 \end{proof}
 
-距離空間を考える上では，距離が定義されている\word{普遍集合}[][ふへんしゆうこう]を世界のすべてと考えるほうが都合がよい．
-このような考えのもとで，補集合という概念が定義される．
-
-\begin{definition}
-    $(X, d)$を距離空間，$A \subset X$を部分集合とする．
-    集合
-    \begin{equation*}
-        \Set{  x \in X  \given  x \notin A  }
-    \end{equation*}
-    を$A$の\word{補集合}[ほ|しゅう|ごう][ほしゆうこう]という．
-\end{definition}
-
 
 
 
@@ -64,41 +79,51 @@
 \label{sec:interior-and-closure}
 
 この節では，
-ヒルベルト空間を扱ううえで必要となる\ruby{開}{かい}集合・\ruby{閉}{へい}集合という概念を定義する．
+ヒルベルト空間を扱ううえで必要となる\ltjruby{開}{かい}集合・\ltjruby{閉}{へい}集合という概念を定義する．
 なお，ヒルベルト空間において有用であるのは\cref{sec:complete-metric-space}での閉集合の定義であるが，
 ややわかりづらいので，まずは$\varepsilon$-近傍を用いて直感にあった定義をする．
 
 
-\begin{definition}
+\begin{definition}[$\varepsilon$-近傍]
+    \label{dfn:epsilon-neighborhood}
     $(X, d)$を距離空間，$\varepsilon > 0$をある実数とする．
-    ある点$a \in X$に対し，\word{$\varepsilon$-近傍}%
+    ある点$a \in X$に対し，\ltword{$\varepsilon$-|近|傍}[|きん|ぼう]($\varepsilon$-neighborhood)%
     \index{eきんほう@$\varepsilon$-近傍}%
     を
     \begin{equation}
         \neigh(a; \varepsilon) \coloneq \Set{  x \in X  \given  d(x, a) < \varepsilon  }
     \end{equation}
-    で定める．
+    で定める\footnote{
+        なお，$\varepsilon$の代わりに$\delta$などほかの文字を使ったものを，
+        $\delta$-近傍などという．
+    }．
 \end{definition}
 
+$\varepsilon$-近傍とはいわば，
+ある点を中心とする半径$\varepsilon$の球（円）のことである．
+
+距離空間における様々な概念は，
+$\varepsilon$-近傍を使って定義される．
+まずは内部と閉包を定義しよう．
 $(X, d)$を距離空間，$A \subset X$を部分集合とする．
 
 \begin{definition}
     \label{dfn:interior}
-    $a \in X$が$A$の\ruby{内点}{ない|てん}\index{ないてん@内点}であるとは，
+    $a \in X$が$A$の\ltjruby{内|点}{ない|てん}\index{ないてん@内点}であるとは，
     ある$\varepsilon > 0$が存在して，
     $\neigh(a; \varepsilon) \subset A$となることをいう．
 
-    $A$の内点全体の集合を，$A$の\word{内部}(interior)\index{ないふ@内部}といい，
+    $A$の内点全体の集合を，$A$の\ltword{内|部}(interior)\index{ないふ@内部}といい，
     $A^\circ$，$\interr{A}$，$A^i$などとあらわす．
 \end{definition}
 
 \begin{definition}
     \label{dfn:closure}
-    $a \in X$が$A$の\ruby[<->]{触点}{しょく|てん}であるとは，
+    $a \in X$が$A$の\ltjruby{触|点}{しょく|てん}であるとは，
     任意の$\varepsilon > 0$に対し，
     $\neigh(a; \varepsilon) \cap A \neq \emptyset$となることをいう．
 
-    $A$の触点全体の集合を，$A$の\word{閉包}[へい|ほう](closure)\index{へいほう@閉包}といい，
+    $A$の触点全体の集合を，$A$の\ltword{閉|包}[へい|ほう](closure)\index{へいほう@閉包}といい，
     $\bar{A}$，$\operatorname{cl}(A)$，$A^a$などとあらわす．
 \end{definition}
 
@@ -119,6 +144,7 @@ $\clsr{A} = [a, b]$である．
     $\interr{X} = X$，$\interr{\emptyset} = \emptyset$，
     $\clsr{X} = X$，$\clsr{\emptyset} = \emptyset$である．
 \end{example}
+
 
 
 \begin{proposition}
@@ -207,10 +233,35 @@ $\clsr{A} = [a, b]$である．
 その補集合をとることで閉包に対する性質として書き換えられる．
 
 
+\begin{lemma}
+    \label{thm:interior-of-epsilon-neighborhood}
+    距離空間の$\varepsilon$-近傍$\neigh(a; \varepsilon)$は，
+    内部をとっても変わらない．
+    つまり，$\interr{\neigh(a; \varepsilon)} = \neigh(a; \varepsilon)$である．
+\end{lemma}
+
+\begin{proof}
+    \cref{thm:interior-closure-inclusion}より，
+    $\neigh(a; \varepsilon) \subset \interr{\neigh(a; \varepsilon)}$を示せば十分である．
+    距離を$d$と書く．
+    $x \in \neigh(a; \varepsilon)$を任意にとったとき，
+    $\delta \coloneq \varepsilon - d(x, a)$とおくと，
+    $\neigh(x; \delta) \subset \neigh(a; \varepsilon)$である%
+    \footnote{
+        実際，任意の$y \in \neigh(x; \delta)$に対し，
+        三角不等式より$d(a, y) \leq d(a, x) + d(x, y) < d(a, x) + \delta = \varepsilon$なので，
+        $y \in \neigh(a; \varepsilon)$．
+    }．
+    したがって，
+    内部の定義より$x \in \interr{\neigh(a; \varepsilon)}$がいえる．
+\end{proof}
+
+上の\namecref{thm:interior-of-epsilon-neighborhood}より，
+以下の重要な性質が示される．
 
 \begin{theorem}
     \label{thm:int-of-int-and-cl-of-cl}
-    内部と閉包について，次の\ruby{冪等性}{べき|とう|せい}\index{へきとう@冪等}が成り立つ．
+    内部と閉包について，次の\ltjruby{冪|等|性}{べき|とう|せい}\index{へきとう@冪等}が成り立つ．
     \begin{enumerate}
         \item $\interr{(\interr{A})} = \interr{A}$
         \item $\clsr{(\clsr{A})} = \clsr{A}$
@@ -228,7 +279,7 @@ $\clsr{A} = [a, b]$である．
             そこで$a \in \interr{A}$とすれば，
             内部の定義より，ある$\varepsilon > 0$が存在して，$\neigh(a; \varepsilon) \subset A$である．
             内部をとる操作は包含を保ち\refthm{thm:inclusion-for-int-and-cl}，
-            また$\interr{\neigh(a; \varepsilon)} = \neigh(a; \varepsilon)$なので，
+            また$\interr{\neigh(a; \varepsilon)} = \neigh(a; \varepsilon)$\refthm{thm:interior-of-epsilon-neighborhood}なので，
             \[  A \supset \interr{\neigh(a; \varepsilon)} = \neigh(a; \varepsilon)  \]
         \item \cref{thm:int-of-int-and-cl-of-cl}を使うと，
             \[
@@ -325,34 +376,43 @@ $A \cup B = [a, c]$である．
     \begin{enumerate}
         \item 
             $A \subset X$の内部$\interr{A}$が$A$自身と一致するとき，
-            $A$を\word{開集合}[かい|しゅう|ごう](open set)\index{かいしゆうこう@開集合}
-            （あるいは\ruby{開}{かい}である）という．
+            $A$を\ltword{開|集|合}[かい|しゅう|ごう](open set)\index{かいしゆうこう@開集合}
+            （あるいは\ltjruby{開}{かい}である）という．
         \item 
             $A \subset X$の閉包$\clsr{A}$が$A$自身と一致するとき，
-            $A$を\word{閉集合}[へい|しゅう|ごう](closed set)\index{へいしゆうこう@閉集合}
-            （あるいは\ruby{閉}{へい}である） という．
+            $A$を\ltword{閉|集|合}[へい|しゅう|ごう](closed set)\index{へいしゆうこう@閉集合}
+            （あるいは\ltjruby{閉}{へい}である） という．
     \end{enumerate}
 \end{definition}
+
 
 \begin{example}[自明な開集合・閉集合]
     \label{thm:emptyset-is-open-and-closed}
     $(X, d)$を距離空間とすると．
     \cref{thm:interior-and-closure-of-emptyset}より，
-    $X$と$\emptyset$はいずれも開集合かつ閉集合である．
+    $X$と$\emptyset$はいずれも開かつ閉である．
 \end{example}
 
-\begin{corollary}
+
+\begin{example}
+    \cref{thm:int-of-int-and-cl-of-cl}（冪等性）より，
     距離空間の任意の部分集合$A$について，
     その内部$\interr{A}$は開集合であり，
-    閉包$\clsr{A}$は閉集合である．
-\end{corollary}
-
-\begin{proof}
-    \cref{thm:int-of-int-and-cl-of-cl}（冪等性）から直ちに従う．
-\end{proof}
+    閉包$\clsr{A}$は閉集合であることがわかる．
+\end{example}
 
 
+\begin{example}
+    \label{thm:epsilon-neighborhood-is-open}
+    \cref{thm:interior-of-epsilon-neighborhood}より，
+    $\varepsilon$-近傍は開集合である．
+\end{example}
 
+
+次の\namecref{thm:complement-of-open-set-is-closed}で示される開集合と閉集合の関係は，
+距離空間を扱ううえで極めて重要である．
+距離空間を一般化した位相空間では，
+これを開集合・閉集合の公理とする．
 
 \begin{theorem}
     \label{thm:complement-of-open-set-is-closed}
@@ -435,7 +495,7 @@ $A \cup B = [a, c]$である．
         \item $(U_1 \cap \dots \cap U_n)^\complement = U_1^\complement \cup \dots \cup U_n^\complement$
         \item $\ab( \bigcup_{\lambda \in \Lambda} U_\lambda )^\complement = \bigcap_{\lambda \in \Lambda} U_\lambda^\complement $
     \end{enumerate}
-    を使えば\cref{thm:union-and-intersection-of-open-sets}に帰着される．
+    （\cref{thm:de-Morgan-of-n-sets,thm:de-Morgan-of-family-of-sets}）を使えば\cref{thm:union-and-intersection-of-open-sets}に帰着される．
 \end{proof}
 
 
@@ -451,7 +511,30 @@ $A \cup B = [a, c]$である．
 \end{proposition}
 
 \begin{proof}
-    
+    \begin{enumerate}
+        \item $A$に含まれる開集合の族を$\sequ{U_\lambda}[\lambda \in \Lambda]$とおく．
+            示したいのは
+                \[  \interr{A} = \bigcup_{\lambda \in \Lambda} U_\lambda  \]
+        
+            \bluehead{$\subset$であること}\quad
+            $x \in \interr{A}$をとる．
+            $x$は$A$の内点であるから，ある$\varepsilon > 0$が存在して，
+            $\neigh(x; \varepsilon) \subset A$となる．
+            また\cref{thm:epsilon-neighborhood-is-open}より$\varepsilon$-近傍は開であるから，
+            $\neigh(x; \varepsilon)$は$A$に含まれる開集合である．
+            したがって，ある$\lambda_0 \in \Lambda$に対して$U_{\lambda_0} = \neigh(x; \varepsilon)$となる．
+            よって，$x \in U_{\lambda_0} \subset \bigcup_{\lambda \in \Lambda} U_\lambda$が成り立つ．
+
+            \bluehead{$\supset$であること}\quad
+            $U_\lambda$の定義より$A \supset \bigcup_{\lambda \in \Lambda} U_\lambda$である．
+            ここで内部が包含を保つこと\refthm{thm:inclusion-for-int-and-cl}，
+            開集合系の任意の和集合は開であること\refthm{thm:union-and-intersection-of-open-sets}より，
+            \[  \interr{A} 
+                    \supset \interr{\ab(\bigcup_{\lambda \in \Lambda} U_\lambda)}
+                    = \bigcup_{\lambda \in \Lambda} U_\lambda  \]
+
+        \item 略．\qedhere
+    \end{enumerate}
 \end{proof}
 
 
@@ -471,46 +554,20 @@ $A \cup B = [a, c]$である．
 \end{proof}
 
 
+\begin{definition}[近傍]
+    \label{dfn:neighborhood}
+    距離空間の点$x$を内点として含む集合，
+    $x$の\ltword{近|傍}[きん|ぼう](neighborhood)という．
+    また，近傍のうち\refdfn-[開]{dfn:open-set}であるものを，
+    \ltword{開|近|傍}[かい|きん|ぼう]という\footnote{
+        開近傍のことを近傍とよぶこともある．
+    }．
 
-\begin{definition}[稠密]
-    \label{dfn:dense}
-    $(X, d)$を距離空間とする．
-    $A \subset B$をみたす$X$の2つの部分集合について，
-    $B \subset \clsr{A}$であるとき，
-    $A$は$B$において\word{稠密}[ちゅう|みつ](dense)\index{ちゆうみつ@稠密}であるという\cite{iwanami-functional}．
-
-    特に$\clsr{A} = X$であるとき，
-    単に$A$は稠密であるということがある．
+    $x$の近傍全体の集合（集合族）を\ltword{近傍系}といい，
+    $\Neigh(x)$と書くことにする．
 \end{definition}
 
-\begin{proposition}
-    距離空間の部分集合$A$が$B$において稠密である必要十分条件は，
-    任意の$x \in B$の任意の近傍が$A$と共通部分を持つことである\cite{iwanami-functional}．
-\end{proposition}
-
-\begin{proof}
-    \bluehead{必要性}\quad 
-    $x \in B$の近傍を$N$とおく．
-    $x$は$N$の内点であるから，
-    $\neigh(x; \varepsilon) \subset N$となる$\varepsilon > 0$が存在する．
-    一方，$A$が$B$において稠密という仮定から，
-    任意の$x \in B$は$A$の閉包に含まれる．
-    すなわち任意の$\varepsilon > 0$に対して，
-    $\neigh(x; \varepsilon) \cap A \neq \emptyset$である．
-    したがって，$N \cap A \neq \emptyset$がいえる．
-
-    \bluehead{十分性}\quad 
-    任意の$x \in B$に対して，その$\varepsilon$-近傍$\neigh(x; \varepsilon)$を考えると，
-    仮定より任意の$\varepsilon > 0$に対して$\neigh(x; \varepsilon) \cap A \neq 0$だから，
-    $x \in \clsr{A}$．
-\end{proof}
-
-
-\begin{definition}
-    \label{dfn:separable}
-    距離空間が\refdfn-[稠密]{dfn:dense}な\refdfn-[高々可算集合]{dfn:at-most-countable}をもつとき，
-    \word{可分}[か|ぶん](separable)\index{かふん@可分}であるという．
-\end{definition}
+\refdfn-[$\varepsilon$-近傍]{dfn:epsilon-neighborhood}は近傍のひとつである．
 
 
 
@@ -518,7 +575,7 @@ $A \cup B = [a, c]$である．
 
 \subsection{収束列とコーシー列}
 
-ヒルベルト空間を扱ううえで避けて通れないのが，「\ruby{完備}{かん|び}」という概念である．
+ヒルベルト空間を扱ううえで避けて通れないのが，「\ltjruby{完|備}{かん|び}」という概念である．
 完備性を定義するための準備として，ある値に収束する数列について議論する．
 
 これから$X$の点列といった場合，
@@ -531,15 +588,15 @@ $\sequ{x_i}[i \in \symbb{N}] = (x_1, x_2, \dots, x_i, \dotsc)$であり，$i \in
 \begin{definition}[収束列]
     \label{dfn:convergent-sequence}
     $(X, d)$を距離空間とする．
-    $X$の点列$\sequ{x_i}[i \in \symbb{N}]$が$x \in X$に\word{収束する}(converge)とは，
+    $X$の点列$\sequ{x_i}[i \in \symbb{N}]$が$x \in X$に\ltword{収束する}(converge)とは，
     任意の$\varepsilon > 0$に対し，ある$N \in \symbb{N}$が存在して，
     任意の$n > N$に対し，$d(x_n, x) < \varepsilon$となることをいう．
     
-    このときの$x$のことを\word{極限}[きょく|げん](limit)\index{きよくけん@極限}という\cite{uchida-set-2020}．
-    \ruby{収束先}{しゅう|そく|さき}ということもある．
+    このときの$x$のことを\ltword{極|限}[きょく|げん](limit)\index{きよくけん@極限}という\cite{uchida-set-2020}．
+    \ltjruby{収|束|先}{しゅう|そく|さき}ということもある．
 
     また，$X$の点列$\sequ{x_i}[i \in \symbb{N}]$が%
-    \word{収束列}(convergent sequence)%
+    \ltword{収束列}(convergent sequence)%
     \index{しゆうそくれつ@収束列}%
     であるとは，
     この点列がある$x \in X$に収束することをいう．
@@ -565,7 +622,7 @@ $\sequ{x_i}[i \in \symbb{N}] = (x_1, x_2, \dots, x_i, \dotsc)$であり，$i \in
     \label{dfn:Cauchy-sequence}
     $(X, d)$を距離空間とする．
     $X$の点列$(x_1, x_2, \dotsc)$が
-    \word{コーシー列}(Cauchy sequence)%
+    \ltword{コーシー列}(Cauchy sequence)%
     \index{こおしいれつ@コーシー列}%
     であるとは，
     任意の$\varepsilon > 0$に対し，ある$N \in \symbb{N}$が存在して，
@@ -610,10 +667,56 @@ $\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
 \subsection{距離空間の完備性}
 \label{sec:complete-metric-space}
 
+
+\begin{definition}[稠密]
+    \label{dfn:dense}
+    $(X, d)$を距離空間とする．
+    $A \subset B$をみたす$X$の2つの部分集合について，
+    $B \subset \clsr{A}$であるとき，
+    $A$は$B$において\ltword{稠|密}[ちゅう|みつ](dense)\index{ちゆうみつ@稠密}であるという\footnote{
+        稠密を「ち\emph{ょ}うみつ」と読む人もいる．
+    }\cite{iwanami-functional}．
+
+    特に$A$の閉包が距離空間に一致するとき（$\clsr{A} = X$），
+    「$X$において」を省略して「$A$は稠密である」ということがある．
+\end{definition}
+
+
+\begin{proposition}
+    距離空間の部分集合$A$が$B$において稠密である必要十分条件は，
+    任意の$x \in B$の任意の近傍が$A$と共通部分を持つことである\cite{iwanami-functional}．
+\end{proposition}
+
+
+\begin{proof}
+    \bluehead{必要性}\quad 
+    $x \in B$の近傍を$N$とおく．
+    $x$は$N$の内点であるから，
+    $\neigh(x; \varepsilon) \subset N$となる$\varepsilon > 0$が存在する．
+    一方，$A$が$B$において稠密という仮定から，
+    任意の$x \in B$は$A$の閉包に含まれる．
+    すなわち任意の$\varepsilon > 0$に対して，
+    $\neigh(x; \varepsilon) \cap A \neq \emptyset$である．
+    したがって，$N \cap A \neq \emptyset$がいえる．
+
+    \bluehead{十分性}\quad 
+    任意の$x \in B$に対して，その$\varepsilon$-近傍$\neigh(x; \varepsilon)$を考えると，
+    仮定より任意の$\varepsilon > 0$に対して$\neigh(x; \varepsilon) \cap A \neq 0$だから，
+    $x \in \clsr{A}$．
+\end{proof}
+
+
+\begin{definition}
+    \label{dfn:separable}
+    距離空間が\refdfn-[稠密]{dfn:dense}な\refdfn-[高々可算集合]{dfn:at-most-countable}をもつとき，
+    \ltword{可|分}[か|ぶん](separable)\index{かふん@可分}であるという．
+\end{definition}
+
+
 \begin{definition}
     \label{dfn:complete-metric-space}
-    距離空間$(X, d)$において，任意のコーシー列が収束列であるとき，\word{完備}[かん|び](complete)であるという．
-    このとき，$(X, d)$のことを\word{完備距離空間}(complete metric space)という．
+    距離空間$(X, d)$において，任意のコーシー列が収束列であるとき，\ltword{完|備}[かん|び](complete)であるという．
+    このとき，$(X, d)$のことを\ltword{完備距離空間}(complete metric space)という．
 \end{definition}
 
 
@@ -646,7 +749,8 @@ $\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
     \label{dfn:closure-by-sequence}
     $(X, d)$を距離空間，$A \subset X$を部分集合とする．
     $A$に属するすべての収束列の極限からなる集合を
-    $A$の\word{閉包}[へい|ほう](closure)といい，$\clsr{A}$とかく．
+    $A$の\ltword{閉|包}[へい|ほう](closure)\index{へいほう@閉包}といい，
+    $\clsr{A}$とかく．
     つまり
     \begin{equation}
         \clsr{A} \coloneq \Set{ x \in X  \given  \exists (x_i) \subset A \text{ s.t. } \lim_{n \to \infty} d(x_i, x) = 0 }
@@ -657,7 +761,7 @@ $\lim_{n, m \to \infty} d(x_n, x_m) = 0$とかける．
 $A$の閉包というのは，$A$に適当な元を加えて\refdfn-[閉集合]{dfn:closed-set}にしたもの，
 あるいは$A$のコーシー列が収束するようにしたものと考えることができる．
 
-すでに示したことだが，
+すでに\cref{thm:inclusion-for-int-and-cl}で示したことだが，
 $A$の閉包が$A$を含むことを，
 点列のことばで証明しよう．
 
@@ -698,7 +802,7 @@ $A$の閉包が$A$を含むことを，
     距離空間$(X, d)$において，すべての開集合$A \in \pset(X)$
     （つまり$A \subset_{\text{open}} X$）
     を集めた集合族を，
-    （距離$d$から導かれる）\word{位相}[い|そう](topology)\index{いそう@位相}といい，
+    （距離$d$から導かれる）\ltword{位|相}[い|そう](topology)\index{いそう@位相}といい，
     $\topology_d$であらわす．
 \end{definition}
 
@@ -709,15 +813,19 @@ $A$の閉包が$A$を含むことを，
 
 \begin{definition}[位相]
     \label{dfn:topology}
+    \label{dfn:topological-space}
     $X$を集合とする．
     冪集合$\pset(X)$の部分集合であって，
-    以下の条件を満たす$\topology \subset \pset(X)$を\word{位相}(topology)という．
+    以下の条件を満たす$\topology \subset \pset(X)$を\ltword{位相}(topology)という．
     \begin{enumerate}
         \item $X, \emptyset \in \topology$
         \item $U_1, \dots, U_n \in \topology$なら，$U_1 \cap \dots \cap U_n \in \topology$
         \item すべての添字$\lambda$について$U_\lambda \in \topology$なら，$\bigcup_{\lambda} U_\lambda \in \topology$
     \end{enumerate}
-    このとき，$(X, \topology)$を\word{位相空間}[い|そう|くう|かん](topological space)という．
+    このとき，$(X, \topology)$を%
+    \ltword{位|相|空|間}[い|そう|くう|かん](topological space)%
+    \index{いそう@位相!くうかん@\indexdash 空間}%
+    という．
 \end{definition}
 
 
@@ -744,10 +852,6 @@ $A$の閉包が$A$を含むことを，
 
 \subsection{位相空間の連続写像}
 
-\begin{definition}
-    位相空間とする．
-    点$x \in X$
-\end{definition}
 
 
 
@@ -759,12 +863,12 @@ $A$の閉包が$A$を含むことを，
 % \begin{definition}[被覆]
 %     $X$を集合，$A \subset X$をその部分集合とする．
 %     $\symfrak{G} \subset \pset(X)$が$A \subset \bigcup \symfrak{G}$をみたすとき，
-%     $\symfrak{G}$は$A$の\word{被覆}[ひ|ふく][ひふく]である（あるいは$\symfrak{G}$は$A$を被覆する）という\cite[\S 22]{uchida-set-2020}．
+%     $\symfrak{G}$は$A$の\ltword{被|覆}[ひ|ふく]\index{ひふく@被覆}である（あるいは$\symfrak{G}$は$A$を被覆する）という\cite[\S 22]{uchida-set-2020}．
 % \end{definition}
 
 % 特に，位相空間$(X, \topology)$の部分集合$A \subset X$において，
 % 開集合の族$\symfrak{G} \in \topology$が$A$を被覆するとき，
-% $\symfrak{G}$は$A$の\word{開被覆}[][かいひふく]であるという．
+% $\symfrak{G}$は$A$の\ltword{開被覆}\index{かいひふく@開被覆}であるという．
 
 % \begin{definition}[コンパクト集合]
 %     \label{dfn:compact-set}
@@ -774,9 +878,9 @@ $A$の閉包が$A$を含むことを，
 %     \begin{equation*}
 %         A \subset O_1 \cup \dots \cup O_n
 %     \end{equation*}
-%     とかけるとき，$A$は\word{コンパクト}[][こんはくと](compact)であるという．
+%     とかけるとき，$A$は\ltword{コンパクト}(compact)\index{こんはくと@コンパクト}であるという．
 
-%     $X$自身がコンパクトであるとき，$(X, \topology)$を\word{コンパクト空間}[][こんはくとくうかん]という\cite[\S 22]{uchida-set-2020}．
+%     $X$自身がコンパクトであるとき，$(X, \topology)$を\ltword{コンパクト空間}\index{こんはくと@コンパクト!くうかん@\indexdash 空間}という\cite[\S 22]{uchida-set-2020}．
 % \end{definition}
 
 % 一般の位相空間におけるコンパクト集合の定義はわかりづらいが，距離空間においては簡明な言いかえが存在する．
@@ -789,7 +893,7 @@ $A$の閉包が$A$を含むことを，
 % \begin{theorem}
 %     \label{thm:Heine-Borel-theorem}
 %     通常の位相に関して（つまり通常の開集合・閉集合を考えた場合），
-%     $ℝ$の任意の閉区間$[a, b]$はコンパクトである（\word{ハイネ--ボレルの被覆定理}[][はいねほれるのひふくていり](Heine--Borel theorem)）\cite[\S 22]{uchida-set-2020}．
+%     $ℝ$の任意の閉区間$[a, b]$はコンパクトである（\ltword{ハイネ--ボレルの被覆定理}(Heine--Borel theorem)\index{はいねほれるのひふくていり@ハイネ--ボレルの被覆定理}）\cite[\S 22]{uchida-set-2020}．
 % \end{theorem}
 
 
@@ -798,7 +902,7 @@ $A$の閉包が$A$を含むことを，
 
 \begin{definition}
     \label{dfn:compact-set}
-    距離空間$(X, d)$において，有界な閉集合$A \subset X$を\word{コンパクト集合}[][こんはくとしゆうこう](compact set)という．
+    距離空間$(X, d)$において，有界な閉集合$A \subset X$を\word{コンパクト集合}(compact set)という．
 \end{definition}
 
 

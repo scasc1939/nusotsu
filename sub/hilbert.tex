@@ -442,18 +442,38 @@ $d(𝒙, 𝒚) = \norm{𝒙 - 𝒚} = \sqrt{\iparen{𝒙 - 𝒚, \  𝒙 - 𝒚}
 正規直交系の無限級数が収束する十分条件は，
 その係数の和が絶対収束することである．
 
-\begin{lemma}
-    ヒルベルト空間$\symcal{H}$の正規直交系$\sequ{\symbf{\varphi}_n}[n \in \symbb{N}]$について，
-    $\sum_{n=1}^{\infty} \abs{c_n} < \infty$であれば，
+
+\begin{lemma}[\word{ベッセルの不等式}(Bessel's inequality)]
+    \index{へつせるのふとうしき@ベッセルの不等式}
+    \label{thm:Bessel-inequality}
+    ヒルベルト空間$\symcal{H}$の正規直交系$\sequ{\symbf{\varphi}_n}[n \in \symbb{N}]$をとる．
+    任意の$\symbf{v} \in \symcal{H}$に対し，
+    \begin{equation}
+        \norm{\symbf{v}}^2 \geq \sum_{n=1}^{\infty} \abs{\iparen{\symbf{v}, \symbf{\varphi}_n}}^2
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    
+\end{proof}
+
+
+\begin{lemma}[\word{リース--フィッシャーの定理}(Riesz--Fischer theorem)]
+    \label{thm:Riesz-Fischer-theorem}
+    \index{りいすふいつしやーのていり@リース--フィッシャーの定理}
+    ヒルベルト空間$\symcal{H}$の正規直交系$\sequ{\symbf{\varphi}_n}[n \in \symbb{N}]$をとる．
+    複素数列$\sequ{c_n}$について，$\sum_{n=1}^{\infty} \abs{c_n} < \infty$であれば，
     無限級数
     \begin{equation*}
         \sum_{n=1}^{\infty} c_n \symbf{\varphi}_n
     \end{equation*}
     はあるベクトル$𝒗 \in \symcal{H}$に収束する．
     さらにこのとき，
-    \begin{equation*}
+    \begin{align*}
+        \iparen{𝒗, \symbf{\varphi}_n} = c_n,
+        \quad
         \norm{𝒗} = \sum_{n=1}^{\infty} \abs{c_n}
-    \end{equation*}
+    \end{align*}
 \end{lemma}
 
 \begin{proof}
@@ -550,6 +570,15 @@ $\sequ{\symbf{u}_\lambda}[\lambda \in \Lambda]$がベクトル空間$V$の\refdf
     \bluehead{\cref*{thm:complete-orthonormal-system-iff:sequence}$\implies$\cref*{thm:complete-orthonormal-system-iff:definition}}
 
 \end{proof}
+
+
+\begin{theorem}
+    可分なヒルベルト空間は，$\ell^2$空間と\refdfn-[同型]{dfn:isomorphic}である．
+\end{theorem}
+
+\begin{corollary}
+    可分なヒルベルト空間は互いに\refdfn-[同型]{dfn:isomorphic}である．
+\end{corollary}
 
 
 \begin{theorem}

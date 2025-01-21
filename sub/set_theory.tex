@@ -83,7 +83,7 @@ $X$と$a$の位置を入れ替えて$X \ni a$あるいは$X \nni a$とかいて�
 \textgt{正の実数全体の集合}は，$\Set{  x \in ℝ  \given  x > 0  }$とかける．
 
 元をひとつも含まない集合$\{ \; \}$を考えることもできる．
-このような集合を\ruby[<->]{空集合}{くう|しゅう|ごう}とよび，
+このような集合を\ltjruby{空|集|合}{くう|しゅう|ごう}とよび，
 特別に記号$\emptyset$を使ってあらわす\footnote{ギリシャ文字の$\phi$を使う人もいる．}．
 
 
@@ -106,15 +106,18 @@ $X \subset Y$かつ$X \supset Y$を示すことで，$X = Y$といえる．
 たとえば，$X = $
 
 $X$の元であるか$Y$の元であるものすべてを集めた集合を，
-\word{和集合}[わ|しゅう|ごう]あるいは\word{合併}[がっ|ぺい]といい，
+\ltword{和|集|合}[わ|しゅう|ごう]\index{わしゆうこう@和集合}%
+あるいは\ltword{合|併}[がっ|ぺい]といい，
 $X \cup Y$とかく．
 $X$の元であり，かつ$Y$の元でもあるものすべてを集めた集合を，
-\word{共通部分}[きょう|つう|ぶ|ぶん]あるいは\word{交わり}といい，
+\ltword{共|通|部|分}[きょう|つう|ぶ|ぶん]\index{きようつうふふん@共通部分}%
+あるいは\ltword{交|わり}[まじ|]\index{ましわり@交わり}といい，
 $X \cap Y$とかく．
 
 特に$X$と$Y$の元がかぶっていないとき，
 和集合$X \cup Y$のことを$X \sqcup Y$とかいて，
-\word{非交和}[ひ|こう|わ]あるいは\word{直和}[ちょく|わ]ということがある．
+\ltword{非|交|和}[ひ|こう|わ](disjoint union)\index{ひこうわ@非交和}%
+あるいは\ltword{直|和}[ちょく|わ](direct sum)\index{ちよくわ@直和}ということがある．
 
 
 
@@ -180,7 +183,7 @@ $\ab\big\{ \{ \ \}, \  \{ 1 \}, \  \{ 1, 2 \}, \  \{ 1, 2, 3 \}  \}$は集合族
 次のように定式化される．
 
 \begin{definition}
-    2つの集合$X, Y$の\ruby{包含}{ほう|がん}関係を，
+    2つの集合$X, Y$の\ltjruby{包|含}{ほう|がん}関係を，
     次のように定義する．
     \begin{enumerate}
         \item 任意の$x \in Y$に対し，$x \in X$が成り立つとき，
@@ -208,18 +211,22 @@ $\ab\big\{ \{ \ \}, \  \{ 1 \}, \  \{ 1, 2 \}, \  \{ 1, 2, 3 \}  \}$は集合族
 
 
 \begin{definition}[最大・最小]
+    \label{dfn:greatest-set-and-least-set}
     集合族$\symfrak{C}$の元$A$（つまり$A$は集合）について，
-    任意の集合$B \in \symfrak{C}$に対し，
-    $A \supset B$（または$A \subset B$）が成り立つとき，
-    $A$は\word{最大}（または\word{最小}）であるという．
+    任意の集合$B \in \symfrak{C}$に対し$A \supset B$（または$A \subset B$）が成り立つとき，
+    $A$は\ltword{最|大}[さい|だい](greatest)\index{さいたい@最大}%
+    （または\ltword{最|小}[さい|しょう](least)\index{さいしよう@最小}）%
+    であるという．
 \end{definition}
 
 
 \begin{definition}[極大・極小]
+    \label{dfn:maximal-set-and-minimal-set}
     集合族$\symfrak{C}$の元$A$（つまり$A$は集合）について，
     任意の集合$B \in \symfrak{C}$に対し，
     $A \subset B$（$A \supset B$）なら$A = B$であるとき，
-    $A$は\word{極大}（または\word{極小}）であるという．
+    $A$は\ltword{極|大}[きょく|だい](maximal)\index{きよくたい@極大}%
+    （または\ltword{極|小}[きょく|しょう](minimal)\index{きよくしよう@極小}）であるという．
 \end{definition}
 
 
@@ -292,6 +299,136 @@ $N$個の元をもつ集合$X$の冪集合は，$2^N$個の元をもつ．
 
 
 
+\subsubsection*{普遍集合・補集合}
+
+物理学の問題を扱うとき，
+通常は宇宙全体を考えることはなく，
+考えたい\ltjruby{系}{けい}とその周辺（\ltjruby{外|界}{がい|かい}\footnote{
+    例えば熱力学／統計力学でいう熱源／熱浴．
+    古典力学では外界を考えず，
+    考える物体全部を系とする場合が多い．
+}）のみを考慮し，
+そのほかの要素はまったく存在しないものとして議論する．
+つまり，系＋外界を全宇宙だと考えるのである．
+
+数学においても，
+問題に応じて``全世界''\footnote{
+    「\ltjruby{宇|宙}{う|ちゅう}」という数学用語は存在する．
+}$X$（ある集合）を固定して，
+その中で議論を進めることが多い．
+例えば，奇数と偶数の違いを議論するときは，
+整数$\symbb{Z}$を全世界とすれば十分である．
+このような$X$を\ltword{普|遍|集|合}[ふ|へん|しゅう|ごう](universal set)\index{ふへんしゆうこう@普遍集合}という．
+
+
+\begin{definition}[補集合]
+    $X$を集合（普遍集合）とする．
+    部分集合$A \subset X$に対し，
+    集合
+    \begin{equation*}
+        A^\complement \coloneq X \setminus A
+            = \Set{  x \in X  \given  x \notin A  }
+    \end{equation*}
+    を$A$の\word{補集合}[ほ|しゅう|ごう]\index{ほしゆうこう@補集合}という．
+\end{definition}
+
+
+整数全体の集合$\symbb{Z}$を普遍集合とすれば，
+奇数$\symbb{O}$と偶数$\symbb{E}$\footnote{
+    $\symbb{O}$と$\symbb{E}$は便宜上おいた文字であり，
+    ふつうは使わない．
+    偶数全体は通常$2\symbb{Z}$と書く．
+}は$\symbb{O} = \symbb{Z} \setminus \symbb{E} = \symbb{E}^\complement$という関係にある．
+これを逆に$\symbb{E} = \symbb{O}^\complement$と書くこともできる．
+当然$\symbb{O} \sqcup \symbb{E}$である（\refdfn-[非交和]{dfn:disjoint-union}）．
+
+
+\begin{proposition}
+    $(A^\complement)^\complement = A$である．
+\end{proposition}
+
+
+\begin{proof}
+    普遍集合を$X$とすると，
+    \begin{equation*}
+        \begin{split}
+            (A^\complement)^\complement
+                &= \Set{  x \in X  \given  x \notin A^\complement  }
+                = \Set{  x \in X  \given  x \notin A \, \text{でない}}
+                = \Set{  x \in X  \given  x \in A  }
+                = A
+                \qedhere
+        \end{split}
+    \end{equation*}
+\end{proof}
+
+
+\begin{proposition}[\word{ド・モルガンの法則}(De Morgan's laws)]
+    \label{thm:de-Morgan-of-2-sets}
+    部分集合$A, B$に対し，以下が成り立つ．
+    \begin{enumerate}
+        \item $(A \cap B)^\complement = A^\complement \cup B^\complement$
+        \item $(A \cup B)^\complement = A^\complement \cap B^\complement$
+    \end{enumerate}
+\end{proposition}
+
+証明方法はいくつかあるが，ここでは省略する．
+
+
+\begin{corollary}
+    \label{thm:de-Morgan-of-n-sets}
+    より一般に，$n$個の集合$A_1, \dots, A_n$について，
+    \begin{enumerate}
+        \item $(A_1 \cap \dots \cap A_n)^\complement = A_1^\complement \cup \dots \cup A_n^\complement$
+        \item $(A_1 \cup \dots \cup A_n)^\complement = A_1^\complement \cap \dots \cap A_n^\complement$
+    \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+    \cref{thm:de-Morgan-of-2-sets}を繰り返し適用することで，
+    \begin{equation*}
+        \begin{split}
+            (A_1 \cap A_2 \cap \dots \cap A_n)^\complement
+            &= (A_1 \cap (A_2 \cap \dots \cap A_n))^\complement  \\
+            &= A_1^\complement \cup (A_2 \cap \dots \cap A_n)^\complement  \\
+            \shortvdotswithin{=}
+            &= A_1^\complement \cup A_2^\complement \dots \cup A_n^\complement
+        \end{split}
+    \end{equation*}
+    と示される．
+\end{proof}
+
+
+\begin{proposition}
+    \label{thm:de-Morgan-of-family-of-sets}
+    集合の族$\sequ{A_\lambda}[\lambda \in \Lambda]$について，
+    \begin{align}
+        \ab( \bigcap_{\lambda \in \Lambda} A_\lambda )^\complement &= \bigcup_{\lambda \in \Lambda} A_\lambda^\complement,
+        \quad
+        \ab( \bigcup_{\lambda \in \Lambda} A_\lambda )^\complement  = \bigcap_{\lambda \in \Lambda} A_\lambda^\complement
+    \end{align}
+\end{proposition}
+
+\begin{proof}
+    左側の式について示す．
+
+    \bluehead{$\supset$であること}\quad
+    $x \in \bigcup_{\lambda \in \Lambda} A_\lambda^\complement$とする．
+    仮定より，ある$\lambda_0 \in \Lambda$が存在して，$x \in A_{\lambda_0}^\complement$すなわち$x \notin A_{\lambda_0}$である．
+    よって$x \notin \bigcap_{\lambda \in \Lambda} A_\lambda$だから，
+    $x \in \ab(\bigcap_{\lambda \in \Lambda} A_\lambda)^\complement$がいえる．
+
+    \bluehead{$\subset$であること}\quad
+    $x \in \ab(\bigcap_{\lambda \in \Lambda} A_\lambda)^\complement$とする．
+    このとき$x \notin \bigcap_{\lambda \in \Lambda} A_\lambda$であるから，
+    ある$\lambda_0 \in \Lambda$が存在して，$x \notin A_{\lambda_0}$つまり$x \in A_{\lambda_0}^\complement$．
+    よって$x \in \bigcup_{\lambda \in \Lambda} A_\lambda^\complement$がいえる．
+
+    右側の式についても同様である．
+\end{proof}
+
+
+
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 写像
@@ -300,15 +437,15 @@ $N$個の元をもつ集合$X$の冪集合は，$2^N$個の元をもつ．
 \subsection{写像}
 \label{sec:map}
 
-ある集合の\ruby{元}{げん}（要素）と別の集合の元を結びつける規則のことを写像という．
+ある集合の\ltjruby{元}{げん}（要素）と別の集合の元を結びつける規則のことを写像という．
 数学の基礎を作る重要な概念である．
-特に\ruby{圏論}{けん|ろん}とよばれる数学の一分野では，
+特に\ltjruby{圏|論}{けん|ろん}とよばれる数学の一分野では，
 集合ではなく写像（射）のほうが主役である．
 
 物理学において写像をあらわに意識することはあまりないが，
 例えば量子状態を記述する`関数'は写像の一種であるし，
 また，微分・積分というのは関数と関数を結びつける写像である．
-さらには\cref{sec:operator}で扱う\ruby{演算子}{えん|ざん|し}も，
+さらには\cref{sec:operator}で扱う\ltjruby{演|算|子}{えん|ざん|し}も，
 写像の一般化としてみることができる．
 
 \begin{definition}[写像]
@@ -318,7 +455,8 @@ $N$個の元をもつ集合$X$の冪集合は，$2^N$個の元をもつ．
     
     $f$が$X$から$Y$への写像であることを，$f \colon X \to Y$とあらわす．
 
-    $X$を$f$の\word{定義域}[てい|ぎ|いき](domain)，$Y$を$f$の\word{終域}[しゅう|いき](codomain)という．
+    $X$を$f$の\ltword{定|義|域}[てい|ぎ|いき](domain)\index{ていきいき@定義域}，
+    $Y$を$f$の\ltword{終|域}[しゅう|いき](codomain)\index{しゆういき@終域}という．
 \end{definition}
 
 \begin{example}
@@ -360,7 +498,7 @@ $N$個の元をもつ集合$X$の冪集合は，$2^N$個の元をもつ．
     \[ y = f(x) = x^2 \]
     で定めたとき，$f$は$ℝ$から$ℝ$への写像である．
 
-    $ℝ$から$ℝ$への写像や$ℂ$から$ℂ$への写像を，特に\word{関数}[かん|すう](function)という．
+    $ℝ$から$ℝ$への写像や$ℂ$から$ℂ$への写像を，特に\ltword{関|数}[かん|すう](function)\index{かんすう@関数}という．
 \end{example}
 
 \begin{definition}[像]
@@ -370,10 +508,10 @@ $N$個の元をもつ集合$X$の冪集合は，$2^N$個の元をもつ．
     \begin{equation}
         \image f  \coloneq  \Set{ f(x) \in Y  \given  x \in X }
     \end{equation}
-    を$f$の\word{像}[ぞう](image)という．
+    を$f$の\ltword{像}[ぞう](image)\index{そう@像}という．
 \end{definition}
 
-$f$の像を\word{値域}[ち|いき](range)ということもある．
+$f$の像を\ltword{値|域}[ち|いき](range)\index{ちいき@値域}ということもある．
 $f$の値域といった場合，$f$の終域を指すことも像を指すこともあり，注意が必要である．
 
 \begin{definition}[部分集合の像]
@@ -391,9 +529,10 @@ $f$の値域といった場合，$f$の終域を指すことも像を指すこ�
     \begin{equation}
         f^{-1}[B] \coloneq \Set{  x \in X  \given  f(x) \in A  }
     \end{equation}
-    で定められる集合を\word{逆像}[ぎゃく|ぞう][きやくそう](inverse image)という．
+    で定められる集合を\ltword{逆|像}[ぎゃく|ぞう](inverse image)\index{きやくそう@逆像}という．
 \end{definition}
-同じ記号$f^{-1}$を使う逆写像\refdfn{dfn:inverse-map}と逆像を取り違えないこと%
+
+同じ記号$f^{-1}$を使う\refdfn[逆写像]{dfn:inverse-map}と逆像を取り違えないこと%
 \footnote{
     ここでは逆像を$f^{-1}[B]$とかいたが，
     逆写像と全く同じように$f^{-1}(B)$と書く場合も多い．
@@ -413,13 +552,13 @@ $f$の値域といった場合，$f$の終域を指すことも像を指すこ�
 
 \begin{definition}[恒等写像]
     \label{dfn:identity-map}
-    以下のような写像$\mathrm{id}_X \colon X \to X$を\word{恒等写像}[こう|とう|しゃ|ぞう][こうとうしやそう](identity map)という．
+    以下のような写像$\mathrm{id}_X \colon X \to X$を\ltword{恒|等|写|像}[こう|とう|しゃ|ぞう](identity map)\index{こうとうしやそう@恒等写像}という．
     \[ X \ni x \longmapsto x \in X \]
     恒等写像とは，任意の$x \in X$を$x$自身にうつす写像のことである．
 \end{definition}
 
 なお，集合$X, Y$について，$X = Y$でなくとも$X \subset Y$を満たせば写像$\iota \colon X \ni x \mapsto x \in Y$は定義できる．
-$X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$なら$\iota$は\word{包含写像}[ほう|がん|しゃ|ぞう][ほうかんしやそう](inclusion map)であり恒等写像ではない．
+$X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$なら$\iota$は\ltword{包|含|写|像}[ほう|がん|しゃ|ぞう](inclusion map)\index{ほうかんしやそう@包含写像}であり恒等写像ではない．
 
 \begin{example}
     $\symbb{N}$から$\symbb{N}$への写像$f \colon x \mapsto x$は恒等写像$\mathrm{id}_{\symbb{N}}$である．
@@ -428,21 +567,29 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 
 \begin{definition}[単射]
     \label{dfn:injection}
-    写像$f \colon X \to Y$は，
-    任意の$x, x' \in X$に対して，$f(x) = f(x')$ならば$x = x'$が成り立つとき，\word{単射}[たん|しゃ][たんしや](injection)であるという．
+    写像$f \colon X \to Y$について，
+    任意の$x, x' \in X$に対して，$f(x) = f(x')$ならば$x = x'$が成り立つとき，
+    $f$は\ltword{単|射}[たん|しゃ](injection)\index{たんしや@単射}%
+    または\ltword{1対1の写像}(one-to-one map)\index{1たい1のしやそう@1対1の写像}\footnote{\label{footnote:one-to-one}
+        「1対1の写像」（単射）と「1対1の対応」（全単射）の混同しないように．
+    }であるという．
 \end{definition}
 
 単射の定義は「$x \neq x'$ならば$f(x) \neq f(x')$」と言い換えることもできる．
 
 \begin{definition}[全射]
     \label{dfn:surjection}
-    写像$f \colon X \to Y$は，
-    任意の$y \in Y$に対して，$x \in X$が存在して，$y = f(x)$となるとき，\word{全射}[ぜん|しゃ][せんしや](surjection)であるという．
+    写像$f \colon X \to Y$について，
+    任意の$y \in Y$に対して，$x \in X$が存在して，$y = f(x)$となるとき，
+    $f$は\ltword{全|射}[ぜん|しゃ](surjection)\index{せんしや@全射}%
+    または\ltword{上への写像}(onto map)であるという．
 \end{definition}
 
 \begin{definition}[全単射]
     \label{dfn:bijection}
-    写像$f \colon X \to Y$が単射かつ全射のとき，\word{全単射}[ぜん|たん|しゃ][せんたんしや](bijection)という．
+    写像$f \colon X \to Y$が単射かつ全射のとき，
+    \ltword{全|単|射}[ぜん|たん|しゃ](bijection)\index{せんたんしや@全単射}%
+    または\ltword{1対1の対応}(one-to-one correspondence)\textsuperscript{\labelcref{footnote:one-to-one}}という．
 \end{definition}
 
 集合$X$と$Y$のあいだに全単射が存在する場合，この2つを同じ集合とみなすことができる（ことがある）．
@@ -587,7 +734,7 @@ $X = Y$のとき当然$\iota$は恒等写像であるが，$X \subsetneq Y$な�
 
 
 \begin{definition}
-    集合$X$の``元のかず''を\word{濃度}[のう|ど][のうと](cardinality)という．
+    集合$X$の``元のかず''を\ltword{濃|度}[のう|ど](cardinality)\index{のうと@濃度}という．
     $X$の濃度を$\lvert X \rvert$，$\# X$などとあらわす．
 \end{definition}
 
@@ -612,18 +759,18 @@ $X$が有限集合の場合，$X$の濃度は元の数そのものである．
 
 \begin{definition}[有限集合]
     集合$X$の濃度が$0, 1, 2, \dotsc$のとき（すなわち元を有限個だけもつとき），
-    $X$を\word{有限集合}(finite set)という．
-    有限集合でない集合を\word{無限集合}(infinite set)という．
+    $X$を\ltword{有限集合}(finite set)という．
+    有限集合でない集合を\ltword{無限集合}(infinite set)という．
 \end{definition}
 
-\begin{definition}[\ruby{可算}{か|さん}集合]
+\begin{definition}[\ltjruby{可|算}{か|さん}集合]
     \label{dfn:countably-infinite}
     集合$X$の濃度が$\symbb{N}$の濃度と等しいとき，
-    $X$を\word{可算無限集合}(countably infinite set)\index{かさん@可算!むけんしゆうこう@\indexdash 無限集合}%
-    あるいは\word{可算集合}(countable set)\index{かさん@可算!しゆうこう@\indexdash 集合}という．
+    $X$を\ltword{可算無限集合}(countably infinite set)\index{かさん@可算!むけんしゆうこう@\indexdash 無限集合}%
+    あるいは\ltword{可算集合}(countable set)\index{かさん@可算!しゆうこう@\indexdash 集合}という．
 \end{definition}
 
-\begin{definition}[\ruby{高々}{たか|だか}可算集合]
+\begin{definition}[\ltjruby{高|々}{たか|だか}可算集合]
     \label{dfn:at-most-countable}
     可算無限集合と有限集合をあわせて%
     \word{高々可算集合}(at most countable set)\index{たかたかかさんしゆうこう@高々可算集合}%
@@ -779,11 +926,11 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
 \subsection{同値類}
 
 有理数$1/3$と$2/6$は，見た目こそ違うが同じ数である．
-このようなものを「同じ」として扱う方法が\ruby{同値類}{どう|ち|るい}である．
+このようなものを「同じ」として扱う方法が\ltjruby{同|値|類}{どう|ち|るい}である．
 
 まず同値関係について見る．
 
-\begin{definition}[二項関係]
+\begin{definition}[\ltjruby{二|項}{に|こう}関係]
     \label{dfn:binary-relation}
     $X$を集合とする．
     規則$\mathbin{\rho}$が$X$上の\word{二項関係}(binary relation)であるとは，
@@ -796,7 +943,7 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
 \end{example}
 
 
-\begin{definition}[同値関係]
+\begin{definition}[\ltjruby{同|値}{どう|ち}関係]
     \label{dfn:equivalence-relation}
     $X$を集合とする．
     $X$上の二項関係$\sim$が\word{同値関係}(equivalence relation)であるとは，以下をすべて満たすことをいう．
@@ -829,8 +976,8 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
     \begin{equation}
         \eqclass{x}  \coloneq  \Set{ y \in X  \given  x \sim y } \subset X
     \end{equation}
-    を元$x$の\word{同値類}[どう|ち|るい](equivalence class)という．
-    また，$x$のことを同値類$\eqclass{x}$の\word{代表元}[だい|ひょう|げん](representative)という．
+    を元$x$の\ltword{同|値|類}[どう|ち|るい](equivalence class)\index{とうちるい@同値類}という．
+    また，$x$のことを同値類$\eqclass{x}$の\ltword{代|表|元}[だい|ひょう|げん](representative)\index{たいひようけん@代表元}という．
 \end{definition}
 
 \begin{definition}[商集合]
@@ -840,7 +987,7 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
     \begin{equation}
         X/{\sim} \coloneq \Set{ \eqclass{x} \subset X  \given  x \in X }
     \end{equation}
-    を\word{商集合}[しょう|しゅう|ごう](quotient set)という，
+    を\ltword{商|集|合}[しょう|しゅう|ごう](quotient set)\index{しようしゆうこう@商集合}という，
 \end{definition}
 
 
@@ -896,7 +1043,8 @@ $A_1, A_2, \dotsc$の数が可算無限個あるということである%
 
 \begin{definition}[クロネッカーのデルタ]
     \label{dfn:Kronecker-delta}
-    次で定義される$\kdelta_{i, j}$を\word{クロネッカーのデルタ}という：
+    次で定義される$\kdelta_{i, j}$を\word{クロネッカーのデルタ}(Kronecker delta)%
+    \index{くろねつかあ!クロネッカー!のてるた@\indexdash のデルタ}という：
     \begin{equation}
         \kdelta_{i, j} = 
             \begin{cases}
