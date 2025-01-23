@@ -12,6 +12,13 @@
 \addbibresource{sotsu.bib}
 
 
+\definecolor{fire}{RGB}{255, 90, 0}
+\definecolor{water}{RGB}{0, 120, 255}
+
+\newcommand{\fire}[1]{\textcolor{fire}{#1}}
+\newcommand{\water}[1]{\textcolor{water}{#1}}
+
+
 \title{なんか}
 \date{\today}
 
@@ -64,6 +71,189 @@
 
 たった2つのスピンであっても，
 非常に奇妙なふるまいを示す．
+
+
+
+\section{数学的準備}
+
+\subsection{ヒルベルト空間}
+
+量子状態はヒルベルト空間の元であるベクトルによって記述される．
+そこで，この節ではまず，一般のヒルベルト空間について定義する．
+スピン系のような有限次元のヒルベルト空間のベクトルとは，
+単なる数ベクトルであることを示す．
+
+まずは\emph{ベクトル空間}を定義する．
+$\symbb{C}$を複素数全体の集合とする．
+集合$V$があって，
+$V$の\ltjruby{元}{げん}に対して\emph{和}$\vecplus \colon V \times V \to V$，
+\emph{スカラー倍}$\scaprod \colon \symbb{C} \times V \to V$が定義されているとする．
+$V$の元を$\psi, \varphi, \xi$，
+複素数$a, b$としたとき，
+以下の8条件
+\begin{enumerate}
+    \item \label{vector:sum-associative}
+        \bluehead{和は結合的である}------すなわち，
+        \fire{任意の$\psi, \varphi, \xi \in V$}に対し，
+        $(\psi \vecplus \varphi) \vecplus \xi = \psi \vecplus (\varphi \vecplus \xi)$．
+    \item \label{vector:sum-commutative}
+        \bluehead{和は交換する}------すなわち，
+        \fire{任意の$\psi, \varphi, \xi \in V$}に対し，
+        $\psi \vecplus \varphi = \varphi \vecplus \psi$．
+    \item \label{vector:sum-zero}
+        \bluehead{和に対する零元の存在}------すなわち，
+        \water{ある$\symbf{0} \in V$}が存在して，
+        \fire{任意の$\psi \in V$}に対し，$\psi + \symbf{0} = \psi$．
+    \item \label{vector:sum-opposite}
+        \bluehead{和に対する逆元の存在}------すなわち，
+        \fire{任意の$\psi \in V$}に対し，
+        \water{ある$\varphi \in V$}が存在して，
+        $\psi + \varphi = \symbf{0}$．
+    \item \label{vector:scalar-sum}
+        \bluehead{スカラー倍は複素数の和に対して分配的である}------すなわち，
+        \fire{任意の$\psi \in V$}と\fire{任意の複素数$a, b$}に対し，
+        $(a + b) \scaprod \psi = (a \scaprod \psi) + (b \scaprod \psi)$．
+    \item \label{vector:scalar-distributive}
+        \bluehead{スカラー倍は$V$上の和に対して分配的である}------すなわち，
+        \fire{任意の$\psi, \varphi \in V$}と\fire{任意の複素数$a$}に対し，
+        $a \scaprod (\psi + \varphi) = (a \scaprod \psi) + (a \scaprod \varphi)$．
+    \item \label{vector:scalar-prod}
+        \bluehead{複素数の積とスカラー倍の結合}------すなわち，
+        \fire{任意の$\psi \in V$}と\fire{任意の複素数$a, b$}に対し，
+        $(ab) \scaprod \psi = a \scaprod (b \scaprod \psi)$．
+    \item \label{vector:scalar-identity}
+        \bluehead{$1$はスカラー倍の単位元}------すなわち，
+        複素数$1$について，\fire{任意の$\psi \in V$}に対し，
+        $1 \scaprod \psi = \psi$．
+\end{enumerate}
+を満たすのならば，
+$V$を\ltword{ベクトル空間}(vector space)と呼び，
+$V$の元（上で挙げた$\psi, \varphi, \xi, \dotsc$）を\ltword{ベクトル}という．
+
+ここで，上の条件に出てくる「\fire{任意の}---」と「\water{ある}---」の順序は重要である．
+\cref{vector:sum-zero}では$\symbf{0}$はただひとつであり，
+その$\symbf{0}$について$\psi \vecplus \symbf{0} = \psi$が満たされ，
+さらに$\varphi \vecplus \symbf{0} = \varphi$が成り立たねばならない．
+その一方で，\cref{vector:sum-opposite}における$\varphi$は，
+$\psi$のとりかたによって変わりうる．
+あるベクトル$\psi$に対して$\psi \vecplus \varphi = \symbf{0}$が満たされても，
+別のベクトル$\xi$に対して$\xi \vecplus \varphi = \symbf{0}$が成り立つとは限らない．
+
+
+
+\clearpage
+
+
+
+ベクトル空間の典型例は\word{ユークリッド空間}(Euclidean space)である．
+ある自然数$N$（$\geq 1$）に対し，
+集合$\symbb{C}^N$を
+\begin{equation*}
+    \symbb{C}^N 
+    \coloneq
+    \Set*{
+    \symbf{x} = 
+    \begin{pmatrix}
+        x_1  \\  \vdots  \\  x_N
+    \end{pmatrix}
+    \given 
+    \text{$x_1, \dots, x_N$は複素数}
+    }
+\end{equation*}
+で定める．
+和$\vecplus$とスカラー倍$\scaprod$は，
+各成分の和と積，つまり
+\begin{align*}
+    \symbf{x} \vecplus \symbf{y}
+        &\coloneq 
+        \begin{pmatrix}
+            x_1 + y_1  \\
+            \vdots     \\
+            x_N + y_N
+        \end{pmatrix},
+    \quad
+    c \scaprod \symbf{x}
+        \coloneq 
+        \begin{pmatrix}
+            c x_1  \\
+            \vdots \\
+            c x_N
+        \end{pmatrix}
+\end{align*}
+で定める．
+このとき，$\symbb{C}^N$がベクトル空間の定義を満たすことを確認するのは容易である．
+まず，
+\cref{vector:sum-associative,vector:sum-commutative}は，
+複素数の性質から明らかである．
+\cref{vector:sum-zero}における$\symbf{0}$は，
+\begin{equation*}
+    \symbf{0} \coloneq 
+    \begin{pmatrix}
+        0  \\  \vdots  \\  0
+    \end{pmatrix}
+\end{equation*}
+で与えられる．
+また，\cref{vector:sum-opposite}でいう，$\symbf{x}$に対して$\symbf{x} \vecplus \symbf{y} = \symbf{0}$を満たすベクトル
+$\symbf{y}$は，
+\begin{equation*}
+    \symbf{y} \coloneq 
+    -\symbf{x} =
+    \begin{pmatrix}
+        -x_1  \\  \vdots  \\  -x_N
+    \end{pmatrix}
+\end{equation*}
+である．
+\cref{vector:scalar-sum,vector:scalar-distributive}は複素数の分配法則に帰着されるし，
+\cref{vector:scalar-prod}は複素数の結合法則そのものである．
+\cref{vector:scalar-identity}は複素数$1$が乗法の単位元であることから直ちに従う．
+
+
+\clearpage
+
+
+
+次に，ベクトル空間において定義される\ltjruby{内|積}{ない|せき}という概念を導入する．
+内積を定義することは，ベクトル空間に幾何学的な性質を入れることに対応する．
+
+$\iparen{\bigdot, \bigdot} \colon V \times V \to \symbb{C}$は，
+2つのベクトルを複素数に対応させる写像であって，
+\begin{enumerate}
+    \item \label{innerp:linear} 
+        \bluehead{右線形性}------すなわち，
+        \fire{任意のベクトル$\psi, \varphi, \xi$}および\fire{任意の複素数$a, b$}に対し，
+        $\iparen{\psi, \  a \varphi \vecplus b \xi} = a \iparen{\psi, \varphi} + b \iparen{\psi, \xi}$．
+    \item \label{innerp:conjugate-symmetry} 
+        \bluehead{共役対称性}------すなわち，
+        \fire{任意のベクトル$\psi, \varphi$}に対し，
+        $\iparen{\psi, \varphi} = \conj{\iparen{\varphi, \psi}}$．
+        ここで，$\conj{\bigdot}$は$\bigdot$の共役複素数を表す．
+    \item \label{innerp:positive-definiteness}
+        \bluehead{正定値性}------すなわち，
+        \fire{任意のベクトル$\psi$}に対し，
+        $\iparen{\psi, \psi} \geq 0$であり，
+        しかも$\iparen{\psi, \psi} = 0$ならば$\psi = \symbf{0}$．
+\end{enumerate}
+を満たすものを，$V$上の\ltword{内|積}[ない|せき](inner product)と呼ぶ．
+
+\cref{innerp:linear,innerp:conjugate-symmetry}を合わせると，
+左側のベクトルについては以下の\emph{反線形性}
+\begin{equation*}
+    \iparen{a \psi \vecplus b \varphi, \  \xi}
+        = \conj{a} \iparen{\psi, \xi} + \conj{b} \iparen{\varphi, \xi}
+\end{equation*}
+が成り立つことに注意しなければならない．
+なお，数学ではふつう\cref{innerp:linear}のかわりに\emph{左線形性}%
+------つまり\(
+    \iparen{a \psi \vecplus b \varphi, \  \xi}
+    = a \iparen{\psi, \xi} + b \iparen{\varphi, \xi}
+\)------%
+を課すので，
+かわりに右側に反線形性が要請される．
+右線形性と左線形性のどちらを採用するかは単に定義の問題であり，
+両者は本質的に同じものである．
+しかし，量子力学の理論で用いるブラ・ケット記法は右線形性を前提としたものであるから，
+そちらに統一したほうが物理を扱ううえでは便利である．
+
 
 
 
