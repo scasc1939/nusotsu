@@ -1,8 +1,14 @@
-\documentclass{sotsu}
+\documentclass[
+    % draft
+]{sotsu}
+
+\usepackage{ifdraft}
 
 \usepackage{sotsu}
 \usepackage{sotsu-symb}
 \usepackage{sotsu-thm}
+
+\crefname{equation}{式}{式}
 
 \usepackage[
     style=sotsu,
@@ -21,6 +27,47 @@
 
 \title{なんか}
 \date{\today}
+
+
+\ExplSyntaxOn
+\makeatletter
+\renewcommand{\maketitle}{
+    \begin{titlepage}
+        \null\vfil
+        \centering
+        {\LARGE \@title}
+        \par
+        {\large \@date}
+        \vfil\null
+        \par
+        \ifdraft{}{
+        \begin{minipage}{0.7\linewidth}
+            \begin{minipage}{0.2\linewidth}
+                \centering
+                \includegraphics[width=2cm]{misc/scasc_nusotsu.pdf}
+            \end{minipage}
+            \hfil
+            \begin{minipage}{0.7\linewidth}
+                PDFファイルと\LaTeX ソースは，
+                \url{https://github.com/scasc1939/nusotsu}で配布しています．
+            \end{minipage}
+            \vskip 1cm
+            \begin{minipage}{0.2\linewidth}
+                \centering
+                \includegraphics[width=2cm]{misc/cc-by-sa.pdf}
+            \end{minipage}
+            \hfil
+            \begin{minipage}{0.7\linewidth}
+                This~work~is~licensed~under~CC~BY-SA~4.0.
+                \\
+                \url{https://creativecommons.org/licenses/by-sa/4.0/}
+            \end{minipage}
+        \end{minipage}
+        }
+    \end{titlepage}
+}
+\makeatother
+\ExplSyntaxOff
 
 
 \begin{document}
@@ -115,19 +162,18 @@
 
 
 
-たった2つのスピンであっても，
-非常に奇妙なふるまいを示す．
 
 
 
 \section{数学的準備}
 
-\subsection{ヒルベルト空間}
-
 量子状態はヒルベルト空間の元であるベクトルによって記述される．
 そこで，この節ではまず，一般のヒルベルト空間について定義する．
 スピン系のような有限次元のヒルベルト空間のベクトルとは，
 単なる数ベクトルであることを示す．
+
+
+\subsection{ベクトル空間}
 
 まずは\emph{ベクトル空間}を定義する．
 $\symbb{C}$を複素数全体の集合とする．
@@ -149,12 +195,12 @@ $V$の元を$\psi, \varphi, \xi$，
     \item \label{vector:sum-zero}
         \bluehead{和に対する零元の存在}------すなわち，
         \water{ある$\symbf{0} \in V$}が存在して，
-        \fire{任意の$\psi \in V$}に対し，$\psi + \symbf{0} = \psi$．
+        \fire{任意の$\psi \in V$}に対し，$\psi \vecplus \symbf{0} = \psi$．
     \item \label{vector:sum-opposite}
         \bluehead{和に対する逆元の存在}------すなわち，
         \fire{任意の$\psi \in V$}に対し，
         \water{ある$\varphi \in V$}が存在して，
-        $\psi + \varphi = \symbf{0}$．
+        $\psi \vecplus \varphi = \symbf{0}$．
     \item \label{vector:scalar-sum}
         \bluehead{スカラー倍は複素数の和に対して分配的である}------すなわち，
         \fire{任意の$\psi \in V$}と\fire{任意の複素数$a, b$}に対し，
@@ -162,7 +208,7 @@ $V$の元を$\psi, \varphi, \xi$，
     \item \label{vector:scalar-distributive}
         \bluehead{スカラー倍は$V$上の和に対して分配的である}------すなわち，
         \fire{任意の$\psi, \varphi \in V$}と\fire{任意の複素数$a$}に対し，
-        $a \scaprod (\psi + \varphi) = (a \scaprod \psi) + (a \scaprod \varphi)$．
+        $a \scaprod (\psi \vecplus \varphi) = (a \scaprod \psi) \vecplus (a \scaprod \varphi)$．
     \item \label{vector:scalar-prod}
         \bluehead{複素数の積とスカラー倍の結合}------すなわち，
         \fire{任意の$\psi \in V$}と\fire{任意の複素数$a, b$}に対し，
@@ -187,9 +233,7 @@ $\psi$のとりかたによって変わりうる．
 
 
 
-\clearpage
-
-
+\subsubsection{ベクトル空間の例}
 
 ベクトル空間の典型例は\word{ユークリッド空間}(Euclidean space)である．
 ある自然数$N$（$\geq 1$）に対し，
@@ -253,10 +297,70 @@ $\symbf{y}$は，
 \cref{vector:scalar-prod}は複素数の結合法則そのものである．
 \cref{vector:scalar-identity}は複素数$1$が乗法の単位元であることから直ちに従う．
 
+以上のことから$\symbb{C}^N$がベクトル空間であることが示されたが，
+実は\pageref{vector:sum-associative}ページで与えたベクトル空間の定義は，
+この$\symbb{C}^N$が満たす性質を抽出して羅列したものである．
+物理学の教科書で「具体例から基本法則を導く」ことが多いのとは対照的に，
+数学ではこのような「一般から具体」という論理展開が好まれる\footnote{
+    上のように，具体例を与えずに初めに定義を書くことは，
+    物理では「\ltjruby{天|下}{あま|くだ}り的」とされて忌避される傾向にある．
+}．
+しかし，論理の形式としては一般から具体であっても，
+たいていは抽象的な定義のもととなった典型例が存在する．
+今回の場合，抽象的に定義された「ベクトル空間」の典型例がユークリッド空間である．
 
-\clearpage
 
 
+
+\subsection{基底と次元}
+
+ベクトル空間の和とスカラー倍について，
+進んだ考察をしてみよう．
+
+考えるベクトル空間を$V$とする．
+ベクトル空間の公理（より正確には，和とスカラー倍の定義）から，
+$V$のベクトル$\symbf{u}_1, \dots, \symbf{u}_n$と複素数$c_1, \dots, c_n$に対して，
+\begin{equation}
+    \label{eq:linear-combination}
+    \symbf{v} \coloneq c_1 \symbf{u}_1 + \dots + c_n \symbf{u}_n
+\end{equation}
+で定義される$\symbf{v}$はまた$V$のベクトルになる．
+そこで\cref{eq:linear-combination}のことを，
+ベクトル$\symbf{u}_1, \dots, \symbf{u}_n$の\ltword{線形結合}(linear combination)という．
+線形結合はベクトル空間論の基礎をなす重要概念であり，
+ある意味ベクトルの本質ともいえる．
+ベクトル空間における概念の多くが，
+線形結合を用いて定義される．
+以下でその例を見てみよう．
+
+ベクトルの組$\symbf{u}_1, \dots, \symbf{u}_n \in V$が\ltword{一次独立}(linearly independent)であるとは，
+複素数$c_1, \dots, c_n$に対して，
+\begin{equation}
+    \label{eq:linearly-independent}
+    \symbf{0} = c_1 \symbf{u}_1 + \dots + c_n \symbf{u}_n
+\end{equation}
+ならば$c_1 = \dots = c_n = 0$が成り立つことをいう．
+また，$V$のベクトル$\symbf{u}_1, \dots, \symbf{u}_n$が$V$を\ltword{生成する}とは，
+それらの線形結合の全体が$V$に一致することをいう．
+
+ここまでの準備によって，
+基底という概念を定義できる．
+$\symbf{u}_1, \dots, \symbf{u}_n$を$V$のベクトルとする．
+以下の2条件
+\begin{enumerate}
+    \item $\symbf{u}_1, \dots, \symbf{u}_n$は一次独立である．
+    \item $\symbf{u}_1, \dots, \symbf{u}_n$は$V$を生成する．
+\end{enumerate}
+が満たされるとき，
+$\symbf{u}_1, \dots, \symbf{u}_n$は$V$の\ltword{基|底}[き|てい](basis)であるという．
+
+
+
+
+
+
+
+\subsection{内積}
 
 次に，ベクトル空間において定義される\ltjruby{内|積}{ない|せき}という概念を導入する．
 内積を定義することは，ベクトル空間に幾何学的な性質を入れることに対応する．
@@ -281,7 +385,7 @@ $\iparen{\bigdot, \bigdot} \colon V \times V \to \symbb{C}$は，
 \end{enumerate}
 を満たすものを，$V$上の\ltword{内|積}[ない|せき](inner product)と呼ぶ．
 
-\cref{innerp:linear,innerp:conjugate-symmetry}を合わせると，
+ここで，\cref{innerp:linear,innerp:conjugate-symmetry}を合わせると，
 左側のベクトルについては以下の\emph{反線形性}
 \begin{equation*}
     \iparen{a \psi \vecplus b \varphi, \  \xi}
