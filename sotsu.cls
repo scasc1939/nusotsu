@@ -95,9 +95,9 @@
 }
 
 \ModifyHeading{subsubsection}{
-    label_format={\S\thesection},
+    label_format={\thesubsubsection},
     lines=2,
-    font={\Large\sffamily\gtfamily\bfseries},
+    font={\large\sffamily\gtfamily\bfseries},
     format={
         % 見出しラベル（§123）部分
         % 現状ラベルは使わない

@@ -1,5 +1,5 @@
 \documentclass[
-    % draft
+    % draft,
 ]{sotsu}
 
 \usepackage{ifdraft}
@@ -16,6 +16,18 @@
     minnames=99,
     ]{biblatex}
 \addbibresource{sotsu.bib}
+
+
+\ModifyHeading{subsubsection}{
+    label_format={\thesubsubsection},
+    lines=2,
+    font={\large\sffamily\gtfamily\bfseries},
+    format={%
+        \jlreqHeadingLabel{{\rmfamily\mcfamily\bfseries \thesubsubsection} \quad}%
+        #2%
+    },
+}
+
 
 
 \definecolor{fire}{RGB}{255, 90, 0}
@@ -165,7 +177,7 @@
 
 
 
-\section{数学的準備}
+\section{ヒルベルト空間の定義}
 
 量子状態はヒルベルト空間の元であるベクトルによって記述される．
 そこで，この節ではまず，一般のヒルベルト空間について定義する．
@@ -174,6 +186,14 @@
 
 
 \subsection{ベクトル空間}
+
+量子力学は線形代数である，
+量子力学的状態はベクトルであるというのはよく言われることである．
+このことを理解するために，
+まずはベクトルとは何かをきちんと定義することにしよう．
+
+
+\subsubsection{ベクトル空間の定義}
 
 まずは\emph{ベクトル空間}を定義する．
 $\symbb{C}$を複素数全体の集合とする．
@@ -235,6 +255,7 @@ $\psi$のとりかたによって変わりうる．
 
 \subsubsection{ベクトル空間の例}
 
+\bluehead{ユークリッド空間}\quad
 ベクトル空間の典型例は\word{ユークリッド空間}(Euclidean space)である．
 ある自然数$N$（$\geq 1$）に対し，
 集合$\symbb{C}^N$を
@@ -310,9 +331,43 @@ $\symbf{y}$は，
 今回の場合，抽象的に定義された「ベクトル空間」の典型例がユークリッド空間である．
 
 
+\bluehead{関数空間}\quad
+もう少し特殊なベクトル空間として，
+関数のなす空間を考えよう．
+実数係数の\ltword{多項式空間}$\symbb{R}[x]$を
+\begin{equation*}
+    \symbb{R}[x] \coloneq 
+    \Set*{ \sum_{i=1}^{n} c_i x^i
+        \given
+        \begin{array}{c}
+            \text{$c_1, \dots, c_n$は実数}  \\
+            \text{$n = 0, 1, 2, \dots$}
+        \end{array}
+        }
+\end{equation*}
+で定義する．
+$\symbb{R}[x]$がベクトル空間になっていることもすぐにわかる．
+例えば多項式の和はまた多項式であるし，
+多項式のスカラー倍（つまり，全体に数$c$をかけたもの）も多項式である\footnote{
+    本来は「多項式の和$\vecplus$とスカラー倍$\scaprod$を定義しないといけないが，
+    煩雑さを避けるため割愛する．
+}．
+\pageref{vector:sum-associative}ページの8条件を満たすことは，
+これらの演算が\cref{vector:sum-zero}の$\symbf{0}$が多項式としての$0$であることに注意すれば，
+ほとんど自明である．
+$\symbb{R}[x]$に属するベクトルの例は，
+$2x$, $3x^3 - \sqrt{2} x + 1$などである．
+
+同様にして，連続関数全体$C^0$や，
+$n$回微分可能な関数全体$C^n$もベクトル空間であることが示される．
+このような事実を踏まえて，
+量子力学的状態$\psi(x)$がベクトルであるといっているのである．
+
 
 
 \subsection{基底と次元}
+
+\subsubsection{有限個の基底}
 
 ベクトル空間の和とスカラー倍について，
 進んだ考察をしてみよう．
@@ -330,18 +385,33 @@ $V$のベクトル$\symbf{u}_1, \dots, \symbf{u}_n$と複素数$c_1, \dots, c_n$
 線形結合はベクトル空間論の基礎をなす重要概念であり，
 ある意味ベクトルの本質ともいえる．
 ベクトル空間における概念の多くが，
-線形結合を用いて定義される．
+この線形結合を用いて定義される．
 以下でその例を見てみよう．
 
-ベクトルの組$\symbf{u}_1, \dots, \symbf{u}_n \in V$が\ltword{一次独立}(linearly independent)であるとは，
-複素数$c_1, \dots, c_n$に対して，
+ベクトルの組$\symbf{u}_1, \dots, \symbf{u}_n \in V$が，
+複素数$c_1, \dots, c_n$に対して
 \begin{equation}
     \label{eq:linearly-independent}
     \symbf{0} = c_1 \symbf{u}_1 + \dots + c_n \symbf{u}_n
 \end{equation}
-ならば$c_1 = \dots = c_n = 0$が成り立つことをいう．
-また，$V$のベクトル$\symbf{u}_1, \dots, \symbf{u}_n$が$V$を\ltword{生成する}とは，
-それらの線形結合の全体が$V$に一致することをいう．
+を満たすとする．
+\cref{eq:linearly-independent}のことを$\symbf{u}_1, \dots, \symbf{u}_n$の\ltword{一次関係}(linear relation)という．
+もし$c_1 = \dots = c_n = 0$ならば，
+\cref{eq:linearly-independent}は当然成り立つ．
+逆に，\cref{eq:linearly-independent}が成り立つのが$c_1 = \dots = c_n = 0$の場合に限るとき，
+$\symbf{u}_1, \dots, \symbf{u}_n$は\ltword{一次独立}(linearly independent)であるという．
+
+また，$V$のベクトル$\symbf{u}_1, \dots, \symbf{u}_n$の線形結合の全体が$V$に一致する，
+つまり
+\begin{equation*}
+    V = \Set{
+            c_1 \symbf{u}_1 + \dots + c_n \symbf{u}_n
+            \given
+            \text{$c_1, \dots, c_n$は複素数}
+            }
+\end{equation*}
+であるとき，$\symbf{u}_1, \dots, \symbf{u}_n$は$V$を\ltword{生成する}という．
+あるいは$V$のすべてのベクトルが\cref{eq:linear-combination}の形で書けるといってもよい．
 
 ここまでの準備によって，
 基底という概念を定義できる．
@@ -354,16 +424,258 @@ $\symbf{u}_1, \dots, \symbf{u}_n$を$V$のベクトルとする．
 が満たされるとき，
 $\symbf{u}_1, \dots, \symbf{u}_n$は$V$の\ltword{基|底}[き|てい](basis)であるという．
 
+例えば，$V$をユークリッド空間$\symbb{C}^N$としよう．
+$V$の基底は，例えば
+\begin{equation}
+    \label{eq:Euclidean-basis-1}
+    \symbf{u}_1 \coloneq
+    \begin{pmatrix}
+        1  \\  0  \\  0  \\  \vdots  \\  0
+    \end{pmatrix}
+    , \quad
+    \symbf{u}_2 \coloneq
+    \begin{pmatrix}
+        0  \\  1  \\  0  \\  \vdots  \\  0
+    \end{pmatrix}
+    , \quad \dotsc, \quad
+    \symbf{u}_N \coloneq
+    \begin{pmatrix}
+        0  \\  0  \\  \vdots  \\  0  \\  1
+    \end{pmatrix}
+\end{equation}
+が考えられる．
+$\symbf{u}_1, \dots, \symbf{u}_N$が$V$を生成することは，
+$\symbb{C}^N$の任意のベクトル$\symbf{v}$が
+\begin{equation*}
+    \symbf{v}
+    \equiv
+    \begin{pmatrix}
+        c_1  \\  c_2  \\  \vdots  \\  c_N
+    \end{pmatrix}
+    =
+    c_1 \symbf{u}_1 + c_2 \symbf{u}_2 + \dots + c_N \symbf{u}_N
+\end{equation*}
+（ただし$c_1, c_2, \dots, c_N$は任意の複素数）とあらわされることからわかる．
+また，一次独立性は，
+\begin{equation*}
+    \symbf{0} 
+        \equiv
+        \begin{pmatrix}
+            0  \\  0  \\  \vdots  \\  0
+        \end{pmatrix}
+        = c_1 \symbf{u}_1 + c_2 \symbf{u}_2 + \dots + c_N \symbf{u}_N
+        \equiv
+        \begin{pmatrix}
+            c_1  \\  c_2  \\  \vdots  \\  c_N
+        \end{pmatrix}
+\end{equation*}
+より$c_1 = c_2 = \dots = c_N = 0$と確認される．
+
+ところが，\cref{eq:Euclidean-basis-1}は$\symbb{C}^N$の\emph{唯一の}基底ではない．
+これを確かめるには，
+実際に別の基底を構成すればよい．
+たとえば，
+\begin{equation}
+    \tag{\ref*{eq:Euclidean-basis-1}$'$}
+    \label{eq:Euclidean-basis-2}
+    \symbf{u}'_1 \coloneq
+    \begin{pmatrix}
+        1  \\  -1  \\  0  \\  \vdots  \\  0  \\  0
+    \end{pmatrix}
+    , \quad
+    \symbf{u}'_2 \coloneq
+    \begin{pmatrix}
+        0  \\  1  \\  -1  \\  0  \\  \vdots  \\  0
+    \end{pmatrix}
+    , \quad \dotsc, \quad
+    \symbf{u}'_{N-1} \coloneq
+    \begin{pmatrix}
+        0  \\  0  \\  \vdots  \\  0  \\  1  \\  -1
+    \end{pmatrix}
+    , \quad
+    \symbf{u}'_N \coloneq
+    \begin{pmatrix}
+        0  \\  0  \\  \vdots  \\  0  \\  0  \\  1
+    \end{pmatrix}
+\end{equation}
+で$\symbf{u}'_1, \dots, \symbf{u}'_N$を定めても，
+これは基底である．
+一次独立であることは，
+$c_1 \symbf{u}'_1 + \dots + c_N \symbf{u}'_N = \symbf{0}$とおくことで，
+\begin{equation*}
+    c_1 = 0, 
+    \quad 
+    c_2 - c_1 = 0, 
+    \quad
+    \dotsb,
+    \quad 
+    c_{N-1} - c_N = 0,
+    \quad
+    c_N = 0
+\end{equation*}
+という連立不等式が得られ，
+ここから$c_1 = c_2 = \dots = c_N = 0$が従うことよりわかる．
+また$V$を生成することは，
+任意のベクトル$\symbf{v} = (a_1 \; a_2 \; \cdots \; a_N) \in V$が
+\begin{equation*}
+    \symbf{v} \equiv 
+    \begin{pmatrix}
+        a_1  \\  a_2  \\  \vdots  \\  a_N
+    \end{pmatrix}
+    =
+      a_1 \symbf{u}'_1
+    + (a_2 + a_1) \symbf{u}'_2
+    + \dotsb 
+    + (a_{N-1} + a_{N-2}) \symbf{u}'_{N-1}
+    + (a_{N-1} + a_N) \symbf{u}'_{N-1}
+\end{equation*}
+と表せることから従う．
+
+
+\subsubsection{無限個の基底}
+
+今までの議論では，
+基底が有限個の場合についてのみ考えていた．
+ここでは基底が無限個ある場合を考える．
+そのためには，
+線形結合の定義を拡張する必要がある．
+
+以降，表記を簡単にするために，
+可算無限（自然数$\symbb{N}$と同じくらいの数）の場合についてだけ考える．
+物理学で扱うヒルベルト空間は，
+無限次元であっても可分である（すなわち稠密な高々可算集合をもつ）ので，
+この仮定を行っても特に支障はない．
+
+考えるベクトル空間を$V$とする．
+$V$のベクトル$\symbf{u}_1, \symbf{u}_2, \dots$に対して，
+\begin{equation}
+    \label{eq:infinite-linear-combination}
+    \symbf{v} \coloneq
+    \sum_{i = 1}^{\infty} c_i \symbf{u}_i,
+    \quad
+    \text{ただし$c_1, c_2, \dots$は有限個を除きゼロである複素数}
+\end{equation}
+で定義される$V$のベクトル$\symbf{v}$を，
+$\symbf{u}_1, \symbf{u}_2, \dots$の\ltword{線形結合}という．
+
+ここで，無限個の複素数$c_1, c_2, \dots$が有限個を除きゼロである，つまり\cref{infinite-linear-combination}が実は
+\begin{equation*}
+    \symbf{v} = c_{i_1} \symbf{u}_{i_1} + \dots + c_{i_n} \symbf{u}_{i_n}
+\end{equation*}
+という有限の和でかけるという条件は必要不可欠である．
+実際，和が有限でない場合，
+すべての$i$に対して$\symbf{u}_i \in V$でも，
+$\sum_{i=1}^{\infty} c_i \symbf{u}_i \notin V$となることがあり得る．
+例えば関数$1, x, x^2, \dots, x^n, \dots$はすべて多項式関数であるが，
+それらの線形結合
+\begin{equation*}
+    1 + x + \frac{1}{2!} x^2 + \dots + \frac{1}{n!} x^n + \dotsb = e^x
+\end{equation*}
+は多項式関数でない．
+
+ベクトル空間$V$に属するベクトル$\symbf{u}_1, \symbf{u}_2, \dots$が\ltword{一次独立}であるとは，
+\fire{有限個を除きゼロである}複素数の組$c_1, c_2, \dots$を用いて
+\begin{equation*}
+    \symbf{0} = \sum_{i = 1}^{\infty} c_i \symbf{u}_i
+\end{equation*}
+と書けたなら，$c_1 = c_2 = \dots = 0$が成り立つことをいう．
+また，
+$\symbf{u}_1, \symbf{u}_2, \dots$が$V$を\ltword{生成する}とは，
+すべての$V$のベクトル$\symbf{v}$がそれらの線形結合で書ける，
+つまり\fire{有限個を除きゼロである}複素数の組$c_1, c_2, \dots$を用いて
+\begin{equation*}
+    \symbf{v} = \sum_{i = 1}^{\infty} c_i \symbf{u}_i
+\end{equation*}
+が成り立つことをいう．
+
+以上のように再定義された概念を用いて，
+無限個のベクトルからなる基底を定義できる．
+つまり，$V$のベクトル$\symbf{u}_1, \symbf{u}_2, \dots$が$V$の\ltword{基底}であるとは，
+これらが一次独立であり，
+かつ$V$を生成することをいう．
 
 
 
 
 
+\subsubsection{ベクトル空間の次元}
 
-\subsection{内積}
+ベクトル空間が与えられても，
+その基底の取り方には任意性がある．
+たとえば\cref{eq:Euclidean-basis-1}と\cref{eq:Euclidean-basis-2}は，
+ともにユークリッド空間$\symbb{C}^N$の基底をなす．
+しかし，基底を構成するベクトルの数は，
+どのような基底をとっても常に一定である．
+実際，\cref{eq:Euclidean-basis-1}，\cref{eq:Euclidean-basis-2}は，
+ともに$N$個のベクトルからなる．
+これを証明しよう．
+
+あるベクトル空間$V$に対して，
+基底$\sequ{\symbf{u}_i} \coloneq \symbf{u}_1, \dots, \symbf{u}_M$と，
+基底$\sequ{\symbf{u}'_j} \coloneq \symbf{u}'_1, \dots, \symbf{u}'_N$がとれたとする．
+まず$\sequ{\symbf{u}_i}$は$V$の基底であるから，
+任意の$\symbf{u}'_j$は$\sequ{\symbf{u}_i}$の線形結合で書ける：
+\begin{equation*}
+    \symbf{u}'_j = \sum_{j = 1}^{M} c_{ij} \symbf{u}_i
+    \quad ( 1 \leq i \leq N )
+\end{equation*}
+ここでもし$M < N$なら，
+$\sequ{\symbf{u}'_j}$は一次従属になる．
+なぜなら，複素数$a_1, \dots, a_N$を用いた$\sequ{\symbf{u}'_j}$の一次関係は
+\begin{equation*}
+    \begin{split}
+        \symbf{0} &= \sum_{j = 1}^{N} a_j \symbf{u}'_j
+            = \sum_{i = 1}^{M} \sum_{j = 1}^{N} a_j c_{ij} \symbf{u}_i
+            \\
+            &= 
+            \begin{pmatrix}
+                \symbf{u}_1  &  \cdots  &  \symbf{u}_M
+            \end{pmatrix}
+            \begin{pmatrix}
+                c_{11}  &  \cdots  &  c_{1N}  \\
+                \vdots  &  \ddots  &  \vdots  \\
+                c_{M1}  &  \cdots  &  c_{MN}
+            \end{pmatrix}
+            \begin{pmatrix}
+                a_1  \\  \vdots  \\  a_N
+            \end{pmatrix}
+    \end{split}
+\end{equation*}
+と書けるが，
+行列の方程式
+\begin{equation*}
+    \begin{pmatrix}
+        c_{11}  &  \cdots  &  c_{1N}  \\
+        \vdots  &  \ddots  &  \vdots  \\
+        c_{M1}  &  \cdots  &  c_{MN}
+    \end{pmatrix}
+    \symbf{a}
+    =
+    \symbf{0}
+\end{equation*}
+は$M < N$（$\text{行数} < \text{列数}$）のとき必ず非自明な解$\symbf{a} \neq \symbf{0}$を持つからである．
+仮定より$\sequ{\symbf{u}'_j}$は一次独立であるから，
+$M \geq N$である．
+同様の議論は$\sequ{\symbf{u}_i}$と$\sequ{\symbf{u}'_j}$を入れ替えても成立するので，
+$N \geq M$である．
+よって$M = N$であるといえる．
+
+ベクトル空間$V$について，
+その基底を構成するベクトルの数を，
+$V$の\ltword{次|元}[じ|げん](dimension)という．
+\cref{eq:Euclidean-basis-1}よりユークリッド空間$\symbb{C}^N$の次元は$N$である．
+
+
+
+
+
+\subsection{内積空間}
 
 次に，ベクトル空間において定義される\ltjruby{内|積}{ない|せき}という概念を導入する．
 内積を定義することは，ベクトル空間に幾何学的な性質を入れることに対応する．
+
+
+\subsubsection{内積}
 
 $\iparen{\bigdot, \bigdot} \colon V \times V \to \symbb{C}$は，
 2つのベクトルを複素数に対応させる写像であって，
@@ -387,10 +699,11 @@ $\iparen{\bigdot, \bigdot} \colon V \times V \to \symbb{C}$は，
 
 ここで，\cref{innerp:linear,innerp:conjugate-symmetry}を合わせると，
 左側のベクトルについては以下の\emph{反線形性}
-\begin{equation*}
+\begin{equation}
+    \label{eq:anti-linear}
     \iparen{a \psi \vecplus b \varphi, \  \xi}
         = \conj{a} \iparen{\psi, \xi} + \conj{b} \iparen{\varphi, \xi}
-\end{equation*}
+\end{equation}
 が成り立つことに注意しなければならない．
 なお，数学ではふつう\cref{innerp:linear}のかわりに\emph{左線形性}%
 ------つまり\(
@@ -403,6 +716,276 @@ $\iparen{\bigdot, \bigdot} \colon V \times V \to \symbb{C}$は，
 両者は本質的に同じものである．
 しかし，量子力学の理論で用いるブラ・ケット記法は右線形性を前提としたものであるから，
 そちらに統一したほうが物理を扱ううえでは便利である．
+
+
+内積の具体例として，
+やはりユークリッド空間$V = \symbb{C}^N$について考えよう．
+\begin{equation}
+    \label{eq:Euclidean-inner-product}
+    \iparen{\symbf{x}, \symbf{y}}
+        \coloneq \sum_{i = 1}^{N} \conj{x_i} \cdotp y_i
+\end{equation}
+で与えられる．
+% ここで，$\conj{x}$は複素数$x$の共役複素数を表す．
+\cref{eq:Euclidean-inner-product}が内積の公理を満たすことは，
+容易に確認できる．
+すなわち，\cref*{innerp:linear}は
+\begin{equation*}
+    \begin{split}
+        \iparen{\symbf{x}, \  a \symbf{y} + b \symbf{z}}
+            &= \sum_{i = 1}^{N} \conj{x_i} \cdotp ( a y_i + b z_i )
+            \\
+            &= a \sum_{i = 1}^{N} \conj{x_i} \cdotp y_i
+            + b \sum_{i = 1}^{N} \conj{x_i} \cdotp z_i
+            = a \iparen{\symbf{x}, \symbf{y}} + b \iparen{\symbf{y}, \symbf{z}}
+    \end{split}
+\end{equation*}
+と示されるし，\cref*{innerp:conjugate-symmetry}は，
+\begin{equation*}
+    \iparen{\symbf{x}, \symbf{y}}
+        = \sum_{i = 1}^{N} \conj{x_i} \cdotp y_i
+        = \sum_{i = 1}^{N} \conj*{ \conj{y_i} \cdotp x_i }
+        = \conj{\ab(  \sum_{i = 1}^{N} \conj{y_i} \cdotp x_i  )}
+        = \conj{\ab\big( \iparen{\symbf{y}, \symbf{x}} )}
+\end{equation*}
+と計算できる．
+\cref*{innerp:positive-definiteness}を示すには，
+\begin{equation*}
+    \iparen{\symbf{x}, \symbf{x}}
+        = \sum_{i = 1}^{N} \conj{x_i} \cdotp y_i
+        = \sum_{i = 1}^{N} \abs{x_i}^2
+        \geq 0
+\end{equation*}
+とすればよい．
+最後の不等号は，各$i$に対して$\abs{x_i} \geq 0$であることによる．
+もし$\iparen{\symbf{x}, \symbf{x}} = 0$なら，
+すべての$i$に対して$\abs{x_i} = 0$，
+つまり$x_i = 0$であるから，$\symbf{x} = \symbf{0}$である．
+
+この内積が\cref{eq:anti-linear}の反線形性を満たすことも，
+直接的に確かめられる．
+\begin{equation*}
+    \iparen{a \symbf{x} + b \symbf{y}, \  \symbf{z}}
+    = \sum_{i = 1}^{N} \conj*{a x_i + b y_i} \cdotp z_i
+    = \conj{a} \sum_{i = 1}^{N} \conj{x_i} \cdotp z_i
+    + \conj{b} \sum_{i = 1}^{N} \conj{y_i} \cdotp z_i
+    = \conj{a} \iparen{\symbf{x}, \symbf{z}} + \conj{b} \iparen{\symbf{y}, \symbf{z}}
+\end{equation*}
+
+
+
+\subsubsection{ノルム}
+
+$V$を内積空間とすると，
+ベクトル$\psi$に対して，
+内積の公理\cref{innerp:positive-definiteness}より，
+\begin{equation}
+    \label{eq:norm}
+    \norm{\psi} \coloneq \sqrt{\vphantom{\psi}\smash{\iparen{\psi, \psi}}}
+\end{equation}
+は正の実数またはゼロとなる．
+\cref{eq:norm}を（内積空間$V$に付随する）$\psi$の\ltword{ノルム}(norm)という．
+
+たとえば$V = \symbb{R}^N$であれば，
+ベクトル$\symbf{x} \in \symbb{R}^N$のノルム
+\begin{equation*}
+    \norm{\symbf{x}} = \sqrt{\sum_{i = 1}^{N} \abs{x_i}^2}
+\end{equation*}
+が$\symbf{x}$の``長さ''に対応することは，
+$N$次元空間における三平方の定理を考えればわかる．
+
+$V$を内積空間，$\norm{\bigdot}$を$V$に付随するノルムとする．
+ノルムについて，以下の\ltword{三角不等式}
+\begin{equation}
+    \label{eq:triangle}
+    \norm{\psi + \varphi}
+    \leq \norm{\psi} + \norm{\varphi}
+\end{equation}
+が成り立つ．
+幾何的に解釈すると，
+ベクトル$\vec{a}$とベクトル$\vec{b}$を合成したベクトル$\vec{a} + \vec{b}$
+（つまり，$\vec{a}$の始点と$\vec{b}$の終点をむすんだベクトル）の長さは，
+$\vec{a}$の長さと$\vec{b}$の長さを足したものよりも短い（または同じ）であるということである．
+
+
+これにより，
+ノルムは単にベクトルの長さというだけでなく，
+ベクトル空間上の距離と考えることができる．
+
+\bluehead{\cref{eq:triangle}は次のように示される．}
+まず，内積空間では，
+任意のベクトル$\psi, \varphi$に対して，
+\begin{equation}
+    \label{eq:Cauchy-Schwarz}
+    \abs{\iparen{\psi, \varphi}} \leq \norm{\psi} \norm{\varphi}
+\end{equation}
+が成り立つ．
+これを使うと，
+\begin{equation*}
+    \begin{split}
+        \norm{\psi + \varphi}^2
+        &= \iparen{\psi + \varphi, \  \psi + \varphi}
+        \\
+        &= \iparen{\psi, \psi}
+            + \iparen{\psi, \varphi}
+            + \iparen{\varphi, \psi}
+            + \iparen{\varphi, \varphi}
+        \\
+        &= \norm{\psi}^2
+            + 2 \Real \iparen{\psi, \varphi}
+            + \norm{\varphi}^2
+        \\
+        &\leq \norm{\psi}^2 + 2 \abs{ \iparen{\psi, \varphi} } + \norm{\varphi}^2
+        \\
+        &\leq \norm{\psi}^2 + 2 \norm{\psi} \norm{\varphi} + \norm{\varphi}^2
+        = \ab(\norm{\psi} + \norm{\varphi})^2
+    \end{split}
+\end{equation*}
+とできる．
+ここで，ひとつめの不等号は単なる複素数の絶対値の定義であり，
+ふたつめの不等号が\cref{eq:triangle}である．
+
+\bluehead{\cref{eq:Cauchy-Schwarz}の証明}は次のようにできる．
+
+
+
+
+\subsubsection{正規直交基底}
+
+
+
+
+\subsection{空間の完備性}
+
+完備？
+
+ベクトル空間$V$の点列とは，
+自然数$n$に対して$\psi_n \in V$であるような$\psi_1, \psi_2, \dots$のセットをいう．
+この列のことを$\sequ{\psi_n}[n]$と書くことにする．
+
+$V$を内積空間とする．
+$V$の点列$\sequ{\psi_n}[n]$が
+\begin{equation*}
+    \lim_{m, n \to \infty} \norm{\psi_m - \psi_n} = 0
+\end{equation*}
+を満たすとき，
+$\sequ{\psi_n}[n]$は\ltword{コーシー列}(Cauchy sequence)であるという．
+
+$V$で収束する点列はコーシー列である．
+なぜなら，点列$\sequ{\psi_n}[n]$が$\psi_n \to \psi_*$（$n \to \infty$）に収束するとすれば，
+$\norm{\psi_n - \psi_*} \to 0$（$n \to \infty$）だから，
+\begin{equation*}
+    \norm{\psi_m - \psi_n}
+    = \norm{(\psi_m - \psi_*) + (\psi_* - \psi_n)}
+    \leq \norm{\psi_m - \psi_*} + \norm{\psi_* - \psi_n}
+    \xrightarrow{n, m \to \infty} 0
+\end{equation*}
+となり，コーシー列の条件を満たす．
+
+一方，$V$のコーシー列が$V$で収束するとは限らない．
+
+
+
+
+
+\subsection{ヒルベルト空間}
+
+完備な内積空間を\ltword{ヒルベルト空間}(Hilbert space)という．
+
+
+
+
+\section{もう少し準備}
+
+\subsection{線形写像}
+
+2つの集合$X, Y$が与えられたとき，
+$X$の各元をそれぞれ$Y$のある元に対応させる規則のことを，
+$X$から$Y$への\ltword{写|像}[しゃ|ぞう]という．
+ある写像を$f$と書くことにすると，
+元$x \in X$が元$y \in Y$に対応することを，
+$f(x) = y$と書く．
+
+$f$を集合$X$から$Y$への写像とする．
+$X$の任意の元$x, y$について，
+$x \neq y$なら$f(x) \neq f(y)$が必ず成り立つとき，
+$f$を$X$から$Y$への\ltword{単|射}[たん|しゃ](injection)という．
+また，$Y$の任意の元$y$について，
+$y = f(x)$を満たす$X$の元$x$が存在するとき，
+$f$を$X$から$Y$への\ltword{全|射}[ぜん|しゃ](surjection)という．
+$f$が単射であり，かつ全射であるとき，
+$f$を\ltword{全|単|射}[ぜん|たん|しゃ](bijection)という．
+
+$X$から$Y$への写像$f$が全単射であるとは，
+$X$の元と$Y$の元が$f$によってそれぞれ1対1に結びついていることを意味する．
+$f$は\fire{$X$の元\emph{を}}\water{$Y$の元\emph{に}}対応させる写像だが，
+同じ対応について，
+逆に\water{$Y$の元\emph{を}}\fire{$X$の元\emph{に}}対応させる写像（つまり$Y$から$X$への写像）$f^{-1}$を考えることができる．
+$f^{-1}$を，$f$の\ltword{逆|写|像}[ぎゃく|しゃ|ぞう]という．
+
+写像そのものも非常に重要な概念であるが，
+量子力学（あるいはもっと一般の線形代数）でとりわけ重要な役割を果たすのは，
+写像のうち特別な性質（\emph{線形性}）を満たすものである．
+2つのベクトル空間$V, W$が与えられたとき，
+$V$から$W$への写像$f$があったとする．
+すべての$\psi \in V$とすべての$\varphi \in W$に対して，
+\begin{equation}
+    \label{eq:linear-map}
+    f(a \psi + b \varphi)
+        = a f(\psi) + b f(\varphi)
+\end{equation}
+を満たすとき，$f$を（$V$から$W$への）\ltword{線形写像}(linear map)という．
+あるいは，$f$は\ltword{線形}(linear)であるともいう．
+
+線形写像の例としてなじみ深いのが行列である．
+複素成分の$M \times N$行列$\hat{A}$は，
+ユークリッド空間$\symbb{C}^M$から$\symbb{C}^N$への線形写像になっている．
+$\hat{A}$が\cref{eq:linear-map}を満たすことは，
+行列計算によって容易に示されるが，
+ここでは省略する．
+
+微分演算子$\hat{D} \coloneq \dv{}{x}$も線形写像である．
+$\hat{D}$は，
+ベクトル空間$C^1$の元（1回微分可能な連続関数）を$C^0$の元（連続関数）に対応させる写像である．
+$\hat{D}$が線形であることは，
+関数$f, g \in C^1$および複素数$a, b$に対して，
+\begin{equation*}
+    \hat{D}(af + bg)(x) = \dv{}{x} \ab(a f(x) + b g(x))
+        = a \dv{f(x)}{x} + b \dv{g(x)}{x}
+        = \ab( a \hat{D}f + b \hat{D}g )(x)
+\end{equation*}
+であることから従う（$\hat{D}(f)$を$\hat{D}f$と略記している）\footnote{
+    ここの議論を精緻に行うには，
+    連続関数全体が関数としての和とスカラー倍に対してベクトル空間をなすことを示さないといけないが，
+    本稿では$\hat{D}$を扱わないので例示だけにとどめる．
+}．
+$\hat{D}$が線形であることから，
+1次元の時間に依存しないシュレーディンガー方程式
+\begin{equation*}
+    -\frac{\hbar^2}{2m} \dv[2]{\psi(x)}{x} + V(x) \psi(x) = E \psi(x)
+\end{equation*}
+は線型方程式である．
+
+
+
+
+\subsection{ベクトル空間の同型}
+
+$V, W$をそれぞれベクトル空間とする．
+$V$から$W$への線形写像であって，全単射である$f$が存在するとき，
+$V$と$W$は\ltword{同|型}[どう|けい](isomorphic)であるという．
+互いに同型なベクトル空間は，
+（本質的に）同じベクトル空間であるとみなすことができる．
+
+
+
+
+
+\section{ブラ・ケット記法}
+
+
+
+
 
 
 
