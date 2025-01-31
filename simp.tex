@@ -42,7 +42,7 @@
 \newcommand{\water}[1]{\textcolor{water}{#1}}
 
 
-\title{なんか}
+\title{量子力学的なにか}
 \date{\today}
 
 
@@ -162,10 +162,9 @@
 
 1911年，カメルリング・オネス\footnote{
     Kamerlingh Onnesのカタカナ表記は，
-    圧力$p$・$P$問題，
     状態密度$D$・$N$問題，
     ボーズ・ボース問題，
-    Liouville問題と並ぶ統計力学の難問である．
+    Liouvilleの読み方問題と並ぶ統計力学の難問である．
 }は極低温に冷やした水銀の電気抵抗がゼロになることを発見した．
 のちに超伝導と呼ばれるこの現象の理論的解明は，
 1957年にバーディーン，クーパー，シュリーファーによってなされた．
@@ -254,10 +253,10 @@ $V$を\ltword{ベクトル空間}(vector space)と呼び，
 $V$の元（上で挙げた$\bpsi, \bphi, \bxi, \dotsc$）を\ltword{ベクトル}という．
 
 ここで，上の条件に出てくる「\fire{任意の}---」と「\water{ある}---」の順序は重要である．
-\cref{vector:sum-zero}では$\symbf{0}$はただひとつであり，
+\labelcref*{vector:sum-zero}では$\symbf{0}$はただひとつであり，
 その$\symbf{0}$について$\bpsi \vecplus \symbf{0} = \bpsi$が満たされ，
 さらに$\bphi \vecplus \symbf{0} = \bphi$が成り立たねばならない．
-その一方で，\cref{vector:sum-opposite}における$\bphi$は，
+その一方で，\labelcref*{vector:sum-opposite}における$\bphi$は，
 $\bpsi$のとりかたによって変わりうる．
 あるベクトル$\bpsi$に対して$\bpsi \vecplus \bphi = \symbf{0}$が満たされても，
 別のベクトル$\bxi$に対して$\bxi \vecplus \bphi = \symbf{0}$が成り立つとは限らない．
@@ -581,7 +580,7 @@ $c_1 \symbf{e}'_1 + \dots + c_N \symbf{e}'_N = \symbf{0}$とおくことで，
 という連立不等式が得られ，
 ここから$c_1 = c_2 = \dots = c_N = 0$が従うことよりわかる．
 また$V$を生成することは，
-任意のベクトル$\symbf{x} = (x_1 \; x_2 \; \cdots \; x_N) \in V$が
+任意のベクトル$\symbf{x} = \cvector{x_1 ; x_2 ; \cdots ; x_N} \in V$が
 \begin{equation*}
     \symbf{x} \equiv 
     \begin{pmatrix}
@@ -793,6 +792,77 @@ $c_1 - c'_1 = \dots = c_N - c'_N$が従う．
 
 
 
+\subsubsection{基底の存在定理}
+
+さて，ここまでベクトル空間の基底について見てきたわけであるが，
+注意深い読者は，
+今までの議論はすべてベクトル空間が基底をもつことを前提にしており，
+基底が本当に存在するのかどうかは（いくつかの具体例を除き）まったく示していない．
+
+ベクトル空間$V$について，
+$V$から一次独立である$N$個のベクトルをとることができ，
+かつ$N + 1$個のベクトルは必ず一次従属となるような自然数$N$が存在するとき，
+$V$は\ltword{有限次元}であるといい，
+このときの$N$を$V$の\ltword{次元}という．
+この条件を満たす$N$が存在しないとき，
+$V$は\ltword{無限次元}であるという．
+
+次元$N$は，
+「$V$のベクトルの組が一次独立となる最大の数」であるといえる．
+
+\bluehead{基底の延長定理}\quad 
+$V$を$N$次元ベクトル空間とし，
+$\symbf{u}_1, \dots, \symbf{u}_n$（$n \leq N$）を$V$の一次独立なベクトルの組とする．
+$V$の次元が$N$であるという仮定から，
+\begin{enumerate}[leftmargin={6em}]
+    \item[($1$) ] $\symbf{u}_1, \dots, \symbf{u}_n$の線形結合で書けない$V$のベクトル$\symbf{u}_{n+1}$が存在して，
+        $\symbf{u}_1, \dots, \symbf{u}_n, \symbf{u}_{n+1}$は一次独立である．
+    \item[($2$) ] $\symbf{u}_1, \dots, \symbf{u}_n, \symbf{u}_{n+1}$の線形結合で書けない$V$のベクトル$\symbf{u}_{n+2}$が存在して，
+        $\symbf{u}_1, \dots, \symbf{u}_n, \symbf{u}_{n+1}, \symbf{u}_{n+2}$は一次独立である．
+    \item[$\vdots$ ] 
+    \item[($N-n$) ] $\symbf{u}_1, \dots, \symbf{u}_n, \dots, \symbf{u}_{N-1}$の線形結合で書けない$V$のベクトル$\symbf{u}_N$が存在して，
+        $\symbf{u}_1, \dots, \symbf{u}_n, \dots, \symbf{u}_N$は一次独立である．
+\end{enumerate}
+と，一次独立なベクトルの組$\symbf{u}_1, \dots, \symbf{u}_N$が得られる．
+これらは$V$を生成する，
+つまり$V$の基底になっている．
+
+証明は次のようにできる．
+次元の定義より，$V$の$N + 1$個のベクトルは一次従属であるから，
+上で構成した$\symbf{u}_1, \dots, \symbf{u}_N$と任意の$\symbf{v} \in V$に対して，
+\begin{equation}
+    \label{eq:basis-expansion-1}
+    c_1 \symbf{u}_1 + \dots + c_N \symbf{u}_N + c_0 \symbf{v} = \symbf{0}
+\end{equation}
+となるような$(c_1, \dots, c_N, c_0) \neq (0, \dots, 0, 0)$が存在する．
+ここでもし$c_0 = 0$なら，
+\begin{equation*}
+    c_1 \symbf{u}_1 + \dots + c_N \symbf{u}_N = \symbf{0}
+\end{equation*}
+となる$(c_1, \dots, c_N) \neq (0, \dots, 0)$が存在することになり，
+$\symbf{u}_1, \dots, \symbf{u}_N$が一次独立であることと矛盾する．
+よって$c_0 \neq 0$であるから，
+\cref{eq:basis-expansion-1}の両辺を$c_0$で割ることができて，
+\begin{equation*}
+    \symbf{v} = -\frac{c_1}{c_0} \symbf{u} - \dots - \frac{c_N}{c_0} \symbf{u}_N
+\end{equation*}
+と書ける．
+よって$\symbf{u}_1, \dots, \symbf{u}_N$は$V$を生成するから，
+これは$V$の基底である．\qedsymbol
+
+この定理を使えば，
+$N$次元ベクトル空間$V$の基底は次のように構成できる．
+まず，（$V \neq \emptyset$であるから）$V$のベクトル$\symbf{u}_1$を任意にとる．
+上の手順によって一次独立なベクトルの組$\symbf{u}_1, \dots, \symbf{u}_N$をとれば，
+これらは$V$の基底になっている．
+
+以上の議論はベクトル空間が有限次元である場合に限って成立するが，
+ベクトル空間が無限次元であっても，やはり基底は必ず存在する．
+しかし，
+その証明には多くの数学的知識が必要であり，
+証明そのものも難しいので省略する．
+
+
 
 
 \subsection{内積空間}
@@ -849,7 +919,7 @@ $V$をベクトル空間とする．
 \bluehead{ユークリッド内積}\quad
 内積の具体例として，
 やはりユークリッド空間$V = \symbb{C}^N$について考えよう．
-$\symbb{C}^N$のベクトル$\symbf{x} = (x_1 \; \cdots \; x_N)$, $\symbf{y} = (y_1 \; \cdots \; y_N)$に対して，
+$\symbb{C}^N$のベクトル$\symbf{x} = \cvector{x_1 ; \cdots ; x_N}$, $\symbf{y} = \cvector{y_1 ; \cdots ; y_N}$に対して，
 $\symbb{C}^N$上の内積は，
 \begin{equation}
     \label{eq:Euclidean-inner-product}
@@ -1374,24 +1444,24 @@ $g \circ f^{-1}$が$V$から$W$への同型写像になっているからであ�
 有限次元ベクトル空間$V$から$W$への線形写像$f$について考えよう．
 $V$は$\symbb{C}^M$と同型，
 $W$は$\symbb{C}^N$と同型であるから，
-$V$の基底を$\symbf{u}_1, \dots, \symbf{u}_M$，
-$W$の基底を$\symbf{u}'_1, \dots, \symbf{u}'_N$をとると，
-$\symbb{C}^M$から$V$，$\symbb{C}^N$から$W$への同型写像$F, F'$がそれぞれ存在する．
-$F, F'$をそれぞれ
+$\symbb{C}^M$から$V$，$\symbb{C}^N$から$W$への同型写像$\Phi, \Phi'$がそれぞれ存在する．
+$V$の基底$\symbf{u}_1, \dots, \symbf{u}_M$，
+$W$の基底$\symbf{u}'_1, \dots, \symbf{u}'_N$をとり，
+$\Phi, \Phi'$をそれぞれ
 \begin{align*}
-    F(\symbf{e}_i) = \symbf{u}_i,
+    \Phi(\symbf{e}_i) = \symbf{u}_i,
     \quad 
-    F'(\symbf{e}'_j) = \symbf{u}'_j
+    \Phi'(\symbf{e}'_j) = \symbf{u}'_j
     \quad 
     \text{where }
     1 \leq i \leq M, \  
     1 \leq j \leq N
 \end{align*}
 と定める．
-ここで$\symbf{e}_i, \symbf{e}'_j$はそれぞれ\cref{eq:Euclidean-basis-1}（$N \to M, N$）で定義されるベクトルである．
+ただし$\symbf{e}_i, \symbf{e}'_j$はそれぞれ\cref{eq:Euclidean-basis-1}（$N \to M, N$）で定義される$\symbb{C}^M, \symbb{C}^N$の基底である．
 これらを用いると，
-$f$に対して$\symbb{C}^M$から$\symbb{C}^N$への線形写像$\hat{A} = F'^{-1} \circ f \circ F$が定まる．
-$\hat{A}$は$M \times N$行列$\symsf{A}$として表せるので，
+$f$に対して$\symbb{C}^M$から$\symbb{C}^N$への線形写像$\hat{A} = \Phi'^{-1} \circ f \circ \Phi$が定まる．
+$\hat{A}$は$N \times M$行列$\symsf{A}$として表せるので，
 この$\symsf{A}$を$f$の（基底$\sequ{\symbf{u}_i}[i], \sequ{\symbf{u}'_j}[j]$に対する）\ltword{表現行列}という．
 なお，表現行列の形は$V, W$の基底をどう取るかに依存する．
 特に，基底の順番を入れ替えただけでも表現行列が変化することに注意が必要である．
@@ -1400,45 +1470,234 @@ $\hat{A}$は$M \times N$行列$\symsf{A}$として表せるので，
 $V$の基底$\sequ{\symbf{u}_i}[i]$の$f$による変換が，
 $W$の基底$\sequ{\symbf{u}'_j}[j]$を用いて
 \begin{equation*}
-    f(\symbf{u}_i) = a_{i1} \symbf{u}'_1 + \dots + a_{iN} \symbf{u}'_N
+    f(\symbf{u}_i) = a_{1i} \symbf{u}'_1 + \dots + a_{Ni} \symbf{u}'_N
     \quad 
     (1 \leq i \leq M)
 \end{equation*}
 と書けたとする．
-この$a_{ij}$を並べた$M \times N$行列
+この$a_{ji}$を転置して並べた$M \times N$行列
 \begin{equation*}
     \symsf{A} = 
     \begin{pmatrix}
-        a_{11}  &  a_{12}  &  \cdots  &  a_{1N}  \\
-        a_{21}  &  a_{22}  &  \cdots  &  a_{2N}  \\
+        a_{11}  &  a_{12}  &  \cdots  &  a_{1M}  \\
+        a_{21}  &  a_{22}  &  \cdots  &  a_{2M}  \\
         \vdots  &  \vdots  &  \ddots  &  \vdots  \\
-        a_{M1}  &  a_{M2}  &  \cdots  &  a_{MN}
+        a_{N1}  &  a_{N2}  &  \cdots  &  a_{NM}
     \end{pmatrix}
 \end{equation*}
 が$f$の表現行列である．
 式でまとめると，
 \begin{equation*}
     \begin{pmatrix}
-        \symbf{u}'_1  &  \cdots  &  \symbf{u}'_N
+        f(\symbf{u}_1)  &  \cdots  &  f(\symbf{u}_M)
     \end{pmatrix}
     =
     \begin{pmatrix}
-        \symbf{u}_1  &  \cdots  &  \symbf{u}_M
+        \symbf{u}'_1  &  \cdots  &  \symbf{u}'_N
     \end{pmatrix}
     \begin{pmatrix}
         a_{11}  &  \cdots  &  a_{1N}  \\
         \vdots  &  \ddots  &  \vdots  \\
-        a_{M1}  &  \cdots  &  a_{MN}
+        a_{NM}  &  \cdots  &  a_{NM}
     \end{pmatrix}
 \end{equation*}
 と書ける．
 
 
 
-\section{ブラ・ケット記法}
+\section{量子力学への準備}
+
+\subsection{ブラ・ケット記法}
+
+この節では，
+量子力学を議論する際に使う記号，
+\emph{ブラ}と\emph{ケット}について扱う．
+これらの記号は必須というわけではないが，
+非常に便利なので量子力学およびその周辺分野では広く使われている．
+相対論におけるアインシュタインの縮約規則に似たような立ち位置にある記号である．
+
+考えるヒルベルト空間のベクトルを\ltword{ケット}(ket)といい，
+$\ket{\psi}$と書く．
+\cref{sec:isomorphic}で見たように，
+有限次元ヒルベルト空間のベクトルは，
+数ベクトルとして書けるのであった：
+\begin{equation*}
+    \ket{\psi} = 
+    \begin{pmatrix}
+        a_1  \\  \vdots  \\  a_N
+    \end{pmatrix}
+    ,
+    \quad
+    \ket{\xi} = 
+    \begin{pmatrix}
+        b_1  \\  \vdots  \\  b_N
+    \end{pmatrix}
+\end{equation*}
+転置の記号を使って$\ket{\psi} = \cvector{a_1 ; \cdots ; a_N}$のように書くこともあるが，
+単に紙幅を節約するためである．
+
+ケットはベクトルであるから，
+当然\pageref{sec:definition-of-vector-space}ページの条件を満たす．
+そこで扱った条件をブラの言葉で書き直そう．
+表記の簡略化のために，
+和とスカラー倍を，
+\begin{equation*}
+    \ket{\psi + \xi} \coloneq \ket{\psi} + \ket{\xi}
+    = \cvector{ a_1 + b_1 ; \cdots ; a_N + b_N }
+    ,
+    \quad 
+    \ket{c \psi} \coloneq c \ket{\psi}
+    = \cvector{c a_1; \cdots; c a_N}
+\end{equation*}
+のように書く．
+したがって，$\ket{\psi_1}, \dots, \ket{\psi_N}$の線形結合は
+\begin{equation*}
+    \ket*{\sum_{i = 1}^{N} c_i \psi_i}
+        \coloneq \sum_{i = 1}^{N} c_i \ket{\psi_i}
+\end{equation*}
+のように書ける．
+さて，ベクトルの和については，
+\labelcref*{vector:sum-associative,vector:sum-commutative}は明らかであるから省略して，
+\begin{enumerate}
+    \item[\labelcref*{vector:sum-zero}]
+        ある$0 \in \symcal{H}$が存在して，
+        任意の$\ket{\psi} \in \symcal{H}$に対し，
+        $\ket{\psi} + 0 = \ket{\psi}$．
+    \item[\labelcref*{vector:sum-opposite}]
+        任意の$\ket{\psi} \in \symcal{H}$に対し，
+        ある$\ket{\xi} \in \symcal{H}$が存在して，
+        $\ket{\psi} + \ket{\xi} = 0$．
+\end{enumerate}
+とかける．
+ここでの$0$は，
+複素数としてのゼロではなく，
+$\symcal{H}$のベクトル$\symbf{0} = \cvector{0 ; \cdots ; 0}$のことである．
+なお，$\ket{0}$と書いた場合は，ふつう$\ket{0} = \cvector{1 ; 0}$のことであり，
+$\symbf{0}$ではない．
+
+スカラー倍については
+\begin{enumerate}
+    \item[\labelcref*{vector:scalar-sum}] 
+        任意の$\ket{\psi} \in \symcal{H}$と任意の複素数$a, b$に対し，
+        \begin{equation*}
+            (a + b) \ket{\psi} = a \ket{\psi} + b \ket{\psi}
+            \quad \text{あるいは} \quad 
+            \ket{(a + b) \psi} = \ket{a \psi + b \psi}
+        \end{equation*}
+    \item[\labelcref*{vector:scalar-distributive}]
+        任意の$\ket{\psi}, \ket{\xi} \in \symcal{H}$と任意の複素数$a$に対し，
+        \begin{equation*}
+            a (\ket{\psi} + \ket{\xi}) = a \ket{\psi} + a \ket{\xi}
+            \quad \text{あるいは} \quad 
+            \ket{a(\psi + \xi)} = \ket{a \psi + a \xi}
+        \end{equation*}
+\end{enumerate}
+と書ける．
+\labelcref*{vector:scalar-prod}と\labelcref*{vector:scalar-identity}も明らかであるから省略する．
 
 
+ケットの複素共役をとって転置したもの（正確には\ltjruby{双|対}{そう|つい}空間のベクトル）を\ltword{ブラ}(bra)とよび，
+\begin{equation*}
+    \bra{\psi} = \adjoint{\ab\Big( \ket{\psi} )}
+        = \begin{pmatrix}
+            \conj{a_1}  &  \cdots  &  \conj{a_N}
+        \end{pmatrix}
+\end{equation*}
+と書く．
+ブラとケットを用いると，
+ヒルベルト空間の内積は
+\begin{equation*}
+    \braket{\psi}{\xi}
+    \coloneq \bra{\psi} \cdotp \ket{\xi}
+    = \begin{pmatrix}
+        \conj{a_1}  &  \cdots  &  \conj{a_N}
+    \end{pmatrix}
+    \begin{pmatrix}
+        b_1  \\  \vdots  \\  b_N
+    \end{pmatrix}
+    = \sum_{i = 1}^{N} \conj{a_i} b_i
+    = \text{\cref{eq:Euclidean-inner-product}}
+\end{equation*}
+とあらわされる．
+\cref{sec:inner-product}で扱った内積の公理は
+\begin{enumerate}
+    \item[\labelcref*{innerp:linear}]
+        \bluehead{右線形性}------%
+        任意の$\ket{\psi}, \ket{\varphi}, \ket{\xi} \in \symcal{H}$および任意の複素数$a, b$に対し，
+        \begin{equation}
+            \label{eq:ket-is-linear}
+            \braket{\psi}{a \varphi + b \xi} = a \braket{\psi}{\varphi} + b \braket{\psi}{\xi}
+            \quad \text{あるいは} \quad 
+            \bra{\psi} \ab\Big( \ket{\varphi} + b \ket{\xi} ) = a \braket{\psi}{\varphi} + b \braket{\psi}{\xi}
+        \end{equation}
+    \item[\labelcref*{innerp:conjugate-symmetry}] 
+        \bluehead{共役対称性}------%
+        任意の$\ket{\psi}, \ket{\xi} \in \symcal{H}$に対し，
+        $\braket{\psi}{\xi} = \conj{\braket{\xi}{\psi}}$．
+    \item[\labelcref*{innerp:positive-definiteness}]
+        \bluehead{正定値性}------%
+        任意の$\ket{\psi} \in \symcal{H}$に対し，
+        $\braket{\psi}{\psi} \geq 0$であり，
+        さらに$\braket{\psi}{\psi} = 0$ならば$\ket{\psi} = 0$．
+\end{enumerate}
+と書ける．
+さらに
+\begin{enumerate}
+    \item[\ref*{innerp:linear}\kern-1ex $'$]
+        \bluehead{左反線形性}------%
+        任意の$\ket{\psi}, \ket{\varphi}, \ket{\xi} \in \symcal{H}$および任意の複素数$a, b$に対し，
+        \begin{equation*}
+            \braket{a \psi + b \varphi}{\xi} = \conj{a} \braket{\psi}{\xi} + \conj{b} \braket{\psi}{\xi}
+            \quad \text{あるいは} \quad 
+            \ab\Big( \bra{a \psi} + \bra{b \varphi} ) \ket{\psi} = \conj{a} \braket{\psi}{\xi} + \conj{b} \braket{\psi}{\xi}
+        \end{equation*}
+\end{enumerate}
+が成り立つことを確認するのも容易である．
 
+内積に似た記号で，
+ブラとケットを入れ替えたもの
+\begin{equation*}
+    \ketbra{\psi}{\xi}
+    \coloneq 
+    \begin{pmatrix}
+        a_1  \\  \vdots  \\  a_N
+    \end{pmatrix}
+    \begin{pmatrix}
+        \conj{b_1}  &  \cdots  &  \conj{b_N}
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+        a_1 \conj{b_1}  &  \cdots  &  a_1 \conj{b_N}  \\
+        \vdots  &  \ddots  &  \vdots  \\
+        a_N \conj{b_1}  &  \cdots  &  a_N \conj{b_N}
+    \end{pmatrix}
+\end{equation*}
+も定義される．
+内積$\braket{\psi}{\xi}$とちがって$\ketbra{\psi}{\xi}$の意味はわかりづらいが，
+これはケットを別のケットにうつす写像
+\begin{equation*}
+    \ab\Big( \ketbra{\psi}{\xi} ) \ket{\varphi}
+    = \underbrace{\braket{\xi}{\varphi}}_{\text{複素数}} \ket{\psi}
+\end{equation*}
+と解釈される．
+これが線形写像であることは，
+ケット$\ket{\varphi}, \ket{\varphi'}$および複素数$a, b$を用いて
+\begin{equation*}
+    \begin{split}
+        \ab\Big( \ketbra{\psi}{\xi} ) \ab\big( a \ket{\varphi} + b \ket{\varphi'} )
+        &= \braket{\xi}{a \varphi + b \varphi'} \ket{\psi}
+        \\
+        &= \ab\Big( a \braket{\xi}{\varphi} + b \braket{\xi}{\varphi} ) \ket{\psi}
+        \\
+        &= a \braket{\xi}{\varphi} \ket{\psi} + b \braket{\xi}{\varphi'} \ket{\psi}
+        \\
+        &= a \ab\Big( \ketbra{\psi}{\xi} ) \ket{\varphi} + b \ab\Big( \ketbra{\psi}{\xi} ) \ket{\varphi'}
+    \end{split}
+\end{equation*}
+と示される．
+なお，2つ目の等号で内積の右線形性（\cref{eq:ket-is-linear}）を使った．
+内積に右線形性ではなく左線形性を採用した場合，
+これが線形写像にならない．
 
 
 
