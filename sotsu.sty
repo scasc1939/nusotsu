@@ -17,11 +17,9 @@
 
 
 
-
-
-\usepackage{tcolorbox}
-\tcbuselibrary{skins}
-\tcbuselibrary{breakable}
+% \usepackage{tcolorbox}
+% \tcbuselibrary{skins}
+% \tcbuselibrary{breakable}
 % \tcolorboxenvironment{definition}{
 %     enhanced jigsaw,
 %     interior hidden,
@@ -43,19 +41,22 @@
 \RequirePackage{mathtools}
 
 
-% ルビ（ふりがな）
-\usepackage{pxrubrica}
-\rubyfontsetup{\mcfamily\mdseries}
-
-\usepackage{luatexja-ruby}
-\ltjsetruby{
-    % fontcmd=\mcfamily\mdseries,
+\IfPackageLoadedTF{pxrubrica}{
+    % pxrubrica パッケージが読み込まれていれば
+    \rubyfontsetup{\mcfamily\mdseries}
+}{
+    % pxrubrica パッケージが読み込まれていなければ
+    % \ruby コマンドを「何もしない」ようにする
+    \PackageWarning{sotsu.sty}{%
+        Package `pxrubrica` is not loaded! %
+        The command `\string\ruby` is disabled.%
+    }
+    \providecommand{\ruby}[2][]{}
 }
 
 
-\usepackage{makeidx}
 
-\renewcommand*\see[2]{\textsf{#1}を見よ}
+\renewcommand*\see[2]{→\textsf{#1}}
 
 \ExplSyntaxOn
 \NewDocumentCommand{\word}{m o o !d()}{
@@ -121,7 +122,8 @@
 \ExplSyntaxOff
 
 
-\newcommand{\indexdash}{――}
+\newcommand{\indexdash}{------}
+
 
 
 
@@ -191,34 +193,8 @@
 }
 
 
-
-% just to make sure it exists
-\providecommand\given{}
-% can be useful to refer to this outside \Set
-\newcommand\SetSymbol[1][]{%
-\ #1\vert
-\allowbreak
-\ 
-\mathopen{}}
-\DeclarePairedDelimiterX\Set[1]\{\}{%
-\renewcommand\given{\SetSymbol[\delimsize]}
-#1
-}
-
-
-
+% 人名紹介
 \NewDocumentCommand{\person}{m m m}{#1~(#2--#3)\allowbreak}
-
-
-
-
-\usepackage[
-    font={bf,sf}
-]{caption}
-
-\usepackage[
-    font={bf,sf}
-]{subcaption}
 
 
 

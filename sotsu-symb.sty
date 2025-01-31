@@ -43,6 +43,20 @@
 
 \newcommand{\bigdot}{\mdblkcircle}
 
+% 集合
+\providecommand\given{}
+    \newcommand\SetSymbol[1][]{%
+    \ #1\vert
+    \allowbreak
+    \ 
+    \mathopen{}%
+}
+\DeclarePairedDelimiterX\Set[1]\{\}{%
+    \renewcommand\given{\SetSymbol[\delimsize]}
+    #1
+}
+
+
 
 % 絶対値 (absolute value)
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
@@ -69,7 +83,7 @@
 }
 
 
-% クロネッカーデルタ
+% クロネッカーのデルタ
 \newcommand{\kdelta}{\delta}
 
 
@@ -129,6 +143,12 @@
 % 転置（transpose）
 \newcommand{\tp}[1]{{}^{\mathrm{t}}#1}
 
+% 縦ベクトルの横書き
+\NewDocumentCommand{\cvector}{>{\SplitList{;}} m}{
+    \tp{ ( \ProcessList{#1}{\sotsu@cvector@mapping} \hspace{-0.5em} ) }
+}
+\newcommand{\sotsu@cvector@mapping}[1]{#1\hspace{0.5em}}
+
 % 置換
 \DeclareMathOperator{\sgn}{sgn}
 
@@ -184,6 +204,9 @@
 \DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
 \DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{%
     #1\,\delimsize\vert\,\mathopen{}#2%
+}
+\DeclarePairedDelimiterX\ketbra[2]{\lvert}{\rvert}{%
+    #1\delimsize\rangle\langle\mathopen{}#2%
 }
 \DeclarePairedDelimiterX\mel[3]{\langle}{\rangle}{%
     #1\,\delimsize\vert\,\mathopen{}#2\,\delimsize\vert\,\mathopen{}#3%

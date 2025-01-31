@@ -21,7 +21,17 @@
 
 
 % 日本語環境，フォント
-\usepackage[deluxe]{luatexja-preset}
+\RequirePackage[deluxe]{luatexja-preset}
+
+% ルビ（ふりがな）
+\RequirePackage{pxrubrica}
+% \rubyfontsetup{\mcfamily\mdseries}
+
+\RequirePackage{luatexja-ruby}
+\ltjsetruby{
+    % fontcmd=\mcfamily\mdseries,
+}
+
 
 
 % \emph{...} の書体を設定
@@ -122,7 +132,7 @@
 % 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{tocloft}
+\RequirePackage{tocloft}
 
 % タイトル（「目次」）
 \renewcommand{\cfttoctitlefont}{\huge\bfseries\gtfamily\sffamily}
@@ -179,6 +189,22 @@
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
+% 図表のキャプション
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[
+    font={bf,sf}
+]{caption}
+
+\RequirePackage[
+    font={bf,sf}
+]{subcaption}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
 % 索引
 % 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -188,6 +214,9 @@
 % なぜか section で決め打ちされているので，
 % chapter として再定義する．
 % \indexname = `索引'
+
+
+\RequirePackage{makeidx}
 
 \renewenvironment{theindex}{%
     \jlreq@oldfontcommand@enable
