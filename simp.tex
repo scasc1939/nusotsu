@@ -786,7 +786,7 @@ $c_1 - c'_1 = \dots = c_N - c'_N$が従う．
 なお，無限次元の量子力学でベクトルを展開するときには，
 ふつうは基底ではなく\emph{完全正規直交系}を用いる．
 完全正規直交系とよく似た概念に，
-\cref{sec:CONS}で取り上げる\emph{正規直交基底}があるが，
+\cref{sec:ONB}で取り上げる\emph{正規直交基底}があるが，
 前者は\cref{eq:linear-combination}での無限和を容認し，
 後者は容認しない点で違いがある．
 
@@ -1050,7 +1050,7 @@ $\vec{a}$の長さと$\vec{b}$の長さを足したものよりも短い（ま�
 
 
 \subsubsection{正規直交基底}
-\label{sec:CONS}
+\label{sec:ONB}
 
 ベクトル空間に内積を導入することで，
 ベクトルが幾何的な性質を持つようになるのであった．
@@ -1086,6 +1086,7 @@ $\vec{a}$の長さと$\vec{b}$の長さを足したものよりも短い（ま�
     \norm{\bphi_i} = 1, 
     \quad
     \iparen{\bphi_i, \bphi_j} = 
+    \kdelta_{ij} \equiv
     \begin{cases}
         1  &  i = j  \\
         0  &  i \neq j
@@ -1102,7 +1103,13 @@ $\sequ{\bphi_i}$を$V$の\ltword{正規直交基底}(orthonormal basis)という
 一方，\cref{eq:Euclidean-basis-2}は$\symbb{C}^N$の基底であるが，
 正規直交基底ではない．
 正規直交基底は内積空間の``良い''基底であるといえ，
-量子力学の議論でも頻繁に登場する．
+量子力学を含む物理の様々な分野で頻繁に登場する．
+ニュートン力学ではふつう直交座標系（デカルト座標系）を使って議論するが，
+これは正規直交基底$\hat{\symbf{x}}, \hat{\symbf{y}}, \hat{\symbf{z}}$によって座標$\symbf{r}$を分解していることに他ならない．
+ニュートン力学を数学的に整理して，
+座標系によらない，
+つまり基底の取り方によらない一般的な議論を行うのが解析力学である．
+
 
 
 \bluehead{正規直交基底の構成}\quad
@@ -1382,7 +1389,7 @@ $f(\bxi) = g(\bxi)$が従う．
 \end{equation}
 であっても$f = g$がいえる．
 実際，\cref{eq:inner-product-linear-map-identity-1}を仮定すると，
-偏極恒等式（\cref{eq:polarization-identity-f}）より\cref{eq:inner-product-linear-map-identity-1}に帰着される．
+偏極恒等式（\cref{eq:polarization-identity-f}）より\cref{eq:inner-product-linear-map-identity-1}が満たされる．
 
 
 
@@ -1404,9 +1411,9 @@ $f(\bxi) = g(\bxi)$が従う．
 それがユークリッド空間$\symbb{C}^N$のベクトル$\symbf{x}$であるか，
 $N$階斉次線形常微分方程式（\cref{eq:N-differential-equation}）の解となるベクトル$\varphi(x)$であったかは，
 まったく区別がつかない．
-そして，その状態でも\cref{sec:definition-of-vector-space}で述べたベクトル空間の公理を使って，
-ベクトルの性質を議論できる．
-それではこの2つのベクトル空間は``同じ''ものとみなせるのではないだろうか．
+それでも\cref{sec:definition-of-vector-space}で述べたベクトル空間の公理を使って，
+ベクトルの性質を議論できるということは，
+この2つのベクトル空間は``同じ''ものとみなせるのではないだろうか．
 あるいはもっとほかの空間であっても，
 実は$\symbb{C}^N$と同じように扱えるのではないか．
 この発想を数学的に定義したのがベクトル空間の\ltjruby{同|型}{どう|けい}である．
@@ -1470,12 +1477,6 @@ $\symbb{C}^N$のベクトル$\symbf{x}$に対して，
 
 
 \bluehead{\cref{eq:Euclidean-isomorphism}が全単射であること}\quad
-% まず$f$が全射であることを示す．
-% $V$のベクトル$\symbf{v}$に対して，
-% $f(\symbf{x}) = \symbf{v}$となる$\symbf{x} \in \symbb{C}^N$が存在することを示せばよい．
-% ここで$\symbf{v}$は$V$の基底を用いて必ず$x_1 \symbf{u}_1 + \dots + x_N \symbf{u}_N$の形で書けるから，
-% $\symbb{C}^N$のベクトル$\symbf{x} \coloneq x_1 \symbf{e}_1 + \dots + x_N \symbf{e}_N$はこの条件を満たす．
-% 
 逆写像$f^{-1}$が
 \begin{equation*}
     f^{-1} (x_1 \symbf{u}_1 + \dots + x_N \symbf{u}_N)
@@ -1607,6 +1608,11 @@ $W$の基底$\sequ{\symbf{u}'_j}[j]$を用いて
 
 \section{量子力学への準備}
 
+今後ヒルベルト空間といった場合，
+有限次元のもの，
+とくにユークリッド空間$\symbb{C}^N$を指すものとする．
+
+
 \subsection{ブラ・ケット記法}
 
 この節では，
@@ -1696,7 +1702,10 @@ $\symbf{0}$ではない．
 \labelcref*{vector:scalar-prod}と\labelcref*{vector:scalar-identity}も明らかであるから省略する．
 
 
-ケットの複素共役をとって転置したもの（正確には\ltjruby{双|対}{そう|つい}空間のベクトル）を\ltword{ブラ}(bra)とよび，
+ケットの複素共役をとって転置したもの\footnote{
+    一般のヒルベルト空間については，
+    その\ltjruby{双|対}{そう|つい}空間の元として定義される．
+}を\ltword{ブラ}(bra)とよび，
 \begin{equation*}
     \bra{\psi} = \adjoint{\ab\Big( \ket{\psi} )}
         = \begin{pmatrix}
@@ -1775,10 +1784,11 @@ $\symbf{0}$ではない．
 も定義される．
 内積$\braket{\psi}{\xi}$とちがって$\ketbra{\psi}{\xi}$の意味はわかりづらいが，
 これはケットを別のケットにうつす写像
-\begin{equation*}
+\begin{equation}
+    \label{eq:ketbra-as-map}
     \ab\Big( \ketbra{\psi}{\xi} ) \ket{\varphi}
     = \underbrace{\braket{\xi}{\varphi}}_{\text{複素数}} \ket{\psi}
-\end{equation*}
+\end{equation}
 と解釈される．
 これが線形写像であることは，
 ケット$\ket{\varphi}, \ket{\varphi'}$および複素数$a, b$を用いて
@@ -1881,8 +1891,260 @@ $\symsf{A}$がエルミートであるとする．
 上で議論したことにより固有値$\lambda = \braket{\varphi}{\symsf{A} \varphi}$は実数である．
 
 
+% \bluehead{$\symsf{A}$の固有値と$\adjoint{\symsf{A}}$の固有値}\quad 
+% 正規行列$\symsf{A}$の固有値$\lambda$に属する固有ベクトルを$\ket{\varphi}$とする．
+% このとき，$\ket{\varphi}$は$\adjoint{\symsf{A}}$の固有値$\conj{\lambda}$に属する固有ベクトルである：
+% \begin{equation}
+%     \symsf{A} \ket{\varphi} = \lambda \ket{\varphi}
+%     \quad \text{ならば} \quad 
+%     \adjoint{\symsf{A}} \ket{\varphi} = \conj{\lambda} \ket{\varphi}
+% \end{equation}
+% なぜなら，$\symbb{C}^N$のすべてのベクトル$\ket{\psi}$に対して
+% \begin{equation*}
+%     \braket{\psi}{\symsf{A} \varphi}
+% \end{equation*}
 
-\subsection{ユニタリ行列}
+
+\bluehead{エルミート行列の相異なる固有値に属する固有ベクトルは直交する}\quad 
+エルミート行列$\symsf{A}$について，
+固有値$\lambda$に属する固有ベクトルを$\ket{\varphi_\lambda}$，
+固有値$\mu$の固有ベクトルを$\ket{\varphi_\mu}$とする．
+このとき，$\lambda \neq \mu$であれば，
+$\ket{\varphi_\lambda}$と$\ket{\varphi_\mu}$は直交する．
+なぜなら，
+\begin{equation*}
+    \lambda \braket{\varphi_\lambda}{\varphi_\mu}
+    = \braket{\conj{\lambda} \varphi_\lambda}{\varphi_\mu}
+    = \braket{\adjoint{\symsf{A}} \varphi_\lambda}{\varphi_\mu}
+    = \braket{\varphi_\lambda}{\symsf{A} \varphi_\mu}
+    = \braket{\varphi_\lambda}{\mu \varphi_\mu}
+    = \mu \braket{\varphi_\lambda}{\varphi_\mu}
+\end{equation*}
+なので$(\lambda - \mu) \braket{\varphi_\lambda}{\varphi_\mu} = 0$．
+したがって，$\lambda \neq \mu$なら$\braket{\varphi_\lambda}{\varphi_\mu} = 0$である．
+
+この事実から，次のことがいえる．
+エルミート行列の固有値を$\lambda_1, \dots, \lambda_n$とし，
+固有値$\lambda_i$に属する独立な固有ベクトルを$\ket{\varphi_{\lambda_i, 1}}, \ket{\varphi_{\lambda_i, 2}}, \dots, \ket{\varphi_{\lambda_i, n_i}}$とおく．
+このとき，固有ベクトルの組$\sequ{\ket{\varphi_{\lambda_i, k}}}[1 \leq i \leq n, \  1 \leq k \leq n_i]$はすべて互いに直交するようにとれる：
+\begin{equation*}
+    \braket{\varphi_{\lambda_i, k}}{\varphi_{\lambda_j, l}}
+        = \kdelta_{ij} \kdelta_{kl}
+    \quad 
+    \text{（$\kdelta$はクロネッカーのデルタ）}
+\end{equation*}
+具体的な手順は次のとおり．
+まず異なる固有値に属する固有ベクトルは直交するので，
+$\kdelta_{ij}$は自動的に満たされる．
+したがって同じ固有値に属するベクトル\(
+    \ket{\varphi_{\lambda_i, 1}}, \ket{\varphi_{\lambda_i, 2}}, \dots, \ket{\varphi_{\lambda_i, n_i}}
+\)を直交化すればよい（これにより$\kdelta_{kl}$が満たされる）．
+これは\cref{sec:ONB}で扱ったグラム--シュミットの方法で得ることができる．
+このようにして得られた固有ベクトルの各々を規格化すれば，
+$\sequ{\ket{\varphi_{\lambda_i, k}}}[1 \leq i \leq n, \  1 \leq k \leq n_i]$が$\symcal{H}$の正規直交系（完全とは限らない）になる．
+
+
+
+
+\subsubsection{ユニタリ行列}
+
+\cref{sec:isomorphic}では，
+内積空間の同型写像について見た．
+ヒルベルト空間における同型写像に相当するのがユニタリ行列である．
+
+$N \times N$行列$\symsf{U}$が，
+ヒルベルト空間$\symcal{H} = \symbb{C}^N$から自身への写像\footnote{
+    一般のユニタリ演算子は，
+    ヒルベルト空間$\symcal{H}$から$\symcal{H}$自身への演算子である必要はなく，
+    $\symcal{H}$から別のヒルベルト空間$\symcal{K}$への演算子でよい．
+}として全単射であり，
+かつ$\symbb{C}^N$の内積を保つ，つまり
+\begin{equation*}
+    \braket{\symsf{U} \psi}{\symsf{U} \xi}
+    = \braket{\psi}{\xi}
+\end{equation*}
+がすべての$\ket{\psi}, \ket{\xi}$に対して成り立つとき，
+$\symsf{U}$を\ltword{ユニタリ行列}(unitary matrix)と呼ぶ．
+
+ユニタリ行列$\symsf{U}$の逆行列は，
+エルミート共役$\adjoint{\symsf{U}}$である．
+なぜなら，ユニタリ行列が内積を保つことから
+\begin{equation*}
+    \braket{\psi}{\xi}
+    = \braket{\symsf{U} \psi}{\symsf{U} \xi}
+    = \braket{\adjoint{\symsf{U}} \symsf{U} \psi}{\xi}
+\end{equation*}
+とでき，
+\cref{eq:inner-product-linear-map-identity-1}より$\adjoint{\symsf{U}} \symsf{U} = \symsf{I}$（単位行列）であるから$\adjoint{\symsf{U}} = \symsf{U}^{-1}$である\footnote{
+    ヒルベルト空間$\symcal{H}$が無限次元の場合，
+    $\adjoint{\symsf{U}} \symsf{U} = \symsf{I}$でも$\adjoint{\symsf{U}} = \symsf{U}^{-1}$とは限らないが，
+    結果はつねに成立する．
+}．
+$\adjoint{\symsf{U}} = \symsf{U}^{-1}$のほうをユニタリ行列の定義とすることも多い．
+
+
+\subsubsection{エルミート行列の対角化}
+
+
+
+
+\subsection{射影演算子}
+
+\subsubsection{正規直交系の完全性}
+\label{sec:complete-orthonormal-system}
+
+\cref{sec:ONB}で扱った正規直交基底を，
+ブラケットのことばを使って表現することができる．
+
+ヒルベルト空間$\symcal{H} = \symbb{C}^N$の正規直交系$\sequ{\ket{\varphi_i}}[i]$が，
+$\symcal{H}$の任意のベクトル$\ket{\psi}$を
+\begin{equation}
+    \label{eq:ONB-expansion}
+    \ket{\psi} = \sum_{i = 1}^{N} c_i \ket{\varphi_i}
+    \quad 
+    \text{$c_1, \dots, c_N$は複素数}
+\end{equation}
+と表せるとき，
+$\sequ{\ket{\varphi_i}}[i]$は\ltword{完全}(complete)であるという．
+有限次元では，$\sequ{\ket{\varphi_i}}[i]$が完全である（したがって完全正規直交系である）ことは，
+$\sequ{\ket{\varphi_i}}[i]$が正規直交基底（\cref{sec:ONB}）であることとまったく同じことである．
+
+正規直交系$\sequ{\ket{\varphi_i}}[i]$が完全である必要十分条件は，
+\begin{equation}
+    \label{eq:ONB-iff}
+    \sum_{i = 1}^{N} \ketbra{\varphi_i}{\varphi_i} = \idop
+    \quad \text{（単位行列）}
+\end{equation}
+と書けることである．
+このことは次のように証明できる．
+
+\bluehead{必要}\quad 
+$\sequ{\ket{\varphi_i}}[i]$が完全であれば，
+$\symcal{H}$のすべてのベクトル$\ket{\psi}$は\cref{eq:ONB-expansion}の形で展開できる．
+このとき，$\ketbra{\varphi_i}{\varphi_i}$の定義（\cref{eq:ketbra-as-map}）および$\sequ{\ket{\varphi_i}}$の正規直交性（\cref{eq:orthonormal}），
+内積の線形性から
+\begin{equation*}
+    \ab( \sum_{i = 1}^{N} \ketbra{\varphi_i}{\varphi_i} ) \ket{\psi}
+    = \sum_{i} \braket{\varphi_i}{\psi} \ket{\varphi_i}
+    = \sum_{i, j} \underbrace{
+                    \braket{\varphi_i}{c_j \varphi_j}
+                    }_{c_j \braket{\varphi_i}{\varphi_i} = c_j \kdelta_{ij}}
+                \ket{\varphi_i}
+    = \sum_{i} c_i \ket{\varphi_i}
+    = \ket{\psi}
+\end{equation*}
+がすべての$\ket{\psi}$について成り立つから，
+$\sum_{i = 1}^{N} \ketbra{\varphi_i}{\varphi_i} = \idop$である．
+
+\bluehead{十分}\quad 
+$\sum_{i = 1}^{N} \ketbra{\varphi_i}{\varphi_i} = \idop$であれば，
+任意の$\ket{\psi} \in \symcal{H}$は
+\begin{equation*}
+    \ket{\psi}
+    = \ab( \sum_{i = 1}^{N} \ketbra{\varphi_i}{\varphi_i} ) \ket{\psi}
+    = \sum_{i = 1}^{N} \underbrace{\braket{\varphi_i}{\psi}}_{\text{複素数$c_i$}} \ket{\varphi}
+\end{equation*}
+と\cref{eq:ONB-expansion}の形であらわされる．
+\hfill\qedsymbol
+
+
+
+\subsubsection{射影演算子の定義}
+\label{sec:definition-of-projection}
+
+ヒルベルト空間$\symcal{H} = \symbb{C}^N$の正規直交系（完全とは限らない）$\sequ{\ket{\varphi_i}}[i]$を用いて
+\begin{equation*}
+    \hat{P} = \sum_i \ketbra{\varphi_i}{\varphi_i}
+\end{equation*}
+と書ける演算子$\hat{P}$を，
+（$\sequ{\ket{\varphi_i}}[i]$が張る固有空間への）
+\ltword{射影演算子}(projection operator)という．
+
+射影演算子は次のように理解できる．
+ヒルベルト空間$\symcal{H}$のベクトルが正規直交\ltjkenten{基底}によって$\ket{\psi} = c_1 \ket{\varphi_1} + \dots + c_N \ket{\varphi}$と書けたとする．
+このとき，正規直交\ltjkenten{系}$\ket{\varphi_1}, \dots, \ket{\varphi_n}$（$n \leq N$）が張る空間への$\ket{\psi}$の射影は
+\begin{equation*}
+    \begin{split}
+        \hat{P} \ket{\psi}
+            &= \ab\Big( \ketbra{\varphi_1}{\varphi_n} + \dots + \ketbra{\varphi_n}{\varphi_n} )
+                \ab\big( c_1 \ket{\varphi_1} + \dots + c_n \ket{\varphi_n} + \dots + c_N \ket{\varphi_N} )
+            \\
+            &= c_1 \ket{\varphi_1} + \dots + c_n \ket{\varphi_n}
+    \end{split}
+\end{equation*}
+と書ける．
+つまり，
+$\ket{\varphi_1}, \dots, \ket{\varphi_n}$の空間に映る情報のみを残して，
+残りの情報$c_{n+1} \ket{\varphi_{n+1}} + \dots + c_N \ket{\varphi_N}$を消しているのである．
+卑近な例では，
+3次元空間における横方向と高さ方向の情報のみを残し，
+奥行きの情報を消した射影（$N = 3$，$n = 2$）が，いわゆる写真である．
+なお，
+人間の眼球が受け取る情報は写真と同じく2次元の射影である．
+なぜ人間が3次元空間を認識できるかというと，
+それは脳が2次元視覚情報から3次元空間を再構成しているからである．
+このような再構成は経験則によっているので，
+``常識的でない''形状をした物体を人間は正しく認識することができない．
+これがトリックアートの根本的な原理である．
+
+
+
+
+\subsubsection{スペクトル分解}
+
+よく知られているように，
+エルミート行列$\symsf{A}$は，あるユニタリ行列$\symsf{U}$を用いて対角化できる：
+\begin{equation}
+    \label{eq:diagonalize-of-Hermitian}
+    \adjoint{\symsf{U}} \symsf{A} \symsf{U}
+        = 
+        \begin{pmatrix}
+            \lambda_1  \\
+            & \ddots  \\
+            & & \lambda_1  \\
+            & & & \ddots  \\
+            & & & & \lambda_n  \\
+            & & & & & \ddots  \\
+            & & & & & & \lambda_n
+        \end{pmatrix}
+\end{equation}
+ここで，$\lambda_1, \dots, \lambda_n$は$\symsf{A}$の相異なる固有値である．
+このとき，ユニタリ行列$\symsf{U}$の各列が$\symsf{A}$の固有ベクトルであり，
+これらは$\symbb{C}^N$の正規直交基底になっていることもよく知られる事実である\footnote{
+    $\symsf{U}$の各列$\symbf{u}_1, \dots, \symbf{u}_N$が$\symbb{C}^N$の基底であることは，
+    $\symbb{C}^N$の次元が$N$であること，
+    $\symbf{u}_1, \dots, \symbf{u}_N$が一次独立であること，
+    および基底の延長定理より従う．
+}．
+
+固有値$\lambda_i$の固有空間を張る正規直交系を$\ket{\varphi_{\lambda_i, 1}}, \dots, \ket{\varphi_{\lambda_i, m_i}}$とする．
+このとき，$\lambda_i$の固有空間への射影演算子$\hat{P}_{\lambda_i}$は
+\begin{equation*}
+    \hat{P}_{\lambda_i} = 
+        \sum_{k = 1}^{m_i} \ketbra{\varphi_{\lambda_i, k}}{\varphi_{\lambda_i, k}}
+\end{equation*}
+と書ける（\cref{sec:definition-of-projection}）．
+これらの射影演算子の和は恒等演算子$\idop$になる（\cref{eq:ONB-iff}）：
+\begin{equation*}
+    \idop 
+    = \sum_{i = 1}^{n} \hat{P}_{\lambda_i}
+    = \sum_{i = 1}^{n} \sum_{k = 1}^{m_i} \ketbra{\varphi_{\lambda_i, k}}{\varphi_{\lambda_i, k}}
+    = \sum_{i = 1}^{N} \ketbra{\varphi_i}{\varphi_i}
+\end{equation*}
+（最後の和$\sum_{i = 1}^{N}$は固有値の重複を含む固有ベクトルの和）．
+また，
+\cref{eq:diagonalize-of-Hermitian}よりエルミート行列$\symsf{A}$は
+\begin{align}
+    \symsf{A} &= \sum_{i = 1}^{n} \lambda_i \hat{P}_{\lambda_i}
+    \\
+              &= \sum_{i = 1}^{N} \lambda_{(i)} \ketbra{\varphi_i}{\varphi_i}
+\end{align}
+と書ける．
+
+
+
+
+\section{量子力学の公理}
 
 
 
