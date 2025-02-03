@@ -330,7 +330,7 @@ $\symbf{y}$は，
 \cref{vector:scalar-identity}は複素数$1$が乗法の単位元であることから直ちに従う．
 
 以上のことから$\symbb{C}^N$がベクトル空間であることが示されたが，
-実は\pageref{sec:definition-of-vector-space}ページで与えたベクトル空間の定義は，
+実は\cref{sec:definition-of-vector-space}で与えたベクトル空間の定義は，
 この$\symbb{C}^N$が満たす性質を抽出して羅列したものである．
 物理学の教科書で「具体例から基本法則を導く」ことが多いのとは対照的に，
 数学ではこのような「一般から具体」という論理展開が好まれる\footnote{
@@ -416,7 +416,7 @@ $\symbb{R}[x]$がベクトル空間になっていることもすぐにわかる
     本来は「多項式の和$\vecplus$とスカラー倍$\scaprod$を定義しないといけないが，
     煩雑さを避けるため割愛する．
 }．
-\pageref{sec:definition-of-vector-space}ページの8条件を満たすことは，
+\cref{sec:definition-of-vector-space}の8条件を満たすことは，
 これらの演算が\cref{vector:sum-zero}の$\symbf{0}$が多項式としての$0$であることに注意すれば，
 ほとんど自明である．
 $\symbb{R}[x]$に属するベクトルの例は，
@@ -1107,11 +1107,11 @@ $\sequ{\bphi_i}$を$V$の\ltword{正規直交基底}(orthonormal basis)という
 
 \bluehead{正規直交基底の構成}\quad
 有限次元内積空間では，
-グラム--シュミットの方法によって，
+以下に挙げるグラム--シュミットの方法によって，
 正規直交基底を構成することができる．
 
 基底$\symbf{u}_1, \dots, \symbf{u}_N$をとる．
-まずベクトル$\symbf{u}_1$を規格化したものを$\bphi_1$とおく：
+最初にベクトル$\symbf{u}_1$を規格化したものを$\bphi_1$とおく：
 \begin{equation*}
     \bphi_1 \coloneq \frac{\symbf{u}_1}{\norm{\symbf{u}_1}}
 \end{equation*}
@@ -1125,8 +1125,8 @@ $\sequ{\bphi_i}$を$V$の\ltword{正規直交基底}(orthonormal basis)という
     \end{split}
 \end{equation*}
 定義より$\norm{\bphi_2} = 1$である．
-また，$\norm{\bphi_1} = 1$に注意すれば，$\iparen{\bphi_2, \bphi_1} = 0$であり，
-$\bphi_3$は
+また，$\norm{\bphi_1} = 1$に注意すれば$\iparen{\bphi_2, \bphi_1} = 0$とわかる．
+これらを用いて$\bphi_3$を
 \begin{equation*}
     \bphi_3 \coloneq \symbf{u}_3 
                 - \iparen{\symbf{u}_3, \bphi_1} \bphi_1 
@@ -1287,6 +1287,106 @@ $\hat{D}$が線形であることは，
 
 
 
+\subsubsection{内積空間の線形写像}
+
+\bluehead{偏極恒等式}\quad 
+\begin{subequations}
+    内積空間$V$から$V$自身への線形写像$f$を考える．
+    $V$のベクトル$\bpsi, \bxi$について，
+    \begin{equation}
+        \label{eq:polarization-identity-f}
+        \begin{split}
+            \iparen{ \bpsi, f(\bxi) }
+                &= \frac{1}{4} \Bigl\{ 
+                      \iparen{\bpsi + \bxi, \  f(\bpsi + \bxi)}
+                    - \iparen{\bpsi - \bxi, \  f(\bpsi - \bxi)}
+                \\
+                &\qquad
+                 {} + \iu \iparen{\bpsi + \iu \bxi, \  f(\bpsi + \iu \bxi)}
+                    - \iu \iparen{\bpsi - \iu \bxi, \  f(\bpsi - \iu \bxi)}
+                 \Bigr\}
+        \end{split}
+    \end{equation}
+    が成り立つ．
+    特に$f = \idop$（恒等写像）であるとき，
+    \begin{equation}
+        \label{eq:polarization-identity-norm}
+        \begin{split}
+            \iparen{ \bpsi, \bxi }
+                &= \frac{1}{4} \Bigl\{ 
+                      \norm{\bpsi + \bxi}^2
+                    - \norm{\bpsi - \bxi}^2
+                    + \iu \norm{\bpsi + \iu \bxi}^2
+                    - \iu \norm{\bpsi - \iu \bxi}^2
+                 \Bigr\}
+        \end{split}
+    \end{equation}
+    である．
+    これらを\ltword{偏極恒等式}(polarization identity)という．
+\end{subequations}
+これらは内積$\iparen{\bigdot, \bigdot}$と$f$の線形性を用いて展開することで，
+容易に証明できる．
+実際，
+それぞれの項は
+\begin{align*}
+    \iparen{\bpsi + \bxi, \  f(\bpsi + \bxi)}
+        &= \iparen{\bpsi, f(\bpsi)}
+            + \iparen{\bpsi, f(\bxi)}
+            + \iparen{\bxi, f(\bpsi)}
+            + \iparen{\bxi, f(\bxi)}
+    \\
+    \iparen{\bpsi - \bxi, \  f(\bpsi - \bxi)}
+        &= \iparen{\bpsi, f(\bpsi)}
+            - \iparen{\bpsi, f(\bxi)}
+            - \iparen{\bxi, f(\bpsi)}
+            + \iparen{\bxi, f(\bxi)}
+    \\
+    \iparen{\bpsi + \iu \bxi, \  f(\bpsi + \iu \bxi)}
+        &= \iparen{\bpsi, f(\bpsi)}
+            + \iu \iparen{\bpsi, f(\bxi)}
+            - \iu \iparen{\bxi, f(\bpsi)}
+            + \iparen{\bxi, f(\bxi)}
+    \\
+    \iparen{\bpsi - \iu \bxi, \  f(\bpsi - \iu \bxi)}
+        &= \iparen{\bpsi, f(\bpsi)}
+            - \iu \iparen{\bpsi, f(\bxi)}
+            + \iu \iparen{\bxi, f(\bpsi)}
+            + \iparen{\bxi, f(\bxi)}
+\end{align*}
+と展開できて，
+これらに係数をかけて足せば，
+それぞれの第3項のみが残る．
+
+\bluehead{線形写像の一致}\quad 
+有限次元内積空間$V$から$V$自身への線形写像$f, g$をとる．
+このとき，
+\begin{equation}
+    \label{eq:inner-product-linear-map-identity-1}
+    \text{すべての$\bpsi, \bxi \in V$に対して}\,
+    \iparen{\bpsi, f(\bxi)} = \iparen{\bpsi, g(\bxi)}
+\end{equation}
+なら$f = g$である．
+なぜなら，
+$V$の正規直交基底$\sequ{\bphi_i}[1 \leq i \leq N]$を使って$f(\bxi) = \sum_i c_i \bphi_i$，
+$g(\bxi) = \sum_i d_i \bphi_i$と展開し，
+$\bpsi$を順に$\bpsi = \bphi_1, \dots, \bphi_N$とおくと，
+それぞれに対して$c_1 = d_1, \ \dots, \  c_N = d_N$が成り立つから，
+$f(\bxi) = g(\bxi)$が従う．
+ここで$\bxi$は任意であるから，結局$f = g$である．
+
+もう少し条件を弱めた
+\begin{equation}
+    \label{eq:inner-product-linear-map-identity-2}
+    \text{すべての$\bpsi \in V$に対して}\,
+    \iparen{\bpsi, f(\bpsi)} = \iparen{\bpsi, g(\bpsi)}
+\end{equation}
+であっても$f = g$がいえる．
+実際，\cref{eq:inner-product-linear-map-identity-1}を仮定すると，
+偏極恒等式（\cref{eq:polarization-identity-f}）より\cref{eq:inner-product-linear-map-identity-1}に帰着される．
+
+
+
+
 
 \subsection{ベクトル空間の同型}
 \label{sec:isomorphic}
@@ -1304,7 +1404,7 @@ $\hat{D}$が線形であることは，
 それがユークリッド空間$\symbb{C}^N$のベクトル$\symbf{x}$であるか，
 $N$階斉次線形常微分方程式（\cref{eq:N-differential-equation}）の解となるベクトル$\varphi(x)$であったかは，
 まったく区別がつかない．
-そして，その状態でも\pageref{sec:definition-of-vector-space}ページで述べたベクトル空間の公理を使って，
+そして，その状態でも\cref{sec:definition-of-vector-space}で述べたベクトル空間の公理を使って，
 ベクトルの性質を議論できる．
 それではこの2つのベクトル空間は``同じ''ものとみなせるのではないだろうか．
 あるいはもっとほかの空間であっても，
@@ -1537,7 +1637,7 @@ $\ket{\psi}$と書く．
 単に紙幅を節約するためである．
 
 ケットはベクトルであるから，
-当然\pageref{sec:definition-of-vector-space}ページの条件を満たす．
+当然\cref{sec:definition-of-vector-space}で挙げた条件を満たす．
 そこで扱った条件をブラの言葉で書き直そう．
 表記の簡略化のために，
 和とスカラー倍を，
@@ -1699,6 +1799,90 @@ $\symbf{0}$ではない．
 内積に右線形性ではなく左線形性を採用した場合，
 これが線形写像にならない．
 
+
+
+
+\subsection{ユニタリ行列とエルミート行列}
+
+\subsubsection{エルミート行列}
+
+ヒルベルト空間$\symcal{H} = \symbb{C}^N$の任意のベクトル$\ket{\psi}, \ket{\xi}$に対して，
+\begin{equation}
+    \label{eq:Hermitian-conjugate}
+    \braket{\psi}{\symsf{A} \xi} = \braket{\adjoint{\symsf{A}} \psi}{\xi}
+\end{equation}
+を満たす$N \times N$行列$\adjoint{\symsf{A}}$を，
+$\symsf{A}$の\ltword{エルミート共役}(Hermitian adjoint)という．
+$\symsf{A} = \adjoint{\symsf{A}}$である行列を，
+\ltword{エルミート行列}(Hermitian matrix)という．
+
+$\symsf{A}$のエルミート共役は，
+$\adjoint{\symsf{A}} = \tp{\conj{A}}$，
+すなわち$\symsf{A}$を転置して複素共役をとった行列である．
+なぜなら，行列$\symsf{A}$の$(i, j)$-成分$a_{ij}$は\cref{eq:Euclidean-basis-1}で定義される基底\(
+    \ket{e_i} = \cvector{0 ; \cdots ; 0}
+\)を用いて\(
+    a_{ij} = \braket{e_i}{\symsf{A} e_j}
+\)と書けるが，
+\begin{equation*}
+    a_{ij}
+    = \braket{e_i}{\symsf{A} e_j}
+    = \braket{\adjoint{\symsf{A}} e_i}{e_j}
+    = \conj{ \braket{e_j}{\adjoint{\symsf{A}} e_i} }
+    = \conj{(\adjoint{a}_{ji})}
+\end{equation*}
+（ここで$\adjoint{a}_{ji}$は$\adjoint{\symsf{A}}$の$(j, i)$-成分）であるからである．
+
+
+\bluehead{エルミート行列の必要十分条件}\quad 
+$\symsf{A}$がエルミート行列であることの必要十分条件は，
+$\symcal{H}$のすべてのベクトル$\ket{\psi}$に対して\(
+    \braket{\psi}{\symsf{A} \psi}
+\)が実数となることである．
+
+\bluehead{必要性}\quad 
+$\symsf{A}$がエルミートであるとする．
+このとき
+\begin{equation*}
+    \braket{\psi}{\symsf{A} \psi}
+    = \braket{\adjoint{\symsf{A}} \psi}{\psi}
+    = \braket{\symsf{A} \psi}{\psi}
+    = \conj{\braket{\psi}{\symsf{A} \psi}}
+\end{equation*}
+であるから$\braket{\psi}{\symsf{A} \psi}$は実数である．
+
+\bluehead{十分性}\quad 
+\begin{equation*}
+    \braket{\symsf{A} \psi}{\psi}
+    \overset{\text{実数}}{=} \conj{ \braket{\symsf{A} \psi}{\psi} }
+    \overset{\text{内積}}{=} \braket{\psi}{\symsf{A} \psi}
+    \overset{\text{エルミート共役}}{=} \braket{\adjoint{\symsf{A}} \psi}{\psi}
+\end{equation*}
+である．
+よって\cref{eq:inner-product-linear-map-identity-2}より$\symsf{A} = \adjoint{\symsf{A}}$
+
+
+
+\bluehead{エルミート行列の固有値はすべて実数}\quad 
+なぜなら，$\symsf{A}$の規格化された固有ベクトルを$\ket{\varphi}$としたとき，
+つまり
+\begin{equation*}
+    \symsf{A} \ket{\varphi} = \lambda \ket{\varphi},
+    \quad 
+    \braket{\varphi}{\varphi} = 1
+\end{equation*}
+であるとき，
+\(
+    \braket{\varphi}{\symsf{A} \varphi} 
+        = \braket{\varphi}{\lambda \varphi} 
+        = \lambda \braket{\varphi}{\varphi} 
+        = \lambda
+\)であるから，
+上で議論したことにより固有値$\lambda = \braket{\varphi}{\symsf{A} \varphi}$は実数である．
+
+
+
+\subsection{ユニタリ行列}
 
 
 
