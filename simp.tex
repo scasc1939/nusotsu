@@ -597,6 +597,7 @@ $c_1 \symbf{e}'_1 + \dots + c_N \symbf{e}'_N = \symbf{0}$とおくことで，
 
 
 \subsubsection{無限個の基底}
+\label{sec:infinite-basis}
 
 今までの議論では，
 基底が有限個の場合についてのみ考えていた．
@@ -631,10 +632,11 @@ $\symbf{u}_1, \symbf{u}_2, \dots$の\ltword{線形結合}という．
 すべての$i$に対して$\symbf{u}_i \in V$でも，
 $\sum_{i=1}^{\infty} c_i \symbf{u}_i \notin V$となることがあり得る．
 例えば関数$1, x, x^2, \dots, x^n, \dots$はすべて多項式関数であるが，
-それらの線形結合
-\begin{equation*}
+それらの``線形結合''
+\begin{equation}
+    \label{eq:exponential-expansion}
     1 + x + \frac{1}{2!} x^2 + \dots + \frac{1}{n!} x^n + \dotsb = e^x
-\end{equation*}
+\end{equation}
 は多項式関数でない．
 
 ベクトル空間$V$に属するベクトル$\symbf{u}_1, \symbf{u}_2, \dots$が\ltword{一次独立}であるとは，
@@ -1168,19 +1170,43 @@ $\iparen{\bphi_3, \bphi_1} = \iparen{\bphi_3, \bphi_2} = 0$であり，
 
 
 
-
-
-
-
 \subsection{空間の完備性}
 
-完備？
+\cref{eq:exponential-expansion}のように，
+ベクトル空間$V$に属するベクトルの無限級数（無限個のベクトルの和）が$V$の外のベクトルに収束することがある．
+このような``収束すべき級数''が外に出ず，
+$V$の中で収束する条件として，
+内積空間の\emph{完備性}が定義される．
+
+本稿で扱う有限次元ヒルベルト空間の場合は完備性が問題になることはないが，
+ヒルベルト空間を定義するために，この節で完備性を扱う．
+
+
+
+\subsubsection{ベクトルの収束}
+
+内積空間では，
+ベクトルの列が収束するということを定義できる．
+
+$V$を内積空間，
+$\norm{\bigdot}$を$V$に付随するノルムとする．
+$V$に属するベクトルの列$\sequ{\bpsi_n} \coloneq \bpsi_1, \bpsi_2, \dotsc$について，
+\begin{equation*}
+    \norm{\bpsi_n - \bpsi_*} \xrightarrow{n \to \infty} 0
+\end{equation*}
+を満たす$V$のベクトル$\bpsi_*$が存在するとき，
+$\sequ{\bpsi_n}$は$\bpsi_*$に\ltword{収束する}という．
+
+
+
+\subsubsection{コーシー列の収束性}
 
 ベクトル空間$V$の点列とは，
 自然数$n$に対して$\bpsi_n \in V$であるような$\bpsi_1, \bpsi_2, \dots$のセットをいう．
 この列のことを$\sequ{\bpsi_n}[n]$と書くことにする．
 
-$V$を内積空間とする．
+$V$を内積空間，
+$\norm{\bigdot}$を$V$に付随するノルムとする．
 $V$の点列$\sequ{\bpsi_n}[n]$が
 \begin{equation*}
     \lim_{m, n \to \infty} \norm{\bpsi_m - \bpsi_n} = 0
@@ -1200,9 +1226,102 @@ $\norm{\bpsi_n - \bpsi_*} \to 0$（$n \to \infty$）だから，
 となり，コーシー列の条件を満たすからである．
 
 一方，$V$のコーシー列が$V$で収束するとは限らない．
+例えば，
+各項が有理数である数列$1, 1.4, 1.41, 1.414, \dotsc$を考える．
+これがコーシー列であることは論を\ltjruby{俟}{ま}たない．
+一方で，
+この数列は「\ltjruby{一|夜}{ひと|よ}一夜に\ltjruby{人|見}{ひと|み}ごろ」の語呂合わせで知られる無理数$\sqrt{2} = 1.41421356\dotso$に収束することもまた明らかである．
+極限が有理数の外の世界にあるのだから，
+この数列は有理数の列としては収束しない．
+このように，
+有理数全体の空間$\symbb{Q}$は，
+収束しそうな数列が収束しない，
+いわば「穴があいている」空間である．
 
-$V$の任意のコーシー列がある$V$のベクトルに収束するとき，
-$V$は\ltword{完|備}[かん|び](complete)であるという．
+古代ギリシャの数学者であったピタゴラスとその一派は，
+自然のもつ美しさとして整数比を重んじたという．
+整数比で表すことができない無理数の存在に気付いた一派の数学者ヒッパソスが海に沈められたという伝説もある．
+そんなピタゴラスたちが美しいと信じた有理数は，
+実は至るところに落とし穴のある空間であったのである．
+
+
+\subsubsection{完備な内積空間}
+\label{sec:complete-inner-product-space}
+
+内積空間$V$のどんなコーシー列も$V$のベクトルに収束するとき，
+$V$は（ノルム$\norm{\bigdot}$に関して）\ltword{完|備}[かん|び](complete)であるという．
+完備な空間とは「穴が開いていない」空間である．
+
+\bluehead{実数と複素数の完備性}\quad 
+たとえば，実数全体の空間$\symbb{R}$は完備である．
+これを\ltword{実数の完備性}という．
+また，複素数全体の空間$\symbb{C}$も完備である（\ltword{複素数の完備性}）．
+このことは実数の完備性からすぐにわかる．
+これを示すために，
+$\symbb{C}$のコーシー列$\sequ{x_n}[n]$を任意にとる．
+このとき，各項を$x_n = a_n + \iu b_n$（$a_n, b_n$は実数）と表せば，
+$\sequ{x_n}[n]$がコーシー列である定義は
+\begin{equation*}
+    \abs{x_m - x_n}
+    \xrightarrow{m, n \to \infty}
+    0
+    \quad \text{つまり} \quad 
+    (a_m - a_n)^2 + (b_m - b_n)^2 
+    \xrightarrow{m, n \to \infty}
+    0
+\end{equation*}
+と書ける．
+よって$\sequ{a_n}[n]$と$\sequ{b_n}[n]$がともに$\symbb{R}$のコーシー列であることがわかるので，
+実数の完備性からそれぞれ$a_n \to a_*$，$b_n \to b_*$（$n \to \infty$，$a_*, b_* \in \symbb{R}$）に収束する．
+このとき複素数列$\sequ{x_n}$が$x_n \to a_* + \iu b_*$（$n \to \infty$）に収束することは明らかである．
+よって$\symbb{C}$は完備である．
+\hfill\qedsymbol
+
+一方，前節で見たように，
+有理数のコーシー列には有理数に収束しないものがあるので，
+$\symbb{Q}$は完備ではない．
+
+\bluehead{有限次元内積空間の完備性}\quad 
+有限次元の内積空間$V$は，すべて完備である．
+
+証明は次のようにする．
+まず，
+$V$の正規直交基底$\bphi_1, \dots, \bphi_N$をとる．
+$V$のコーシー列を$\sequ{\bpsi_n}[n]$とおけば，
+すべての$\bpsi_n$は
+\begin{equation*}
+    \bpsi_n = c^{(1)}_n \bphi^{(1)} + \dots + c^{(N)}_n \bphi^{(N)}
+    \quad 
+    \text{（$c^{(i)}_n$は複素数）}
+\end{equation*}
+と書ける．
+$\sequ{\bphi_n}$はコーシー列であるから，
+\begin{align*}
+    &\norm{\bpsi_m - \bpsi_n}
+    \xrightarrow{m, n \to \infty}
+    0
+    \\
+    \quad \text{つまり} \quad 
+    &(c^{(1)}_m - c^{(1)}_n)^2 + \dots + (c^{(N)}_m - c^{(N)}_n)^2
+    \xrightarrow{m, n \to \infty}
+    0
+    \\
+    \quad \text{つまり} \quad 
+    &\text{すべての$1 \leq i \leq N$に対して}\,
+    c^{(i)}_m - c^{(i)}_n \xrightarrow{m, n \to \infty} 0
+\end{align*}
+よって複素数列$\sequ{c^{(i)}_n}[n]$はコーシー列であり，
+複素数の完備性からそれぞれの$i$について$c^{(i)}_n \to c^{(i)}_*$と収束する．
+このとき$\sequ{\bpsi_n}$は
+\begin{equation*}
+    \bpsi_n
+    \xrightarrow{n \to \infty}
+    c^{(1)}_* \bphi^{(1)} + \dots + c^{(N)}_* \bphi^{(N)}
+    \quad 
+    \text{（$c^{(i)}_*$は複素数）}
+\end{equation*}
+とたしかに$V$のベクトルに収束する．
+
 
 
 
@@ -1211,8 +1330,14 @@ $V$は\ltword{完|備}[かん|び](complete)であるという．
 \subsection{ヒルベルト空間}
 
 完備な内積空間を\ltword{ヒルベルト空間}(Hilbert space)という．
+より正確には，
+内積空間$\symcal{H}$が自身に付随するノルムに関して完備であるとき，
+$\symcal{H}$をヒルベルト空間という．
 
-すべての有限次元ベクトル空間はヒルベルト空間である．
+\cref{sec:complete-inner-product-space}で見たように，
+有限次元の内積空間は完備であるから，
+すべての有限次元内積空間はヒルベルト空間である．
+
 特に，ユークリッド空間$\symbb{C}^N$はヒルベルト空間である．
 
 
@@ -1891,20 +2016,6 @@ $\symsf{A}$がエルミートであるとする．
 上で議論したことにより固有値$\lambda = \braket{\varphi}{\symsf{A} \varphi}$は実数である．
 
 
-% \bluehead{$\symsf{A}$の固有値と$\adjoint{\symsf{A}}$の固有値}\quad 
-% 正規行列$\symsf{A}$の固有値$\lambda$に属する固有ベクトルを$\ket{\varphi}$とする．
-% このとき，$\ket{\varphi}$は$\adjoint{\symsf{A}}$の固有値$\conj{\lambda}$に属する固有ベクトルである：
-% \begin{equation}
-%     \symsf{A} \ket{\varphi} = \lambda \ket{\varphi}
-%     \quad \text{ならば} \quad 
-%     \adjoint{\symsf{A}} \ket{\varphi} = \conj{\lambda} \ket{\varphi}
-% \end{equation}
-% なぜなら，$\symbb{C}^N$のすべてのベクトル$\ket{\psi}$に対して
-% \begin{equation*}
-%     \braket{\psi}{\symsf{A} \varphi}
-% \end{equation*}
-
-
 \bluehead{エルミート行列の相異なる固有値に属する固有ベクトルは直交する}\quad 
 エルミート行列$\symsf{A}$について，
 固有値$\lambda$に属する固有ベクトルを$\ket{\varphi_\lambda}$，
@@ -1941,7 +2052,7 @@ $\kdelta_{ij}$は自動的に満たされる．
 \)を直交化すればよい（これにより$\kdelta_{kl}$が満たされる）．
 これは\cref{sec:ONB}で扱ったグラム--シュミットの方法で得ることができる．
 このようにして得られた固有ベクトルの各々を規格化すれば，
-$\sequ{\ket{\varphi_{\lambda_i, k}}}[1 \leq i \leq n, \  1 \leq k \leq n_i]$が$\symcal{H}$の正規直交系（完全とは限らない）になる．
+$\sequ{\ket{\varphi_{\lambda_i, k}}}[1 \leq i \leq n, \  1 \leq k \leq n_i]$が$\symcal{H}$の正規直交系（実は完全である）になる．
 
 
 
@@ -1983,6 +2094,33 @@ $\symsf{U}$を\ltword{ユニタリ行列}(unitary matrix)と呼ぶ．
 $\adjoint{\symsf{U}} = \symsf{U}^{-1}$のほうをユニタリ行列の定義とすることも多い．
 
 
+\bluehead{ユニタリ行列の各列は正規直交系}\quad 
+行列$\symsf{U}$の各列を$\ket{\varphi_1}, \dots, \ket{\varphi_N}$とする．
+このとき
+\begin{equation*}
+    \adjoint{\symsf{U}} \symsf{U} 
+    =
+    \begin{pmatrix}
+        \bra{\varphi_1}  \\  \vdots  \\  \bra{\varphi_N}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \ket{\varphi_1}  &  \cdots  &  \ket{\varphi_N}
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+        \braket{\varphi_1}{\varphi_1}  &  \braket{\varphi_1}{\varphi_2}  &  \cdots  &  \braket{\varphi_1}{\varphi_N}  \\
+        \braket{\varphi_2}{\varphi_1}  &  \braket{\varphi_2}{\varphi_2}  &  \cdots  &  \braket{\varphi_2}{\varphi_N}  \\
+        \vdots  &  \vdots  &  \ddots  &  \vdots  \\
+        \braket{\varphi_N}{\varphi_1}  &  \braket{\varphi_N}{\varphi_2}  &  \cdots  &  \braket{\varphi_N}{\varphi_N}  \\
+    \end{pmatrix}
+\end{equation*}
+であることを使えば，
+$\symsf{U}$がユニタリ行列（$\adjoint{\symsf{U}} \symsf{U} = \symsf{I}$）であることと，
+$\ket{\varphi_1}, \dots, \ket{\varphi_N}$が正規直交系である（$\ket{\varphi_i} \ket{\varphi_h} = \kdelta_{ij}$）ことは同値であるとわかる．
+
+
+
+
 \subsubsection{エルミート行列の対角化}
 
 
@@ -2002,7 +2140,7 @@ $\symcal{H}$の任意のベクトル$\ket{\psi}$を
     \label{eq:ONB-expansion}
     \ket{\psi} = \sum_{i = 1}^{N} c_i \ket{\varphi_i}
     \quad 
-    \text{$c_1, \dots, c_N$は複素数}
+    \text{（$c_1, \dots, c_N$は複素数）}
 \end{equation}
 と表せるとき，
 $\sequ{\ket{\varphi_i}}[i]$は\ltword{完全}(complete)であるという．
@@ -2092,8 +2230,21 @@ $\ket{\varphi_1}, \dots, \ket{\varphi_n}$の空間に映る情報のみを残し
 
 \subsubsection{スペクトル分解}
 
-よく知られているように，
-エルミート行列$\symsf{A}$は，あるユニタリ行列$\symsf{U}$を用いて対角化できる：
+量子力学の教科書に載っているように，
+自己\ltjruby{共|役}{きょう|やく}演算子の固有関数系はヒルベルト空間の完全系をなす\footnote{
+    この定理が成り立つためには，
+    エルミート演算子という条件では不十分であり，
+    より制限が強い「自己共役演算子」である必要である．
+    ただし，有限次元のエルミート演算子は自動的に自己共役になるので，
+    本稿では気にしなくてよい．
+}．
+一般のヒルベルト空間についてこれを示すのは非常に面倒であるが，
+空間が有限次元の場合，
+これは単なるエルミート行列のユニタリ行列による対角化に帰着される．
+このことを確かめてみよう．
+
+線形代数でよく知られているように，
+$N \times N$エルミート行列$\symsf{A}$は，あるユニタリ行列$\symsf{U}$を用いて対角化できる：
 \begin{equation}
     \label{eq:diagonalize-of-Hermitian}
     \adjoint{\symsf{U}} \symsf{A} \symsf{U}
@@ -2116,6 +2267,7 @@ $\ket{\varphi_1}, \dots, \ket{\varphi_n}$の空間に映る情報のみを残し
     $\symbf{u}_1, \dots, \symbf{u}_N$が一次独立であること，
     および基底の延長定理より従う．
 }．
+これらの各列を$\ket{\varphi_i}$（$1 \leq i \leq N$）と書くことにしよう．
 
 固有値$\lambda_i$の固有空間を張る正規直交系を$\ket{\varphi_{\lambda_i, 1}}, \dots, \ket{\varphi_{\lambda_i, m_i}}$とする．
 このとき，$\lambda_i$の固有空間への射影演算子$\hat{P}_{\lambda_i}$は
@@ -2124,27 +2276,145 @@ $\ket{\varphi_1}, \dots, \ket{\varphi_n}$の空間に映る情報のみを残し
         \sum_{k = 1}^{m_i} \ketbra{\varphi_{\lambda_i, k}}{\varphi_{\lambda_i, k}}
 \end{equation*}
 と書ける（\cref{sec:definition-of-projection}）．
-これらの射影演算子の和は恒等演算子$\idop$になる（\cref{eq:ONB-iff}）：
-\begin{equation*}
+正規直交系\(
+    \sequ{\ket{\varphi_{\lambda_i, k_i}}}[1 \leq i \leq n, \  1 \leq k_i \leq m_i]
+    = \sequ{\ket{\varphi_i}}[1 \leq i \leq N]
+\)は完全であるから，
+これらの射影演算子の和は恒等演算子$\idop$になる（\cref{eq:ONB-iff}の条件）：
+\begin{equation}
     \idop 
-    = \sum_{i = 1}^{n} \hat{P}_{\lambda_i}
-    = \sum_{i = 1}^{n} \sum_{k = 1}^{m_i} \ketbra{\varphi_{\lambda_i, k}}{\varphi_{\lambda_i, k}}
     = \sum_{i = 1}^{N} \ketbra{\varphi_i}{\varphi_i}
-\end{equation*}
+    = \sum_{i = 1}^{n} \sum_{k = 1}^{m_i} \ketbra{\varphi_{\lambda_i, k}}{\varphi_{\lambda_i, k}}
+    = \sum_{i = 1}^{n} \hat{P}_{\lambda_i}
+\end{equation}
 （最後の和$\sum_{i = 1}^{N}$は固有値の重複を含む固有ベクトルの和）．
-また，
-\cref{eq:diagonalize-of-Hermitian}よりエルミート行列$\symsf{A}$は
-\begin{align}
-    \symsf{A} &= \sum_{i = 1}^{n} \lambda_i \hat{P}_{\lambda_i}
-    \\
-              &= \sum_{i = 1}^{N} \lambda_{(i)} \ketbra{\varphi_i}{\varphi_i}
-\end{align}
-と書ける．
 
+\cref{eq:diagonalize-of-Hermitian}で対角化された行列を$\symsf{A}'$とおく．
+このとき$\adjoint{\symsf{U}} = \symsf{U}^{-1}$であることを使えば\(
+    \symsf{A} = \symsf{U} \symsf{A}' \adjoint{\symsf{U}}
+\)である．
+ここでユニタリ行列$\symsf{U}$が$\symsf{A}$の固有ベクトルを使って
+\begin{equation*}
+    \symsf{U} = 
+    \begin{pmatrix}
+        \ket{\varphi_1} & \cdots & \ket{\varphi_N}
+    \end{pmatrix}
+    ,
+    \quad 
+    \adjoint{\symsf{U}}
+    = \tp{\conj{\symsf{U}}}
+    = 
+    \begin{pmatrix}
+        \bra{\varphi_1} \\ \vdots \\ \bra{\varphi_N}
+    \end{pmatrix}
+\end{equation*}
+と書けることを思い出せば，
+\begin{equation*}
+    \symsf{A}
+    = \symsf{U} \symsf{A}' \adjoint{\symsf{U}}
+    = \sum_{i = 1}^{N} \lambda_{(i)} \ketbra{\varphi_i}{\varphi_i}
+\end{equation*}
+と書ける（ただし$\lambda_{(i)}$は重複を含めた固有値）．
+したがって，
+エルミート行列$\symsf{A}$は，
+固有値$\lambda_i$に対応する固有空間への射影演算子$\hat{P}_{\lambda_i}$を使って
+\begin{subequations}
+    \begin{align}
+        \label{eq:spectrum-decomposition}
+        \symsf{A} &= \sum_{i = 1}^{n} \lambda_i \hat{P}_{\lambda_i}
+        \\
+        \label{eq:eigenvalue-decomposition}
+                  &= \sum_{i = 1}^{N} \lambda_{(i)} \ketbra{\varphi_i}{\varphi_i}
+    \end{align}
+\end{subequations}
+と書ける．
+ここで\cref{eq:spectrum-decomposition}の$\lambda_i$は$\symsf{A}$の相異なる固有値であり，
+\cref{eq:eigenvalue-decomposition}の$\lambda_{(i)}$は重複を含めた$N$個の固有値である．
+\cref{eq:spectrum-decomposition}を\ltword{スペクトル分解}，
+\cref{eq:eigenvalue-decomposition}を\ltword{固有値分解}という．
 
 
 
 \section{量子力学の公理}
+
+\subsection{量子力学の公理}
+
+\subsubsection{量子力学的状態}
+
+シュレーディンガー方程式の解$\psi$を，
+全空間での存在確率が$1$になるように規格化した$\tilde{\psi}$が量子状態をあらわすのであった．
+
+量子力学の状態は，
+ヒルベルト空間$\symcal{H}$の規格化されたベクトル$\ket{\psi}$であらわされる．
+ただし，
+実数$\theta$によって$\ket{\psi'} = e^{\iu \theta} \ket{\psi}$の関係で結ばれた$\ket{\psi}, \ket{\psi'}$（つまり位相のみが異なる2つのケット）は同じ状態とみなす．
+
+
+
+\subsubsection{物理量の観測}
+
+物理量$A$に対応する自己共役演算子$\hat{A}$が存在する．
+任意の状態$\ket{\psi}$は，$\hat{A}$の固有関数系$\ket{\varphi_i}$を使って
+\begin{equation*}
+    \ket{\psi} = \sum_i c_i \ket{\varphi_i}
+\end{equation*}
+と展開できる．
+$\ket{\varphi_i}$に対応する状態を観測する確率は$\abs{c_i}^2$で与えられる．
+ここで注意すべきなのは，
+状態$\ket{\varphi_i}$を観測する確率と，
+$\ket{\varphi_i}$の固有値$a_i$を得る確率は同じとは限らないことである．
+なぜなら，
+この表記では$\ket{\varphi_i} \neq \ket{\varphi_j}$でも$a_i = a_j$となる可能性があるからである．
+したがって，
+オブザーバブルの値として固有値$a_i$を観測する確率は，
+固有値$a_i$に属する\emph{すべての}固有関数$\ket{\varphi_{a_i, 1}}, \dots, \ket{\varphi_{a_i, m_i}}$を用いて
+\begin{equation*}
+    \sum_{k = 1}^{m_i} \abs{c_{a_i, k}}^2
+    = \sum_{k = 1}^{m_i} \braket{c_{a_i, k} \varphi_{a_i, k}}{c_{a_i, k} \varphi_{a_i, k}}
+    = \braket{\psi}{\hat{P}_{a_i} \psi}
+\end{equation*}
+と表せるはずである．
+ここで，$\hat{P}_{a_i}$は固有値$a_i$に対応する固有空間への射影演算子
+\begin{equation*}
+    \hat{P}_{a_i} = \sum_{k = 1}^{m_i} \ketbra{\varphi_{a_i, k}}{\varphi_{a_i, k}}
+\end{equation*}
+である．
+
+すべてのオブザーバブルには，
+それに対応するエルミート行列$\symsf{A}$が存在し，
+観測値は$\symsf{A}$の固有値のどれかである．
+それぞれの固有値を観測する確率は，
+\begin{equation}
+    \braket{\psi}{\hat{P}_a \psi}
+\end{equation}
+
+
+\subsubsection{状態の時間発展}
+
+時間に依存するシュレーディンガー方程式を形式的に解くことで，
+状態の時間発展が記述される：
+\begin{equation*}
+    \psi(t) = \exp \ab(-\iu \frac{\hat{H}}{\hbar} (t - t_0)) \psi(t = t_0)
+\end{equation*}
+ここで，ハミルトニアンが自己共役（$\hat{H} = \adjoint{\hat{H}}$）であることを使うと，
+\begin{equation*}
+      \exp \ab(-\iu \frac{\hat{H}}{\hbar} (t - t_0))
+      \adjoint{\ab[ \exp \ab(-\iu \frac{\hat{H}}{\hbar} (t - t_0)) ]}
+    = \adjoint{\ab[ \exp \ab(-\iu \frac{\hat{H}}{\hbar} (t - t_0)) ]}
+      \exp \ab(-\iu \frac{\hat{H}}{\hbar} (t - t_0))
+    = \idop
+\end{equation*}
+が成り立つ．
+したがって$\exp \ab( -\iu \hat{H} (t - t_0) / \hbar )$はユニタリであるといえる．
+これに対応する公理は次のように与えられる．
+
+時間発展はユニタリ行列$\symsf{U}$を用いて
+\begin{equation}
+    \ket{\psi'} = \symsf{U} \ket{\psi}
+\end{equation}
+と書ける．
+$\symsf{U}$には逆行列$\symsf{U}^{-1} = \adjoint{\symsf{U}}$が存在するので，
+時間発展は可逆である．
 
 
 
