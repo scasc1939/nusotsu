@@ -10,6 +10,16 @@
 
 \crefname{equation}{式}{式}
 
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\NewTColorBox[auto counter]{qmaxiom}{O{}}{
+    enhanced jigsaw,
+    fonttitle={\bfseries\gtfamily\sffamily},
+    title={公理~\thetcbcounter.},
+    opacityback=0, % standard jigsaw
+    attach boxed title to top left={yshift=-2mm},
+}
+
 \usepackage[
     style=sotsu,
     maxnames=99,
@@ -2344,11 +2354,12 @@ $N \times N$エルミート行列$\symsf{A}$は，あるユニタリ行列$\syms
 シュレーディンガー方程式の解$\psi$を，
 全空間での存在確率が$1$になるように規格化した$\tilde{\psi}$が量子状態をあらわすのであった．
 
-量子力学の状態は，
-ヒルベルト空間$\symcal{H}$の規格化されたベクトル$\ket{\psi}$であらわされる．
-ただし，
-実数$\theta$によって$\ket{\psi'} = e^{\iu \theta} \ket{\psi}$の関係で結ばれた$\ket{\psi}, \ket{\psi'}$（つまり位相のみが異なる2つのケット）は同じ状態とみなす．
-
+\begin{qmaxiom}[状態は規格化されたベクトルとしてあらわされる]
+    量子力学の状態は，
+    ヒルベルト空間$\symcal{H}$の規格化されたベクトル$\ket{\psi}$であらわされる．
+    ただし，
+    実数$\theta$によって$\ket{\psi'} = e^{\iu \theta} \ket{\psi}$の関係で結ばれた$\ket{\psi}, \ket{\psi'}$（つまり位相のみが異なる2つのケット）は同じ状態とみなす．    
+\end{qmaxiom}
 
 
 \subsubsection{物理量の観測}
@@ -2360,9 +2371,8 @@ $N \times N$エルミート行列$\symsf{A}$は，あるユニタリ行列$\syms
 \end{equation*}
 と展開できる．
 $\ket{\varphi_i}$に対応する状態を観測する確率は$\abs{c_i}^2$で与えられる．
-ここで注意すべきなのは，
-状態$\ket{\varphi_i}$を観測する確率と，
-$\ket{\varphi_i}$の固有値$a_i$を得る確率は同じとは限らないことである．
+ところが，
+$\ket{\varphi_i}$の固有値$a_i$を得る確率が$\abs{c_i}^2$とは限らない．
 なぜなら，
 この表記では$\ket{\varphi_i} \neq \ket{\varphi_j}$でも$a_i = a_j$となる可能性があるからである．
 したがって，
@@ -2380,13 +2390,17 @@ $\ket{\varphi_i}$の固有値$a_i$を得る確率は同じとは限らないこ�
 \end{equation*}
 である．
 
-すべてのオブザーバブルには，
-それに対応するエルミート行列$\symsf{A}$が存在し，
-観測値は$\symsf{A}$の固有値のどれかである．
-それぞれの固有値を観測する確率は，
-\begin{equation}
-    \braket{\psi}{\hat{P}_a \psi}
-\end{equation}
+\begin{qmaxiom}
+    すべてのオブザーバブルには，
+    それに対応するエルミート行列$\symsf{A}$が存在し，
+    観測値は$\symsf{A}$の固有値のどれかである．
+    固有値$a$を観測する確率は，
+    $a$に対応する固有空間への射影演算子$\hat{P}_a$を使って
+    \begin{equation}
+        \braket{\psi}{\hat{P}_a \psi}
+    \end{equation}
+    と表される．
+\end{qmaxiom}
 
 
 \subsubsection{状態の時間発展}
@@ -2408,13 +2422,15 @@ $\ket{\varphi_i}$の固有値$a_i$を得る確率は同じとは限らないこ�
 したがって$\exp \ab( -\iu \hat{H} (t - t_0) / \hbar )$はユニタリであるといえる．
 これに対応する公理は次のように与えられる．
 
-時間発展はユニタリ行列$\symsf{U}$を用いて
-\begin{equation}
-    \ket{\psi'} = \symsf{U} \ket{\psi}
-\end{equation}
-と書ける．
-$\symsf{U}$には逆行列$\symsf{U}^{-1} = \adjoint{\symsf{U}}$が存在するので，
-時間発展は可逆である．
+\begin{qmaxiom}
+    時間発展はユニタリ行列$\symsf{U}$を用いて
+    \begin{equation}
+        \ket{\psi'} = \symsf{U} \ket{\psi}
+    \end{equation}
+    と書ける．
+    $\symsf{U}$には逆行列$\symsf{U}^{-1} = \adjoint{\symsf{U}}$が存在するので，
+    時間発展は可逆である．
+\end{qmaxiom}
 
 
 

@@ -353,6 +353,12 @@
     \end{align*}
     のように対応させれば簡単に証明できる．
 
+    \pause 
+
+    結局，\structure{$N$次元ベクトル空間は実質1つだけ！}
+
+    $\implies$一番簡単な$\symbb{C}^N$を考えればよい．
+
 \end{frame}
 
 
@@ -526,17 +532,17 @@
 \begin{frame}
     \frametitle{多粒子系の扱い方：テンソル積}
 
-    $\ket{\psi} = (a \,\, b)$, $\ket{\varphi} = (c \,\, d)$とする．
+    $\ket{\psi} = \cvector{a ; b}$, $\ket{\xi} = \cvector{c ; d}$とする．
 
-    2状態をあわせた$\ket{\psi}\ket{\varphi}$はどう表現する？
+    2状態をあわせた$\ket{\psi}\ket{\xi}$はどう表現する？
 
     \pause
 
     答え：\alert{テンソル積}
     \begin{equation}
-        \ket{\psi} \otimes \ket{\varphi}
+        \ket{\psi} \otimes \ket{\xi}
             \coloneq \begin{pmatrix}
-                a \ket{\varphi}  \\  b \ket{\varphi}
+                a \ket{\xi}  \\  b \ket{\xi}
             \end{pmatrix}
             = \begin{pmatrix}
                 ac \\ ad \\ bc \\ bd
@@ -546,7 +552,7 @@
     \pause
 
     3つ以上のテンソル積も，
-    $\ket{\psi} \otimes \bigl( \ket{\varphi} \otimes \ket{\xi} \bigr)$のようにして定義できる．
+    $\ket{\psi} \otimes \bigl( \ket{\xi} \otimes \ket{\xi} \bigr)$のようにして定義できる．
 
 \end{frame}
 
@@ -588,6 +594,92 @@
           \otimes
           \hat{\symcal{O}}_2 \ket{\varphi}
     \end{equation*}
+
+\end{frame}
+
+
+
+\section{測定とは？}
+
+\begin{frame}
+    \frametitle{オブザーバブルと固有値分解}
+
+    観測可能な物理量：\alert{オブザーバブル}という．
+
+    オブザーバブルには，対応する\alert{エルミート行列}$A$が存在．
+
+    \pause 
+
+    $\hat{A}$の固有ベクトル$\ket{\varphi_1}, \dots, \ket{\varphi_N}$（固有値$a_1, \dots, a_N$：重複あり）を使うと，
+    \begin{equation}
+        \hat{A} = \sum_{i = 1}^{N} a_i \ketbra{\varphi_i}{\varphi_i}
+    \end{equation}
+    これを\alert{固有値分解}という．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{スペクトル分解}
+
+    \begin{itemize}
+        \item \structure{相異なる}固有値$a_{(1)}, \dots, a_{(n)}$
+        \item 固有値$a_i$に属する固有ベクトル$\ket{\varphi_{a_{(i)}, 1}}, \dots, \ket{\varphi_{a_{(i)}, m_i}}$
+    \end{itemize}
+
+    固有値$a_i$に対応する固有空間への\alert{射影}：
+    \begin{equation*}
+        \hat{P}_{a_i} = \sum_{k = 1}^{m_i} \ketbra{\varphi_{a_{(i)}, k}}{\varphi_{a_{(i)}, k}}
+    \end{equation*}
+
+    固有値分解を書き直す：
+    \begin{equation}
+        \hat{A} = \sum_{i = 1}^{m_i} a_{(i)} \hat{P}_{a_{(i)}}
+    \end{equation}
+    これを\alert{スペクトル分解}という．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{オブザーバブルの測定}
+
+    \begin{itemize}
+        \item オブザーバブルに対応するエルミート行列$\hat{A}$
+        \item $\hat{A}$の固有値$a_{(1)}, \dots, a_{(n)}$
+        \item 固有値$a_i$に対応する固有空間への射影
+    \end{itemize}
+
+    状態$\ket{\psi}$に対し，このオブザーバブルを測定したときの値は？
+
+    \pause 
+
+    \begin{block}{$\ket{\psi}$の観測により得られる値}
+        確率
+        \begin{equation}
+            \label{eq:proposition-of-observable}
+            \braket{\psi}{\hat{P}_{a_{(i)}} \psi}
+        \end{equation}
+        で固有値$a_{(i)}$を観測する．
+    \end{block}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{オブザーバブルの測定（つづき）}
+
+    \begin{alertblock}{確率の規格化は？}
+        \eqref{eq:proposition-of-observable}で全確率は$1$になっている？
+        \begin{equation*}
+            \sum_{i = 1}^{n} \braket{\psi}{\hat{P}_{a_{(i)}} \psi} = 1
+        \end{equation*}
+        これは，固有ベクトル系$\ket{\varphi_i}$が完全であることから
+        \begin{equation*}
+            \sum_{i = 1}^{n} \hat{P}_{a_{(i)}} = \idop
+        \end{equation*}
+        であることを使うと成立．
+    \end{alertblock}
 
 \end{frame}
 
