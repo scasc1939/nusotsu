@@ -40,7 +40,7 @@
 
     \pause
 
-    \begin{block}{シュレーディンガー方程式}
+    \begin{block}{（時間に依存しない）シュレーディンガー方程式}
         \begin{equation}
             \label{eq:time-undependent-Schroedinger-equation}
             \ab[ \frac{\hbar^2}{2m} \ab( \pdv[2]{}{x} + \pdv[2]{}{y} + \pdv[2]{}{z} ) + V(\symbf{r})] \psi(\symbf{r}) = E \psi(\symbf{r})
@@ -49,9 +49,9 @@
 
     \pause
     
-    \eqref{eq:time-undependent-Schroedinger-equation}の解を$\psi(\symbf{r}), \varphi(\symbf{r})$とすると，
+    \eqref{eq:time-undependent-Schroedinger-equation}の解を$\psi(\symbf{r}), \xi(\symbf{r})$とすると，
     任意の複素数$a, b$に対して，
-    \[  \xi(\symbf{r}) \coloneq a \psi(\symbf{r}) + b \varphi(\symbf{r}) 
+    \[  \eta(\symbf{r}) \coloneq a \psi(\symbf{r}) + b \xi(\symbf{r}) 
         \quad \text{（$a, b$は複素数）}  \]
     は\eqref{eq:time-undependent-Schroedinger-equation}の解になっている．
 
@@ -76,6 +76,8 @@
 
 
 \section{ベクトル空間って？}
+
+\subsection{ベクトル}
 
 
 \begin{frame}
@@ -115,7 +117,7 @@
 
     ふつうの縦ベクトルについて考えれば当たり前のこと：
     \begin{block}{ベクトル空間の公理}
-        $\symbf{\psi}, \symbf{\varphi}, \symbf{\xi}$を\structure{ベクトル}，
+        集合$V$の元$\symbf{\psi}, \symbf{\varphi}, \symbf{\xi}$を\structure{ベクトル}，
         $a, b, c$を\structure{スカラー}（複素数）とする．
         \begin{enumerate}
             \begin{multicols}{2}
@@ -134,7 +136,8 @@
     \pause
 
     \alert{逆に，1--8を満たすすものは，ぜんぶ「\structure{ベクトル}」ということにする}．
-    ベクトル全体がつくる集合を\structure{ベクトル空間}という．
+    
+    このとき，集合$V$を\structure{ベクトル空間}という．
     
     $\implies$\ref{frame:psi-is-vector}ページで考えた$\symbf{\psi}$もベクトル．
 
@@ -145,7 +148,7 @@
     \frametitle{ベクトルの例}
 
     \begin{itemize}
-        \item $N$次の縦ベクトル：$(a_1 \,\, a_2 \,\, \cdots \,\, a_N)$
+        \item $N$次の縦ベクトル：$\cvector{a_1 ; a_2 ; \cdots ; a_N}$
         \item $N$次多項式：$p(x) = a_N x^N + a_{N-1} x^{N-1} + \dots + a_1 x + a_0$
         \item 線形方程式の解：$\varphi(x_1, \dots, x_N)$
     \end{itemize}
@@ -155,6 +158,7 @@
 \end{frame}
 
 
+\subsection{内積}
 
 \begin{frame}
     \frametitle{ユークリッド内積}
@@ -171,7 +175,7 @@
         を\structure{内積}という．
     \end{block}
 
-    ベクトルの\structure{長さ}は，
+    ベクトルの長さ（\structure{ノルム}）は，
     \begin{equation}
         \label{eq:Euclid-norm}
         \norm{\symbf{x}} \coloneq \sqrt{\iparen{\symbf{x}, \symbf{x}}}
@@ -202,6 +206,8 @@
 
     上の条件を満たすものを改めて「\structure{内積}」と呼ぶことにする．
 
+    \pause
+
     \begin{alertblock}{注意}
         1と2をあわせると，
         $\iparen{a\symbf{\psi} + b\symbf{\varphi}, \  \symbf{\xi}} = \conj{a}\iparen{\symbf{\psi}, \symbf{\xi}} + \conj{b}\iparen{\symbf{\varphi}, \symbf{\xi}}$（\structure{反線形性}）である．
@@ -213,23 +219,25 @@
 \begin{frame}
     \frametitle{関数の内積}
 
-    では，関数$\psi(\symbf{r}), \varphi(\symbf{r})$の内積は？
+    では，関数$\psi(\symbf{r}), \xi(\symbf{r})$の内積は？
 
     \pause
 
     \begin{equation}
-        \iparen{\psi, \varphi}
-            \coloneq \iiint \conj{\psi}(\symbf{r}) \varphi(\symbf{r}) \dd{x} \dd{y} \dd{z}
+        \iparen{\psi, \xi}
+            \coloneq \iiint \conj{\psi}(\symbf{r}) \xi(\symbf{r}) \dd{x} \dd{y} \dd{z}
     \end{equation}
     とすれば，前のページの性質を満たす．
 
 \end{frame}
 
 
-\begin{frame}
-    \frametitle{基底}
+\subsection{基底}
 
-    すべての縦ベクトル$\symbf{x} = (x_1 \,\, x_2 \,\, x_3)$は，
+\begin{frame}
+    \frametitle{ユークリッド空間の基底}
+
+    すべての縦ベクトル$\symbf{x} = \cvector{x_1 ; x_2 ; x_3}$は，
     \begin{equation}
         \label{eq:Euclidean-basis}
         \symbf{e}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \quad 
@@ -238,14 +246,18 @@
     \end{equation}
     を使って，$\symbf{x} = x_1 \symbf{e}_1 + x_2 \symbf{e}_2 + x_3 \symbf{e}_3$と書ける．
 
-    さらに，
-    \begin{math}
+    さらに，\eqref{eq:Euclidean-basis}は\structure{一次独立}：
+    \begin{equation*}
         x_1 \symbf{e}_1 + x_2 \symbf{e}_2 + x_3 \symbf{e}_3 = \symbf{0}
         \iff
         x_1 = x_2 = x_3 = 0
-    \end{math}（\structure{一次独立}）．
+    \end{equation*}
 
-    \pause
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{ベクトル空間の基底}
 
     同じように，\alert{すべてのベクトル}$\symbf{\psi}$は，
     \structure{一次独立}なベクトル$\symbf{\chi}_1, \symbf{\chi}_2, \dotsc$を使って
@@ -258,6 +270,8 @@
     \pause
     $\symbf{\chi}_i$：\alert{基底}という．
 
+    
+
 \end{frame}
 
 
@@ -269,9 +283,9 @@
 
     例えば，\eqref{eq:Euclidean-basis}のかわりに
     \begin{equation*}
-        \symbf{e}'_1 = (1 \,\, 1 \,\, 0), \quad 
-        \symbf{e}'_2 = (1 \,\, {-1} \,\, 0), \quad
-        \symbf{e}'_3 = (0 \,\, 0 \,\, \sqrt{2})
+        \symbf{e}'_1 = \cvector{1 ; 1 ; 0}, \quad 
+        \symbf{e}'_2 = \cvector{1 ; {-1} ; 0}, \quad
+        \symbf{e}'_3 = \cvector{0 ; 0 ; \sqrt{2}}
     \end{equation*}
     としてもよい．
 
