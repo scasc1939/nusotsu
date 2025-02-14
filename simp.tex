@@ -12,13 +12,21 @@
 
 \usepackage{tcolorbox}
 \tcbuselibrary{skins}
-\NewTColorBox[auto counter]{qmaxiom}{O{}}{
+\NewTColorBox[
+    auto counter,
+    crefname={公理}{公理},
+    Crefname={公理}{公理},
+]{qmaxiom}{O{} d()}{
     enhanced jigsaw,
     fonttitle={\bfseries\gtfamily\sffamily},
     title={公理~\thetcbcounter.},
     opacityback=0, % standard jigsaw
     attach boxed title to top left={yshift=-2mm},
+    IfValueT={#2}{
+        label={#2},
+    },
 }
+
 
 \usepackage[
     style=sotsu,
@@ -43,6 +51,11 @@
 \newcommand{\bpsi}{\symbf{\psi}}
 \newcommand{\bphi}{\symbf{\varphi}}
 \newcommand{\bxi}{\symbf{\xi}}
+\newcommand{\beeta}{\symbf{\eta}}
+
+
+\newcommand{\bitone}{\mathcolor{fire}{\uparrow}}
+\newcommand{\bittwo}{\mathcolor{water}{\downarrow}}
 
 
 \definecolor{fire}{RGB}{255, 90, 0}
@@ -1348,12 +1361,13 @@ $\symcal{H}$をヒルベルト空間という．
 有限次元の内積空間は完備であるから，
 すべての有限次元内積空間はヒルベルト空間である．
 
-特に，ユークリッド空間$\symbb{C}^N$はヒルベルト空間である．
+特に，ユークリッド空間$\symbb{C}^N$は有限次元ゆえに完備なので，
+ヒルベルト空間である．
 
 
 
 
-\section{もう少し準備}
+\section{線形代数の力}
 
 \subsection{線形写像}
 
@@ -1651,8 +1665,8 @@ $\symbf{y} = \sum_{i = 1}^{N} y_i \symbf{e}_i$，
 $\symbb{C}^N$に属するベクトルの内積は，\cref{eq:Euclidean-inner-product}の形で書ける．
 一方，$f(\symbf{x}) = \sum_{i = 1}^{N} x_i \symbf{u}_i$，
 $f(\symbf{y}) = \sum_{i = 1}^{N} y_i \symbf{u}_i$の内積は，
-内積の線形性・反線形性（\pageref{innerp:linear}ページの\cref{innerp:linear}と\cref{eq:anti-linear}）
-および$\sequ{\symbf{u}_i}[i]$が正規直交であること（\pageref{eq:orthonormal}ページの\cref{eq:orthonormal}）を使えば
+内積の線形性・反線形性（\cref{sec:inner-product}の\cref{innerp:linear}と\cref{eq:anti-linear}）
+および$\sequ{\symbf{u}_i}[i]$が正規直交であること（\cref{sec:ONB}の\cref{eq:orthonormal}）を使えば
 \begin{equation*}
     \begin{split}
         \iparen{ f(\symbf{x}), f(\symbf{y}) }
@@ -1965,10 +1979,11 @@ $\symsf{A}$のエルミート共役は，
 $\adjoint{\symsf{A}} = \tp{\conj{A}}$，
 すなわち$\symsf{A}$を転置して複素共役をとった行列である．
 なぜなら，行列$\symsf{A}$の$(i, j)$-成分$a_{ij}$は\cref{eq:Euclidean-basis-1}で定義される基底\(
-    \ket{e_i} = \cvector{0 ; \cdots ; 0}
+    \ket{e_i} = \cvector{0 ; \cdots ; 1 ; \cdots ; 0}
 \)を用いて\(
     a_{ij} = \braket{e_i}{\symsf{A} e_j}
 \)と書けるが，
+\cref{eq:Hermitian-conjugate}を使うと
 \begin{equation*}
     a_{ij}
     = \braket{e_i}{\symsf{A} e_j}
@@ -1977,6 +1992,37 @@ $\adjoint{\symsf{A}} = \tp{\conj{A}}$，
     = \conj{(\adjoint{a}_{ji})}
 \end{equation*}
 （ここで$\adjoint{a}_{ji}$は$\adjoint{\symsf{A}}$の$(j, i)$-成分）であるからである．
+
+
+\bluehead{任意の行列$\symsf{A}$に対してエルミート共役$\adjoint{\symsf{A}}$が定義できる}\quad 
+行列$\adjoint{\symsf{A}}$は次のように定義できる．
+まず$\ket{\psi}$を固定したとき，任意の$\ket{\xi}$に対して
+\begin{equation*}
+    \braket{\psi}{\symsf{A} \xi} = \braket{\eta_\psi}{\xi}
+\end{equation*}
+となる$\symcal{H}$のベクトル$\eta_\psi$が
+\[
+    \bra{\eta_\psi} \coloneq \bra{\psi} \symsf{A}
+    \quad \text{（行列としての積）}
+\]
+で定義できる．
+そこで$\symcal{H}$から$\symcal{H}$自身への写像$f$を$f(\psi) = \eta_\psi$で定義すれば，
+任意の$\ket{\psi}, \ket{\xi}$に対して
+\begin{equation*}
+    \braket{\psi}{\xi} = \braket{f(\psi)}{\xi}
+\end{equation*}
+が成り立つ．
+$f$が線形であること，
+つまり$\eta_{a \psi + b \psi'} = a \eta_\psi + b \eta_{\psi'}$が成り立つことは，
+$\bra{\eta_\psi}$の定義から明らかである．
+よって$f$はある行列$\adjoint{\symsf{A}}$を使って$\ket{f(\psi)} = \adjoint{\symsf{A}} \ket{\psi}$と書ける．
+これがエルミート共役$\adjoint{\symsf{A}}$の定義である\footnote{
+    一般の線形演算子$\hat{A}$に対するエルミート共役演算子$\adjoint{\hat{A}}$も，同じ論法によって定義できる．
+    ただし，行列の場合と違って定義域の問題があるために，
+    $\bra{\eta_\psi}$の定義が若干面倒になる．
+}．
+
+
 
 
 \bluehead{エルミート行列の必要十分条件}\quad 
@@ -2098,13 +2144,13 @@ $\symsf{U}$を\ltword{ユニタリ行列}(unitary matrix)と呼ぶ．
 とでき，
 \cref{eq:inner-product-linear-map-identity-1}より$\adjoint{\symsf{U}} \symsf{U} = \symsf{I}$（単位行列）であるから$\adjoint{\symsf{U}} = \symsf{U}^{-1}$である\footnote{
     ヒルベルト空間$\symcal{H}$が無限次元の場合，
-    $\adjoint{\symsf{U}} \symsf{U} = \symsf{I}$でも$\adjoint{\symsf{U}} = \symsf{U}^{-1}$とは限らないが，
-    結果はつねに成立する．
+    「$\adjoint{\hat{U}} \hat{U} = \idop$なら$\adjoint{\hat{U}} = \hat{U}^{-1}$」は成り立たないが，
+    それでも$\adjoint{\hat{U}} = \hat{U}^{-1}$である．
 }．
 $\adjoint{\symsf{U}} = \symsf{U}^{-1}$のほうをユニタリ行列の定義とすることも多い．
 
 
-\bluehead{ユニタリ行列の各列は正規直交系}\quad 
+\bluehead{ユニタリ行列の各列は正規直交基底}\quad 
 行列$\symsf{U}$の各列を$\ket{\varphi_1}, \dots, \ket{\varphi_N}$とする．
 このとき
 \begin{equation*}
@@ -2126,12 +2172,23 @@ $\adjoint{\symsf{U}} = \symsf{U}^{-1}$のほうをユニタリ行列の定義と
 \end{equation*}
 であることを使えば，
 $\symsf{U}$がユニタリ行列（$\adjoint{\symsf{U}} \symsf{U} = \symsf{I}$）であることと，
-$\ket{\varphi_1}, \dots, \ket{\varphi_N}$が正規直交系である（$\ket{\varphi_i} \ket{\varphi_h} = \kdelta_{ij}$）ことは同値であるとわかる．
-
-
-
-
-\subsubsection{エルミート行列の対角化}
+$\ket{\varphi_1}, \dots, \ket{\varphi_N}$が正規直交系である（$\braket{\varphi_i}{\varphi_j} = \kdelta_{ij}$）ことは同値であるとわかる．
+また，
+\begin{equation*}
+    \symsf{U} \adjoint{\symsf{U}}
+    =
+    \begin{pmatrix}
+        \ket{\varphi_1}  &  \cdots  &  \ket{\varphi_N}
+    \end{pmatrix}
+    \begin{pmatrix}
+        \bra{\varphi_1}  \\  \vdots  \\  \bra{\varphi_N}
+    \end{pmatrix}
+    = 
+    \sum_{i = 1}^{N} \ketbra{\varphi_i}{\varphi_i}
+\end{equation*}
+であることを使えば，
+$\symsf{U}$がユニタリ行列であること（$\symsf{U} \adjoint{\symsf{U}} = \symsf{I}$）と，
+$\sum_i \ketbra{\varphi_i}{\varphi_i} = \symsf{I}$であること（\cref{sec:complete-orthonormal-system}で扱う完全性）は同値であることがわかる．
 
 
 
@@ -2239,6 +2296,7 @@ $\ket{\varphi_1}, \dots, \ket{\varphi_n}$の空間に映る情報のみを残し
 
 
 \subsubsection{スペクトル分解}
+\label{sec:spectrum-decomposition}
 
 量子力学の教科書に載っているように，
 自己\ltjruby{共|役}{きょう|やく}演算子の固有関数系はヒルベルト空間の完全系をなす\footnote{
@@ -2347,7 +2405,7 @@ $N \times N$エルミート行列$\symsf{A}$は，あるユニタリ行列$\syms
 
 \section{量子力学の公理}
 
-\subsection{量子力学の公理}
+\subsection{純粋状態の量子力学}
 
 \subsubsection{量子力学的状態}
 
@@ -2359,7 +2417,7 @@ $N \times N$エルミート行列$\symsf{A}$は，あるユニタリ行列$\syms
 これに対応する公理は，
 次のように与えられる．
 
-\begin{qmaxiom}[状態は規格化されたベクトルとしてあらわされる]
+\begin{qmaxiom}[状態ベクトル](qmaxiom:state)
     量子力学の状態は，
     ヒルベルト空間$\symcal{H}$の規格化されたベクトル$\ket{\psi}$であらわされる．
     ただし，
@@ -2367,14 +2425,15 @@ $N \times N$エルミート行列$\symsf{A}$は，あるユニタリ行列$\syms
 \end{qmaxiom}
 
 
+
 \subsubsection{物理量の観測}
 
-物理量$A$に対応する自己共役演算子$\hat{A}$が存在する．
-任意の状態$\ket{\psi}$は，$\hat{A}$の固有関数系$\ket{\varphi_i}$を使って
+物理量$A$には対応する自己共役演算子$\hat{A}$が存在する．
+そして，任意の状態$\ket{\psi}$は，$\hat{A}$の固有関数系$\ket{\varphi_i}$を使って
 \begin{equation*}
     \ket{\psi} = \sum_i c_i \ket{\varphi_i}
 \end{equation*}
-と展開できる．
+と展開できる（\cref{sec:spectrum-decomposition}）．
 $\ket{\varphi_i}$に対応する状態を観測する確率は$\abs{c_i}^2$で与えられる．
 ところが，
 $\ket{\varphi_i}$の固有値$a_i$を得る確率が$\abs{c_i}^2$とは限らない．
@@ -2395,7 +2454,7 @@ $\ket{\varphi_i}$の固有値$a_i$を得る確率が$\abs{c_i}^2$とは限らな
 \end{equation*}
 である．
 
-\begin{qmaxiom}
+\begin{qmaxiom}[オブザーバブル](qmaxiom:observable)
     すべてのオブザーバブルには，
     それに対応するエルミート行列$\symsf{A}$が存在し，
     観測値は$\symsf{A}$の固有値のどれかである．
@@ -2408,6 +2467,17 @@ $\ket{\varphi_i}$の固有値$a_i$を得る確率が$\abs{c_i}^2$とは限らな
 \end{qmaxiom}
 
 
+
+\subsubsection{基底測定}
+
+任意のオブザーバブル$A$には対応するエルミート行列$\hat{A}$が存在するというのが\cref{qmaxiom:observable}の主張である．
+このとき，$\hat{A}$の固有ベクトル$\ket{\varphi_1}, \dots, \ket{\varphi_N}$はヒルベルト空間$\symcal{H}$の正規直交基底をなす．
+それでは逆に，任意の$\symcal{H}$の正規直交基底$\ket{\varphi_1}, \dots, \ket{\varphi_N}$をとったとき，
+それに対応するオブザーバブル$A$は存在するだろうか？
+
+
+
+
 \subsubsection{状態の時間発展}
 
 時間に依存するシュレーディンガー方程式を形式的に解くことで，
@@ -2415,7 +2485,9 @@ $\ket{\varphi_i}$の固有値$a_i$を得る確率が$\abs{c_i}^2$とは限らな
 \begin{equation*}
     \psi(t) = \exp \ab(-\iu \frac{\hat{H}}{\hbar} (t - t_0)) \psi(t = t_0)
 \end{equation*}
-ここで，ハミルトニアンが自己共役（$\hat{H} = \adjoint{\hat{H}}$）であることを使うと，
+量子力学の問題を解くとは，
+つまるところ$\exp \ab( -\iu \hat{H} (t - t_0) / \hbar )$の形式を求めることに対応する．
+ところで，ハミルトニアンが自己共役（$\hat{H} = \adjoint{\hat{H}}$）であることを使うと，
 \begin{equation*}
       \exp \ab(-\iu \frac{\hat{H}}{\hbar} (t - t_0))
       \adjoint{\ab[ \exp \ab(-\iu \frac{\hat{H}}{\hbar} (t - t_0)) ]}
@@ -2427,7 +2499,7 @@ $\ket{\varphi_i}$の固有値$a_i$を得る確率が$\abs{c_i}^2$とは限らな
 したがって$\exp \ab( -\iu \hat{H} (t - t_0) / \hbar )$はユニタリであるといえる．
 これに対応する公理は次のように与えられる．
 
-\begin{qmaxiom}
+\begin{qmaxiom}[状態の時間発展](qmaxiom:evolution)
     時間発展はユニタリ行列$\symsf{U}$を用いて
     \begin{equation}
         \ket{\psi'} = \symsf{U} \ket{\psi}
@@ -2436,6 +2508,580 @@ $\ket{\varphi_i}$の固有値$a_i$を得る確率が$\abs{c_i}^2$とは限らな
     $\symsf{U}$には逆行列$\symsf{U}^{-1} = \adjoint{\symsf{U}}$が存在するので，
     時間発展は可逆である．
 \end{qmaxiom}
+
+
+\subsubsection{波束の収縮}
+
+物理の文脈で「系の測定によって情報を得る」と語るのは容易であるが，
+測定を行えばそれによって系が変化してしまう．
+例えばコップに入った水の温度を測定したいとする．
+そのためにコップに温度計を挿入すると，
+目盛りが上昇して温度を示す過程で，
+水分子の熱運動が温度計に奪われている\footnote{
+    具体的には，例えば水銀温度計の場合，
+    温度計に含まれる水銀がコップの水から熱を受け取って膨張することで，
+    目盛りを指し示す．
+    電気抵抗温度計であれば，
+    温度計内の金属あるいは半導体部品が熱を受け取り，
+    電気抵抗が変化することによって測定値を得る．
+}．
+温度の測定は水の状態に影響を与えるのである．
+
+古典力学におけるこの影響は無限小にすることができる．
+温度計による系への影響を抑えたければ，
+温度計を小さくすればよい．
+しかし，量子力学では測定による系への影響が本質的に避けられない．
+
+状態$\ket{\psi}$に対してオブザーバブル$A$を測定することを考える．
+このとき得られる測定値は次のように求められる．
+まず$\ket{\psi}$をオブザーバブルに対応する演算子$\hat{A}$の固有関数系で展開する：
+\begin{equation*}
+    \ket{\psi} = c_1 \ket{\varphi_1} + \dots + c_i \ket{\varphi_i} + \dots + c_N \ket{\varphi_N}
+\end{equation*}
+ここで，$\ket{\varphi_i}$は$\hat{A}$の固有値$a_i$に属する固有ベクトルである．
+話を簡単にするために，
+固有空間には縮退がない（つまり，$i \neq j$なら$a_i \neq a_j$）とする．
+
+\cref{qmaxiom:observable}によれば，
+この測定によって，固有値$a_1, \dots, a_N$のうちいずれかひとつが得られる．
+どの固有値が得られるかは確率的にしか予言できない．
+もう一度同じ$\ket{\psi}$を用意して$A$の測定を行えば，
+別の固有値が得られる可能性もある．
+いずれの測定でも固有値$a_i$を得る確率は（縮退がなければ）$\abs{c_i}^2$である．
+
+\cref{qmaxiom:observable}における確率とは，
+測定ごとに状態$\ket{\psi}$を用意し直すことを前提としている．
+もしはじめに$\ket{\psi}$の状態にある系に対して$A$の測定を行い，
+固有値$a_i$が得られたとする．
+そのまま同じ系に対して$A$を測定すれば，
+必ず（確率$1$で）同じ固有値$a_i$が得られる．
+確率的にしか予言できなかったはずの測定値が，
+最初の測定によって確定してしまうのである．
+数式で表すと，状態$\ket{\psi}$が測定によって
+\begin{equation*}
+    \ket{\psi} \to \ket{\varphi_i}
+\end{equation*}
+と変化する．
+これが\ltword{波束の収縮}である．
+
+
+\begin{qmaxiom}[波束の収縮](qmaxiom:collapse)
+    状態$\ket{\psi}$に対してオブザーバブル$A$の測定を行うと，
+    $\ket{\psi}$は$\hat{A}$の固有状態のうちのひとつに変化する．
+    これは\cref{qmaxiom:evolution}における時間発展とは異なり，
+    非ユニタリで不可逆的な変化である．
+\end{qmaxiom}
+
+
+
+\subsection{テンソル積}
+\label{sec:tensor-product}
+
+
+\subsubsection{2粒子系のシュレーディンガー方程式}
+
+独立な2粒子の（時間に依存しない）シュレーディンガー方程式
+\begin{equation}
+    \label{eq:Schroedinger-eq-independent-2-particle}
+    \ab[
+        -\frac{\hbar^2}{2 m_1} \nabla_1^2
+        -\frac{\hbar^2}{2 m_2} \nabla_2^2
+        + V_1 (\symbf{r}_1)
+        + V_2 (\symbf{r}_2)
+        % + V(\abs{\symbf{r}_1 - \symbf{r}_2})
+    ] \Psi(\symbf{r}_1, \symbf{r}_2)
+    = E \Psi(\symbf{r}_1, \symbf{r}_2)
+\end{equation}
+を考えてみよう．
+\cref{eq:Schroedinger-eq-independent-2-particle}は次のように変数分離できる：
+\begin{align}
+    \label{eq:Schroedinger-eq-independent-2-particle-separation}
+    \begin{aligned}
+        \ab[ -\frac{\hbar^2}{2 m_1} \nabla_1^2 + V_1 (\symbf{r}_1) ] \psi(\symbf{r}_1) &= E_1 \psi(\symbf{r}_1)  \\
+        \ab[ -\frac{\hbar^2}{2 m_2} \nabla_2^2 + V_2 (\symbf{r}_2) ] \xi(\symbf{r}_2) &= E_2 \xi(\symbf{r}_2)
+    \end{aligned}
+    ,
+    \quad \text{where } 
+    \begin{gathered}
+        \Psi(\symbf{r}_1, \symbf{r}_2) = \psi(\symbf{r}_1) \xi(\symbf{r}_2)
+        , \\
+        E = E_1 + E_2
+    \end{gathered}
+\end{align}
+なぜなら，
+\cref{eq:Schroedinger-eq-independent-2-particle}の第1項$\nabla_1^2$と第3項$V_1 (\symbf{r}_1)$は$\symbf{r}_2$のみの関数である$\xi(\symbf{r}_2)$には作用せず，
+同じように第2項$\nabla_2^2$と第4項$V_2 (\symbf{r}_2)$は$\symbf{r}_1$のみの関数$\psi(\symbf{r}_1)$を``通り抜ける''である．
+そして，\cref{eq:Schroedinger-eq-independent-2-particle}の一般解は，
+\cref{eq:Schroedinger-eq-independent-2-particle-separation}の（任意定数を消去した）解$\psi_i (\symbf{r}_1), \xi_i (\symbf{r}_2)$\footnote{
+    $i$は\cref{eq:Schroedinger-eq-independent-2-particle-separation}における定数$E_1$に対応する\ltjruby{添|字}{そえ|じ}である．
+}を用いて
+\begin{equation}
+    \label{eq:Schroedinger-eq-independent-2-particle-solution}
+    \Psi(\symbf{r}_1, \symbf{r}_2)
+    =
+    \sum_i c_i \psi_i (\symbf{r}_1) \xi_i (\symbf{r}_2)
+    , \quad \text{（$c_i$は複素数）}
+\end{equation}
+と与えられる．
+ここで注意しなければいけないのは，
+\cref{eq:Schroedinger-eq-independent-2-particle-solution}が\cref{eq:Schroedinger-eq-independent-2-particle-separation}の解$\psi (\symbf{r}_1), \xi (\symbf{r}_2)$を用いて
+$\Psi(\symbf{r}_1, \symbf{r}_2) = \psi(\symbf{r}_1) \xi(\symbf{r}_2)$と書ける\emph{とは限らない}ことである．
+
+
+
+\subsubsection{テンソル積の定義}
+
+複合状態$\psi(\symbf{r}_1) \xi(\symbf{r}_2)$のうち$\psi$にのみ作用し，
+$\xi$を``通り抜ける''演算子は，
+微分のことばでは$\symbf{r}_1$微分のみを含む演算子（たとえば$\hbar^2 \nabla_1^2 / 2 m$）として表現できる．
+では，線形代数のことばで複合状態$\ket{\psi} \ket{\xi}$の片方を``通り抜ける''演算子はどのように定義できるだろうか？\quad 
+それを実現するための数学的な道具がテンソル積である．
+一般のヒルベルト空間におけるベクトルのテンソル積を定義するのは非常に面倒であるが，
+有限次元のヒルベルト空間では容易に導入できる．
+
+有限次元ヒルベルト空間$\symcal{H} = \symbb{C}^2$を考える．
+状態$\ket{\psi} = \cvector{a ; b}$にある粒子$\symup{A}$と，
+状態$\ket{\xi} = \cvector{\alpha ; \beta}$にある粒子$\symup{B}$の複合系の状態を，
+\begin{equation}
+    \label{eq:tensor-product-of-2-vector}
+    \ket{\psi} \otimes \ket{\xi}
+        = 
+        \begin{pmatrix}
+            a  \\  b
+        \end{pmatrix}
+        \otimes 
+        \begin{pmatrix}
+            \alpha  \\  \beta
+        \end{pmatrix}
+        \coloneq
+        \begin{pmatrix}
+            a
+            \begin{pmatrix}
+                \alpha  \\  \beta
+            \end{pmatrix}
+            \\
+            b
+            \begin{pmatrix}
+                \alpha  \\  \beta
+            \end{pmatrix}
+        \end{pmatrix}
+        = 
+        \begin{pmatrix}
+            a \alpha  \\  a \beta  \\  b \alpha  \\  b \beta
+        \end{pmatrix}
+\end{equation}
+で定義する．
+\cref{eq:tensor-product-of-2-vector}を（$\ket{\psi}, \ket{\xi}$の）\ltword{テンソル積}(tensor product)という．
+ここでは$\ket{\psi}, \ket{\xi}$は両方とも$\symbb{C}^2$のベクトルとしたが，
+2つのベクトルが属するヒルベルト空間は異なっていても（たとえば$\ket{\psi} \in \symbb{C}^2$，$\ket{\xi} \in \symbb{C}^3$でも）よい．
+
+同様に，
+行列$\symsf{A}, \symsf{B}$のテンソル積を
+\begin{equation}
+    \label{eq:tensor-product-of-2-matrix}
+    \symsf{A} \otimes \symsf{B}
+    =
+    \begin{pmatrix}
+        a  & b  \\ c  & d 
+    \end{pmatrix}
+    \otimes 
+    \begin{pmatrix}
+        \alpha & \beta \\ \gamma & \delta
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        a
+        \begin{pmatrix}
+            \alpha & \beta \\ \gamma & \delta
+        \end{pmatrix}
+        &
+        b
+        \begin{pmatrix}
+            \alpha & \beta \\ \gamma & \delta
+        \end{pmatrix}
+        \\
+        c
+        \begin{pmatrix}
+            \alpha & \beta \\ \gamma & \delta
+        \end{pmatrix}
+        &
+        d
+        \begin{pmatrix}
+            \alpha & \beta \\ \gamma & \delta
+        \end{pmatrix}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        a \alpha  &  a \beta   &  b \alpha  &  b \beta   \\
+        a \gamma  &  a \delta  &  b \gamma  &  b \delta  \\
+        c \alpha  &  c \beta   &  d \alpha  &  d \beta   \\
+        c \gamma  &  c \delta  &  d \gamma  &  d \delta  
+    \end{pmatrix}
+\end{equation}
+で定義する．
+
+テンソル積で重要なのは，
+以下の等式が成立することである：
+\begin{equation}
+    \label{eq:tensor-product-matrix-vector}
+    (\symsf{A} \otimes \symsf{B}) \ab\Big(\ket{\psi} \otimes \ket{\xi})
+    = \ab\Big(\symsf{A} \ket{\psi}) \otimes \ab\Big(\symsf{B} \ket{\xi})
+\end{equation}
+つまり，
+行列$\symsf{A}$は左側の状態$\ket{\psi}$，
+行列$\symsf{B}$は右側の状態$\ket{\xi}$のみに作用する．
+したがって，複合状態$\ket{\psi} \otimes \ket{\xi}$のうち$\ket{\psi}$のみに作用する演算子は$\symsf{A} \otimes \symsf{I}$（$\symsf{I}$は単位行列）と書ける：
+\begin{equation*}
+    (\symsf{A} \otimes \symsf{I}) \ab\Big(\ket{\psi} \otimes \ket{\xi})
+    = \ab\Big(\symsf{A} \ket{\psi}) \otimes \ket{\xi}
+\end{equation*}
+
+
+\bluehead{双線形性}\quad 
+テンソル積の重要な性質のひとつに，
+双線形性があげられる．
+すなわち，
+任意のベクトル$\bpsi, \bpsi' \in \symcal{H}_1$，
+$\bxi, \bxi' \in \symcal{H}_2$，
+および複素数$a, b$に対して，
+\begin{subequations}
+    \label{eq:tensor-bilinear}
+    \begin{align}
+        \bpsi \otimes (a \bxi + b \bxi') &= a (\bpsi \otimes \bxi) + b (\bpsi \otimes \bxi')
+        \\
+        (a \bpsi + b \bpsi') \otimes \bxi &= a (\bpsi \otimes \bxi) + b (\bpsi' \otimes \bxi)
+    \end{align}
+\end{subequations}
+が成り立つ．
+これはテンソル積の定義（\cref{eq:tensor-product-of-2-vector}）から直ちに従う．
+
+
+\bluehead{3つ以上のテンソル積}\quad 
+3つのベクトルのテンソル積は，
+\begin{equation*}
+    \ket{\psi} \otimes \ket{\xi} \otimes \ket{\eta}
+        \coloneq \ket{\psi} \otimes \ab\Big(\ket{\xi} \otimes \ket{\eta})
+\end{equation*}
+と定義する．
+\(
+    \ket{\psi} \otimes \ab\big(\ket{\xi} \otimes \ket{\eta})
+    = \ab\big(\ket{\psi} \otimes \ket{\xi}) \otimes \ket{\eta}
+\)であることを示すのも容易である．
+
+
+
+\subsubsection{テンソル積の空間}
+
+ヒルベルト空間$\symcal{H}_1 = \symbb{C}^M$，
+$\symcal{H}_2 = \symbb{C}^N$のそれぞれに属するベクトル$\bpsi, \bxi$のテンソル積$\bpsi \otimes \bxi$の\emph{線形結合の全体}はヒルベルト空間になる．
+実際，
+\cref{eq:tensor-product-of-2-vector}の類推から，
+$\symbb{C}^{M \times N}$であるとわかる．
+そこで，この空間を$\symcal{H}_1 \otimes \symcal{H}_2$と書き，
+（$\symcal{H}_1$と$\symcal{H}_2$の）\ltword{テンソル積}(tensor product)という．
+
+もうすこし丁寧に説明しよう．
+$\symcal{H}_1$を$M$次元ヒルベルト空間，
+$\symcal{H}_2$を$N$次元ヒルベルト空間とする．
+$\symcal{H}_1$のベクトル$\bpsi, \bpsi'$，
+$\symcal{H}_2$のベクトル$\bxi, \bxi'$について，
+テンソル積の和$(\bpsi \otimes \bxi) + (\bpsi' \otimes \bxi)$とスカラー倍$c \scaprod (\bpsi \otimes \bxi)$を，
+双線形性（\cref{eq:tensor-bilinear}）が満たされるように定義すると，
+$\bpsi \otimes \bxi$\emph{の線形結合}の全体$\symcal{H}$はベクトル空間の公理（\cref{sec:definition-of-vector-space}）を満たす（詳細は略）ので，
+$\symcal{H}$はベクトル空間である．
+ここで，$\symcal{H}$の基底は，
+$\symcal{H}_1$の基底$\bphi_1, \dots, \bphi_M$，
+$\symcal{H}_2$の基底$\bphi'_1, \dots, \bphi'_N$を使って
+\begin{equation}
+    \label{eq:tensor-basis}
+    \begin{array}{cccc}
+        \bphi_1 \otimes \bphi'_1, 
+        &  \bphi_1 \otimes \bphi'_2, 
+        &  \dots, 
+        &  \bphi_1 \otimes \bphi'_N, 
+        \\ \bphi_2 \otimes \bphi'_1, 
+        &  \bphi_2 \otimes \bphi'_2,
+        &  \dots, 
+        &  \bphi_2 \otimes \bphi'_M, 
+        \\ \vdots 
+        &  \vdots 
+        &  \ddots 
+        &  \vdots 
+        \\ \bphi_M \otimes \bphi'_1,
+        &  \bphi_M \otimes \bphi'_2,
+        &  \dots,
+        &  \bphi_M \otimes \bphi_N
+    \end{array}
+\end{equation}
+% \begin{gather*}
+%     \bphi_1 \otimes \bphi'_1, 
+%     \  \bphi_1 \otimes \bphi'_2, 
+%     \  \dots, 
+%     \  \bphi_1 \otimes \bphi'_N, 
+%     \\ \bphi_2 \otimes \bphi'_1, 
+%     \  \bphi_2 \otimes \bphi'_2,
+%     \  \dots, 
+%     \  \bphi_2 \otimes \bphi'_M, 
+%     \\ \quad \vdots \quad \vdots \quad \ddots \quad \vdots 
+%     \\  \bphi_M \otimes \bphi'_N
+% \end{gather*}
+と書ける．
+したがって，$\symcal{H}$の次元は$M \times N$である．
+また，$\symcal{H}$上の内積（\cref{sec:inner-product}）は
+\begin{equation}
+    \label{eq:tensor-inner-product}
+    \iparen{\bpsi \otimes \bxi, \  \bpsi' \otimes \bxi'}_{\symcal{H}}
+    \coloneq 
+    \iparen{\bpsi, \bpsi'}_{\symcal{H}_1} \iparen{\bxi, \bxi'}_{\symcal{H}_2}
+\end{equation}
+で定義できる\footnote{
+    これが内積の公理を満たすことは省略するが，
+    $\symcal{H}_1 = \symbb{C}^M$，
+    $\symcal{H}_2 = \symbb{C}^N$としたときに，
+    $\symcal{H} = \symbb{C}^{M \times N}$の標準内積
+    （\cref{eq:Euclidean-inner-product}）
+    と$\symcal{H}_1, \symcal{H}_2$の標準内積について\cref{eq:tensor-inner-product}が成り立つことは簡単に検証できる．
+}ので，
+$\symcal{H}$は内積空間である．
+また$\symcal{H}$は有限次元（$M \times N$次元）内積空間なので，
+ノルムに関して完備（\cref{sec:complete-inner-product-space}）である．
+よって$\symcal{H}$はヒルベルト空間であるといえる．
+$\bphi_1, \dots, \bphi_M$を$\symcal{H}_1$の正規直交基底，
+$\bphi'_1, \dots, \bphi'_N$を$\symcal{H}_2$の正規直交基底とすれば，
+\cref{eq:tensor-basis}は$\symcal{H}$の正規直交基底になっていることが，
+\cref{eq:tensor-inner-product}から直ちにわかる．
+
+
+\bluehead{$\bpsi \otimes \bxi$と書けないテンソル積}\quad 
+$\bpsi \otimes \bxi$の全体が$\symcal{H}_1 \otimes \symcal{H}_2$になるわけではない．
+なぜなら，
+$\bpsi \otimes \bxi$全体は線形結合について閉じていないために，
+ベクトル空間にならないからである．
+
+たとえば$\symcal{H}_1 = \symcal{H}_2 = \symbb{C}^2$の場合を考えてみよう．
+$\symbb{C}^2$の基底として\cref{eq:Euclidean-basis-1}をとる．
+このとき$\symcal{H}_1 \otimes \symcal{H}_2$の基底は
+\begin{equation*}
+    \begin{split}
+        \symbf{e}_1 \otimes \symbf{e}_1 &= \cvector{1 ; 0 ; 0 ; 0},
+        \quad 
+        \symbf{e}_1 \otimes \symbf{e}_2 = \cvector{0 ; 1 ; 0 ; 0},
+        \\
+        \symbf{e}_2 \otimes \symbf{e}_1 &= \cvector{0 ; 0 ; 1 ; 0},
+        \quad 
+        \symbf{e}_2 \otimes \symbf{e}_2 = \cvector{0 ; 0 ; 0 ; 1}
+    \end{split}
+\end{equation*}
+である．
+基底の定義から，
+\begin{equation*}
+    \symbf{v}
+    = \frac{1}{\sqrt{2}} \ab\Big( \symbf{e}_1 \otimes \symbf{e}_1 + \symbf{e}_2 \otimes \symbf{e}_2 )
+    = \frac{1}{\sqrt{2}} \cvector{1 ; 0 ; 0 ; 1}
+\end{equation*}
+は$\symcal{H}_1 \otimes \symcal{H}_2$のベクトルである．
+しかし，これは$\symcal{H}_1$のベクトル$\symbf{x} = \cvector{a ; b}$，
+$\symcal{H}_2$のベクトル$\symbf{y} = \cvector{c ; d}$を使って$\symbf{v} = \symbf{x} \otimes \symbf{y} = \cvector{ac ; ad ; bc ; bd}$という形で書くことができない．
+なぜなら，
+\begin{equation*}
+    ac = \frac{1}{\sqrt{2}}, \quad 
+    ad = 0, \quad 
+    bc = 0, \quad 
+    bd = \frac{1}{\sqrt{2}}
+\end{equation*}
+を満たす複素数$a, b, c, d$は存在しないからである．
+
+
+
+
+\section{エンタングルメントの不思議}
+
+
+\subsection{量子エンタングルメント}
+\label{sec:entanglement}
+
+ここではスピンについて考える．
+スピンの状態は，ヒルベルト空間$\symcal{H} = \symbb{C}^2$の基底
+\begin{equation*}
+    \ket{\bitone} = \cvector{1 ; 0},
+    \quad 
+    \ket{\bittwo} = \cvector{0 ; 1}
+\end{equation*}
+の重ね合わせで$\ket{\psi} = a \ket{\bitone} + b \ket{\bittwo}$と書ける．
+2つのスピン$\symup{A}, \symup{B}$を合わせた系の状態は，
+$\symcal{H} \otimes \symcal{H} = \symbb{C}^4$のベクトル
+\begin{equation*}
+    \begin{split}
+        \ket{\Psi} &= \cvector{a ; b ; c ; d}
+            \quad \text{（$a, b, c, d$は複素数，$\abs{a}^2 + \abs{b}^2 + \abs{c}^2 + \abs{d}^2 = 1$）}
+        \\
+        &= a \ab\big(\ket{\bitone}<A> \otimes \ket{\bitone}<B>)
+         + b \ab\big(\ket{\bitone}<A> \otimes \ket{\bittwo}<B>)
+         + c \ab\big(\ket{\bittwo}<A> \otimes \ket{\bitone}<B>)
+         + d \ab\big(\ket{\bittwo}<A> \otimes \ket{\bittwo}<B>)
+    \end{split}
+\end{equation*}
+で表される\footnote{
+    $\otimes$の左側がスピン$\symup{A}$の状態，
+    右側がスピン$\symup{B}$の状態なのだから，
+    添字$\symup{A}, \symup{B}$は本来不要である．
+}．
+\begin{equation}
+    \ket{\Psi}<AB> = 
+        \ab\Big( a \ket{\bitone}<A> + b \ket{\bittwo}<A> )
+        \otimes 
+        \ab\Big( c \ket{\bitone}<B> + d \ket{\bittwo}<B> )
+\end{equation}
+という形で書ける状態を\ltword{セパラブル状態}(separable state)，
+そうでない状態を\ltword{エンタングル状態}(entangled state)という．
+
+\bluehead{セパラブル状態}\quad 
+例えば，
+$\symup{A}$と$\symup{B}$を合わせた系が
+\begin{equation}
+    \label{eq:example-separable-state}
+    \begin{split}
+        \ket{\Xi}<AB>
+        &= \frac{1}{10} \ab\Big(
+              3 \ket{\bitone}<A> \ket{\bitone}<B>
+            - 3\sqrt{3} \ket{\bitone}<A> \ket{\bittwo}<B>
+            + 4 \ket{\bittwo}<A> \ket{\bitone}<B>
+            - 4\sqrt{3} \ket{\bittwo}<A> \ket{\bittwo}<B>
+        )
+        \\
+        &= \frac{1}{5} \ab\Big( 3 \ket{\bitone}<A> + 4 \ket{\bittwo}<A> )
+            \otimes 
+           \frac{1}{2} \ab\Big( \ket{\bitone}<B> - \sqrt{3} \ket{\bittwo}<B> )
+    \end{split}
+\end{equation}
+という状態にあったとしよう．
+この状態に対してスピン$\symup{A}$の向きを測定すると，
+$9/25$の確率で$\ket{\bitone}<A>$，
+$16/25$の確率で$\ket{\bittwo}<A>$に対応する値が得られる．
+あるいは，
+スピン$\symup{B}$の向きを測定すれば，
+$\ket{\bitone}<B>$（確率$1/4$），
+$\ket{\bittwo}<B>$（確率$3/4$）のいずれか一方が得られる．
+
+いま，
+\cref{eq:example-separable-state}の状態に対して，
+スピン$\symup{A}$の向きを観測したところ，
+上向き（$\ket{\bitone}<A>$）だったとしよう．
+この測定によって，
+\cref{eq:example-separable-state}の状態は
+\begin{equation*}
+    \tag{\ref*{eq:example-separable-state}$'$}
+    \begin{split}
+        \ket{\Xi'}<AB>
+        &= \frac{1}{6} \ab\Big(
+            3 \ket{\bitone}<A> \ket{\bitone}<B>
+            - 3 \sqrt{3} \ket{\bitone}<A> \ket{\bittwo}<B>
+        )
+        \\
+        &= \ket{\bitone}<A>
+            \otimes 
+           \frac{1}{2} \ab\Big( \ket{\bitone}<B> - \sqrt{3} \ket{\bittwo}<B> )
+    \end{split}
+\end{equation*}
+に変化する．
+この状態に対してスピン$\symup{B}$の向きを測定すると，
+直接$\ket{\Xi}$を測定したときと同じく，
+確率$1/4$で$\ket{\bitone}<B>$が，
+確率$3/4$で$\ket{\bittwo}<B>$が得られる．
+はじめの測定で$\ket{\bittwo}<B>$を得た場合も同じである．
+
+
+\bluehead{エンタングル状態}\quad 
+\begin{equation}
+    \label{eq:example-entangled-state}
+    \begin{split}
+        \ket{\Eta}<AB>
+        &= \frac{1}{3} \ab\Big(
+            \ket{\bitone}<A> \ket{\bitone}<B>
+            + 2 \ket{\bitone}<A> \ket{\bittwo}<B>
+            + 2 \ket{\bittwo}<A> \ket{\bittwo}<B>
+        )
+    \end{split}
+\end{equation}
+
+$\ket{\Eta}$に対してスピン$\symup{A}$を測定すれば，
+確率$5/9$で状態$\ket{\bitone}<A>$が，
+確率$4/9$で状態$\ket{\bittwo}<A>$が得られる．
+一方，
+スピン$\symup{B}$を測定すると，
+確率$1/9$で$\ket{\bitone}<B>$を，
+確率$8/9$で$\ket{\bittwo}<B>$を得る．
+
+いま，
+\cref{eq:example-entangled-state}の状態に対してスピン$\symup{A}$を測定し，
+状態$\ket{\bitone}<A>$を得たとする．
+すると，状態は
+\begin{equation*}
+    \tag{\ref*{eq:example-entangled-state}$'$}
+    \ket{\Eta'} = \frac{1}{\sqrt{5}} \ab\Big(
+        \ket{\bitone}<A> \ket{\bitone}<B>
+        + 2 \ket{\bitone}<A> \ket{\bittwo}<B>
+    )
+\end{equation*}
+に変化する．
+ここからさらにスピン$\symup{B}$を測定すれば，
+確率$1/5$で状態$\ket{\bitone}<B>$，
+確率$4/5$で状態$\ket{\bittwo}<B>$が得られる．
+
+一方，最初にスピン$\symup{A}$を測定したとき，
+状態$\ket{\bittwo}<B>$を得たとする．
+そうすると，\cref{eq:example-entangled-state}は
+\begin{equation*}
+    \tag{\ref*{eq:example-entangled-state}$''$}
+    \ket{\Eta''} = \ket{\bittwo}<A> \ket{\bittwo}<B>
+\end{equation*}
+になる．
+したがって，
+スピン$\symup{B}$を測定すると，
+必ず下向きの状態が得られる．
+
+
+
+\subsection{量子テレポーテーション}
+
+送信者Aliceが持っている量子状態
+\begin{equation}
+    \label{eq:state-of-Alice}
+    \ket{\xi}<X> = a \ket{\bitone} + b \ket{\bittwo}
+\end{equation}
+を，遠方にいる受信者Bobに送りたいとする．
+もし\cref{eq:state-of-Alice}が既知の状態であれば（つまり，係数$a$と$b$がわかっていれば），
+古典通信でBobに$a$と$b$を教えれば，
+Bobが現地で\cref{eq:state-of-Alice}の状態を再現することができる．
+問題なのは，\cref{eq:state-of-Alice}が未知の状態であるときである．
+まず，Aliceが測定によって$a$と$b$を決定することはできない．
+量子力学の公理によれば，
+$\ket{\xi}$に対して$\ket{\bitone}$と$\ket{\bittwo}$を固有ベクトルにもつ演算子$\hat{A}$は
+
+
+\ltword{ベル基底}(Bell basis)を
+\begin{subequations}
+    \begin{align}
+        \ket{\Phi^+}<AB> 
+            &\coloneq \frac{1}{\sqrt{2}}
+                \ab\Big( \ket{\bitone}<A> \otimes \ket{\bitone}<B> + \ket{\bittwo}<A> \otimes \ket{\bittwo}<B> )
+        \\
+        \ket{\Phi^-}<AB> 
+            &\coloneq \frac{1}{\sqrt{2}}
+                \ab\Big( \ket{\bitone}<A> \otimes \ket{\bitone}<B> - \ket{\bittwo}<A> \otimes \ket{\bittwo}<B> )
+        \\
+        \ket{\Psi^+}<AB> 
+            &\coloneq \frac{1}{\sqrt{2}}
+                \ab\Big( \ket{\bitone}<A> \otimes \ket{\bittwo}<B> + \ket{\bittwo}<A> \otimes \ket{\bitone}<B> )
+        \\
+        \ket{\Psi^-}<AB> 
+            &\coloneq \frac{1}{\sqrt{2}}
+                \ab\Big( \ket{\bitone}<A> \otimes \ket{\bittwo}<B> - \ket{\bittwo}<A> \otimes \ket{\bitone}<B> )
+    \end{align}
+\end{subequations}
+で定義する．
+
+
 
 
 

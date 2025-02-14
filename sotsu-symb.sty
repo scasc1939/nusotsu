@@ -200,16 +200,39 @@
 
 
 % ブラ (bra)，ケット (ket)
-\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
-\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
-\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{%
+\DeclarePairedDelimiter{\sotsu@bra}{\langle}{\rvert}
+\DeclarePairedDelimiter{\sotsu@ket}{\lvert}{\rangle}
+\DeclarePairedDelimiterX\sotsu@braket[2]{\langle}{\rangle}{%
     #1\,\delimsize\vert\,\mathopen{}#2%
 }
-\DeclarePairedDelimiterX\ketbra[2]{\lvert}{\rvert}{%
+\DeclarePairedDelimiterX\sotsu@ketbra[2]{\lvert}{\rvert}{%
     #1\delimsize\rangle\langle\mathopen{}#2%
 }
-\DeclarePairedDelimiterX\mel[3]{\langle}{\rangle}{%
+\DeclarePairedDelimiterX\sotsu@mel[3]{\langle}{\rangle}{%
     #1\,\delimsize\vert\,\mathopen{}#2\,\delimsize\vert\,\mathopen{}#3%
+}
+
+\NewDocumentCommand{\bra}{O{} m d<>}{
+    \IfValueTF{#3}{
+        \prescript{\symup{#3}}{}{
+            \sotsu@bra[#1]{#2}
+        }
+    }{
+        \sotsu@bra[#1]{#2}
+    }
+}
+\NewDocumentCommand{\ket}{O{} m d<>}{
+    \IfValueTF{#3}{
+        \sotsu@ket[#1]{#2}_{\symup{#3}}
+    }{
+        \sotsu@ket[#1]{#2}
+    }
+}
+\NewDocumentCommand{\braket}{O{} m m}{
+    \sotsu@braket[#1]{#2}{#3}
+}
+\NewDocumentCommand{\ketbra}{O{} m m}{
+    \sotsu@ketbra[#1]{#2}{#3}
 }
 
 
