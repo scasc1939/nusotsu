@@ -191,7 +191,9 @@
 \begin{frame}
     \frametitle{内積の定義}
 
-    \eqref{eq:Euclid-inner-product}は次の性質を満たす．
+    \only<1>{
+        \eqref{eq:Euclid-inner-product}は次の性質を満たす．
+    }
 
     \begin{block}{内積の公理}
         ベクトル$\symbf{\psi}, \symbf{\varphi}, \symbf{\xi}$と
@@ -204,7 +206,11 @@
         \end{enumerate}
     \end{block}
 
-    上の条件を満たすものを改めて「\structure{内積}」と呼ぶことにする．
+    \pause
+
+    上の条件を満たす計算$\iparen{\bigdot, \bigdot}$を改めて「\structure{内積}」と呼ぶことにする．
+
+    内積をもつベクトル空間を，\structure{内積空間}と呼ぶ．
 
     \pause
 
@@ -219,13 +225,15 @@
 \begin{frame}
     \frametitle{関数の内積}
 
-    では，関数$\psi(\symbf{r}), \xi(\symbf{r})$の内積は？
+    シュレーディンガー方程式の解はベクトル．
+
+    では，関数$\psi(\symbf{r})$と$\xi(\symbf{r})$の内積は？
 
     \pause
 
     \begin{equation}
         \iparen{\psi, \xi}
-            \coloneq \iiint \conj{\psi}(\symbf{r}) \xi(\symbf{r}) \dd{x} \dd{y} \dd{z}
+            \coloneq \iiint \conj{\psi}(\symbf{r}) \, \xi(\symbf{r}) \dd{\symbf{r}}
     \end{equation}
     とすれば，前のページの性質を満たす．
 
@@ -244,7 +252,11 @@
         \symbf{e}_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \quad 
         \symbf{e}_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
     \end{equation}
-    を使って，$\symbf{x} = x_1 \symbf{e}_1 + x_2 \symbf{e}_2 + x_3 \symbf{e}_3$と書ける．
+    を使って，
+    \begin{equation*}
+        \symbf{x} = x_1 \symbf{e}_1 + x_2 \symbf{e}_2 + x_3 \symbf{e}_3
+    \end{equation*}
+    と書ける．
 
     さらに，\eqref{eq:Euclidean-basis}は\structure{一次独立}：
     \begin{equation*}
@@ -259,18 +271,16 @@
 \begin{frame}
     \frametitle{ベクトル空間の基底}
 
-    同じように，\alert{すべてのベクトル}$\symbf{\psi}$は，
-    \structure{一次独立}なベクトル$\symbf{\chi}_1, \symbf{\chi}_2, \dotsc$を使って
+    同じように，ベクトル空間$V$の\alert{すべてのベクトル}$\symbf{\psi}$は，
+    \structure{一次独立}なベクトル$\symbf{\varphi}_1, \symbf{\varphi}_2, \dotsc$を使って
     \begin{equation}
         \label{eq:basis}
-        \symbf{\chi} = \sum_i c_i \symbf{\chi}_i
+        \symbf{\varphi} = \sum_i c_i \symbf{\varphi}_i
         \quad \text{（$c_i$は複素数）}
     \end{equation}
     と書ける．
     \pause
-    $\symbf{\chi}_i$：\alert{基底}という．
-
-    
+    $\symbf{\varphi}_i$：$V$の\alert{基底}という．
 
 \end{frame}
 
@@ -281,7 +291,7 @@
     \eqref{eq:basis}を満たす一次独立なベクトルの組$\symbf{\chi}_i$は，
     いくつも存在している．
 
-    例えば，\eqref{eq:Euclidean-basis}のかわりに
+    例えば，ユークリッド空間では，\eqref{eq:Euclidean-basis}のかわりに
     \begin{equation*}
         \symbf{e}'_1 = \cvector{1 ; 1 ; 0}, \quad 
         \symbf{e}'_2 = \cvector{1 ; {-1} ; 0}, \quad
@@ -301,8 +311,18 @@
 
 
 \begin{frame}
-    \frametitle{同型とは}
+    \frametitle{同型（どうけい）とは}
 
+    ベクトル空間の定義に出てくるのは3つだけ：
+    \begin{itemize}
+        \item ベクトル（$\symbf{\psi}, \symbf{\xi}, \dotsc$）
+        \item ベクトルの和（$+$）
+        \item スカラー倍（$\cdotp$）
+    \end{itemize}
+
+    \pause
+
+    よって，
     \begin{itemize}
         \item ベクトルの\structure{かず}が同じ
         \item \structure{線形構造}（和とスカラー倍）が同じ
@@ -321,10 +341,10 @@
     対応
     \begin{align*}
         p(x) = a_2 x^2 + a_1 x + a_0
-        &\leftrightarrow \text{縦ベクトル} \, (a_2 \,\, a_1 \,\, a_0) = \symbf{a}
+        &\leftrightarrow \text{縦ベクトル} \, \cvector{a_2 ; a_1 ; a_0} = \symbf{a}
         \\
         q(x) = b_2 x^2 + b_1 x + b_0
-        &\leftrightarrow \text{縦ベクトル} \, (b_2 \,\, b_1 \,\, b_0) = \symbf{b}
+        &\leftrightarrow \text{縦ベクトル} \, \cvector{b_2 ; b_1 ; b_0} = \symbf{b}
     \end{align*}
     とすれば，
     \begin{align*}
@@ -357,19 +377,21 @@
         2つの$N$次元ベクトル空間は同型である．
     \end{block}
 
-    2つのベクトル空間の基底$\{\symbf{\chi}_i\}, \{\symbf{\chi}'_i\}$をそれぞれ
+    2つのベクトル空間の基底$\{\symbf{\varphi}_i\}, \{\symbf{\varphi}'_i\}$をそれぞれ
     \begin{align*}
-        \symbf{\chi}_1 &\leftrightarrow \symbf{\chi}'_1, 
+        \symbf{\varphi}_1 &\leftrightarrow \symbf{\varphi}'_1, 
         \quad
         \cdots, 
         \quad
-        \symbf{\chi}_N \leftrightarrow \symbf{\chi}'_N
+        \symbf{\varphi}_N \leftrightarrow \symbf{\varphi}'_N
     \end{align*}
     のように対応させれば簡単に証明できる．
 
     \pause 
 
-    結局，\structure{$N$次元ベクトル空間は実質1つだけ！}
+    \begin{alertblock}{同型の意味}
+        結局，\structure{$N$次元ベクトル空間は実質1つだけ！}
+    \end{alertblock}
 
     $\implies$一番簡単な$\symbb{C}^N$を考えればよい．
 
@@ -382,9 +404,7 @@
 \begin{frame}
     \frametitle{表現行列}
 
-    多項式関数$f(x) = a_2 x^2 + a_1 x + a_0$を微分する：$\hat{D} \coloneq \dv{}{x}$．
-
-    \pause
+    多項式関数$f(x) = a_2 x^2 + a_1 x + a_0$を微分する演算子：$\hat{D} \coloneq \dv{}{x}$．
 
     もちろん，
     \begin{equation*}
@@ -661,7 +681,7 @@
     \begin{itemize}
         \item オブザーバブルに対応するエルミート行列$\hat{A}$
         \item $\hat{A}$の固有値$a_{(1)}, \dots, a_{(n)}$
-        \item 固有値$a_i$に対応する固有空間への射影
+        \item 固有値$a_{(i)}$に対応する固有空間への射影$\hat{P}_{a_{(i)}}$
     \end{itemize}
 
     状態$\ket{\psi}$に対し，このオブザーバブルを測定したときの値は？
