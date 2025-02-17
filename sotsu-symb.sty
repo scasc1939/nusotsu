@@ -236,6 +236,17 @@
 }
 
 
+\DeclarePairedDelimiter{\sotsu@Ket}{\lvert}{\rAngle}
+
+\NewDocumentCommand{\Ket}{O{} m d<>}{
+    \IfValueTF{#3}{
+        \sotsu@Ket[#1]{#2}_{\symup{#3}}
+    }{
+        \sotsu@Ket[#1]{#2}
+    }
+}
+
+
 
 % 解析学
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

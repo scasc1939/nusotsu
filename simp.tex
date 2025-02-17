@@ -57,6 +57,12 @@
 \newcommand{\bitone}{\mathcolor{fire}{\uparrow}}
 \newcommand{\bittwo}{\mathcolor{water}{\downarrow}}
 
+\let\upspin\bitone
+\let\dwspin\bittwo
+
+\newcommand{\bitthr}{\mathcolor{fire}{\leftarrow}}
+\newcommand{\bitfou}{\mathcolor{water}{\rightarrow}}
+
 
 \definecolor{fire}{RGB}{255, 90, 0}
 \definecolor{water}{RGB}{0, 120, 255}
@@ -1690,6 +1696,7 @@ $g \circ f^{-1}$が$V$から$W$への同型写像になっているからであ�
 
 
 \subsection{表現行列}
+\label{sec:representation-matrix}
 
 有限次元ベクトル空間$V$から$W$への線形写像$f$について考えよう．
 $V$は$\symbb{C}^M$と同型，
@@ -2472,8 +2479,19 @@ $\ket{\varphi_i}$の固有値$a_i$を得る確率が$\abs{c_i}^2$とは限らな
 
 任意のオブザーバブル$A$には対応するエルミート行列$\hat{A}$が存在するというのが\cref{qmaxiom:observable}の主張である．
 このとき，$\hat{A}$の固有ベクトル$\ket{\varphi_1}, \dots, \ket{\varphi_N}$はヒルベルト空間$\symcal{H}$の正規直交基底をなす．
-それでは逆に，任意の$\symcal{H}$の正規直交基底$\ket{\varphi_1}, \dots, \ket{\varphi_N}$をとったとき，
-それに対応するオブザーバブル$A$は存在するだろうか？
+それでは逆に，$\symcal{H}$の任意の正規直交基底$\ket{\varphi_1}, \dots, \ket{\varphi_N}$に対して，
+それらを固有ベクトルにもつオブザーバブル$A$は存在するだろうか？\quad 
+つまり，
+\begin{center}
+    \medskip
+    任意のエルミート行列$\hat{A}$には対応するオブザーバブル$A$が存在するか？\quad 
+    \medskip
+\end{center}
+量子力学の公理はここまで要求しない．
+すべてのエルミート行列に対応するオブザーバブルが存在するわけではない．
+しかし，
+本稿ではスピン系のみを扱うので，
+すべてのエルミート行列$\hat{A}$に対応する``スピンの向き''があると仮定することにする．
 
 
 
@@ -2571,6 +2589,17 @@ $\ket{\varphi_i}$の固有値$a_i$を得る確率が$\abs{c_i}^2$とは限らな
     これは\cref{qmaxiom:evolution}における時間発展とは異なり，
     非ユニタリで不可逆的な変化である．
 \end{qmaxiom}
+
+
+固有空間に縮退がある場合まで含めると，
+波束の収縮とは，固有値$a$に対応する固有空間への射影演算子$\hat{P}_{a}$（\cref{sec:definition-of-projection}）を用いて
+\begin{equation*}
+    \ket{\psi} \to \frac{1}{\norm{\hat{P}_{a} \ket{\psi}}} \hat{P}_{a} \ket{\psi}
+\end{equation*}
+と書ける．
+ただし\(
+    1 / {\norm{\hat{P}_{a} \ket{\psi}}}
+\)は単なる規格化のための定数である．
 
 
 
@@ -2769,6 +2798,23 @@ $\bxi, \bxi' \in \symcal{H}_2$，
 \)であることを示すのも容易である．
 
 
+\bluehead{テンソル積の記法}\quad 
+テンソル積の記号$\otimes$は，ベクトルの和の記号$+$よりも先に計算する．
+つまり，
+\begin{equation*}
+    \bpsi \otimes \bxi + \bpsi \otimes \beeta
+    = \ab\Big(\bpsi \otimes \bxi) + \ab\Big(\bpsi \otimes \beeta)
+\end{equation*}
+である．
+また，
+ブラ・ケット記号を用いるときは，
+簡単のために記号$\otimes$を省略して
+\( 
+    \ket{\psi} \otimes \ket{\xi} = \ket{\psi} \ket{\xi} 
+\)と書くこともある．
+このとき，一般に$\ket{\psi} \ket{\xi} \neq \ket{\xi} \ket{\psi}$であることに注意しなければならない．
+
+
 
 \subsubsection{テンソル積の空間}
 
@@ -2891,49 +2937,166 @@ $\symcal{H}_2$のベクトル$\symbf{y} = \cvector{c ; d}$を使って$\symbf{v}
 \end{equation*}
 を満たす複素数$a, b, c, d$は存在しないからである．
 
+はじめテンソル積を$\symbf{x} \otimes \symbf{y}$の形で定義したのにもかかわらず，
+その形で書けない$\symcal{H}_1 \otimes \symcal{H}_2$のベクトル$\symbf{v}$が存在する．
+\cref{sec:entanglement}では，2つの粒子が極めて強い相関を持った\emph{エンタングル状態}を扱うが，
+それをもたらすのがここで見たテンソル積の特性である．
+
 
 
 
 \section{エンタングルメントの不思議}
 
 
+\subsection{スピン\texorpdfstring{$1/2$}{½}をもつ粒子の量子力学}
+
+はじめに量子力学におけるスピンの取り扱い方について述べる．
+以下$\hbar = 1$とする．
+スピンの大きさ$1/2$をもつ粒子は，
+その固有状態としてスピンの$z$-成分が$1/2$または$-1/2$を持つ状態をとることができる．
+それぞれの状態を
+\begin{equation}
+    \label{eq:spin-basis}
+    \ket{\upspin}, \quad \ket{\dwspin}
+\end{equation}
+と書き，$\ket{\upspin}$を「スピン\ltjruby{上}{うえ}向きの状態，
+$\ket{\dwspin}$を「スピン\ltjruby{下}{した}向きの状態」と呼ぶことにする．
+粒子のスピン状態は，
+これらの重ね合わせで
+\begin{equation}
+    \label{eq:spin-state}
+    \ket{\psi} = a \ket{\upspin} + b \ket{\dwspin}
+\end{equation}
+と書ける．
+
+\begin{subequations}
+    \label{eq:spin-operators}
+    スピンの$i$-成分（$i = x, y, z$）に対応する演算子$\hat{S}^i$を導入しよう．
+    たとえば\cref{eq:spin-basis}は$\hat{S}^z$の固有状態であるから
+    \begin{equation}
+        \label{eq:spin-operator-z}
+        \hat{S}^z \ket{\upspin} =  \frac{1}{2} \ket{\upspin},
+        \quad 
+        \hat{S}^z \ket{\dwspin} = -\frac{1}{2} \ket{\dwspin}
+    \end{equation}
+    となる．
+        $\hat{S}^x, \hat{S}^y$の固有状態は，
+    昇降演算子$\hat{S}^+ \coloneq \hat{S}^x + \iu \hat{S}^y$，
+    $\hat{S}^- \coloneq \hat{S}^x - \iu \hat{S}^-$の作用
+    \begin{align*}
+        \hat{S}^+ \ket{\upspin} = 0, 
+        \quad 
+        \hat{S}^+ \ket{\dwspin} = \ket{\upspin},
+        \quad 
+        \hat{S}^- \ket{\upspin} = \ket{\dwspin},
+        \quad 
+        \hat{S}^- \ket{\dwspin} = 0
+    \end{align*}
+    を使えば
+    \begin{align}
+        \label{eq:spin-operator-x}
+        \hat{S}^x \ab\Big( \ket{\upspin} + \ket{\dwspin} ) 
+            &=  \frac{1}{2} \ab\Big( \ket{\upspin} + \ket{\dwspin} ),
+        &
+        \hat{S}^x \ab\Big( \ket{\upspin} - \ket{\dwspin} ) 
+            &= -\frac{1}{2} \ab\Big( \ket{\upspin} - \ket{\dwspin} ),
+        \\
+        \label{eq:spin-operator-y}
+        \hat{S}^y \ab\Big( \ket{\upspin} + \iu \ket{\dwspin} ) 
+            &=  \frac{1}{2} \ab\Big( \ket{\upspin} + \iu \ket{\dwspin} ),
+        &
+        \hat{S}^y \ab\Big( \ket{\upspin} - \iu \ket{\dwspin} ) 
+            &= -\frac{1}{2} \ab\Big( \ket{\upspin} - \iu \ket{\dwspin} ),
+    \end{align}
+    と求められる（ただし$\hat{S}^x = \frac{1}{2} (\hat{S}^+ + \hat{S}^-)$，
+    $\hat{S}^y = \frac{1}{2\iu} (\hat{S}^+ - \hat{S}^-)$である）．
+\end{subequations}
+
+これまで議論したことと結び付けよう．
+\cref{eq:spin-state}より，
+スピン状態は$2$次元ヒルベルト空間$\symcal{H}$のベクトルとして扱える．
+\cref{eq:spin-basis}は$\symcal{H}$の正規直交基底であり，
+したがって，$\symcal{H}$は$\symbb{C}^2$と同型（\cref{sec:isomorphic}）であり，
+\begin{equation*}
+    \ket{\upspin} = \cvector{1 ; 0},
+    \quad 
+    \ket{\dwspin} = \cvector{0 ; 1}
+\end{equation*}
+という（同型写像による）対応により，\cref{eq:spin-state}はユークリッド空間のベクトル$\cvector{a ; b}$と同一視できる．
+このとき，
+\cref{eq:spin-operators}の$\hat{S}_x, \hat{S}_y, \hat{S}_z$は，
+行列
+\begin{equation}
+    \label{eq:Pauli-matrix}
+    \symsf{\sigma}^x = 
+    \begin{pmatrix}
+        0  &  1  \\
+        1  &  0
+    \end{pmatrix},
+    \quad 
+    \symsf{\sigma}^y = 
+    \begin{pmatrix}
+        0  &  -\iu  \\
+        \iu  &  0  
+    \end{pmatrix},
+    \quad 
+    \symsf{\sigma}^z = 
+    \begin{pmatrix}
+        1  &  0  \\
+        0  &  -1
+    \end{pmatrix}
+\end{equation}
+に$1/2$をかけたものと同一視できる\footnote{
+    $\hat{S}^i$の表現行列（\cref{sec:representation-matrix}）が$\symsf{\sigma}^i / 2$であるということ．
+}．
+
+
+
 \subsection{量子エンタングルメント}
 \label{sec:entanglement}
 
-ここではスピンについて考える．
-スピンの状態は，ヒルベルト空間$\symcal{H} = \symbb{C}^2$の基底
-\begin{equation*}
-    \ket{\bitone} = \cvector{1 ; 0},
-    \quad 
-    \ket{\bittwo} = \cvector{0 ; 1}
-\end{equation*}
-の重ね合わせで$\ket{\psi} = a \ket{\bitone} + b \ket{\bittwo}$と書ける．
+
+
+ここではスピン$1/2$をもつ粒子の状態について考える．
+
 2つのスピン$\symup{A}, \symup{B}$を合わせた系の状態は，
-$\symcal{H} \otimes \symcal{H} = \symbb{C}^4$のベクトル
-\begin{equation*}
+テンソル積（\cref{sec:tensor-product}）$\symcal{H} \otimes \symcal{H} = \symbb{C}^4$のベクトル
+\begin{equation}
+    \label{eq:2-spin-product-state}
     \begin{split}
-        \ket{\Psi} &= \cvector{a ; b ; c ; d}
-            \quad \text{（$a, b, c, d$は複素数，$\abs{a}^2 + \abs{b}^2 + \abs{c}^2 + \abs{d}^2 = 1$）}
+        \ket{\Psi}<AB> &= \cvector{a ; b ; c ; d}
         \\
         &= a \ab\big(\ket{\bitone}<A> \otimes \ket{\bitone}<B>)
          + b \ab\big(\ket{\bitone}<A> \otimes \ket{\bittwo}<B>)
          + c \ab\big(\ket{\bittwo}<A> \otimes \ket{\bitone}<B>)
          + d \ab\big(\ket{\bittwo}<A> \otimes \ket{\bittwo}<B>)
+        \\
+        &\quad 
+            \text{（$a, b, c, d$は複素数，$\abs{a}^2 + \abs{b}^2 + \abs{c}^2 + \abs{d}^2 = 1$）}
     \end{split}
-\end{equation*}
+\end{equation}
 で表される\footnote{
     $\otimes$の左側がスピン$\symup{A}$の状態，
     右側がスピン$\symup{B}$の状態なのだから，
     添字$\symup{A}, \symup{B}$は本来不要である．
 }．
+
+
+
+\subsubsection{セパラブル状態とエンタングル状態}
+
+\cref{eq:2-spin-product-state}のうち，
 \begin{equation}
-    \ket{\Psi}<AB> = 
+    \Ket{\Psi}<A,B> = 
         \ab\Big( a \ket{\bitone}<A> + b \ket{\bittwo}<A> )
         \otimes 
         \ab\Big( c \ket{\bitone}<B> + d \ket{\bittwo}<B> )
 \end{equation}
 という形で書ける状態を\ltword{セパラブル状態}(separable state)，
-そうでない状態を\ltword{エンタングル状態}(entangled state)という．
+そうでない状態を\ltword{エンタングル状態}(entangled state)\footnote{
+    `entangle'は「からまる」という意味．
+    entanglementを「量子もつれ」と訳すこともある．
+}という．
 
 \bluehead{セパラブル状態}\quad 
 例えば，
@@ -2941,7 +3104,7 @@ $\symup{A}$と$\symup{B}$を合わせた系が
 \begin{equation}
     \label{eq:example-separable-state}
     \begin{split}
-        \ket{\Xi}<AB>
+        \Ket{\Xi}<A,B>
         &= \frac{1}{10} \ab\Big(
               3 \ket{\bitone}<A> \ket{\bitone}<B>
             - 3\sqrt{3} \ket{\bitone}<A> \ket{\bittwo}<B>
@@ -2972,7 +3135,7 @@ $\ket{\bittwo}<B>$（確率$3/4$）のいずれか一方が得られる．
 \begin{equation*}
     \tag{\ref*{eq:example-separable-state}$'$}
     \begin{split}
-        \ket{\Xi'}<AB>
+        \Ket{\Xi'}<A,B>
         &= \frac{1}{6} \ab\Big(
             3 \ket{\bitone}<A> \ket{\bitone}<B>
             - 3 \sqrt{3} \ket{\bitone}<A> \ket{\bittwo}<B>
@@ -2995,7 +3158,7 @@ $\ket{\bittwo}<B>$（確率$3/4$）のいずれか一方が得られる．
 \begin{equation}
     \label{eq:example-entangled-state}
     \begin{split}
-        \ket{\Eta}<AB>
+        \Ket{\Eta}<A,B>
         &= \frac{1}{3} \ab\Big(
             \ket{\bitone}<A> \ket{\bitone}<B>
             + 2 \ket{\bitone}<A> \ket{\bittwo}<B>
@@ -3004,7 +3167,7 @@ $\ket{\bittwo}<B>$（確率$3/4$）のいずれか一方が得られる．
     \end{split}
 \end{equation}
 
-$\ket{\Eta}$に対してスピン$\symup{A}$を測定すれば，
+$\Ket{\Eta}<A,B>$に対してスピン$\symup{A}$を測定すれば，
 確率$5/9$で状態$\ket{\bitone}<A>$が，
 確率$4/9$で状態$\ket{\bittwo}<A>$が得られる．
 一方，
@@ -3018,7 +3181,7 @@ $\ket{\Eta}$に対してスピン$\symup{A}$を測定すれば，
 すると，状態は
 \begin{equation*}
     \tag{\ref*{eq:example-entangled-state}$'$}
-    \ket{\Eta'} = \frac{1}{\sqrt{5}} \ab\Big(
+    \Ket{\Eta'}<A,B> = \frac{1}{\sqrt{5}} \ab\Big(
         \ket{\bitone}<A> \ket{\bitone}<B>
         + 2 \ket{\bitone}<A> \ket{\bittwo}<B>
     )
@@ -3033,12 +3196,115 @@ $\ket{\Eta}$に対してスピン$\symup{A}$を測定すれば，
 そうすると，\cref{eq:example-entangled-state}は
 \begin{equation*}
     \tag{\ref*{eq:example-entangled-state}$''$}
-    \ket{\Eta''} = \ket{\bittwo}<A> \ket{\bittwo}<B>
+    \Ket{\Eta''}<A,B> = \ket{\bittwo}<A> \ket{\bittwo}<B>
 \end{equation*}
 になる．
 したがって，
 スピン$\symup{B}$を測定すると，
 必ず下向きの状態が得られる．
+
+
+
+\subsubsection{エンタングル状態の性質}
+
+2つのスピン$\symup{A}, \symup{B}$のエンタングル状態
+\begin{equation}
+    \label{eq:example-entangled-state-2}
+    \Ket{\Psi}<A,B> = \ket{\bitone}<A> \ket{\bittwo}<B> + \ket{\bittwo}<A> \ket{\bitone}<B>
+\end{equation}
+を考えよう．
+前節での議論によれば，
+この状態においてはスピン$\symup{A}$の値とスピン$\symup{B}$の値が必ず異なる．
+これを次のように考えてみよう．
+スピン$\symup{A}$をAliceが，
+スピン$\symup{B}$をBobが持っている．
+2人はスピン$\symup{A}, \symup{B}$が\cref{eq:example-entangled-state-2}のエンタングル状態にあることを知っているとする．
+Aliceが自身のスピン$\symup{A}$を測定し，
+状態$\ket{\bitone}<A>$を得たとする．
+続けてBobがスピン$\symup{B}$を測定すれば，
+必ず状態$\ket{\bittwo}<B>$が得られる．
+AliceはBobの測定結果を予言できるし，
+そもそもAliceがスピン$\symup{A}$の測定結果をBobに伝えれば，
+Bobはスピン$\symup{B}$を測定する必要がない．
+
+しかしこの状況はエンタングルメントを用いずとも再現できるのではないだろうか．
+はじめに第三者Carolがそれぞれ状態$\ket{\bitone}, \ket{\bittwo}$にあるスピン$\symup{A}, \symup{B}$を用意し，
+$\symup{A}$をAliceに，$\symup{B}$をBobに渡す．
+AliceとBobは，
+Carolが$\ket{\bitone}$と$\ket{\bittwo}$の2つの状態を用意したことを知っているが，
+自分がどちらをもらったのかは知らない．
+この状況下で，
+Aliceがスピン$\symup{A}$を測定し，
+状態$\ket{\bitone}$を得たとする．
+その時点でBobが$\ket{\bittwo}$を持っていることをAliceは知ることができる．
+
+ところが，
+前者のエンタングルメントによる状況と，
+後者のCarolが作った状況は，
+異なっている．
+そのことを確かめるために，
+AliceとBobが$\ket{\bitone}, \ket{\bittwo}$と別の正規直交基底
+\begin{align}
+    \label{eq:spin-another-basis}
+    \ket{\bitthr} 
+    \coloneq \frac{1}{\sqrt{2}} \ab\Big( \ket{\bitone} + \ket{\bittwo} )
+    = \cvector{ \tfrac{1}{\sqrt{2}} ; \tfrac{1}{\sqrt{2}} }
+    ,
+    \quad 
+    \ket{\bitfou} 
+    \coloneq \frac{1}{\sqrt{2}} \ab\Big( \ket{\bitone} - \ket{\bittwo} )
+    = \cvector{ \tfrac{1}{\sqrt{2}} ; -\tfrac{1}{\sqrt{2}} }
+\end{align}
+による測定を行うとしよう．
+まず，
+\begin{equation}
+    \label{eq:spin-another-basis-inv}
+    \tag{\ref*{eq:spin-another-basis}$'$}
+    \ket{\bitone} = \frac{1}{\sqrt{2}} \ab\Big( \ket{\bitthr} + \ket{\bitfou} ),
+    \quad 
+    \ket{\bittwo} = \frac{1}{\sqrt{2}} \ab\Big( \ket{\bitthr} - \ket{\bitfou} )
+\end{equation}
+である．
+これを使って\cref{eq:example-entangled-state-2}のエンタングル状態を書き換えると，
+\begin{equation}
+    \label{eq:example-entangled-state-2-another}
+    \tag{\ref*{eq:example-entangled-state-2}$'$}
+    \Ket{\Psi}<A,B> = \ket{\bitthr}<A> \ket{\bitthr}<B> + \ket{\bitfou}<A> \ket{\bitfou}<B>
+\end{equation}
+となる．
+
+Aliceがスピン$\symup{A}$に対して，
+\cref{eq:spin-another-basis}の基底による測定を\ltjruby{行}{おこな}ったとする．
+\cref{eq:example-entangled-state-2-another}のエンタングル状態にあるとき，
+$\ket{\bitthr}<A>$を得る確率と$\ket{\bitfou}<A>$を得る確率はそれぞれ$1/2$である．
+一方，
+Carolから$\ket{\bitone}$か$\ket{\bittwo}$のどちらかを渡されていた場合，
+\cref{eq:spin-another-basis-inv}を使えば，
+いずれの状態でも確率$1/2$で$\ket{\bitthr}$を，
+確率$1/2$で$\ket{\bitfou}$を観測する．
+この時点では2つの状況に違いはない．
+
+この測定によってAliceが$\ket{\bitthr}$を観測したとしよう．
+このときAliceはBobの測定結果を予言することができるだろうか？\quad 
+まず，
+\cref{eq:example-entangled-state-2}＝\cref{eq:example-entangled-state-2-another}のエンタングル状態の場合，
+Aliceが$\ket{\bitthr}<A>$を観測すれば，
+Bobのもつ状態は$\ket{\bitthr}<B>$に収束する．
+したがって，
+Bobがスピン$\symup{B}$を測定すれば，
+必ず状態$\ket{\bitthr}<B>$が得ることがわかる．
+一方，
+Carolのシチュエーションでは，
+Aliceは自身が$\ket{\bitone}$を持っていたか$\ket{\bittwo}$を持っていたか知ることはできない．
+どちらの状態を測定しても，
+$\ket{\bitthr}$が得られる可能性があるからである．
+Bobがスピン$\symup{B}$を測定すれば，
+Aliceの測定結果にかかわらず，
+確率$1/2$で$\ket{\bitthr}$が，
+確率$1/2$で$\ket{\bitfou}$が得られる．
+
+このように，エンタングルメントによる状態の相関は，
+Carolが用意したような古典的な相関よりもはるかに強い．
 
 
 
@@ -3055,33 +3321,42 @@ $\ket{\Eta}$に対してスピン$\symup{A}$を測定すれば，
 Bobが現地で\cref{eq:state-of-Alice}の状態を再現することができる．
 問題なのは，\cref{eq:state-of-Alice}が未知の状態であるときである．
 まず，Aliceが測定によって$a$と$b$を決定することはできない．
-量子力学の公理によれば，
-$\ket{\xi}$に対して$\ket{\bitone}$と$\ket{\bittwo}$を固有ベクトルにもつ演算子$\hat{A}$は
+単に状態$\ket{\bitone}$と$\ket{\bittwo}$のどちらかを観測するだけである．
 
 
+\bluehead{ベル基底}\quad 
+まず準備として，
 \ltword{ベル基底}(Bell basis)を
 \begin{subequations}
+    \label{eq:Bell-basis}
     \begin{align}
-        \ket{\Phi^+}<AB> 
+        \label{eq:Bell-basis-1}
+        \Ket{\Phi^+}<A,B> 
             &\coloneq \frac{1}{\sqrt{2}}
                 \ab\Big( \ket{\bitone}<A> \otimes \ket{\bitone}<B> + \ket{\bittwo}<A> \otimes \ket{\bittwo}<B> )
         \\
-        \ket{\Phi^-}<AB> 
+        \Ket{\Phi^-}<A,B> 
             &\coloneq \frac{1}{\sqrt{2}}
                 \ab\Big( \ket{\bitone}<A> \otimes \ket{\bitone}<B> - \ket{\bittwo}<A> \otimes \ket{\bittwo}<B> )
         \\
-        \ket{\Psi^+}<AB> 
+        \Ket{\Psi^+}<A,B> 
             &\coloneq \frac{1}{\sqrt{2}}
                 \ab\Big( \ket{\bitone}<A> \otimes \ket{\bittwo}<B> + \ket{\bittwo}<A> \otimes \ket{\bitone}<B> )
         \\
-        \ket{\Psi^-}<AB> 
+        \Ket{\Psi^-}<A,B> 
             &\coloneq \frac{1}{\sqrt{2}}
                 \ab\Big( \ket{\bitone}<A> \otimes \ket{\bittwo}<B> - \ket{\bittwo}<A> \otimes \ket{\bitone}<B> )
     \end{align}
 \end{subequations}
 で定義する．
+これらは$\symcal{H} \otimes \symcal{H}$の正規直交基底になっている．
 
 
+AliceとBobが\cref{eq:Bell-basis-1}のエンタングル状態を所有しているとする．
+このときAliceがもつ状態（\cref{eq:state-of-Alice}）を，
+次のような手順でBobに転送することができる．
+
+\cref{eq:Bell-basis}を基底とする測定
 
 
 
