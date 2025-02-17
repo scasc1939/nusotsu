@@ -8,13 +8,13 @@
 \usepackage{multicol}
 
 \setmathfont{STIX Two Math}
-\setmathfont{XCharterMath}[range=\symscr]
+\setmathfont{XCharterMath}[range={\symcal,\symscr}]
 
-\definecolor{red}{RGB}{255,120,30}
-\definecolor{blue}{RGB}{30,120,255}
+\definecolor{fire}{RGB}{255,120,30}
+\definecolor{water}{RGB}{30,120,255}
 
-\newcommand{\upspin}{\mathcolor{red}{\ket{\uparrow}}}
-\newcommand{\dwspin}{\mathcolor{blue}{\ket{\downarrow}}}
+\newcommand{\bitone}{\mathcolor{fire}{\uparrow}}
+\newcommand{\bittwo}{\mathcolor{water}{\downarrow}}
 
 
 \begin{document}
@@ -27,6 +27,13 @@
 \begin{frame}
 
     \maketitle
+
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]{目次}
+
+    \tableofcontents
 
 \end{frame}
 
@@ -75,7 +82,26 @@
 \end{frame}
 
 
-\section{ベクトル空間って？}
+\section{ヒルベルト空間って？}
+
+\begin{frame}[label={frame:definition-of-Hilbert-space}]
+    \frametitle{ヒルベルト空間}
+
+    \only<1-2>{
+        状態はヒルベルト空間のベクトルとしてあらわされる．
+
+        ではヒルベルト空間とは何か？
+    }
+
+    \pause
+
+    \begin{block}{ヒルベルト空間の定義}
+        \structure{内積}をもつ\structure{ベクトル空間}であって，
+        内積から導かれる\structure{ノルム}に関して\structure{完備}なものを\structure{ヒルベルト空間}という．
+    \end{block}
+
+\end{frame}
+
 
 \subsection{ベクトル}
 
@@ -113,8 +139,10 @@
 
 
 
-\begin{frame}{ベクトル空間の定義}
-
+\begin{frame}
+    [label={frame:definition-of-vector-space}]
+    \frametitle{ベクトル空間の定義}
+    
     ふつうの縦ベクトルについて考えれば当たり前のこと：
     \begin{block}{ベクトル空間の公理}
         集合$V$の元$\symbf{\psi}, \symbf{\varphi}, \symbf{\xi}$を\structure{ベクトル}，
@@ -148,12 +176,21 @@
     \frametitle{ベクトルの例}
 
     \begin{itemize}
-        \item $N$次の縦ベクトル：$\cvector{a_1 ; a_2 ; \cdots ; a_N}$
-        \item $N$次多項式：$p(x) = a_N x^N + a_{N-1} x^{N-1} + \dots + a_1 x + a_0$
-        \item 線形方程式の解：$\varphi(x_1, \dots, x_N)$
+        \item $N$次の縦ベクトル　$\cvector{a_1 ; a_2 ; \cdots ; a_N}$
+        \item $N$次多項式　$p(x) = a_N x^N + a_{N-1} x^{N-1} + \dots + a_1 x + a_0$
+        \item 線形方程式の解　$\varphi(x_1, \dots, x_N)$
+            ←\alert{シュレーディンガー方程式の解！}
     \end{itemize}
+    これらはすべてベクトル空間の公理を満たすベクトル．
+\end{frame}
 
+
+\begin{frame}
+    \frametitle{ベクトル空間の基底と次元}
+
+    このように定義されたベクトル空間には必ず\structure{基底}と呼ばれるベクトルの組が存在する．
     
+    ベクトル空間$V$の基底を構成するベクトルの数を\structure{次元}という．
 
 \end{frame}
 
@@ -164,6 +201,8 @@
     \frametitle{ユークリッド内積}
 
     縦ベクトルがもっている重要な性質：\structure{内積}の復習．
+
+    \pause 
 
     \begin{block}{縦ベクトルの内積}
         $\symbf{x}, \symbf{y}$：$N$次元ベクトル
@@ -188,7 +227,8 @@
 
 \end{frame}
 
-\begin{frame}
+
+\begin{frame}[label={frame:definition-of-inner-product}]
     \frametitle{内積の定義}
 
     \only<1>{
@@ -222,6 +262,27 @@
 
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{正規直交基底}
+
+    内積空間はベクトル空間なので，
+    基底をもつ．
+
+    特に，内積空間では\structure{正規直交基底}という良い基底をとれる（ことがある）：
+
+    正規直交基底$\sequ{\symbf{\varphi}_i}$の条件：
+    \begin{equation*}
+        \iparen{ \symbf{\varphi}_i, \symbf{\varphi}_j }
+        = \begin{cases}
+            1  &  i = j  \\
+            0  &  i \neq j  
+        \end{cases}
+    \end{equation*}
+
+\end{frame}
+
+
 \begin{frame}
     \frametitle{関数の内積}
 
@@ -240,80 +301,68 @@
 \end{frame}
 
 
-\subsection{基底}
+\subsection{完備性}
+
 
 \begin{frame}
-    \frametitle{ユークリッド空間の基底}
+    \frametitle{内積空間の完備性}
 
-    すべての縦ベクトル$\symbf{x} = \cvector{x_1 ; x_2 ; x_3}$は，
-    \begin{equation}
-        \label{eq:Euclidean-basis}
-        \symbf{e}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \quad 
-        \symbf{e}_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \quad 
-        \symbf{e}_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
-    \end{equation}
-    を使って，
-    \begin{equation*}
-        \symbf{x} = x_1 \symbf{e}_1 + x_2 \symbf{e}_2 + x_3 \symbf{e}_3
-    \end{equation*}
-    と書ける．
+    「収束しそうなベクトルの列」の極限が存在する内積空間を，
+    \structure{完備}であるという．
 
-    さらに，\eqref{eq:Euclidean-basis}は\structure{一次独立}：
-    \begin{equation*}
-        x_1 \symbf{e}_1 + x_2 \symbf{e}_2 + x_3 \symbf{e}_3 = \symbf{0}
-        \iff
-        x_1 = x_2 = x_3 = 0
-    \end{equation*}
+    \alert{有限次元の内積空間はすべて完備である}から，
+    あまり気にしなくてよい．
+
+    参考までに，
+    ベクトルの列が収束することの定義は以下のとおり．
+    \begin{block}{（参考）ベクトルの列の収束}
+        ベクトルの列$\symbf{\psi}_1, \symbf{\psi}_2, \dotsc$が$\symbf{\psi}_*$に収束するとは，
+        \begin{equation*}
+            \lim_{n \to \infty} \norm{ \symbf{\psi}_* - \symbf{\psi}_n } = 0
+        \end{equation*}
+        となることをいう．
+    \end{block}
 
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{ベクトル空間の基底}
+    \frametitle{（参考）完備性の定義}
 
-    同じように，ベクトル空間$V$の\alert{すべてのベクトル}$\symbf{\psi}$は，
-    \structure{一次独立}なベクトル$\symbf{\varphi}_1, \symbf{\varphi}_2, \dotsc$を使って
-    \begin{equation}
-        \label{eq:basis}
-        \symbf{\varphi} = \sum_i c_i \symbf{\varphi}_i
-        \quad \text{（$c_i$は複素数）}
-    \end{equation}
-    と書ける．
-    \pause
-    $\symbf{\varphi}_i$：$V$の\alert{基底}という．
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{ベクトル空間の次元}
-
-    \eqref{eq:basis}を満たす一次独立なベクトルの組$\symbf{\chi}_i$は，
-    いくつも存在している．
-
-    例えば，ユークリッド空間では，\eqref{eq:Euclidean-basis}のかわりに
+    内積空間$V$に属するベクトルの列$\symbf{\psi}_1, \symbf{\psi}_2, \dotsc$が\structure{コーシー列}であるとは，
     \begin{equation*}
-        \symbf{e}'_1 = \cvector{1 ; 1 ; 0}, \quad 
-        \symbf{e}'_2 = \cvector{1 ; {-1} ; 0}, \quad
-        \symbf{e}'_3 = \cvector{0 ; 0 ; \sqrt{2}}
+        \lim_{m, n \to \infty} \norm{\symbf{\psi}_m - \symbf{\psi}_n} = 0
     \end{equation*}
-    としてもよい．
 
-    しかし，$\symbf{\chi}_1, \symbf{\chi}_2, \dotsc$の数は同じ（上の例だと，必ず3つ）．
+    コーシー列は，番号が大きくなるにつれて1点に収束するように見える．
+    その1点が$V$に含まれているかが問題である．
 
-    ベクトル空間がもつ基底の数を\alert{次元}という．
-
+    $V$のすべてのコーシー列が収束する，つまり
+    \begin{equation*}
+        \lim_{n \to \infty} \norm{ \symbf{\psi}_* - \symbf{\psi}_n } = 0
+    \end{equation*}
+    となる$V$のベクトル$\symbf{\psi}_*$が存在するとき，
+    $V$は\structure{完備}であるという．
 
 \end{frame}
 
+
+\subsection{ヒルベルト空間}
+
+\againframe<3>{frame:definition-of-Hilbert-space}
+
+
+
+
+\section{ヒルベルト空間から\texorpdfstring{$\symbb{C}^N$}{ℂ\textasciicircum 𝑁}へ}
 
 \subsection{同型}
 
 
 \begin{frame}
-    \frametitle{同型（どうけい）とは}
+    \frametitle{同型（どうけい）とは：ベクトル空間の同型}
 
-    ベクトル空間の定義に出てくるのは3つだけ：
+    \ref{frame:definition-of-vector-space}ページのベクトル空間の定義に出てくるのは3つだけ：
     \begin{itemize}
         \item ベクトル（$\symbf{\psi}, \symbf{\xi}, \dotsc$）
         \item ベクトルの和（$+$）
@@ -328,56 +377,34 @@
         \item \structure{線形構造}（和とスカラー倍）が同じ
     \end{itemize}
     である2つのベクトル空間は，同じものと見なしてもよい．
+
+    このとき，2つは（ベクトル空間として）\structure{同型}{\small （どうけい）}であるという．
     
 \end{frame}
 
 
-\begin{frame}[allowframebreaks]
-    \frametitle{同型の例}
+\begin{frame}
+    \frametitle{同型とは：内積空間の同型}
 
-    2次多項式$a_2 x^2 + a_1 x + a_0$のベクトル空間$\symbb{R}[x]_2$は，
-    3次元縦ベクトルの空間$\symbb{R}^3$と同型．
-
-    対応
-    \begin{align*}
-        p(x) = a_2 x^2 + a_1 x + a_0
-        &\leftrightarrow \text{縦ベクトル} \, \cvector{a_2 ; a_1 ; a_0} = \symbf{a}
-        \\
-        q(x) = b_2 x^2 + b_1 x + b_0
-        &\leftrightarrow \text{縦ベクトル} \, \cvector{b_2 ; b_1 ; b_0} = \symbf{b}
-    \end{align*}
-    とすれば，
-    \begin{align*}
-        p + q \leftrightarrow \symbf{a} + \symbf{b},
-        \quad
-        c \cdotp p \leftrightarrow c \symbf{a} \, \text{（$c$：複素数）}
-    \end{align*}
-    線形演算がまったく同じ．
-
-
-    \framebreak
-
-    実は，基底の対応
-    \begin{equation*}
-        x^2 \leftrightarrow \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix},
-        \quad 
-        x \leftrightarrow \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix},
-        \quad 
-        1 \leftrightarrow \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix},
-    \end{equation*}
-    を定めるだけで，対応$a_2 x^2 + a_1 x + a_0 \leftrightarrow (a_2 \,\, a_1 \,\, a_0)$が決まる．
+    2つの内積空間が，
+    ベクトル空間として同型であり，さらに
+    \begin{itemize}
+        \item \structure{内積構造}が同じ
+    \end{itemize}
+    なら，内積空間として同型であるといえる．
 
 \end{frame}
+
 
 
 \begin{frame}
     \frametitle{$N$次元ベクトル空間どうしは同型}
 
     \begin{block}{定理}
-        2つの$N$次元ベクトル空間は同型である．
+        2つの$N$次元内積空間（or ベクトル空間）は同型である．
     \end{block}
 
-    2つのベクトル空間の基底$\{\symbf{\varphi}_i\}, \{\symbf{\varphi}'_i\}$をそれぞれ
+    空間$V$の（正規直交）基底$\{\symbf{\varphi}_i\}$，$W$の（正規直交）基底$\{\symbf{\varphi}'_i\}$をそれぞれ
     \begin{align*}
         \symbf{\varphi}_1 &\leftrightarrow \symbf{\varphi}'_1, 
         \quad
@@ -387,7 +414,7 @@
     \end{align*}
     のように対応させれば簡単に証明できる．
 
-    \pause 
+    \pause
 
     \begin{alertblock}{同型の意味}
         結局，\structure{$N$次元ベクトル空間は実質1つだけ！}
@@ -398,11 +425,37 @@
 \end{frame}
 
 
-\subsection{表現行列}
 
+\subsection{線形写像}
 
 \begin{frame}
-    \frametitle{表現行列}
+    \frametitle{線形写像}
+
+    ベクトル空間$V$上の\structure{線形写像}とは，
+    $V$から$V$自身への写像$f$であって，
+    線形性
+    \begin{equation*}
+        f(a \symbf{\psi} + b \symbf{\xi}) = a \cdotp f(\symbf{\psi}) + b \cdotp f(\symbf{\xi})
+    \end{equation*}
+    を満たすものをいう．
+
+    \pause
+
+    線形写像の例としては
+    \begin{itemize}
+        \item 行列$\symsf{A}$
+        \item 微分演算子$\dv[n]{}{x}$，積分演算子$\int \dd{x}$
+        \item ベクトル$\symbf{\psi}$を固定した時の内積$\iparen{\symbf{\psi}, \symbf{\xi}}$
+        \item などなど
+    \end{itemize}
+
+\end{frame}
+
+
+\subsection{表現行列}
+
+\begin{frame}
+    \frametitle{表現行列の導入}
 
     多項式関数$f(x) = a_2 x^2 + a_1 x + a_0$を微分する演算子：$\hat{D} \coloneq \dv{}{x}$．
 
@@ -414,7 +467,7 @@
     \pause
 
     ところで，対応$f \leftrightarrow (a_2 \,\, a_1 \,\, a_0)$を考えると，
-    これは
+    これは次のように書ける
     \begin{equation*}
         (\hat{D} f)
         \leftrightarrow
@@ -432,17 +485,152 @@
         \begin{pmatrix}
             a_2  \\  a_1  \\  a_0
         \end{pmatrix}
-        \leftrightarrow
-        f
     \end{equation*}
-    と行列の計算としてかける．
 
     \pause
 
-    $\symsf{D}$を\alert{表現行列}という．
+    $\symsf{D}$を\structure{表現行列}という．
 
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{表現行列}
+
+    形式的には次のとおり．
+    \begin{enumerate}
+        \item 有限次元ベクトル空間$V$は，$\symbb{C}^N$と同型．
+        \item $V$の基底$\symbf{\varphi}_i$は，$\symbb{C}^N$の基底$\symbf{e}_i = \cvector{0 ; \cdots ; 1 ; \cdots ; 0}$と対応．
+        \item $V$上の線形写像$f$は，$\symbb{C}^N$上の線形写像$A$に対応．
+        \item $\symbb{C}^N$上の線形写像$A$は，行列$\symsf{A}$に対応．
+    \end{enumerate}
+    $\symsf{A}$を$f$の\structure{表現行列}という．
+
+    \pause
+
+    \begin{alertblock}{表現行列の力}
+        線形写像$f$を考える代わりに，
+        行列$\symsf{A}$を考えればよい！
+    \end{alertblock}
+
+\end{frame}
+
+
+
+
+\section{量子力学の公理}
+
+\subsection{量子系の状態}
+
+\begin{frame}
+    \frametitle{量子系の状態とは？}
+
+    量子力学的な系の状態は，
+    次のような公理によって定義される．
+
+    \begin{block}{公理：量子系の状態}
+        量子系の状態は，
+        ヒルベルト空間$\symscr{H}$のベクトル$\ket{\psi}$であらわされる．
+        ただし
+        \begin{equation*}
+            \braket{\psi}{\psi} = 1
+        \end{equation*}
+        であり，位相のみが異なる2つのベクトル
+        \begin{equation*}
+            \ket{\psi'}, \  e^{\iu \theta} \ket{\psi}
+            \quad \text{（$\theta$は実数）}
+        \end{equation*}
+        は同じ状態とみなす．
+    \end{block}
+
+\end{frame}
+
+\subsection{測定とは？}
+
+\begin{frame}
+    \frametitle{オブザーバブルとエルミート行列}
+
+    観測可能な物理量のことを\structure{オブザーバブル}という．
+
+    オブザーバブルには，対応する\structure{エルミート演算子（行列）}$\symsf{A}$が存在する．
+
+    $\symsf{A}$の固有ベクトル$\ket{\varphi_i}$は$\symscr{H}$の正規直交基底になっている．
+
+    よって，$\symscr{H}$のすべての状態$\ket{\psi}$は，
+    \begin{equation}
+        \label{eq:expansion-of-eigenvector}
+        \ket{\psi} = \sum_i c_i \ket{\varphi_i}
+    \end{equation}
+    と展開できる．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{オブザーバブルの測定}
+
+    以下，\alert{$\symsf{A}$の固有ベクトルに縮退がない場合}を考える．
+
+    \begin{block}{公理：オブザーバブルの測定}
+
+        状態$\ket{\psi}$にある系に対してオブザーバブル$A$を観測すると，
+        行列$\symsf{A}$の固有値のいずれか1つが得られる．
+        
+        固有値$a$が得られる確率は
+        \begin{equation}
+            \label{eq:probability-of-eigenvalue}
+            \braket{\psi}{\hat{P}_a \psi}
+        \end{equation}
+        である．
+        ただし$\hat{P}_a$は\structure{射影演算子}であり，
+        縮退がない場合は
+        \begin{equation*}
+            \hat{P}_a \coloneq \ketbra{\varphi_a}{\varphi_a}
+        \end{equation*}
+        （ただし$\ket{\varphi_a}$は$\symsf{A}$の固有値$a$に属する固有ベクトル）．
+    
+    \end{block}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{オブザーバブルの測定（つづき）}
+
+    固有値$a$が得られる確率\eqref{eq:probability-of-eigenvalue}に，
+    \eqref{eq:expansion-of-eigenvector}を代入すれば，
+    \begin{equation*}
+        \braket{\psi}{\hat{P}_a \psi}
+            = \abs{c_a}^2
+    \end{equation*}
+    という，なじみ深い式が得られる．
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{波束の収縮}
+
+    状態$\ket{\psi}$にある量子系のオブザーバブル$A$を測定しよう．
+    
+    $\ket{\psi}$を$\symsf{A}$の固有ベクトル$\ket{\varphi_i}$で展開することができる：
+    \begin{equation*}
+        \ket{\psi} = \sum_i c_i \ket{\varphi_i}
+    \end{equation*}
+
+    \begin{block}{波束の収縮}
+        オブザーバブル$A$の測定により，
+        固有状態$\ket{\varphi_a}$に対応する値を得たとする．
+    
+        このとき，測定によって，系の状態が
+        \begin{equation*}
+            \ket{\psi} \to \ket{\varphi_a}
+        \end{equation*}
+        と変化する．
+        （固有ベクトルに縮退はないとした）
+    \end{block}
+
+\end{frame}
 
 
 \section{スピン系}
@@ -450,25 +638,31 @@
 \begin{frame}
     \frametitle{スピン}
 
-    1粒子のスピンは，
-    $\upspin$：アップスピン，
-    $\dwspin$：ダウンスピンの2次元．
+    スピン$1/2$をもつ粒子のスピン状態：
+    \begin{equation*}
+        \left.
+            \begin{array}{c}
+                \text{$\ket{\bitone}$：アップスピン}  \\
+                \text{$\ket{\bittwo}$：ダウンスピン}
+            \end{array}
+        \right\}
+        \text{ヒルベルト空間$\symscr{H}$の正規直交基底}
+    \end{equation*}
 
     \pause
 
-    よって，$\symbb{R}^2$と同型，
-    具体的には
+    $\symscr{H}$は2次元内積空間なので，
     \begin{equation*}
-        \upspin \leftrightarrow (1 \,\, 0),
+        \ket{\bitone} \leftrightarrow \cvector{ 1 ; 0 },
         \quad 
-        \dwspin \leftrightarrow (0 \,\, 1)
+        \ket{\bittwo} \leftrightarrow \cvector{ 0 ; 1 }
     \end{equation*}
-    と対応させられる．
+    という対応によって，$\symbb{C}^2$と同型である．
 
     \pause
 
     スピンの重ね合わせ：
-    \[  a \upspin + b \dwspin \leftrightarrow 
+    \[  a \ket{\bitone} + b \ket{\bittwo} \leftrightarrow 
     \begin{pmatrix}
         a  \\  b
     \end{pmatrix}  \]
@@ -477,96 +671,98 @@
 \end{frame}
 
 
-\begin{frame}
-    \frametitle{スピンに作用する演算子}
+% \begin{frame}
+%     \frametitle{スピンに作用する演算子}
 
-    スピンに作用する演算子：
-    \begin{itemize}
-        \item $\hat{S}_+$……$\hat{S}_+ \upspin = \symbf{0}$，$\hat{S}_+ \dwspin = \upspin$
-        \item $\hat{S}_-$……$\hat{S}_- \upspin = \dwspin$，$\hat{S}_+ \dwspin = \symbf{0}$
-        \item $\hat{S}_z$……$\hat{S}_z \upspin = \frac{1}{2} \upspin$，$\hat{S}_z \dwspin = \frac{1}{2} \dwspin$
-    \end{itemize}
+%     スピンに作用する演算子：
+%     \begin{itemize}
+%         \item $\hat{S}_+$……$\hat{S}_+ \ket{\bitone} = \symbf{0}$，$\hat{S}_+ \ket{\bittwo} = \ket{\bitone}$
+%         \item $\hat{S}_-$……$\hat{S}_- \ket{\bitone} = \ket{\bittwo}$，$\hat{S}_+ \ket{\bittwo} = \symbf{0}$
+%         \item $\hat{S}_z$……$\hat{S}_z \ket{\bitone} = \frac{1}{2} \ket{\bitone}$，$\hat{S}_z \ket{\bittwo} = \frac{1}{2} \ket{\bittwo}$
+%     \end{itemize}
 
-    \pause
+%     \pause
 
-    行列を使えば，
-    \begin{alignat*}{3}
-        % S_+
-        \hat{S}_+ &\colon 
-        &
-        \begin{pmatrix}
-            0 & 1 \\
-            0 & 0
-        \end{pmatrix}
-        \mathcolor{red}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
-        &= 
-        \mathcolor{black}{ \begin{pmatrix} 0 \\ 0 \end{pmatrix} }
-        , \quad
-        &
-        \begin{pmatrix}
-            0 & 1 \\
-            0 & 0
-        \end{pmatrix}
-        \mathcolor{blue}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
-        &= 
-        \mathcolor{red}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
-        \\
-        %
-        % S_-
-        % 
-        \hat{S}_- &\colon 
-        &
-        \begin{pmatrix}
-            0 & 0 \\
-            1 & 0
-        \end{pmatrix}
-        \mathcolor{red}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
-        &= 
-        \mathcolor{blue}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
-        , \quad
-        &
-        \begin{pmatrix}
-            0 & 0 \\
-            1 & 0
-        \end{pmatrix}
-        \mathcolor{blue}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
-        &= 
-        \mathcolor{black}{ \begin{pmatrix} 0 \\ 0 \end{pmatrix} }
-        \\
-        %
-        % S_z
-        %
-        \hat{S}_z &\colon 
-        &
-        \begin{pmatrix}
-            \frac{1}{2} & 0 \\
-            0 & \frac{1}{2}
-        \end{pmatrix}
-        \mathcolor{red}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
-        &= 
-        \frac{1}{2}
-        \mathcolor{red}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
-        , \quad
-        &
-        \begin{pmatrix}
-            \frac{1}{2} & 0 \\
-            0 & \frac{1}{2}
-        \end{pmatrix}
-        \mathcolor{blue}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
-        &= 
-        \frac{1}{2}
-        \mathcolor{blue}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
-    \end{alignat*}
+%     行列を使えば，
+%     \begin{alignat*}{3}
+%         % S_+
+%         \hat{S}_+ &\colon 
+%         &
+%         \begin{pmatrix}
+%             0 & 1 \\
+%             0 & 0
+%         \end{pmatrix}
+%         \mathcolor{fire}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
+%         &= 
+%         \mathcolor{black}{ \begin{pmatrix} 0 \\ 0 \end{pmatrix} }
+%         , \quad
+%         &
+%         \begin{pmatrix}
+%             0 & 1 \\
+%             0 & 0
+%         \end{pmatrix}
+%         \mathcolor{water}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
+%         &= 
+%         \mathcolor{fire}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
+%         \\
+%         %
+%         % S_-
+%         % 
+%         \hat{S}_- &\colon 
+%         &
+%         \begin{pmatrix}
+%             0 & 0 \\
+%             1 & 0
+%         \end{pmatrix}
+%         \mathcolor{fire}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
+%         &= 
+%         \mathcolor{water}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
+%         , \quad
+%         &
+%         \begin{pmatrix}
+%             0 & 0 \\
+%             1 & 0
+%         \end{pmatrix}
+%         \mathcolor{water}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
+%         &= 
+%         \mathcolor{black}{ \begin{pmatrix} 0 \\ 0 \end{pmatrix} }
+%         \\
+%         %
+%         % S_z
+%         %
+%         \hat{S}_z &\colon 
+%         &
+%         \begin{pmatrix}
+%             \frac{1}{2} & 0 \\
+%             0 & \frac{1}{2}
+%         \end{pmatrix}
+%         \mathcolor{fire}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
+%         &= 
+%         \frac{1}{2}
+%         \mathcolor{fire}{ \begin{pmatrix} 1 \\ 0 \end{pmatrix} }
+%         , \quad
+%         &
+%         \begin{pmatrix}
+%             \frac{1}{2} & 0 \\
+%             0 & \frac{1}{2}
+%         \end{pmatrix}
+%         \mathcolor{water}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
+%         &= 
+%         \frac{1}{2}
+%         \mathcolor{water}{ \begin{pmatrix} 0 \\ 1 \end{pmatrix} }
+%     \end{alignat*}
     
 
-\end{frame}
+% \end{frame}
 
 
+
+\subsection{テンソル積}
 
 \begin{frame}
     \frametitle{多粒子系の扱い方：テンソル積}
 
-    $\ket{\psi} = \cvector{a ; b}$, $\ket{\xi} = \cvector{c ; d}$とする．
+    スピン$1/2$を持つ2粒子の状態$\ket{\psi} = \cvector{a ; b}$，$\ket{\xi} = \cvector{c ; d}$とする．
 
     2状態をあわせた$\ket{\psi}\ket{\xi}$はどう表現する？
 
@@ -587,6 +783,65 @@
 
     3つ以上のテンソル積も，
     $\ket{\psi} \otimes \bigl( \ket{\xi} \otimes \ket{\xi} \bigr)$のようにして定義できる．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{テンソル積の空間}
+
+    テンソル積空間$\symbb{C}^2 \otimes \symbb{C}^2$の基底は
+    \begin{equation*}
+        \begin{pmatrix}
+            1  \\  0
+        \end{pmatrix}
+        \otimes 
+        \begin{pmatrix}
+            1  \\  0
+        \end{pmatrix}
+        , 
+        \quad 
+        \begin{pmatrix}
+            1  \\  0
+        \end{pmatrix}
+        \otimes 
+        \begin{pmatrix}
+            0  \\  1
+        \end{pmatrix}
+        , 
+        \quad 
+        \begin{pmatrix}
+            0  \\  1
+        \end{pmatrix}
+        \otimes 
+        \begin{pmatrix}
+            1  \\  0
+        \end{pmatrix}
+        , 
+        \quad 
+        \begin{pmatrix}
+            0  \\  1
+        \end{pmatrix}
+        \otimes 
+        \begin{pmatrix}
+            0  \\  1
+        \end{pmatrix}        
+    \end{equation*}
+    の4つ．
+    あるいは，これらを計算すると，
+    \begin{equation*}
+        \cvector{1 ; 0 ; 0 ; 0},
+        \quad 
+        \cvector{0 ; 1 ; 0 ; 0},
+        \quad 
+        \cvector{0 ; 0 ; 1 ; 0},
+        \quad 
+        \cvector{0 ; 0 ; 0 ; 1}
+    \end{equation*}
+    つまり，
+    \begin{equation*}
+        \symbb{C}^2 \otimes \symbb{C}^2 = \symbb{C}^4
+    \end{equation*}
 
 \end{frame}
 
@@ -620,100 +875,285 @@
     \end{equation*}
 
     さらに，2スピン系$\ket{\psi} \otimes \ket{\varphi}$に作用する演算子は，
-    それぞれのスピンに作用する演算子$\symcal{O}_1, \symcal{O}_2$を使うと
-    \begin{equation*}
-        \ab(\hat{\symcal{O}}_1 \otimes \hat{\symcal{O}}_2)
-        \ab(\ket{\psi} \otimes \ket{\varphi})
-        = \hat{\symcal{O}}_1 \ket{\psi}
-          \otimes
-          \hat{\symcal{O}}_2 \ket{\varphi}
-    \end{equation*}
-
-\end{frame}
-
-
-
-\section{測定とは？}
-
-\begin{frame}
-    \frametitle{オブザーバブルと固有値分解}
-
-    観測可能な物理量：\alert{オブザーバブル}という．
-
-    オブザーバブルには，対応する\alert{エルミート行列}$A$が存在．
-
-    \pause 
-
-    $\hat{A}$の固有ベクトル$\ket{\varphi_1}, \dots, \ket{\varphi_N}$（固有値$a_1, \dots, a_N$：重複あり）を使うと，
-    \begin{equation}
-        \hat{A} = \sum_{i = 1}^{N} a_i \ketbra{\varphi_i}{\varphi_i}
-    \end{equation}
-    これを\alert{固有値分解}という．
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{スペクトル分解}
-
-    \begin{itemize}
-        \item \structure{相異なる}固有値$a_{(1)}, \dots, a_{(n)}$
-        \item 固有値$a_i$に属する固有ベクトル$\ket{\varphi_{a_{(i)}, 1}}, \dots, \ket{\varphi_{a_{(i)}, m_i}}$
-    \end{itemize}
-
-    固有値$a_i$に対応する固有空間への\alert{射影}：
-    \begin{equation*}
-        \hat{P}_{a_i} = \sum_{k = 1}^{m_i} \ketbra{\varphi_{a_{(i)}, k}}{\varphi_{a_{(i)}, k}}
-    \end{equation*}
-
-    固有値分解を書き直す：
-    \begin{equation}
-        \hat{A} = \sum_{i = 1}^{m_i} a_{(i)} \hat{P}_{a_{(i)}}
-    \end{equation}
-    これを\alert{スペクトル分解}という．
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{オブザーバブルの測定}
-
-    \begin{itemize}
-        \item オブザーバブルに対応するエルミート行列$\hat{A}$
-        \item $\hat{A}$の固有値$a_{(1)}, \dots, a_{(n)}$
-        \item 固有値$a_{(i)}$に対応する固有空間への射影$\hat{P}_{a_{(i)}}$
-    \end{itemize}
-
-    状態$\ket{\psi}$に対し，このオブザーバブルを測定したときの値は？
-
-    \pause 
-
-    \begin{block}{$\ket{\psi}$の観測により得られる値}
-        確率
-        \begin{equation}
-            \label{eq:proposition-of-observable}
-            \braket{\psi}{\hat{P}_{a_{(i)}} \psi}
-        \end{equation}
-        で固有値$a_{(i)}$を観測する．
-    \end{block}
-
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{オブザーバブルの測定（つづき）}
-
-    \begin{alertblock}{確率の規格化は？}
-        \eqref{eq:proposition-of-observable}で全確率は$1$になっている？
+    それぞれのスピンに作用する演算子（行列）$\hat{\symscr{O}}_1, \hat{\symscr{O}}_2$を使うと
+    \begin{alertblock}{演算子のテンソル積の作用}
         \begin{equation*}
-            \sum_{i = 1}^{n} \braket{\psi}{\hat{P}_{a_{(i)}} \psi} = 1
-        \end{equation*}
-        これは，固有ベクトル系$\ket{\varphi_i}$が完全であることから
-        \begin{equation*}
-            \sum_{i = 1}^{n} \hat{P}_{a_{(i)}} = \idop
-        \end{equation*}
-        であることを使うと成立．
+            \ab(\hat{\symscr{O}}_1 \otimes \hat{\symscr{O}}_2)
+            \ab(\ket{\psi} \otimes \ket{\varphi})
+            = \hat{\symscr{O}}_1 \ket{\psi}
+              \otimes
+              \hat{\symscr{O}}_2 \ket{\varphi}
+        \end{equation*}    
     \end{alertblock}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{テンソル積で表せないテンソル積}
+
+    $\symbb{C}^2 \otimes \symbb{C}^2 = \symbb{C}^4$のベクトル
+    \begin{equation}
+        \label{eq:tensor-product-not-separable}
+        \cvector{0 ; 1 ; 1 ; 0}
+        = \ab\big\{ \cvector{1 ; 0} \otimes \cvector{0 ; 1} \}
+        + \ab\big\{ \cvector{0 ; 1} \otimes \cvector{1 ; 0} \}
+    \end{equation}
+    は，
+    $\symbb{C}^2$の2つのベクトルを使って
+    \begin{equation*}
+        \cvector{0 ; 1 ; 1 ; 0}
+        = \cvector{a ; b} \otimes \cvector{c ; d}
+        = \cvector{ac ; ad ; bc ; bd}
+    \end{equation*}
+    という形で書くことができない．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{エンタングル状態}
+    
+    \eqref{eq:tensor-product-not-separable}をスピン状態で書き換えれば
+    \begin{equation}
+        \label{eq:entangled-state}
+        \ket{\bitone} \otimes \ket{\bittwo}
+        + \ket{\bittwo} \otimes \ket{\bitone}
+    \end{equation}
+    この状態は，$\ket{\psi} \otimes \ket{\xi}$と書くことができない．
+
+    そのような状態を，
+    \structure{エンタングル状態}という．
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{エンタングル状態の測定}
+
+    2つのスピン$\symup{A}, \symup{B}$のエンタングル状態
+    \begin{equation*}
+        \tag{\ref*{eq:entangled-state}}
+        \ket{\bitone}<A> \otimes \ket{\bittwo}<B>
+        + \ket{\bittwo}<A> \otimes \ket{\bitone}<B>
+    \end{equation*}
+    に対し，
+    粒子$\symup{A}$のスピンの向きを測定する．
+
+    \pause
+
+    $\symup{A}$のスピン上向き（$\bitone$）を観測したら，
+    状態は
+    \begin{equation*}
+        \ket{\bitone}<A> \otimes \ket{\bittwo}<B>
+    \end{equation*}
+    に収束する．
+
+    つまり，
+    \alert{$\symup{A}$のスピンの向きを測定すると，
+    $\symup{B}$のスピンの向きも確定する．}
+
+\end{frame}
+
+
+\section{量子テレポーテーション}
+
+
+\begin{frame}
+    \frametitle{量子テレポーテーション}
+
+    Aliceが遠方にいるBobに，
+    自身が持っている状態
+    \begin{equation*}
+        \ket{\xi}<X> = a \ket{\bitone} + b \ket{\bittwo}
+    \end{equation*}
+    を転送したいとする．
+
+    \alert{$\ket{\xi}<X>$は未知．}
+    つまり，Aliceは$a, b$の値を知らない．
+
+    \pause
+
+    Aliceは$a, b$を知らないまま，
+    Bobに$\ket{\xi}<X>$を転送することができる．
+
+    もちろん状態$\ket{\xi}<X>$にある粒子がBobの居場所へテレポートするわけではなく，
+    $\ket{\xi}$をBobの手元で再現できるということ．
+
+    {\small
+        とはいえ，状態が同じ2つの粒子は区別できないので，
+        粒子がテレポートしたのと同じである．
+    }
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{ベル基底}
+
+    $\symbb{C}^2 \otimes \symbb{C}^2$の正規直交基底として，
+    \structure{ベル基底}
+        \begin{align*}
+            \Ket{\Phi^+}<A,B> 
+                &\coloneq \frac{1}{\sqrt{2}}
+                    \ab\Big( \ket{\bitone}<A> \otimes \ket{\bitone}<B> + \ket{\bittwo}<A> \otimes \ket{\bittwo}<B> )
+            \\
+            \Ket{\Phi^-}<A,B> 
+                &\coloneq \frac{1}{\sqrt{2}}
+                    \ab\Big( \ket{\bitone}<A> \otimes \ket{\bitone}<B> - \ket{\bittwo}<A> \otimes \ket{\bittwo}<B> )
+            \\
+            \Ket{\Psi^+}<A,B> 
+                &\coloneq \frac{1}{\sqrt{2}}
+                    \ab\Big( \ket{\bitone}<A> \otimes \ket{\bittwo}<B> + \ket{\bittwo}<A> \otimes \ket{\bitone}<B> )
+            \\
+            \Ket{\Psi^-}<A,B> 
+                &\coloneq \frac{1}{\sqrt{2}}
+                    \ab\Big( \ket{\bitone}<A> \otimes \ket{\bittwo}<B> - \ket{\bittwo}<A> \otimes \ket{\bitone}<B> )
+        \end{align*}
+        をとれる．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{量子テレポーテーションの手順①-1}
+
+    AliceとBobが，
+    エンタングル状態
+    \begin{equation*}
+        \Ket{\Phi^+}<A,B> 
+        \coloneq \frac{1}{\sqrt{2}}
+        \ab\Big( \ket{\bitone}<A> \otimes \ket{\bitone}<B> + \ket{\bittwo}<A> \otimes \ket{\bittwo}<B> )
+    \end{equation*}
+    を所持しているとする．
+
+    これを使って，Aliceが持っている未知状態
+    \begin{equation*}
+        \ket{\xi}<X> = a \ket{\bitone} + b \ket{\bittwo}
+    \end{equation*}
+    をBobに転送する．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{量子テレポーテーションの手順①-2}
+
+    $\symup{X}, \symup{A}, \symup{B}$を合わせた系の状態は
+    \begin{equation}
+        \label{eq:system-XAB}
+        \begin{split}
+            \ket{\xi}<X> \otimes \Ket{\Phi^+}<A,B>
+            &= \frac{1}{2} \Ket{\Phi^+}<X,A> \otimes 
+                \ab\Big( a \ket{\bitone}<B> + b \ket{\bittwo}<B> )
+                \\
+            &+ \frac{1}{2} \Ket{\Phi^-}<X,A> \otimes 
+                \ab\Big( a \ket{\bitone}<B> - b \ket{\bittwo}<B> )
+                \\
+            &+ \frac{1}{2} \Ket{\Psi^+}<X,A> \otimes 
+                \ab\Big( b \ket{\bitone}<B> + a \ket{\bittwo}<B> )
+            \\
+            &+ \frac{1}{2} \Ket{\Psi^-}<X,A> \otimes 
+                \ab\Big(-b \ket{\bitone}<B> + a \ket{\bittwo}<B> )
+        \end{split}
+    \end{equation}
+    と書ける．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{量子テレポーテーションの手順①}
+
+    Aliceは系$\symup{X}\symup{A}$に対し，
+    ベル基底による測定を行う．
+
+    すると，
+    状態$\Ket{\Phi^+}, \Ket{\Phi^-}, \Ket{\Psi^+}, \Ket{\Psi^-}$のどれかをそれぞれ$1/4$の確率で観測する．
+
+    \eqref{eq:system-XAB}より，
+    Aliceが観測した系$\symup{X}\symup{A}$の状態によって，
+    Bobのもつ系$\symup{B}$の状態が確定する．
+    \begin{center}
+        \begin{tabular}{c|c}
+            Alice ($\symup{X}\symup{A}$)  &  Bob ($\symup{B}$)  \\
+            \hline
+            $\Ket{\Phi^+}$ & $a \ket{\bitone} + b \ket{\bittwo}$  \\
+            $\Ket{\Phi^-}$ & $a \ket{\bitone} - b \ket{\bittwo}$  \\
+            $\Ket{\Psi^+}$ & $b \ket{\bitone} + a \ket{\bittwo}$  \\
+            $\Ket{\Psi^-}$ & $-b \ket{\bitone} + a \ket{\bittwo}$  \\
+        \end{tabular}
+    \end{center}
+    このとき，一瞬で（光速を超えて）Bobの状態が収束する．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{量子テレポーテーションの手順②-1}
+
+    Aliceは何らかの手段（\structure{古典通信}）によって，
+    自分がどの状態を観測したかBobに伝える．
+
+    Bobは系$\symup{B}$に対して，
+    次のような操作を行う．
+    \begin{enumerate}
+        \item Aliceが$\Ket{\Phi^+}$を観測した場合，何もしない．
+        \item Aliceが$\Ket{\Phi^-}$を観測した場合，$\ket{\bittwo}$の符号を反転する．
+        \item Aliceが$\Ket{\Psi^+}$を観測した場合，$\ket{\bitone}$と$\ket{\bittwo}$の係数を入れ替える．
+        \item Aliceが$\Ket{\Psi^-}$を観測した場合，$\ket{\bitone}$と$\ket{\bittwo}$の係数を入れ替え，さらに$\ket{\bitone}$と$\ket{\bittwo}$の係数を入れ替える．
+    \end{enumerate}
+    この操作により，系$\symup{B}$の状態が$\ket{\xi} = a \ket{\bitone} + b \ket{\bittwo}$になる．
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{量子テレポーテーションの手順②-2}
+
+    具体的には，Bobは
+    \begin{enumerate}
+        \item Aliceが$\Ket{\Phi^+}$を観測した場合，何もしない．
+        \item Aliceが$\Ket{\Phi^-}$を観測した場合，系$\symup{B}$にユニタリ変換$\sigma^z$を施す．
+        \item Aliceが$\Ket{\Psi^+}$を観測した場合，系$\symup{B}$にユニタリ変換$\sigma^x$を施す．
+        \item Aliceが$\Ket{\Psi^-}$を観測した場合，系$\symup{B}$にユニタリ変換$\sigma^z \sigma^x = \iu \sigma^y$を施す．
+    \end{enumerate}
+    ただし，$\sigma^i$はパウリ行列として表される：
+    \begin{equation}
+        \label{eq:Pauli-matrix}
+        \sigma^x = 
+        \begin{pmatrix}
+            0  &  1  \\
+            1  &  0
+        \end{pmatrix},
+        \quad 
+        \sigma^y = 
+        \begin{pmatrix}
+            0  &  -\iu  \\
+            \iu  &  0  
+        \end{pmatrix},
+        \quad 
+        \sigma^z = 
+        \begin{pmatrix}
+            1  &  0  \\
+            0  &  -1
+        \end{pmatrix}
+    \end{equation}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{量子テレポーテーションの注意}
+
+    Aliceが持っていた状態$\ket{\xi}<X>$は，
+    手順の途中（Aliceによる系$\symup{X} \symup{A}$の測定）で破壊されている．
+
+    この手順により，
+    \alert{超光速でAliceからBobに情報が伝わるわけではない}．
+
+    Bobが状態$\ket{\xi}$を得ることができるのは，
+    Aliceから観測結果を\alert{光速以下の速度で}伝えられた後である．
 
 \end{frame}
 
