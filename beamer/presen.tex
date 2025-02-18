@@ -167,7 +167,7 @@
     
     このとき，集合$V$を\structure{ベクトル空間}という．
     
-    $\implies$\ref{frame:psi-is-vector}ページで考えた$\symbf{\psi}$もベクトル．
+    $\implies$\ref{frame:psi-is-vector}ページで考えた$\psi$もベクトル．
 
 \end{frame}
 
@@ -398,6 +398,7 @@
 
 
 \begin{frame}
+    [label={frame:finite-dimensional-vector-space-isomorphic}]
     \frametitle{$N$次元ベクトル空間どうしは同型}
 
     \begin{block}{定理}
@@ -495,7 +496,7 @@
 
 
 \begin{frame}
-    \frametitle{表現行列}
+    \frametitle{表現行列の形式的な定義}
 
     形式的には次のとおり．
     \begin{enumerate}
@@ -519,6 +520,21 @@
 
 
 \section{量子力学の公理}
+
+
+\begin{frame}
+    \frametitle{有限次元の状態}
+
+    ここでは量子系の\alert{有限次元である状態}について扱う．
+
+    有限次元（$N$次元）ヒルベルト空間$\symscr{H}$は$\symbb{C}^N$と同型だった（\ref{frame:finite-dimensional-vector-space-isomorphic}ページ）．
+    
+    よって，$\symscr{H} = \symbb{C}^N$上のベクトルと線形写像を使って議論すればよい．
+
+    つまり，\alert{数ベクトルと行列}を使って議論すればよい．
+
+\end{frame}
+
 
 \subsection{量子系の状態}
 
@@ -552,9 +568,11 @@
 
     観測可能な物理量のことを\structure{オブザーバブル}という．
 
-    オブザーバブルには，対応する\structure{エルミート演算子（行列）}$\symsf{A}$が存在する．
+    \begin{block}{公理：オブザーバブルとエルミート行列}
+        オブザーバブルには，対応する自己共役演算子（\structure{エルミート行列}）$\symsf{A}$が存在する．
+    \end{block}
 
-    $\symsf{A}$の固有ベクトル$\ket{\varphi_i}$は$\symscr{H}$の正規直交基底になっている．
+    $\symsf{A}$の固有ベクトル$\ket{\varphi_i}$は$\symscr{H}$の正規直交基底になっている{\small （$\because$エルミート行列の性質）}．
 
     よって，$\symscr{H}$のすべての状態$\ket{\psi}$は，
     \begin{equation}
@@ -606,6 +624,56 @@
     という，なじみ深い式が得られる．
     
 \end{frame}
+
+
+\subsection{基底測定}
+
+
+\begin{frame}
+    \frametitle{オブザーバブルとエルミート行列の関係}
+
+    オブザーバブル$A$の固有状態系$\ket{\varphi_i}$は，
+    ヒルベルト空間$\symscr{H}$の正規直交基底をなす．
+    \begin{equation*}
+        \text{オブザーバブル$A$}
+        \implies
+        \text{エルミート行列$\symsf{A}$}
+        \implies 
+        \text{正規直交基底$\ket{\varphi_i}$}
+    \end{equation*}
+
+    \pause
+
+    逆に，
+    $\symscr{H}$の正規直交基底$\ket{\varphi_i}$に対して，
+    それらを固有状態系にもつオブザーバブル$A$は存在するか？
+
+    つまり，\alert{任意のエルミート行列$\symsf{A}$に，
+    対応するオブザーバブル$A$が存在するか？}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{基底測定}
+
+    量子力学の公理では，
+    任意のエルミート行列$\symsf{A}$に対して，
+    オブザーバブル$A$が存在するとは限らない．
+
+    しかし，ここでは次のように仮定する．
+
+    \begin{block}{公理ではない仮定：基底測定}
+        $\symcal{H}$の任意の正規直交基底$\ket{\varphi_i}$を固有状態系にもつオブザーバブル$A$が存在する．
+    \end{block}
+
+    $\symscr{H}$の正規直交基底$\ket{\varphi_i}$に対応するオブザーバブル$A$の測定を，
+    （その基底に対する）\structure{基底測定}ということにする．
+
+\end{frame}
+
+
+\subsection{波速の収縮}
 
 
 \begin{frame}
@@ -917,8 +985,10 @@
     \eqref{eq:tensor-product-not-separable}をスピン状態で書き換えれば
     \begin{equation}
         \label{eq:entangled-state}
-        \ket{\bitone} \otimes \ket{\bittwo}
-        + \ket{\bittwo} \otimes \ket{\bitone}
+        \frac{1}{\sqrt{2}} \ab\Big( 
+            \ket{\bitone}<A> \otimes \ket{\bittwo}<B>
+            + \ket{\bittwo}<A> \otimes \ket{\bitone}<B>
+        )
     \end{equation}
     この状態は，$\ket{\psi} \otimes \ket{\xi}$と書くことができない．
 
@@ -934,8 +1004,10 @@
     2つのスピン$\symup{A}, \symup{B}$のエンタングル状態
     \begin{equation*}
         \tag{\ref*{eq:entangled-state}}
-        \ket{\bitone}<A> \otimes \ket{\bittwo}<B>
-        + \ket{\bittwo}<A> \otimes \ket{\bitone}<B>
+        \frac{1}{\sqrt{2}} \ab\Big( 
+            \ket{\bitone}<A> \otimes \ket{\bittwo}<B>
+            + \ket{\bittwo}<A> \otimes \ket{\bitone}<B>
+        )
     \end{equation*}
     に対し，
     粒子$\symup{A}$のスピンの向きを測定する．
@@ -945,7 +1017,7 @@
     $\symup{A}$のスピン上向き（$\bitone$）を観測したら，
     状態は
     \begin{equation*}
-        \ket{\bitone}<A> \otimes \ket{\bittwo}<B>
+            \ket{\bitone}<A> \otimes \ket{\bittwo}<B>
     \end{equation*}
     に収束する．
 
