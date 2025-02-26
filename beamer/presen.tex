@@ -198,6 +198,29 @@
 \subsection{内積}
 
 \begin{frame}
+    \frametitle{なぜ内積が必要か？}
+
+    ベクトル空間の定義（\ref{frame:definition-of-vector-space}ページ）だけでは，
+    \begin{itemize}
+        \item ベクトル$\symbf{\psi}$の\structure{長さ}
+        \item ベクトル$\symbf{\psi}$と$\symbf{\xi}$が\structure{直交}すること
+    \end{itemize}
+    （\structure{幾何的な性質}）を定義できない．
+
+    \pause
+
+    つまり，\alert{正規直交基底（\structure{完全正規直交系}）が定義できない！}
+
+    →ベクトル空間に幾何的な性質を導入しよう．
+
+    \begin{block}{（参考）位相的性質}
+        このセクションでの議論は，
+        ベクトル空間に位相的（topological）な性質を入れることに対応する．
+    \end{block}
+
+\end{frame}
+
+\begin{frame}
     \frametitle{ユークリッド内積}
 
     縦ベクトルがもっている重要な性質：\structure{内積}の復習．
@@ -271,7 +294,7 @@
 
     特に，内積空間では\structure{正規直交基底}という良い基底をとれる（ことがある）：
 
-    正規直交基底$\sequ{\symbf{\varphi}_i}$の条件：
+    基底$\sequ{\symbf{\varphi}_i}$が正規直交基底である条件：
     \begin{equation*}
         \iparen{ \symbf{\varphi}_i, \symbf{\varphi}_j }
         = \begin{cases}
@@ -286,7 +309,7 @@
 \begin{frame}
     \frametitle{関数の内積}
 
-    シュレーディンガー方程式の解はベクトル．
+    シュレーディンガー方程式の解はベクトル$\psi(\symbf{r})$（関数）．
 
     では，関数$\psi(\symbf{r})$と$\xi(\symbf{r})$の内積は？
 
