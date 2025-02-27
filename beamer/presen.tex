@@ -20,8 +20,8 @@
 \begin{document}
 
 
-\title{デモ}
-\date{\number\year 年\number\month 月\number\day 日}
+\title{手作りエンタングル}
+\date{2025年3月5日（\number\year 年\number\month 月\number\day 日更新）}
 
 
 \begin{frame}
@@ -105,6 +105,21 @@
 
 \subsection{ベクトル}
 
+\begin{frame}
+    \frametitle{ベクトルの性質}
+
+    そもそもベクトルとは？
+
+    ベクトルの性質として
+    \begin{itemize}
+        \item ベクトル同士の和\( \symbf{x} + \symbf{y} \)
+        \item ベクトルの複素数倍（スカラー倍）\( c \symbf{x} \)
+    \end{itemize}
+    の2つ（\structure{線形演算}）が定義できる．
+
+    →2つの計算を合わせた\alert{線形結合$a \symbf{x} + b \symbf{y}$}が基本．
+
+\end{frame}
 
 \begin{frame}
     \frametitle{ユークリッド空間の例}
@@ -213,10 +228,10 @@
 
     →ベクトル空間に幾何的な性質を導入しよう．
 
-    \begin{block}{（参考）位相的性質}
-        このセクションでの議論は，
-        ベクトル空間に位相的（topological）な性質を入れることに対応する．
-    \end{block}
+    % \begin{block}{（参考）位相的性質}
+    %     このセクションでの議論は，
+    %     ベクトル空間に位相的（topological）な性質を入れることに対応する．
+    % \end{block}
 
 \end{frame}
 
@@ -394,16 +409,45 @@
 
     \pause
 
-    よって，
+    よって，2つのベクトル空間の
     \begin{itemize}
-        \item ベクトルの\structure{かず}が同じ
+        \item それぞれのベクトルが\structure{1対1に対応}
         \item \structure{線形構造}（和とスカラー倍）が同じ
     \end{itemize}
-    である2つのベクトル空間は，同じものと見なしてもよい．
+    なら，2つは（ある意味）同じ空間と見なせる．
 
     このとき，2つは（ベクトル空間として）\structure{同型}{\small （どうけい）}であるという．
     
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{同型とは：線形構造}
+
+    \begin{block}{（参考）線形構造が同じ？}
+        ベクトル空間$V$（上）と$W$（下）の1対1対応について，
+        \begin{align*}
+            \begin{array}{ccccl}
+                \symbf{\psi} &+ &\symbf{\xi} &= &\symbf{\eta},
+                \\
+                \updownarrow &  &\updownarrow &  &\Updownarrow 
+                \\
+                \symbf{x} &+ &\symbf{y} &= &\symbf{z}
+            \end{array}
+            \qquad 
+            \begin{array}{cccl}
+                c &\symbf{\psi} &= &\symbf{\psi}'
+                \\
+                \rotatebox[origin=c]{90}{$=$} &\updownarrow &  &\Updownarrow
+                \\
+                c &\symbf{x} &= &\symbf{x}'
+            \end{array}
+        \end{align*}
+        対応$\leftrightarrow$が成立すれば，対応$\Leftrightarrow$が必ず成立する．
+    \end{block}
+
+\end{frame}
+
 
 
 \begin{frame}
@@ -441,7 +485,7 @@
     \pause
 
     \begin{alertblock}{同型の意味}
-        結局，\structure{$N$次元ベクトル空間は実質1つだけ！}
+        結局，\structure{$N$次元ヒルベルト空間は実質1つだけ！}
     \end{alertblock}
 
     $\implies$一番簡単な$\symbb{C}^N$を考えればよい．
@@ -450,38 +494,12 @@
 
 
 
-\subsection{線形写像}
-
-\begin{frame}
-    \frametitle{線形写像}
-
-    ベクトル空間$V$上の\structure{線形写像}とは，
-    $V$から$V$自身への写像$f$であって，
-    線形性
-    \begin{equation*}
-        f(a \symbf{\psi} + b \symbf{\xi}) = a \cdotp f(\symbf{\psi}) + b \cdotp f(\symbf{\xi})
-    \end{equation*}
-    を満たすものをいう．
-
-    \pause
-
-    線形写像の例としては
-    \begin{itemize}
-        \item 行列$\symsf{A}$
-        \item 微分演算子$\dv[n]{}{x}$，積分演算子$\int \dd{x}$
-        \item ベクトル$\symbf{\psi}$を固定した時の内積$\iparen{\symbf{\psi}, \symbf{\xi}}$
-        \item などなど
-    \end{itemize}
-
-\end{frame}
-
-
 \subsection{表現行列}
 
 \begin{frame}
     \frametitle{表現行列の導入}
 
-    多項式関数$f(x) = a_2 x^2 + a_1 x + a_0$を微分する演算子：$\hat{D} \coloneq \dv{}{x}$．
+    多項式関数$f(x) = a_2 x^2 + a_1 x + a_0$を微分する線形演算子$\hat{D} \coloneq \dv{}{x}$．
 
     もちろん，
     \begin{equation*}
@@ -522,8 +540,10 @@
     \frametitle{表現行列の形式的な定義}
 
     形式的には次のとおり．
+
+    $N$次元ベクトル空間$V$から$V$自身への線形写像（\structure{線形演算子}）$f$について，
     \begin{enumerate}
-        \item 有限次元ベクトル空間$V$は，$\symbb{C}^N$と同型．
+        \item ベクトル空間$V$は，$\symbb{C}^N$と同型．
         \item $V$の基底$\symbf{\varphi}_i$は，$\symbb{C}^N$の基底$\symbf{e}_i = \cvector{0 ; \cdots ; 1 ; \cdots ; 0}$と対応．
         \item $V$上の線形写像$f$は，$\symbb{C}^N$上の線形写像$A$に対応．
         \item $\symbb{C}^N$上の線形写像$A$は，行列$\symsf{A}$に対応．
@@ -550,6 +570,8 @@
 
     ここでは量子系の\alert{有限次元である状態}について扱う．
 
+    \bigskip
+
     有限次元（$N$次元）ヒルベルト空間$\symscr{H}$は$\symbb{C}^N$と同型だった（\ref{frame:finite-dimensional-vector-space-isomorphic}ページ）．
     
     よって，$\symscr{H} = \symbb{C}^N$上のベクトルと線形写像を使って議論すればよい．
@@ -569,12 +591,13 @@
 
     \begin{block}{公理：量子系の状態}
         量子系の状態は，
-        ヒルベルト空間$\symscr{H}$のベクトル$\ket{\psi}$であらわされる．
-        ただし
+        系に対応するヒルベルト空間$\symscr{H}$のベクトル$\ket{\psi}$であらわされる．
+        ただし$\ket{\psi}$は単位ベクトル：
         \begin{equation*}
             \braket{\psi}{\psi} = 1
         \end{equation*}
-        であり，位相のみが異なる2つのベクトル
+        である．
+        また，位相のみが異なる2つのベクトル
         \begin{equation*}
             \ket{\psi'}, \  e^{\iu \theta} \ket{\psi}
             \quad \text{（$\theta$は実数）}
@@ -592,7 +615,7 @@
     観測可能な物理量のことを\structure{オブザーバブル}という．
 
     \begin{block}{公理：オブザーバブルとエルミート行列}
-        オブザーバブルには，対応する自己共役演算子（\structure{エルミート行列}）$\symsf{A}$が存在する．
+        オブザーバブルには，対応する$\symscr{H}$上の自己共役演算子（\structure{エルミート行列}）$\symsf{A}$が存在する．
     \end{block}
 
     $\symsf{A}$の固有ベクトル$\ket{\varphi_i}$は$\symscr{H}$の正規直交基底になっている{\small （$\because$エルミート行列の性質）}．
@@ -696,7 +719,7 @@
 \end{frame}
 
 
-\subsection{波速の収縮}
+\subsection{波束の収縮}
 
 
 \begin{frame}
@@ -709,7 +732,7 @@
         \ket{\psi} = \sum_i c_i \ket{\varphi_i}
     \end{equation*}
 
-    \begin{block}{波束の収縮}
+    \begin{block}{公理：波束の収縮}
         オブザーバブル$A$の測定により，
         固有状態$\ket{\varphi_a}$に対応する値を得たとする．
     
@@ -724,7 +747,9 @@
 \end{frame}
 
 
-\section{スピン系}
+\section{多体系の量子力学}
+
+\subsection{スピン系}
 
 \begin{frame}
     \frametitle{スピン}
@@ -1037,7 +1062,7 @@
 
     \pause
 
-    $\symup{A}$のスピン上向き（$\bitone$）を観測したら，
+    たとえば$\symup{A}$のスピン上向き（$\bitone$）を観測したら，
     状態は
     \begin{equation*}
             \ket{\bitone}<A> \otimes \ket{\bittwo}<B>
