@@ -256,6 +256,7 @@
     \begin{equation}
         \label{eq:Euclid-norm}
         \norm{\symbf{x}} \coloneq \sqrt{\iparen{\symbf{x}, \symbf{x}}}
+            = \sum_{i = 1}^{N} \abs{x_i}^2
     \end{equation}
 
     \begin{alertblock}{注意}
@@ -719,6 +720,34 @@
 \end{frame}
 
 
+\subsection{状態の時間発展}
+
+\begin{frame}
+    \frametitle{状態の時間発展}
+
+    \begin{block}{公理：状態の時間発展}
+        量子系の状態の時間発展は，ユニタリ行列$\symsf{U}$で表される：
+        \begin{equation*}
+            \ket{\psi} \to \symsf{U} \ket{\psi}
+        \end{equation*}
+    \end{block}
+
+    \structure{時間発展}には，実験者による操作も含まれる．
+
+    つまり，実験者が行える操作は（測定を除き）すべてユニタリ的である．
+
+    \pause
+
+    ここでは逆に，すべてのユニタリ的な操作が可能であると\alert{仮定}する．
+
+    \begin{block}{公理ではない仮定：ユニタリ操作}
+        実験者は量子系に対して，
+        任意のユニタリ行列$\symsf{U}$で表される操作を行うことができる．
+    \end{block}
+
+\end{frame}
+
+
 \subsection{波束の収縮}
 
 
@@ -726,19 +755,17 @@
     \frametitle{波束の収縮}
 
     状態$\ket{\psi}$にある量子系のオブザーバブル$A$を測定しよう．
-    
-    $\ket{\psi}$を$\symsf{A}$の固有ベクトル$\ket{\varphi_i}$で展開することができる：
-    \begin{equation*}
-        \ket{\psi} = \sum_i c_i \ket{\varphi_i}
-    \end{equation*}
+
+    $\symsf{A}$の固有ベクトル系を$\ket{\varphi_i}$とする．
 
     \begin{block}{公理：波束の収縮}
         オブザーバブル$A$の測定により，
         固有状態$\ket{\varphi_a}$に対応する値を得たとする．
     
-        このとき，測定によって，系の状態が
+        この測定によって，系の状態は
         \begin{equation*}
-            \ket{\psi} \to \ket{\varphi_a}
+            \ket{\psi} = \sum_i c_i \ket{\varphi_i}
+                \longrightarrow \ket{\varphi_a}
         \end{equation*}
         と変化する．
         （固有ベクトルに縮退はないとした）
@@ -906,7 +933,8 @@
 \begin{frame}
     \frametitle{テンソル積の空間}
 
-    テンソル積空間$\symbb{C}^2 \otimes \symbb{C}^2$の基底は
+    テンソル積空間$\symbb{C}^2 \otimes \symbb{C}^2$の基底は，
+    たとえば
     \begin{equation*}
         \begin{pmatrix}
             1  \\  0
@@ -944,7 +972,7 @@
         \end{pmatrix}        
     \end{equation*}
     の4つ．
-    あるいは，これらを計算すると，
+    あるいは，これらを計算して，
     \begin{equation*}
         \cvector{1 ; 0 ; 0 ; 0},
         \quad 
