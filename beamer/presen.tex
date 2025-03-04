@@ -931,11 +931,13 @@
 
 
 \begin{frame}
+    [label={frame:tensor-product-space}]
     \frametitle{テンソル積の空間}
 
     テンソル積空間$\symbb{C}^2 \otimes \symbb{C}^2$の基底は，
     たとえば
-    \begin{equation*}
+    \begin{equation}
+        \label{eq:tensor-product-basis-1}
         \begin{pmatrix}
             1  \\  0
         \end{pmatrix}
@@ -970,7 +972,7 @@
         \begin{pmatrix}
             0  \\  1
         \end{pmatrix}        
-    \end{equation*}
+    \end{equation}
     の4つ．
     あるいは，これらを計算して，
     \begin{equation*}
@@ -1108,7 +1110,7 @@
 
 
 \begin{frame}
-    \frametitle{量子テレポーテーション}
+    \frametitle{量子テレポーテーションの導入}
 
     Aliceが遠方にいるBobに，
     自身が持っている状態
@@ -1120,10 +1122,10 @@
     \alert{$\ket{\xi}<X>$は未知．}
     つまり，Aliceは$a, b$の値を知らない．
 
-    \pause
-
     Aliceは$a, b$を知らないまま，
     Bobに$\ket{\xi}<X>$を転送することができる．
+
+    \pause
 
     もちろん状態$\ket{\xi}<X>$にある粒子がBobの居場所へテレポートするわけではなく，
     $\ket{\xi}$をBobの手元で再現できるということ．
@@ -1140,6 +1142,7 @@
     \frametitle{ベル基底}
 
     $\symbb{C}^2 \otimes \symbb{C}^2$の正規直交基底として，
+    \eqref{eq:tensor-product-basis-1}の代わりに，
     \structure{ベル基底}
         \begin{align*}
             \Ket{\Phi^+}<A,B> 
@@ -1165,6 +1168,9 @@
 
 \begin{frame}
     \frametitle{量子テレポーテーションの手順①-1}
+
+    量子テレポーテーションを実行するためには，
+    事前に両者がエンタングル状態を共有している必要がある．
 
     AliceとBobが，
     エンタングル状態
@@ -1217,7 +1223,9 @@
     ベル基底による測定を行う．
 
     すると，
-    状態$\Ket{\Phi^+}, \Ket{\Phi^-}, \Ket{\Psi^+}, \Ket{\Psi^-}$のどれかをそれぞれ$1/4$の確率で観測する．
+    状態$\Ket{\Phi^+}<X,A>, \Ket{\Phi^-}<X,A>, \Ket{\Psi^+}<X,A>, \Ket{\Psi^-}<X,A>$のどれかをそれぞれ$1/4$の確率で観測する．
+
+    \pause
 
     \eqref{eq:system-XAB}より，
     Aliceが観測した系$\symup{X}\symup{A}$の状態によって，
@@ -1294,16 +1302,55 @@
 \begin{frame}
     \frametitle{量子テレポーテーションに関する注意}
 
-    Aliceが持っていた状態$\ket{\xi}<X>$は，
-    手順の途中（Aliceによる系$\symup{X} \symup{A}$の測定）で破壊されている．
+    \begin{itemize}
+        \item Aliceが持っていた状態$\ket{\xi}<X>$は，
+            手順の途中（Aliceによる系$\symup{X} \symup{A}$の測定）で破壊されている．
 
-    この手順により，
-    \alert{超光速でAliceからBobに情報が伝わるわけではない}．
+        \item また，その測定によって，
+            Aliceは$\ket{\xi}<X>$の状態について何の情報も得ることができない．
 
-    Bobが状態$\ket{\xi}$を得ることができるのは，
-    Aliceから観測結果を\alert{光速以下の速度で}伝えられた後である．
+            確率$1/4$ずつでベル基底のどれかを観測するだけである．
+        \item 
+            \alert{超光速でAliceからBobに情報が伝わるわけではない}．
+
+            Bobが状態$\ket{\xi}$を得ることができるのは，
+            Aliceから観測結果を古典通信によって（\alert{光速以下の速度で}）伝えられた後である．
+    \end{itemize}
 
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{量子クローン不可能定理}
+
+    量子テレポーテーションでは，
+    もともとAliceが持っていた状態$\ket{\xi}<X>$は破壊されて残らない．
+
+    では，Aliceが持つ状態$\ket{\xi}<X>$を残しながら，
+    Bobに$\ket{\xi}$を転送することは可能か？
+
+    \pause
+
+    それは不可能である．
+
+    より一般に，以下の定理が成り立つ．
+
+
+    \begin{block}{量子クローン不可能定理}
+        一般の，未知の状態$\ket{\xi} = a \ket{\bitone} + b \ket{\bittwo}$を複製するのは不可能である．
+    \end{block}
+
+\end{frame}
+
+
+\begin{frame}[standout,plain,noframenumbering]
+
+    \begin{center}
+        ご清聴ありがとうございました．
+    \end{center}
+
+\end{frame}
+
 
 
 \begin{frame}[standout,plain,noframenumbering]
