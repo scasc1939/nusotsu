@@ -911,12 +911,12 @@ $V$をベクトル空間とする．
 \begin{enumerate}
     \item \label{innerp:linear} 
         \bluehead{右線形性}------すなわち，
-        \fire{任意のベクトル$\bpsi, \bphi, \bxi$}および\fire{任意の複素数$a, b$}に対し，
-        $\iparen{\bpsi, \  a \bphi \vecplus b \bxi} = a \iparen{\bpsi, \bphi} + b \iparen{\bpsi, \bxi}$．
+        \fire{任意のベクトル$\bpsi, \bxi, \beeta$}および\fire{任意の複素数$a, b$}に対し，
+        $\iparen{\bpsi, \  a \bxi \vecplus b \beeta} = a \iparen{\bpsi, \bxi} + b \iparen{\bpsi, \beeta}$．
     \item \label{innerp:conjugate-symmetry} 
         \bluehead{共役対称性}------すなわち，
-        \fire{任意のベクトル$\bpsi, \bphi$}に対し，
-        $\iparen{\bpsi, \bphi} = \conj{\iparen{\bphi, \bpsi}}$．
+        \fire{任意のベクトル$\bpsi, \bxi$}に対し，
+        $\iparen{\bpsi, \bxi} = \conj{\iparen{\bxi, \bpsi}}$．
         ここで，$\conj{\bigdot}$は$\bigdot$の共役複素数を表す．
     \item \label{innerp:positive-definiteness}
         \bluehead{正定値性}------すなわち，
@@ -930,14 +930,14 @@ $V$をベクトル空間とする．
 左側のベクトルについては以下の\emph{反線形性}
 \begin{equation}
     \label{eq:anti-linear}
-    \iparen{a \bpsi \vecplus b \bphi, \  \bxi}
-        = \conj{a} \iparen{\bpsi, \bxi} + \conj{b} \iparen{\bphi, \bxi}
+    \iparen{a \bpsi \vecplus b \bxi, \  \beeta}
+        = \conj{a} \iparen{\bpsi, \beeta} + \conj{b} \iparen{\bxi, \beeta}
 \end{equation}
 が成り立つことに注意しなければならない．
 なお，数学ではふつう\cref{innerp:linear}のかわりに\emph{左線形性}%
 ------つまり\(
-    \iparen{a \bpsi \vecplus b \bphi, \  \bxi}
-    = a \iparen{\bpsi, \bxi} + b \iparen{\bphi, \bxi}
+    \iparen{a \bpsi \vecplus b \bxi, \  \beeta}
+    = a \iparen{\bpsi, \beeta} + b \iparen{\bxi, \beeta}
 \)------%
 を課すので，
 かわりに右側に反線形性が要請される．
@@ -1030,8 +1030,8 @@ $V$を内積空間，$\norm{\bigdot}$を$V$に付随するノルムとする．
 ノルムについて，以下の\ltword{三角不等式}
 \begin{equation}
     \label{eq:triangle}
-    \norm{\bpsi + \bphi}
-    \leq \norm{\bpsi} + \norm{\bphi}
+    \norm{\bpsi + \bxi}
+    \leq \norm{\bpsi} + \norm{\bxi}
 \end{equation}
 が成り立つ．
 幾何的に解釈すると，
@@ -1044,31 +1044,31 @@ $\vec{a}$の長さと$\vec{b}$の長さを足したものよりも短い（ま�
 
 \bluehead{\cref{eq:triangle}は次のように示される．}
 まず，内積空間では，
-任意のベクトル$\bpsi, \bphi$に対して，
+任意のベクトル$\bpsi, \bxi$に対して，
 \begin{equation}
     \label{eq:Cauchy-Schwarz}
-    \abs{\iparen{\bpsi, \bphi}} \leq \norm{\bpsi} \norm{\bphi}
+    \abs{\iparen{\bpsi, \bxi}} \leq \norm{\bpsi} \norm{\bxi}
 \end{equation}
 が成り立つ．
 これを使うと，
 \begin{equation*}
     \begin{split}
-        \norm{\bpsi + \bphi}^2
-        &= \iparen{\bpsi + \bphi, \  \bpsi + \bphi}
+        \norm{\bpsi + \bxi}^2
+        &= \iparen{\bpsi + \bxi, \  \bpsi + \bxi}
         \\
         &= \iparen{\bpsi, \bpsi}
-            + \iparen{\bpsi, \bphi}
-            + \iparen{\bphi, \bpsi}
-            + \iparen{\bphi, \bphi}
+            + \iparen{\bpsi, \bxi}
+            + \iparen{\bxi, \bpsi}
+            + \iparen{\bxi, \bxi}
         \\
         &= \norm{\bpsi}^2
-            + 2 \Real \iparen{\bpsi, \bphi}
-            + \norm{\bphi}^2
+            + 2 \Real \iparen{\bpsi, \bxi}
+            + \norm{\bxi}^2
         \\
-        &\leq \norm{\bpsi}^2 + 2 \abs{ \iparen{\bpsi, \bphi} } + \norm{\bphi}^2
+        &\leq \norm{\bpsi}^2 + 2 \abs{ \iparen{\bpsi, \bxi} } + \norm{\bxi}^2
         \\
-        &\leq \norm{\bpsi}^2 + 2 \norm{\bpsi} \norm{\bphi} + \norm{\bphi}^2
-        = \ab(\norm{\bpsi} + \norm{\bphi})^2
+        &\leq \norm{\bpsi}^2 + 2 \norm{\bpsi} \norm{\bxi} + \norm{\bxi}^2
+        = \ab(\norm{\bpsi} + \norm{\bxi})^2
     \end{split}
 \end{equation*}
 とできる．
@@ -2415,6 +2415,9 @@ $N \times N$エルミート行列$\symsf{A}$は，あるユニタリ行列$\syms
 
 \subsection{純粋状態の量子力学}
 
+1粒子の量子力学についてここでは考えよう．
+
+
 \subsubsection{量子力学的状態}
 
 シュレーディンガー方程式の解$\psi$を，
@@ -2677,12 +2680,12 @@ $\xi$を``通り抜ける''演算子は，
 一般のヒルベルト空間におけるベクトルのテンソル積を定義するのは非常に面倒であるが，
 有限次元のヒルベルト空間では容易に導入できる．
 
-有限次元ヒルベルト空間$\symcal{H} = \symbb{C}^2$を考える．
-状態$\ket{\psi} = \cvector{a ; b}$にある粒子$\symup{A}$と，
-状態$\ket{\xi} = \cvector{\alpha ; \beta}$にある粒子$\symup{B}$の複合系の状態を，
+例として有限次元ヒルベルト空間$\symcal{H} = \symbb{C}^2$を考えよう．
+状態$\bpsi = \cvector{a ; b}$にある粒子$\symup{A}$と，
+状態$\bxi = \cvector{\alpha ; \beta}$にある粒子$\symup{B}$の複合系の状態を，
 \begin{equation}
     \label{eq:tensor-product-of-2-vector}
-    \ket{\psi} \otimes \ket{\xi}
+    \bpsi \otimes \bxi
         = 
         \begin{pmatrix}
             a  \\  b
@@ -2709,9 +2712,9 @@ $\xi$を``通り抜ける''演算子は，
         \end{pmatrix}
 \end{equation}
 で定義する．
-\cref{eq:tensor-product-of-2-vector}を（$\ket{\psi}, \ket{\xi}$の）\ltword{テンソル積}(tensor product)という．
-ここでは$\ket{\psi}, \ket{\xi}$は両方とも$\symbb{C}^2$のベクトルとしたが，
-2つのベクトルが属するヒルベルト空間は異なっていても（たとえば$\ket{\psi} \in \symbb{C}^2$，$\ket{\xi} \in \symbb{C}^3$でも）よい．
+\cref{eq:tensor-product-of-2-vector}を（$\bpsi, \bxi$の）\ltword{テンソル積}(tensor product)という．
+ここでは$\bpsi, \bxi$は両方とも$\symbb{C}^2$のベクトルとしたが，
+2つのベクトルが属するヒルベルト空間は異なっていても（たとえば$\bpsi \in \symbb{C}^2$，$\bxi \in \symbb{C}^3$でも）よい．
 
 同様に，
 行列$\symsf{A}, \symsf{B}$のテンソル積を
@@ -2762,16 +2765,16 @@ $\xi$を``通り抜ける''演算子は，
 以下の等式が成立することである：
 \begin{equation}
     \label{eq:tensor-product-matrix-vector}
-    (\symsf{A} \otimes \symsf{B}) \ab\Big(\ket{\psi} \otimes \ket{\xi})
-    = \ab\Big(\symsf{A} \ket{\psi}) \otimes \ab\Big(\symsf{B} \ket{\xi})
+    (\symsf{A} \otimes \symsf{B}) \ab\Big(\bpsi \otimes \bxi)
+    = \ab\Big(\symsf{A} \bpsi) \otimes \ab\Big(\symsf{B} \bxi)
 \end{equation}
 つまり，
-行列$\symsf{A}$は左側の状態$\ket{\psi}$，
-行列$\symsf{B}$は右側の状態$\ket{\xi}$のみに作用する．
-したがって，複合状態$\ket{\psi} \otimes \ket{\xi}$のうち$\ket{\psi}$のみに作用する演算子は$\symsf{A} \otimes \symsf{I}$（$\symsf{I}$は単位行列）と書ける：
+行列$\symsf{A}$は左側の状態$\bpsi$，
+行列$\symsf{B}$は右側の状態$\bxi$のみに作用する．
+したがって，複合状態$\bpsi \otimes \bxi$のうち$\bpsi$のみに作用する演算子は$\symsf{A} \otimes \symsf{I}$（$\symsf{I}$は単位行列）と書ける：
 \begin{equation*}
-    (\symsf{A} \otimes \symsf{I}) \ab\Big(\ket{\psi} \otimes \ket{\xi})
-    = \ab\Big(\symsf{A} \ket{\psi}) \otimes \ket{\xi}
+    (\symsf{A} \otimes \symsf{I}) \ab\Big(\bpsi \otimes \bxi)
+    = \ab\Big(\symsf{A} \bpsi) \otimes \bxi
 \end{equation*}
 
 
@@ -2799,14 +2802,16 @@ $\bxi, \bxi' \in \symcal{H}_2$，
 \bluehead{3つ以上のテンソル積}\quad 
 3つのベクトルのテンソル積は，
 \begin{equation*}
-    \ket{\psi} \otimes \ket{\xi} \otimes \ket{\eta}
-        \coloneq \ket{\psi} \otimes \ab\Big(\ket{\xi} \otimes \ket{\eta})
+    \bpsi \otimes \bxi \otimes \beeta
+        \coloneq \bpsi \otimes \ab\Big(\bxi \otimes \beeta)
 \end{equation*}
 と定義する．
 \(
-    \ket{\psi} \otimes \ab\big(\ket{\xi} \otimes \ket{\eta})
-    = \ab\big(\ket{\psi} \otimes \ket{\xi}) \otimes \ket{\eta}
+    \bpsi \otimes \ab\big(\bxi \otimes \beeta)
+    = \ab\big(\bpsi \otimes \bxi) \otimes \beeta
 \)であることを示すのも容易である．
+
+4つ以上のベクトルのテンソル積も，同様にして帰納的に定義される．
 
 
 \bluehead{テンソル積の記法}\quad 
@@ -2819,11 +2824,19 @@ $\bxi, \bxi' \in \symcal{H}_2$，
 である．
 また，
 ブラ・ケット記号を用いるときは，
-簡単のために記号$\otimes$を省略して
-\( 
+記号$\otimes$を省略して\( 
     \ket{\psi} \otimes \ket{\xi} = \ket{\psi} \ket{\xi} 
 \)と書くこともある．
-このとき，一般に$\ket{\psi} \ket{\xi} \neq \ket{\xi} \ket{\psi}$であることに注意しなければならない．
+さらに，それぞれのベクトルに添え字を付して\(
+    \ket{\psi}<A> \ket{\xi}<B>
+\)と書くこともある．
+テンソル積では一般に\(
+    \ket{\psi} \ket{\xi} \neq \ket{\xi} \ket{\psi}
+\)であるが，
+添え字をつけたときは，
+\(
+    \ket{\psi}<A> \ket{\xi}<B> = \ket{\xi}<B> \ket{\psi}<A>
+\)と扱う．
 
 
 
@@ -2946,12 +2959,12 @@ $\symcal{H}_2$のベクトル$\symbf{y} = \cvector{c ; d}$を使って$\symbf{v}
     bc = 0, \quad 
     bd = \frac{1}{\sqrt{2}}
 \end{equation*}
-を満たす複素数$a, b, c, d$は存在しないからである．
+を満たす複素数の組$a, b, c, d$は存在しないからである．
 
 はじめテンソル積を$\symbf{x} \otimes \symbf{y}$の形で定義したのにもかかわらず，
 その形で書けない$\symcal{H}_1 \otimes \symcal{H}_2$のベクトル$\symbf{v}$が存在する．
 \cref{sec:entanglement}では，2つの粒子が極めて強い相関を持った\emph{エンタングル状態}を扱うが，
-それをもたらすのがここで見たテンソル積の特性である．
+その起源がここで見たテンソル積の特性である．
 
 
 
@@ -2972,13 +2985,13 @@ $\symcal{H}_2$のベクトル$\symbf{y} = \cvector{c ; d}$を使って$\symbf{v}
 \end{equation}
 と書き，$\ket{\upspin}$を「スピン\ltjruby{上}{うえ}向きの状態，
 $\ket{\dwspin}$を「スピン\ltjruby{下}{した}向きの状態」と呼ぶことにする．
-粒子のスピン状態は，
-これらの重ね合わせで
+一般のスピン状態は，
+これらの重ね合わせによって
 \begin{equation}
     \label{eq:spin-state}
     \ket{\psi} = a \ket{\upspin} + b \ket{\dwspin}
 \end{equation}
-と書ける．
+と書ける（$a, b$は複素数であり，$\abs{a}^2 + \abs{b}^2 = 1$）．
 
 \begin{subequations}
     \label{eq:spin-operators}
@@ -3033,10 +3046,11 @@ $\ket{\dwspin}$を「スピン\ltjruby{下}{した}向きの状態」と呼ぶ�
     \quad 
     \ket{\dwspin} = \cvector{0 ; 1}
 \end{equation*}
-という（同型写像による）対応により，\cref{eq:spin-state}はユークリッド空間のベクトル$\cvector{a ; b}$と同一視できる．
+という（同型写像による）対応により，
+\cref{eq:spin-state}はユークリッド空間のベクトル$\cvector{a ; b}$と同一視できる．
 このとき，
 \cref{eq:spin-operators}の$\hat{S}_x, \hat{S}_y, \hat{S}_z$は，
-行列
+\ltword{パウリ行列}(Pauli matrix)
 \begin{equation}
     \label{eq:Pauli-matrix}
     \symsf{\sigma}^x = 
@@ -3057,53 +3071,56 @@ $\ket{\dwspin}$を「スピン\ltjruby{下}{した}向きの状態」と呼ぶ�
         0  &  -1
     \end{pmatrix}
 \end{equation}
-に$1/2$をかけたものと同一視できる\footnote{
-    $\hat{S}^i$の表現行列（\cref{sec:representation-matrix}）が$\symsf{\sigma}^i / 2$であるということ．
-}．
+に$1/2$をかけたものと同一視できる．
+すなわち，
+線形演算子$\hat{S}^i$の
+（基底$\ket{\bitone}, \ket{\bittwo}$に対する）
+表現行列
+（\cref{sec:representation-matrix}）
+は$\symsf{\sigma}^i / 2$である．
 
 
 
 \subsection{量子エンタングルメント}
 \label{sec:entanglement}
 
-
-
-ここではスピン$1/2$をもつ粒子の状態について考える．
-
-2つのスピン$\symup{A}, \symup{B}$を合わせた系の状態は，
+スピン$1/2$を持つ2つの粒子$\symup{A}, \symup{B}$のスピン状態について考えよう．
+$\symup{A}, \symup{B}$の状態はそれぞれ，
+正規直交基底$\ket{\bitone}, \ket{\bittwo}$をもつ$2$次元ヒルベルト空間$\symcal{H} = \symbb{C}^2$のベクトルとして表される．
+したがって，$\symup{A}, \symup{B}$を合わせた系の状態は，
 テンソル積（\cref{sec:tensor-product}）$\symcal{H} \otimes \symcal{H} = \symbb{C}^4$のベクトル
 \begin{equation}
     \label{eq:2-spin-product-state}
     \begin{split}
-        \ket{\Psi}<AB> &= \cvector{a ; b ; c ; d}
+        \Ket{\Psi}<A,B> &= \cvector{a ; b ; c ; d}
         \\
-        &= a \ab\big(\ket{\bitone}<A> \otimes \ket{\bitone}<B>)
-         + b \ab\big(\ket{\bitone}<A> \otimes \ket{\bittwo}<B>)
-         + c \ab\big(\ket{\bittwo}<A> \otimes \ket{\bitone}<B>)
-         + d \ab\big(\ket{\bittwo}<A> \otimes \ket{\bittwo}<B>)
+        &= a \ket{\bitone}<A> \ket{\bitone}<B>
+         + b \ket{\bitone}<A> \ket{\bittwo}<B>
+         + c \ket{\bittwo}<A> \ket{\bitone}<B>
+         + d \ket{\bittwo}<A> \ket{\bittwo}<B>
         \\
         &\quad 
             \text{（$a, b, c, d$は複素数，$\abs{a}^2 + \abs{b}^2 + \abs{c}^2 + \abs{d}^2 = 1$）}
     \end{split}
 \end{equation}
-で表される\footnote{
-    $\otimes$の左側がスピン$\symup{A}$の状態，
-    右側がスピン$\symup{B}$の状態なのだから，
-    添字$\symup{A}, \symup{B}$は本来不要である．
-}．
-
+で表される．
+単純な形で表される状態であるが，
+非常に興味深い性質を持つ．
 
 
 \subsubsection{セパラブル状態とエンタングル状態}
 
 \cref{eq:2-spin-product-state}のうち，
+複素数$a, b, c, d$を用いて
 \begin{equation}
     \Ket{\Psi}<A,B> = 
         \ab\Big( a \ket{\bitone}<A> + b \ket{\bittwo}<A> )
         \otimes 
         \ab\Big( c \ket{\bitone}<B> + d \ket{\bittwo}<B> )
 \end{equation}
-という形で書ける状態を\ltword{セパラブル状態}(separable state)，
+という形で書ける状態を\ltword{セパラブル状態}(separable state)\footnote{
+    ヒルベルト空間論における「\ltjruby{可|分}{か|ぶん}~(separable)」という概念とは無関係である．
+}，
 そうでない状態を\ltword{エンタングル状態}(entangled state)\footnote{
     `entangle'は「からまる」という意味．
     entanglementを「量子もつれ」と訳すこともある．
@@ -3141,7 +3158,7 @@ $\ket{\bittwo}<B>$（確率$3/4$）のいずれか一方が得られる．
 \cref{eq:example-separable-state}の状態に対して，
 スピン$\symup{A}$の向きを観測したところ，
 上向き（$\ket{\bitone}<A>$）だったとしよう．
-この測定によって，
+波束の収縮（\cref{qmaxiom:collapse}）によって，
 \cref{eq:example-separable-state}の状態は
 \begin{equation*}
     \tag{\ref*{eq:example-separable-state}$'$}
@@ -3237,36 +3254,45 @@ Aliceが自身のスピン$\symup{A}$を測定し，
 AliceはBobの測定結果を予言できるし，
 そもそもAliceがスピン$\symup{A}$の測定結果をBobに伝えれば，
 Bobはスピン$\symup{B}$を測定する必要がない．
+このように，エンタングル状態は非常に奇妙なふるまいを示す．
 
-しかしこの状況はエンタングルメントを用いずとも再現できるのではないだろうか．
-はじめに第三者Carolがそれぞれ状態$\ket{\bitone}, \ket{\bittwo}$にあるスピン$\symup{A}, \symup{B}$を用意し，
-$\symup{A}$をAliceに，$\symup{B}$をBobに渡す\footnote{
-    Carolが状態$\ket{\bitone}$に$\symup{A}$とラベルする（つまり$\ket{\bitone}$をAliceに渡す）確率は$1/2$とする．
+しかし，
+この状況は本当に``奇妙''なのだろうか．
+例えば次のような状況を考えてみよう．
+第三者Carolがそれぞれ状態$\ket{\bitone}, \ket{\bittwo}$にある2つのスピンを用意し，
+片方（$\symup{A}$とする）をAliceに，もう片方（$\symup{B}$）をBobに渡す\footnote{
+    Aliceに$\ket{\bitone}$を渡す確率は$1/2$であるとする．
 }．
-AliceとBobは，
-Carolが$\ket{\bitone}$と$\ket{\bittwo}$の2つの状態を用意したことを知っているが，
+ふたりはCarolが$\ket{\bitone}$と$\ket{\bittwo}$の2つの状態を用意したことを知っているが，
 自分がどちらをもらったのかは知らない．
+
 この状況下で，
 Aliceがスピン$\symup{A}$を測定し，
-状態$\ket{\bitone}$を得たとする．
+状態$\ket{\bitone}$を得たとする\footnote{
+    Aliceが$\ket{\bitone}$を観測する確率は，
+    （Carolにとってはともかく）
+    Aliceにとっては$1/2$である．
+}．
 その時点でBobが$\ket{\bittwo}$を持っていることをAliceは知ることができる．
+Aliceが状態$\ket{\bittwo}$を観測した場合も同様である．
+それではエンタングル状態というのは，
+かくもわかりやすい状況を，
+数学的に難しく表現したものにすぎないのだろうか．
 
 ところが，
 前者のエンタングルメントによる状況と，
 後者のCarolが作った状況は，
-異なっている．
+本質的に異なっている．
 そのことを確かめるために，
-AliceとBobが$\ket{\bitone}, \ket{\bittwo}$と別の正規直交基底
+AliceとBobが$\ket{\bitone}, \ket{\bittwo}$とは別の正規直交基底
 \begin{align}
     \label{eq:spin-another-basis}
     \ket{\bitthr} 
     \coloneq \frac{1}{\sqrt{2}} \ab\Big( \ket{\bitone} + \ket{\bittwo} )
-    = \cvector{ \tfrac{1}{\sqrt{2}} ; \tfrac{1}{\sqrt{2}} }
     ,
     \quad 
     \ket{\bitfou} 
     \coloneq \frac{1}{\sqrt{2}} \ab\Big( \ket{\bitone} - \ket{\bittwo} )
-    = \cvector{ \tfrac{1}{\sqrt{2}} ; -\tfrac{1}{\sqrt{2}} }
 \end{align}
 による測定を行うとしよう．
 まず，
@@ -3277,14 +3303,14 @@ AliceとBobが$\ket{\bitone}, \ket{\bittwo}$と別の正規直交基底
     \quad 
     \ket{\bittwo} = \frac{1}{\sqrt{2}} \ab\Big( \ket{\bitthr} - \ket{\bitfou} )
 \end{equation}
-である．
-これを使って\cref{eq:example-entangled-state-2}のエンタングル状態を書き換えると，
+であることに注意する．
+したがって\cref{eq:example-entangled-state-2}のエンタングル状態は，
 \begin{equation}
     \label{eq:example-entangled-state-2-another}
     \tag{\ref*{eq:example-entangled-state-2}$'$}
     \Ket{\Psi}<A,B> = \ket{\bitthr}<A> \ket{\bitthr}<B> + \ket{\bitfou}<A> \ket{\bitfou}<B>
 \end{equation}
-となる．
+と書き換えられる．
 
 Aliceがスピン$\symup{A}$に対して，
 \cref{eq:spin-another-basis}の基底による測定を\ltjruby{行}{おこな}ったとする．
@@ -3323,7 +3349,7 @@ Carolが用意したような古典的な相関よりもはるかに強い．
 
 \subsection{量子テレポーテーション}
 
-送信者Aliceが持っている量子状態
+送信者Aliceが持っている量子系$\symup{X}$の状態
 \begin{equation}
     \label{eq:state-of-Alice}
     \ket{\xi}<X> = a \ket{\bitone} + b \ket{\bittwo}
@@ -3363,13 +3389,35 @@ Bobが現地で\cref{eq:state-of-Alice}の状態を再現することができ�
 \end{subequations}
 で定義する．
 これらは$\symcal{H} \otimes \symcal{H}$の正規直交基底になっている．
+正規直交系であることは，
+テンソル積の内積（\cref{eq:tensor-inner-product}）を使って容易に計算できる．
 
 
+\bluehead{量子テレポーテーションの手順}\quad 
 AliceとBobが\cref{eq:Bell-basis-1}のエンタングル状態を所有しているとする．
 このときAliceがもつ状態（\cref{eq:state-of-Alice}）を，
 次のような手順でBobに転送することができる．
 
-\cref{eq:Bell-basis}を基底とする測定
+系$\symup{X}$, $\symup{A}$, $\symup{B}$を合わせた系の状態は，
+テンソル積によって$\ket{\xi}<X> \otimes \Ket{\Phi^+}<A,B>$と書ける．
+これを式変形すると，
+\begin{equation*}
+    \begin{split}
+        \ket{\xi}<X> \otimes \Ket{\Phi^+}<A,B>
+        &= \frac{1}{2} \Ket{\Phi^+}<X,A> \otimes 
+            \ab\Big( a \ket{\bitone}<B> + b \ket{\bittwo}<B> )
+        + \frac{1}{2} \Ket{\Phi^-}<X,A> \otimes 
+            \ab\Big( a \ket{\bitone}<B> - b \ket{\bittwo}<B> )
+            \\
+        &\quad + \frac{1}{2} \Ket{\Psi^+}<X,A> \otimes 
+            \ab\Big( b \ket{\bitone}<B> + a \ket{\bittwo}<B> )
+        + \frac{1}{2} \Ket{\Psi^-}<X,A> \otimes 
+            \ab\Big(-b \ket{\bitone}<B> + a \ket{\bittwo}<B> )
+\end{split}
+\end{equation*}
+
+まずAliceは，系Xと系Aを合わせた状態に対して，
+ベル基底$\Ket{\Phi^+}<X,A>$, $\Ket{\Phi^-}<X,A>$, $\Ket{\Psi^+}<X,A>$, $\Ket{\Psi^-}<X,A>$による測定を行う．
 
 
 
